@@ -1,0 +1,44 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700&display=swap');
+
+
+* {
+    font-family: 'Outfit', sans-serif;
+}
+
+.font_courier {
+    font-family: 'Courier Prime', monospace;
+}
+
+
+
+
+.perspective-r {
+    transform:
+        perspective(75em)
+        rotateY(-10deg);
+}
+.perspective-l {
+    transform:
+        perspective(75em)
+        rotateY(-15deg);
+
+}
+
+.pattern-1{
+    background-color: #ffffff;
+
+    background-image:  linear-gradient(#f1f1f1 1px, transparent 1px), linear-gradient(to right, #f1f1f1 1px, #ffffff 1px);
+    background-size: 20px 20px;
+}
+
+.pattern-2 {
+    background-color: #ffffff;
+    background-size: 20px 20px;
+    background-image:  repeating-linear-gradient(to right, #f1f1f1, #f1f1f1 1px, #ffffff 1px, #ffffff);
+}
+
