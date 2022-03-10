@@ -23,7 +23,10 @@ class Product extends Authenticatable
         'snippet',
         'price',
         'sale_price',
-        'is_featured'
+        'is_featured',
+        'file_path',
+        'create_at',
+        'updated_at'
     ];
 
     public function user()
@@ -34,6 +37,8 @@ class Product extends Authenticatable
     public function scopeFeatured() {
         return $query->where('is_featured', true);
     }
+
+
 
 
 

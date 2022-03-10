@@ -675,9 +675,6 @@ select{
 .mt-1{
   margin-top: 0.25rem;
 }
-.-mb-2{
-  margin-bottom: -0.5rem;
-}
 .block{
   display: block;
 }
@@ -775,9 +772,6 @@ select{
 }
 .w-48{
   width: 12rem;
-}
-.w-\[3\.5rem\]{
-  width: 3.5rem;
 }
 .max-w-xl{
   max-width: 36rem;
@@ -1023,9 +1017,6 @@ select{
 .fill-current{
   fill: currentColor;
 }
-.fill-beige-5{
-  fill: #ecebe2;
-}
 .stroke-current{
   stroke: currentColor;
 }
@@ -1058,10 +1049,6 @@ select{
 .py-10{
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
-}
-.py-\[2rem\]{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 .py-3{
   padding-top: 0.75rem;
@@ -1136,12 +1123,6 @@ select{
 .pl-3{
   padding-left: 0.75rem;
 }
-.pt-\[3\.5rem\]{
-  padding-top: 3.5rem;
-}
-.pb-\[1rem\]{
-  padding-bottom: 1rem;
-}
 .text-left{
   text-align: left;
 }
@@ -1205,9 +1186,6 @@ select{
 .uppercase{
   text-transform: uppercase;
 }
-.capitalize{
-  text-transform: capitalize;
-}
 .leading-5{
   line-height: 1.25rem;
 }
@@ -1219,21 +1197,6 @@ select{
 }
 .leading-tight{
   line-height: 1.25;
-}
-.leading-\[0\.2rem\]{
-  line-height: 0.2rem;
-}
-.leading-\[0\.12rem\]{
-  line-height: 0.12rem;
-}
-.leading-\[1rem\]{
-  line-height: 1rem;
-}
-.leading-\[1\.2rem\]{
-  line-height: 1.2rem;
-}
-.leading-\[1\.5rem\]{
-  line-height: 1.5rem;
 }
 .leading-\[1\.3rem\]{
   line-height: 1.3rem;
@@ -1673,27 +1636,6 @@ select{
   .md\:pb-0{
     padding-bottom: 0px;
   }
-  .md\:pt-\[7rem\]{
-    padding-top: 7rem;
-  }
-  .md\:pt-\[2rem\]{
-    padding-top: 2rem;
-  }
-  .md\:pt-\[3rem\]{
-    padding-top: 3rem;
-  }
-  .md\:pt-\[5rem\]{
-    padding-top: 5rem;
-  }
-  .md\:pb-\[5rem\]{
-    padding-bottom: 5rem;
-  }
-  .md\:pb-\[3rem\]{
-    padding-bottom: 3rem;
-  }
-  .md\:pb-\[2rem\]{
-    padding-bottom: 2rem;
-  }
   .md\:text-3xl{
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -1748,10 +1690,6 @@ select{
   .lg\:py-0{
     padding-top: 0px;
     padding-bottom: 0px;
-  }
-  .lg\:py-\[5rem\]{
-    padding-top: 5rem;
-    padding-bottom: 5rem;
   }
   .lg\:px-0{
     padding-left: 0px;

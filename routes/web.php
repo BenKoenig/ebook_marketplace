@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,9 +24,25 @@ use Inertia\Inertia;
 /*Route::get('/', [ProductController::class, 'index'])
     ->name('Welcome');*/
 
-Route::get('/', [ProductController::class, 'index'])
-    ->name('home');
+Route::get('/', [ProductController::class, 'index'])->name('home');
 
+Route::get('/create', [ProductController::class, 'create'])->name('products.create');
+/*Route::post('/products', [ProductController::class, 'store'])->name('products.store');*/
+
+Route::post('/products', function() {
+    $attributes = Request::validate([
+        'name' => 'required',
+        'description' => 'required',
+        'snippet' => 'required',
+    ]);
+
+    Product::create($attributes);
+
+    return redirect('/');
+});
+
+
+Route::get('image/{filename}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');
 
 
 /*Route::get('/', function () {

@@ -1,6 +1,6 @@
-# Laravue-starter
+# readme - eBook marketplace for developers
 
-## What's inside + Documentation
+## Technologies used
 
 -   [Laravel 9.2](https://laravel.com/docs/9.x)
 -   [Laravel Breeze](https://laravel.com/docs/9.x/starter-kits#laravel-breeze)
@@ -13,13 +13,13 @@
 Clone this repository:
 
 ```
-git clone https://github.com/fbrisola/laravue-starter.git [yourprojectname]
+git clone https://github.com/BenKoenig/sae-final-project-22.git
 ```
 
 Install Laravel and Node dependencies:
 
 ```
-cd [yourprojectname]
+cd sae-final-project-22
 composer install
 npm install
 ```

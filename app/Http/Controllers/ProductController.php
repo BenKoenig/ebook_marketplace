@@ -18,8 +18,8 @@ class ProductController extends Controller
      */
 
 
-
-    public function index() {
+    public function index()
+    {
         return Inertia::render('Welcome', [
             /*'products' => Product::all()->where('is_featured', true)->with('user')->get
             'products' => Product::all()*/
@@ -27,6 +27,54 @@ class ProductController extends Controller
 
         ]);
     }
+
+
+
+
+
+    public function create()
+    {
+        return Inertia::render('Products/Create');
+    }
+
+    public function store(Request $request)
+    {
+        Product::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'snippet' => $request->input('snippet'),
+            'price' => $request->input('price'),
+            'sale_price' => $request->input('sale_price'),
+            'is_featured' => $request->input('is_featured'),
+            'book_cover' => $request->file('book_cover') ? $request->file('book_cover')->store('covers', 'public') : null,
+        ]);
+
+        return Redirect::route('Welcome');
+    }
+
+    public function getPubliclyStorgeFile($filename)
+    {
+
+        $path = storage_path('app/public/upload/'. $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
+}
+
+
+
 
 
 
@@ -50,4 +98,4 @@ class ProductController extends Controller
 
 /*    }*/
 
-}
+
