@@ -89,14 +89,23 @@ Route::get('/discover', function () {
 // })->name('discover');
 
 
-Route::get('/productPage', function () {
-    return Inertia::render('ProductPage', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/productPage', function () {
+//     return Inertia::render('ProductPage', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,x
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
+
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+
+// Route::get('/products/{id}', function () {
+//     return Inertia::render('Products/Show') ;
+// })->name('products.show');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

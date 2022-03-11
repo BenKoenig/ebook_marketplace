@@ -78,7 +78,27 @@ class ProductController extends Controller
         return $response;
     }
 
+
+
+    public function show($id)
+    {
+        return Inertia::render('Products/Show', [
+            /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
+            /*'products' => Product::all(),*/
+            'product' => Product::query()->where('id', '=', $id)->first(),        
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+
+        ]);
+    }
+
 }
+
+
+
+
 
 
 
