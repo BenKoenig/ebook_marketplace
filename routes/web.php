@@ -18,28 +18,37 @@ use Inertia\Inertia;
 */
 
 
-/*Route::get('/test/', [ProductController::class, 'index'])
-    ->name('Test');*/
 
-/*Route::get('/', [ProductController::class, 'index'])
-    ->name('Welcome');*/
+Route::get('/', [ProductController::class, 'index', ])->name('home');
 
-Route::get('/', [ProductController::class, 'index'])->name('home');
+
+
+/*Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+        'products' => Product::with('user')->get()->where('is_featured', true)
+    ]);
+});*/
+
+
 
 Route::get('/create', [ProductController::class, 'create'])->name('products.create');
 /*Route::post('/products', [ProductController::class, 'store'])->name('products.store');*/
 
-Route::post('/products', function() {
-    $attributes = Request::validate([
-        'name' => 'required',
-        'description' => 'required',
-        'snippet' => 'required',
-    ]);
+// Route::post('/products', function() {
+//     $attributes = Request::validate([
+//         'name' => 'required',
+//         'description' => 'required',
+//         'snippet' => 'required',
+//     ]);
 
-    Product::create($attributes);
+//     Product::create($attributes);
 
-    return redirect('/');
-});
+//     return redirect('/');
+// });
 
 
 Route::get('image/{filename}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');
@@ -56,12 +65,29 @@ Route::get('image/{filename}', [ProductController::class,'getPubliclyStorgeFile'
 })->name('home');*/
 
 Route::get('/library', function () {
-    return Inertia::render('Library');
+    return Inertia::render('Library', [
+        'foo' => 'bar',
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 })->middleware(['auth', 'verified'])->name('library');
 
 Route::get('/discover', function () {
-    return Inertia::render('Discover');
+    return Inertia::render('Discover', [
+        'foo' => 'bar',
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]) ;
 })->name('discover');
+
+// Route::get('/discover', function () {
+//     return Inertia::render('Discover') ;
+// })->name('discover');
+
 
 Route::get('/productPage', function () {
     return Inertia::render('ProductPage', [

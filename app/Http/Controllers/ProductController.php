@@ -6,6 +6,9 @@ use App\Models\Posting;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+
 
 // == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
 
@@ -21,9 +24,13 @@ class ProductController extends Controller
     public function index()
     {
         return Inertia::render('Welcome', [
-            /*'products' => Product::all()->where('is_featured', true)->with('user')->get
-            'products' => Product::all()*/
-            'products' => Product::with('user')->get()->where('is_featured', true)
+            /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
+            /*'products' => Product::all(),*/
+            'products' => Product::with('user')->get()->where('is_featured', true),
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
 
         ]);
     }

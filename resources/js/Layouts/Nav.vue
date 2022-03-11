@@ -1,6 +1,11 @@
-<template>
-    <!--Navigation-->
+<script setup>
+import { Head, Link } from '@inertiajs/inertia-vue3';
+</script>
 
+
+<template>
+
+    <!--Navigation-->
     <nav>
         <div class="z-40 relative">
             <div class="relative w-full bg-white items-center h-[3.3rem]  max-w-8xl mx-auto  ">
@@ -8,7 +13,7 @@
                 <!--Home Link-->
                 <div class="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 text-black hover:scale-[1.05] active:scale-[0.9] transition-transform">
                     <div class="w-[8rem] relative ">
-                        <a :href="route('home')" class="absolute w-full h-full"></a>
+                        <Link :href="route('home')" class="absolute w-full h-full opacity-0">Home</Link>
                         <svg class="fill-current stroke-4 stroke-current" viewBox="2.62 3.57 142.94 37.24">
                             <defs>
                                 <clipPath id="a">
@@ -77,15 +82,40 @@
 
                 <!--Desktop Links-->
                 <ul class="items-center gap-x-3 absolute right-0 top-2/4 -translate-y-2/4 text-lg hidden lg:flex  7xl:pr-0">
-                    <li class="hover:scale-[1.05] active:scale-[0.9] transition-transform">
-                        <a :href="route('discover')" class="">Discover</a>
+                    <li class="">
+                        <Link :href="route('discover')" class="">Discover</Link>
                     </li>
 
-                    <li class="hover:scale-[1.05] active:scale-[0.9] transition-transform">
-                        <a :href="route('library')" class="">Library</a>
+                    <li  v-if="canLogin" class="">
+                        <Link v-if="$page.props.auth.user" :href="route('library')" class="">
+                            Library
+                        </Link>
                     </li>
-                    <li><WhiteBtn msg="Login"></WhiteBtn></li>
-                    <li><YellowBtn msg="Register"></YellowBtn></li>
+
+                    <li  v-if="canLogin" class="">
+                        <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="">
+                            Account
+                        </Link>
+                    </li>
+
+                    <li  v-if="canLogin" class="">
+                        <Link v-if="!$page.props.auth.user" :href="route('logout')" method="post" as="button">
+                            Login
+                        </Link>
+                    </li>
+
+                    <li v-if="canRegister" class="">
+                        <Link v-if="!$page.props.auth.user" :href="route('logout')" method="post" as="button">
+                            Register
+                        </Link>
+                    </li>
+
+                    <li  v-if="canLogin" class="">
+                        <BreezeResponsiveNavLink v-if="$page.props.auth.user" :href="route('logout')" method="post" as="button">
+                            Log Out
+                        </BreezeResponsiveNavLink>
+                    </li>
+
                 </ul>
 
                 <!--Dark/Light Mode Toggler-->
@@ -112,12 +142,21 @@
 <script>
 import WhiteBtn from "@/Partials/WhiteBtn";
 import YellowBtn from "@/Partials/YellowBtn";
+import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import { usePage } from '@inertiajs/inertia-vue3'
+import { Head, Link } from '@inertiajs/inertia-vue3';
+
 
 export default {
+
     name: 'App',
     components: {
         WhiteBtn,
-        YellowBtn
-    }
+        YellowBtn,
+        BreezeResponsiveNavLink
+    },
+    props: ['canLogin', 'canRegister'],
+
+
 }
 </script>
