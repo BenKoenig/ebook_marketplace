@@ -15,6 +15,8 @@ module.exports = {
             },*/
             backgroundImage: {
                 'building': "url('/assets/building.png')",
+                'pencils': "url('../assets/pencils.jpg')",
+                'tablet': "url('../assets/tablet.jpg')",
             },
             maxWidth: {
                 '8xl': '85rem',

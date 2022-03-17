@@ -74,6 +74,11 @@ Route::get('/library', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('library');
 
+
+
+Route::get('/discover', [ProductController::class, 'discover'])->name('discover');
+
+/*
 Route::get('/discover', function () {
     return Inertia::render('Discover', [
         'foo' => 'bar',
@@ -82,7 +87,7 @@ Route::get('/discover', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]) ;
-})->name('discover');
+})->name('discover');*/
 
 // Route::get('/discover', function () {
 //     return Inertia::render('Discover') ;

@@ -9,13 +9,10 @@
             <div v-for="product in products" :key="product.id">
                 <MdProductCard  v-bind:title="product.name"  v-bind:authorName="product.user.name" />
             </div>
-
-
-
-
         </div>
     </div>
 </template>
+
 
 
 

@@ -7,6 +7,8 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    product: Object,
+    users: Object,
 })
 </script>
 
@@ -17,7 +19,7 @@ defineProps({
     <!-- <Head title="Welcome" /> -->
 
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
-    <DailySnippet class="py-[3.5rem] md:py-[5.5rem]"/>
+    <DailySnippet class="py-[3.5rem] md:py-[5.5rem]" :product="product" :users="users"/>
     <Footer class="py-[3.5rem] md:py-[7rem]"/>
 
 

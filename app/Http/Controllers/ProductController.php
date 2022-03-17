@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posting;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +35,7 @@ class ProductController extends Controller
         ]);
     }
 
+    
 
 
 
@@ -82,15 +83,29 @@ class ProductController extends Controller
 
     public function show($id)
     {
+        
         return Inertia::render('Products/Show', [
             /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
             /*'products' => Product::all(),*/
-            'product' => Product::query()->where('id', '=', $id)->first(),        
+
+            
+            'product' => Product::query()->where('id', '=', $id)->firstOrFail(),        
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+        ]);
+    }
+
+
+    public function discover()
+    {
+        
+        return Inertia::render('Discover', [
+            'foo' => 'bar',
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-
+            'product' => Product::inRandomOrder()->with('user')->first(),
         ]);
     }
 

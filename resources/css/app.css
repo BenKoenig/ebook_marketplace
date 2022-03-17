@@ -6,12 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700&display=swap');
 
 
+@font-face {
+    font-family: Array;
+    src: url(../assets/fonts/Array-Regular.woff);
+  }
+
 * {
     font-family: 'Outfit', sans-serif;
 }
 
 .font_courier {
-    font-family: 'Courier Prime', monospace;
+    font-family: 'Courier Prime';
 }
 
 
