@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -98,6 +99,9 @@ class ProductController extends Controller
 
     public function discover()
     {
+        $product = Cache::remember('randomPost', 60*24, function () {
+            return Product::inRandomOrder()->with('user')->first;
+        });
         
         return Inertia::render('Discover', [
             'foo' => 'bar',
@@ -105,7 +109,11 @@ class ProductController extends Controller
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'product' => Product::inRandomOrder()->with('user')->first(),
+            //'product' => Product::inRandomOrder()->with('user')->first(),
+            'product' => Cache::remember('randProduct', 60*24, function () {
+                return Product::inRandomOrder()->with('user')->first();
+            })
+        
         ]);
     }
 
