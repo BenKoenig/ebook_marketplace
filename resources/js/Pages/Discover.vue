@@ -15,7 +15,6 @@ defineProps({
 
 
 <template>
-{{ product.name}}
     <Head title="Discover eBooks" />
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
     <DailySnippet class="py-[3.5rem] md:py-[5.5rem]" :product="product"/>

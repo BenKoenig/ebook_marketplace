@@ -8,7 +8,7 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    product: Object,
+    products: Object,
 })
 </script>
 

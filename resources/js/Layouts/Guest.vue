@@ -15,4 +15,9 @@ import { Link } from '@inertiajs/inertia-vue3';
             <slot />
         </div>
     </div>
+    
 </template>
+
+
+<template>
+
