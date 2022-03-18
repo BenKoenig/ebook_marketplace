@@ -99,9 +99,7 @@ class ProductController extends Controller
 
     public function discover()
     {
-        $product = Cache::remember('randomPost', 60*24, function () {
-            return Product::inRandomOrder()->with('user')->first;
-        });
+
         
         return Inertia::render('Discover', [
             'foo' => 'bar',
@@ -110,8 +108,13 @@ class ProductController extends Controller
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
             //'product' => Product::inRandomOrder()->with('user')->first(),
+
+            //https://laracasts.com/discuss/channels/laravel/how-can-i-display-3-posts-in-slider-for-whole-day-and-changes-on-next-day-randomly-in-laravel-55
+            
             'product' => Cache::remember('randProduct', 60*24, function () {
                 return Product::inRandomOrder()->with('user')->first();
+ 
+                //return Product::inRandomOrder()->take(3)->get();
             })
         
         ]);

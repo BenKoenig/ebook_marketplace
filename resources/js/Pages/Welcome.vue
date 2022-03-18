@@ -8,15 +8,13 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    products: Object,
+    product: Object,
 })
 </script>
 
 
 <template>
-    <div v-for="product in products">
-        {{ product.name }}
-    </div>
+
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
     <Hero class="py-[3.5rem] md:py-[7rem]" />
     <FeaturedProducts class="py-[3.5rem] md:py-[7rem]" :products="products" />

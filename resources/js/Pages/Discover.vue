@@ -8,7 +8,6 @@ defineProps({
     laravelVersion: String,
     phpVersion: String,
     product: Object,
-    users: Object,
 })
 </script>
 
@@ -16,9 +15,10 @@ defineProps({
 
 
 <template>
+{{ product.name}}
     <Head title="Discover eBooks" />
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
-    <DailySnippet class="py-[3.5rem] md:py-[5.5rem]" :product="product" :users="users"/>
+    <DailySnippet class="py-[3.5rem] md:py-[5.5rem]" :product="product"/>
     <Footer class="py-[3.5rem] md:py-[7rem]"/>
 
 

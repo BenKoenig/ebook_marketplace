@@ -22413,8 +22413,7 @@ var __default__ = {
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    product: Object,
-    users: Object
+    product: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -22646,7 +22645,7 @@ var __default__ = {
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    products: Object
+    product: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -24717,7 +24716,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Discover eBooks"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Nav"], {
     canLogin: $props.canLogin,
@@ -24726,11 +24727,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["canLogin", "canRegister"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DailySnippet"], {
     "class": "py-[3.5rem] md:py-[5.5rem]",
-    product: $props.product,
-    users: $props.users
+    product: $props.product
   }, null, 8
   /* PROPS */
-  , ["product", "users"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Footer"], {
+  , ["product"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Footer"], {
     "class": "py-[3.5rem] md:py-[7rem]"
   })], 64
   /* STABLE_FRAGMENT */
@@ -24837,13 +24837,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.products, function (product) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name), 1
-    /* TEXT */
-    );
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Nav"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Nav"], {
     canLogin: $props.canLogin,
     canRegister: $props.canRegister
   }, null, 8
@@ -24852,7 +24846,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "py-[3.5rem] md:py-[7rem]"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["FeaturedProducts"], {
     "class": "py-[3.5rem] md:py-[7rem]",
-    products: $props.products
+    products: _ctx.products
   }, null, 8
   /* PROPS */
   , ["products"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Banner"], {

@@ -2,7 +2,7 @@
     <!-- Daily snippet -->
     <div class="relative flex flex-col items-center justify-center  pt-[3rem] pb-[4rem] lg:pb-[5rem] lg:pt-[6rem] lg:pb-[6.5rem] overflow-hidden  border-b-2 border-black">
 
-        <Headline first-headline="The daily Feature" second-headline="Daily Snippets"></Headline>
+ <Headline first-headline="The daily Feature" second-headline="Daily Snippets"></Headline>
 
         <!-- Start of container -->
         <div class="max-w-8xl grid  md:grid-rows-2 xl:grid-rows-1 md:grid-cols-2 xl:grid-cols-11 relative gap-2 mx-2 xl:mx-0">
