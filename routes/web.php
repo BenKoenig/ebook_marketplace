@@ -22,6 +22,7 @@ use Inertia\Inertia;
 Route::get('/', [ProductController::class, 'index', ])->name('home');
 
 
+Route::inertia('/reader', 'Reader');
 
 /*Route::get('/', function () {
     return Inertia::render('Welcome', [
