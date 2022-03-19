@@ -1,5 +1,4 @@
 <script setup>
-import BreezeApplicationLogo from '@/Partials/ApplicationLogo.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 </script>
 
@@ -15,9 +14,4 @@ import { Link } from '@inertiajs/inertia-vue3';
             <slot />
         </div>
     </div>
-    
 </template>
-
-
-<template>
-

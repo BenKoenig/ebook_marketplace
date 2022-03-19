@@ -36,7 +36,7 @@ Route::inertia('/reader', 'Reader');
 
 
 
-Route::get('/create', [ProductController::class, 'create'])->name('products.create');
+Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
 /*Route::post('/products', [ProductController::class, 'store'])->name('products.store');*/
 
 // Route::post('/products', function() {
