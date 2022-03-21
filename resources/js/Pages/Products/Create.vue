@@ -20,7 +20,8 @@ defineProps({
 
 <template>
     <Head title="Sell an eBook" />
-    <Nav />
+    <Nav :canLogin="canLogin" :canRegister="canRegister"/>
+
     <CreateForm :products="products"/>
     <Footer class="py-[3.5rem] md:py-[7rem]"/>
 

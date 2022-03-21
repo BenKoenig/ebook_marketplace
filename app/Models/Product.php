@@ -27,7 +27,8 @@ class Product extends Authenticatable
         'cover',
         'epub',
         'create_at',
-        'updated_at'
+        'updated_at',
+        'user_id'
     ];
 
     protected $attributes = [

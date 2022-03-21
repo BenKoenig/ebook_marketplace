@@ -99,13 +99,13 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                     </li>
 
                     <li  v-if="canLogin" class="">
-                        <Link v-if="!$page.props.auth.user" :href="route('logout')" method="post" as="button">
+                        <Link v-if="!$page.props.auth.user" :href="route('login')" method="post" as="button">
                             Login
                         </Link>
                     </li>
 
                     <li v-if="canRegister" class="">
-                        <Link v-if="!$page.props.auth.user" :href="route('logout')" method="post" as="button">
+                        <Link v-if="!$page.props.auth.user" :href="route('register')" method="post" as="button">
                             Register
                         </Link>
                     </li>

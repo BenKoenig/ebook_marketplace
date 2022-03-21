@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,19 +38,19 @@ class ProductController extends Controller
     }
 
 
-
-
-
-
     public function create()
     {
+
         return Inertia::render('Products/Create', [
             'products' => Product::all(),
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
         ]);
     }
 
     public function store(Request $request)
     {
+
 
 
         Product::create([
@@ -58,7 +59,8 @@ class ProductController extends Controller
             'snippet' => $request->input('snippet'),
             'price' => $request->input('price'),
             'cover' => $request->file('cover')->store('covers', 'public'),
-            'epub' => $request->file('epub')->store('epubs', 'public')
+            'epub' => $request->file('epub')->store('epubs', 'public'),
+            'user_id' => Auth::user()->id
         ]);
 
         return redirect('/');

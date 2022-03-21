@@ -6,6 +6,7 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
+        './node_modules/flowbite/**/*.js'
     ],
 
     theme: {
@@ -22,10 +23,13 @@ module.exports = {
                 '8xl': '85rem',
             },
             colors: {
-                'beige-5': '#ecebe2', 
+                'beige-5': '#ecebe2',
             }
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('flowbite/plugin')
+    ],
 };
