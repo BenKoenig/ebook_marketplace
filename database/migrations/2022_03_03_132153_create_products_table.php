@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('snippet');
-            /*$table->string('book_cover');*/
+            $table->string('cover');
+            $table->string('epub');
             $table->float('price');
-            $table->float('sale_price');
+            /* $table->float('sale_price'); */
             $table->boolean('is_featured');
             $table->timestamps();
         });

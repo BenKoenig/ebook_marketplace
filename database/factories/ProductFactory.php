@@ -24,8 +24,9 @@ class ProductFactory extends Factory
             'description' => $this->faker->text,
             'snippet' => $this->faker->text,
             'price' => 9.99,
-            /*'book_cover' => 'cover.png',*/
-            'sale_price' => 4.99,
+            'cover' => 'temp.png',
+            'epub' => 'temp.epub',
+            /* 'sale_price' => 4.99,*/
             'is_featured' => false,
             'created_at' => $this->faker->dateTimeBetween('-3 years', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('2020-04-03', '2022-02-07'),

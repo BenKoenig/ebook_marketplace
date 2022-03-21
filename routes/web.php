@@ -24,6 +24,13 @@ Route::get('/', [ProductController::class, 'index', ])->name('home');
 
 Route::inertia('/reader', 'Reader');
 
+/*Route::get('/reader', function () {
+    return Inertia::render('Reader', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]) ;
+})->name('discover');*/
+
 /*Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -37,7 +44,12 @@ Route::inertia('/reader', 'Reader');
 
 
 Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
-/*Route::post('/products', [ProductController::class, 'store'])->name('products.store');*/
+
+
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+
+
 
 // Route::post('/products', function() {
 //     $attributes = Request::validate([

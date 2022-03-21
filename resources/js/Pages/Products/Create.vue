@@ -14,13 +14,14 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    products: Object,
 })
 </script>
 
 <template>
     <Head title="Sell an eBook" />
     <Nav />
-    <CreateForm />
+    <CreateForm :products="products"/>
     <Footer class="py-[3.5rem] md:py-[7rem]"/>
 
 

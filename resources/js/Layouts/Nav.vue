@@ -6,7 +6,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 <template>
 
     <!--Navigation-->
-    <nav>
+    <nav id="navbar">
         <div class="z-40 relative">
             <div class="relative w-full bg-white items-center h-[3.3rem]  max-w-8xl mx-auto  ">
 

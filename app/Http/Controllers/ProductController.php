@@ -36,29 +36,32 @@ class ProductController extends Controller
         ]);
     }
 
-    
+
 
 
 
 
     public function create()
     {
-        return Inertia::render('Products/Create');
+        return Inertia::render('Products/Create', [
+            'products' => Product::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
+
+
         Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'snippet' => $request->input('snippet'),
             'price' => $request->input('price'),
-            'sale_price' => $request->input('sale_price'),
-            'is_featured' => $request->input('is_featured'),
-            'book_cover' => $request->file('book_cover') ? $request->file('book_cover')->store('covers', 'public') : null,
+            'cover' => $request->file('cover')->store('covers', 'public'),
+            'epub' => $request->file('epub')->store('epubs', 'public')
         ]);
 
-        return Redirect::route('Welcome');
+        return redirect('/');
     }
 
     public function getPubliclyStorgeFile($filename)
@@ -84,13 +87,13 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        
+
         return Inertia::render('Products/Show', [
             /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
             /*'products' => Product::all(),*/
 
-            
-            'product' => Product::query()->where('id', '=', $id)->firstOrFail(),        
+
+            'product' => Product::query()->where('id', '=', $id)->firstOrFail(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);
@@ -100,7 +103,7 @@ class ProductController extends Controller
     public function discover()
     {
 
-        
+
         return Inertia::render('Discover', [
             'foo' => 'bar',
             'canLogin' => Route::has('login'),
@@ -110,13 +113,13 @@ class ProductController extends Controller
             //'product' => Product::inRandomOrder()->with('user')->first(),
 
             //https://laracasts.com/discuss/channels/laravel/how-can-i-display-3-posts-in-slider-for-whole-day-and-changes-on-next-day-randomly-in-laravel-55
-            
+
             'product' => Cache::remember('randProduct', 60*24, function () {
                 return Product::inRandomOrder()->with('user')->first();
- 
+
                 //return Product::inRandomOrder()->take(3)->get();
             })
-        
+
         ]);
     }
 

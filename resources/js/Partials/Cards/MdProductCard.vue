@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-end   w-scale grow border-2 border-black">
-        <img src="https://via.placeholder.com/150x275" alt="img">
+        <img src="{{ coverUrl }}" alt="img">
         <div>
             <h3 class="text-xl font-semibold py-3 px-1 leading-[1.3rem]">{{ title.length > 50 ?title.slice(0, 50) + '..' : title }}</h3>
             <div class="bg-beige-5 py-5 px-1">
@@ -21,7 +21,8 @@ export default {
     components: {YellowBtn},
     props: {
         title: String,
-        authorName: String
+        authorName: String,
+        coverUrl: String
     },
     filters: {
         truncate: function (text, length, suffix) {
