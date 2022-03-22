@@ -23,11 +23,11 @@ class ProductController extends Controller
      */
 
 
+    
     public function index()
     {
         return Inertia::render('Welcome', [
-            /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
-            /*'products' => Product::all(),*/
+
             'products' => Product::with('user')->get()->where('is_featured', true),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -36,6 +36,8 @@ class ProductController extends Controller
 
         ]);
     }
+
+
 
 
     public function create()
@@ -50,9 +52,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
-
-
         Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
@@ -100,6 +99,11 @@ class ProductController extends Controller
             'canRegister' => Route::has('register'),
         ]);
     }
+
+
+/*    public function startimport(Request $request) {
+        return response()->json(['data' => $request->importfile]);
+    }*/
 
 
     public function discover()

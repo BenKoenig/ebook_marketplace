@@ -16,10 +16,13 @@ defineProps({
 <template>
 
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
-    <Hero class="py-[3.5rem] md:py-[7rem]" />
-    <FeaturedProducts class="py-[3.5rem] md:py-[7rem]" :products="products" />
+
+
+    <Hero class="py-[3.5rem] md:py-[8rem]" />
+
+    <FeaturedProducts class="py-[3.5rem] md:py-[7rem] bg-white" :products="products" />
     <Banner class="py-[3.5rem] md:py-[7rem]" />
-    <Steps class="py-[3.5rem] md:py-[7rem]"/>
+    <Steps class="py-[3.5rem] md:py-[7rem] bg-white"/>
     <Footer class="py-[3.5rem] md:py-[7rem]"/>
 
 </template>

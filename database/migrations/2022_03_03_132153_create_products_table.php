@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->longtext('description');
             $table->string('snippet');
             $table->string('cover');
             $table->string('epub');

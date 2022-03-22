@@ -1,5 +1,5 @@
 <template>
-    <div class="relative flex flex-col items-center justify-center overflow-hidden">
+    <div class="relative flex flex-col items-center justify-center  ">
 
         <Headline first-headline="Must-Reads!" second-headline="Featured eBooks"></Headline>
 

@@ -5,12 +5,62 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <template>
 
+    <transition name="fade">
+        <p v-if="show" style="animation-duration: 0.3s">hello</p>
+    </transition>
+
+
+
+    <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+        <div class="max-w-8xl flex flex-wrap justify-between items-center mx-auto">
+
+
+            <Link :href="route('home')" class="flex items-center">
+                <svg class="mr-3 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.78 37.34"><defs><style>.cls-1{fill:#1d1d1b}.cls-2{fill:#010101}</style></defs><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><path class="cls-1" d="M0 23.62V5.37h5.78v18.25Zm5.78-10-2.4-1.87a10.2 10.2 0 0 1 2.42-5A6.2 6.2 0 0 1 10.48 5a6.32 6.32 0 0 1 2.31.39 5 5 0 0 1 1.75 1.18l-3.42 4.36a2.45 2.45 0 0 0-.9-.6 3.47 3.47 0 0 0-1.28-.23 3 3 0 0 0-2.31.9 3.69 3.69 0 0 0-.85 2.63ZM24.53 24a11 11 0 0 1-5.26-1.22 9.23 9.23 0 0 1-3.61-3.4 9.47 9.47 0 0 1-1.31-5 9.38 9.38 0 0 1 1.27-4.78 9.22 9.22 0 0 1 3.5-3.4 10 10 0 0 1 5-1.24 9.7 9.7 0 0 1 4.81 1.16 8.67 8.67 0 0 1 3.27 3.23 9.27 9.27 0 0 1 1.2 4.73 9.59 9.59 0 0 1-.06 1.07 7.35 7.35 0 0 1-.24 1.23l-15.7.07v-4l13.22-.08-2.48 1.69a6.8 6.8 0 0 0-.49-2.57 3.43 3.43 0 0 0-1.33-1.59 3.84 3.84 0 0 0-2.12-.57 4.12 4.12 0 0 0-3.89 2.41 6.19 6.19 0 0 0-.54 2.7 6 6 0 0 0 .58 2.74A4.21 4.21 0 0 0 22 19a5 5 0 0 0 2.54.62 6.08 6.08 0 0 0 2.4-.47 5.46 5.46 0 0 0 1.91-1.41L32 20.88a8.12 8.12 0 0 1-3.27 2.39 11.35 11.35 0 0 1-4.2.73ZM43.72 24a8.2 8.2 0 0 1-4.47-1.26 9 9 0 0 1-3.14-3.38A10.08 10.08 0 0 1 35 14.5a10.33 10.33 0 0 1 1.14-4.9 8.71 8.71 0 0 1 3.12-3.38A8.29 8.29 0 0 1 43.72 5a7.52 7.52 0 0 1 3.28.71 6.42 6.42 0 0 1 2.42 2 5.35 5.35 0 0 1 1.06 2.87v7.89a5.35 5.35 0 0 1-1 2.87 6.31 6.31 0 0 1-2.4 2 7.74 7.74 0 0 1-3.36.66Zm1.2-5.22a3.82 3.82 0 0 0 2.95-1.2A4.41 4.41 0 0 0 49 14.46a4.85 4.85 0 0 0-.49-2.2 3.57 3.57 0 0 0-1.43-1.5 4.23 4.23 0 0 0-2.14-.54 4.07 4.07 0 0 0-2.09.54 4 4 0 0 0-1.46 1.52 4.5 4.5 0 0 0-.54 2.22 4.49 4.49 0 0 0 .54 2.21 4 4 0 0 0 1.46 1.53 4.07 4.07 0 0 0 2.07.54Zm3.83 4.84V18.7l.86-4.46-.86-4.4V5.37h5.67v18.25ZM66.25 24a8.47 8.47 0 0 1-7.77-4.62 10.33 10.33 0 0 1-1.13-4.88 10.3 10.3 0 0 1 1.13-4.88 8.48 8.48 0 0 1 3.15-3.38A8.69 8.69 0 0 1 66.25 5a8.14 8.14 0 0 1 3.38.69 6.45 6.45 0 0 1 2.52 1.95 5.47 5.47 0 0 1 1.13 2.91v7.7a5.59 5.59 0 0 1-1.13 2.91 6.92 6.92 0 0 1-2.52 2.07 7.46 7.46 0 0 1-3.38.77Zm1-5.22a4.1 4.1 0 0 0 2.14-.54 3.79 3.79 0 0 0 1.41-1.53 4.91 4.91 0 0 0 .5-2.25 4.72 4.72 0 0 0-.5-2.2 3.78 3.78 0 0 0-1.41-1.5 4 4 0 0 0-2.11-.54 3.84 3.84 0 0 0-2.1.56 4.23 4.23 0 0 0-1.45 1.52 4.4 4.4 0 0 0-.54 2.2 4.71 4.71 0 0 0 .51 2.21 3.73 3.73 0 0 0 1.44 1.53 4.17 4.17 0 0 0 2.13.54Zm9.5 4.84H71.1v-4.26l.9-3.87-1-3.81V0h5.78ZM46.2 37.3V26.2h3.52v11.1Zm7.13 0v-6.49a1.66 1.66 0 0 0-.52-1.29 1.8 1.8 0 0 0-1.26-.46 2 2 0 0 0-.94.21 1.66 1.66 0 0 0-.65.61 1.74 1.74 0 0 0-.24.93l-1.35-.61A4.19 4.19 0 0 1 49 28a4 4 0 0 1 1.56-1.46 4.58 4.58 0 0 1 2.17-.54 4.11 4.11 0 0 1 2.07.53A4 4 0 0 1 56.29 28a4.3 4.3 0 0 1 .56 2.24v7.1Zm7.08 0v-6.49a1.69 1.69 0 0 0-.51-1.29 1.81 1.81 0 0 0-1.25-.46 2 2 0 0 0-.92.21 1.62 1.62 0 0 0-.66.61 1.83 1.83 0 0 0-.22.93l-2-.27a5.21 5.21 0 0 1 .69-2.44 4 4 0 0 1 1.67-1.58 4.94 4.94 0 0 1 2.31-.52 4.69 4.69 0 0 1 2.26.54A3.92 3.92 0 0 1 63.36 28a4.62 4.62 0 0 1 .57 2.37v6.9ZM71.48 37.3a6.53 6.53 0 0 1-3.12-.72 5.43 5.43 0 0 1-2.14-2 6 6 0 0 1 0-5.84 5.45 5.45 0 0 1 2.08-2 5.84 5.84 0 0 1 3-.74 5.67 5.67 0 0 1 2.85.69A5 5 0 0 1 76 28.56a5.48 5.48 0 0 1 .72 2.82 4.68 4.68 0 0 1 0 .64 4.53 4.53 0 0 1-.14.72h-9.32v-2.32l7.85-.05-1.47 1a4.38 4.38 0 0 0-.29-1.53 2.08 2.08 0 0 0-.8-1 2.26 2.26 0 0 0-1.25-.34A2.44 2.44 0 0 0 69 30a4.17 4.17 0 0 0 0 3.25 2.52 2.52 0 0 0 1 1.06 3 3 0 0 0 1.51.37 3.63 3.63 0 0 0 1.42-.28 3.31 3.31 0 0 0 1.07-.85l1.89 1.88A4.79 4.79 0 0 1 74 36.84a6.61 6.61 0 0 1-2.52.46Z"></path><path class="cls-2" d="M15.58 26.2h12.26v11.11H15.58zM39.88 26.2H32.8l-3.54 5.55 3.54 5.56h7.08l3.54-5.56-3.54-5.55zM10.62 26.2H3.54L0 31.75l3.54 5.56h7.08l3.54-5.56-3.54-5.55z"></path></g></g></svg>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white hidden">readme Marketplace</span>
+            </Link>
+            <div class="flex md:order-2">
+                <div class="flex gap-x-1">
+
+                    <BreezeResponsiveNavLink v-if="$page.props.auth.user" :href="route('logout')" method="post" as="button">
+                        Log Out
+                    </BreezeResponsiveNavLink>
+
+                    <Link :href="route('register')" v-if="!$page.props.auth.user" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</Link>
+
+                </div>
+
+                <button data-collapse-toggle="mobile-menu-4" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-4" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                    <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-4">
+                <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+
+                    <li>
+                        <Link :href="route('discover')" class="text-lg block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Discover</Link>
+                    </li>
+                    <li>
+                        <Link class="text-lg block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">All Products</Link>
+                    </li>
+                    <li>
+                        <Link v-if="$page.props.auth.user" :href="route('library')" class="text-lg block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                            Library
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <!--Navigation-->
-    <nav id="navbar">
+<!--    <nav id="navbar">
         <div class="z-40 relative">
             <div class="relative w-full bg-white items-center h-[3.3rem]  max-w-8xl mx-auto  ">
 
-                <!--Home Link-->
+                &lt;!&ndash;Home Link&ndash;&gt;
                 <div class="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 text-black hover:scale-[1.05] active:scale-[0.9] transition-transform">
                     <div class="w-[8rem] relative ">
                         <Link :href="route('home')" class="absolute w-full h-full opacity-0">Home</Link>
@@ -69,7 +119,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                     </div>
                 </div>
 
-                <!--Menu Button-->
+                &lt;!&ndash;Menu Button&ndash;&gt;
                 <div class="absolute right-0 top-2/4 -translate-y-2/4 pr-4 7xl:pr-0 mt-[0.02rem] lg:hidden">
                     <div class="relative  h-[4.5rem]  flex flex-col justify-center items-center gap-y-[0.4rem] top-0"
                          id="j-menuBtn">
@@ -80,7 +130,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                     </div>
                 </div>
 
-                <!--Desktop Links-->
+                &lt;!&ndash;Desktop Links&ndash;&gt;
                 <ul class="items-center gap-x-3 absolute right-0 top-2/4 -translate-y-2/4 text-lg hidden lg:flex  7xl:pr-0">
                     <li class="">
                         <Link :href="route('discover')" class="">Discover</Link>
@@ -118,8 +168,8 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
                 </ul>
 
-                <!--Dark/Light Mode Toggler-->
-                <!--<div class="absolute left-0 top-2/4 -translate-y-2/4 pl-4 7xl:pl-0">
+                &lt;!&ndash;Dark/Light Mode Toggler&ndash;&gt;
+                &lt;!&ndash;<div class="absolute left-0 top-2/4 -translate-y-2/4 pl-4 7xl:pl-0">
                 <div class="w-[1.3rem] justify-center items-center">
                     <svg style="enable-background:new 0 0 512 512" xml:space="preserve" viewBox="147.8 140.8 216.3 230.3"><path d="M343.1 315c-1.8.1-3.5.1-5.3.1-29.1 0-56.5-11.3-77.1-31.9-20.6-20.6-31.9-48-31.9-77.1 0-16.6 3.7-32.6 10.6-47.1 3.1-6.4 6.8-12.5 11.1-18.2-7.6.8-14.9 2.4-22 4.6-46.8 14.8-80.7 58.5-80.7 110.2 0 63.8 51.7 115.5 115.5 115.5 35.3 0 66.8-15.8 88-40.7 4.8-5.7 9.2-11.9 12.8-18.5-6.8 1.7-13.8 2.8-21 3.1z"></path></svg>
 
@@ -128,13 +178,13 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                     <svg viewBox="2 2 20 20"><path d="M7 12a5 5 0 1 1 5 5 5 5 0 0 1-5-5Zm5-7a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm-1 15v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-2 0Zm10-9h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2ZM3 13h1a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm14.657-5.657a1 1 0 0 0 .707-.293l.707-.707a1 1 0 1 0-1.414-1.414l-.707.707a1 1 0 0 0 .707 1.707ZM5.636 16.95l-.707.707a1 1 0 1 0 1.414 1.414l.707-.707a1 1 0 0 0-1.414-1.414Zm11.314 0a1 1 0 0 0 0 1.414l.707.707a1 1 0 0 0 1.414-1.414l-.707-.707a1 1 0 0 0-1.414 0ZM5.636 7.05A1 1 0 0 0 7.05 5.636l-.707-.707a1 1 0 0 0-1.414 1.414Z"></path></svg>
                 </div>
 
-            </div>-->
+            </div>&ndash;&gt;
 
             </div>
             <div class="w-full h-[2px] bg-black"></div>
 
         </div>
-    </nav>
+    </nav>-->
 
 </template>
 

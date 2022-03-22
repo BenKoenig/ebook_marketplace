@@ -9,6 +9,11 @@ import Footer from "@/Layouts/Footer";
 import Headline from "@/Partials/Headline";
 import CreateForm from "@/Layouts/CreateForm";
 
+
+
+
+
+
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
@@ -20,6 +25,8 @@ defineProps({
 
 <template>
     <Head title="Sell an eBook" />
+
+
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
 
     <CreateForm :products="products"/>

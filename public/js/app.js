@@ -2090,6 +2090,472 @@ var n,e=(n=__webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogr
 
 /***/ }),
 
+/***/ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/ScriptLoader.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/ScriptLoader.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ScriptLoader": () => (/* binding */ ScriptLoader)
+/* harmony export */ });
+/* harmony import */ var _Utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Utils */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/Utils.js");
+/**
+ * Copyright (c) 2018-present, Ephox, Inc.
+ *
+ * This source code is licensed under the Apache 2 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+var createState = function () { return ({
+    listeners: [],
+    scriptId: (0,_Utils__WEBPACK_IMPORTED_MODULE_0__.uuid)('tiny-script'),
+    scriptLoaded: false
+}); };
+var CreateScriptLoader = function () {
+    var state = createState();
+    var injectScriptTag = function (scriptId, doc, url, callback) {
+        var scriptTag = doc.createElement('script');
+        scriptTag.referrerPolicy = 'origin';
+        scriptTag.type = 'application/javascript';
+        scriptTag.id = scriptId;
+        scriptTag.src = url;
+        var handler = function () {
+            scriptTag.removeEventListener('load', handler);
+            callback();
+        };
+        scriptTag.addEventListener('load', handler);
+        if (doc.head) {
+            doc.head.appendChild(scriptTag);
+        }
+    };
+    var load = function (doc, url, callback) {
+        if (state.scriptLoaded) {
+            callback();
+        }
+        else {
+            state.listeners.push(callback);
+            if (!doc.getElementById(state.scriptId)) {
+                injectScriptTag(state.scriptId, doc, url, function () {
+                    state.listeners.forEach(function (fn) { return fn(); });
+                    state.scriptLoaded = true;
+                });
+            }
+        }
+    };
+    // Only to be used by tests.
+    var reinitialize = function () {
+        state = createState();
+    };
+    return {
+        load: load,
+        reinitialize: reinitialize
+    };
+};
+var ScriptLoader = CreateScriptLoader();
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/TinyMCE.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/TinyMCE.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getTinymce": () => (/* binding */ getTinymce)
+/* harmony export */ });
+/**
+ * Copyright (c) 2018-present, Ephox, Inc.
+ *
+ * This source code is licensed under the Apache 2 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+var getGlobal = function () { return (typeof window !== 'undefined' ? window : __webpack_require__.g); };
+var getTinymce = function () {
+    var global = getGlobal();
+    return global && global.tinymce ? global.tinymce : null;
+};
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/Utils.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/Utils.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "bindHandlers": () => (/* binding */ bindHandlers),
+/* harmony export */   "bindModelHandlers": () => (/* binding */ bindModelHandlers),
+/* harmony export */   "initEditor": () => (/* binding */ initEditor),
+/* harmony export */   "isValidKey": () => (/* binding */ isValidKey),
+/* harmony export */   "uuid": () => (/* binding */ uuid),
+/* harmony export */   "isTextarea": () => (/* binding */ isTextarea),
+/* harmony export */   "mergePlugins": () => (/* binding */ mergePlugins),
+/* harmony export */   "isNullOrUndefined": () => (/* binding */ isNullOrUndefined)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/**
+ * Copyright (c) 2018-present, Ephox, Inc.
+ *
+ * This source code is licensed under the Apache 2 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+var validEvents = [
+    'onActivate',
+    'onAddUndo',
+    'onBeforeAddUndo',
+    'onBeforeExecCommand',
+    'onBeforeGetContent',
+    'onBeforeRenderUI',
+    'onBeforeSetContent',
+    'onBeforePaste',
+    'onBlur',
+    'onChange',
+    'onClearUndos',
+    'onClick',
+    'onContextMenu',
+    'onCopy',
+    'onCut',
+    'onDblclick',
+    'onDeactivate',
+    'onDirty',
+    'onDrag',
+    'onDragDrop',
+    'onDragEnd',
+    'onDragGesture',
+    'onDragOver',
+    'onDrop',
+    'onExecCommand',
+    'onFocus',
+    'onFocusIn',
+    'onFocusOut',
+    'onGetContent',
+    'onHide',
+    'onInit',
+    'onKeyDown',
+    'onKeyPress',
+    'onKeyUp',
+    'onLoadContent',
+    'onMouseDown',
+    'onMouseEnter',
+    'onMouseLeave',
+    'onMouseMove',
+    'onMouseOut',
+    'onMouseOver',
+    'onMouseUp',
+    'onNodeChange',
+    'onObjectResizeStart',
+    'onObjectResized',
+    'onObjectSelected',
+    'onPaste',
+    'onPostProcess',
+    'onPostRender',
+    'onPreProcess',
+    'onProgressState',
+    'onRedo',
+    'onRemove',
+    'onReset',
+    'onSaveContent',
+    'onSelectionChange',
+    'onSetAttrib',
+    'onSetContent',
+    'onShow',
+    'onSubmit',
+    'onUndo',
+    'onVisualAid'
+];
+var isValidKey = function (key) {
+    return validEvents.map(function (event) { return event.toLowerCase(); }).indexOf(key.toLowerCase()) !== -1;
+};
+var bindHandlers = function (initEvent, listeners, editor) {
+    Object.keys(listeners)
+        .filter(isValidKey)
+        .forEach(function (key) {
+        var handler = listeners[key];
+        if (typeof handler === 'function') {
+            if (key === 'onInit') {
+                handler(initEvent, editor);
+            }
+            else {
+                editor.on(key.substring(2), function (e) { return handler(e, editor); });
+            }
+        }
+    });
+};
+var bindModelHandlers = function (props, ctx, editor, modelValue) {
+    var modelEvents = props.modelEvents ? props.modelEvents : null;
+    var normalizedEvents = Array.isArray(modelEvents) ? modelEvents.join(' ') : modelEvents;
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(modelValue, function (val, prevVal) {
+        if (editor && typeof val === 'string' && val !== prevVal && val !== editor.getContent({ format: props.outputFormat })) {
+            editor.setContent(val);
+        }
+    });
+    editor.on(normalizedEvents ? normalizedEvents : 'change input undo redo', function () {
+        ctx.emit('update:modelValue', editor.getContent({ format: props.outputFormat }));
+    });
+};
+var initEditor = function (initEvent, props, ctx, editor, modelValue, content) {
+    editor.setContent(content());
+    if (ctx.attrs['onUpdate:modelValue']) {
+        bindModelHandlers(props, ctx, editor, modelValue);
+    }
+    bindHandlers(initEvent, ctx.attrs, editor);
+};
+var unique = 0;
+var uuid = function (prefix) {
+    var time = Date.now();
+    var random = Math.floor(Math.random() * 1000000000);
+    unique++;
+    return prefix + '_' + random + unique + String(time);
+};
+var isTextarea = function (element) {
+    return element !== null && element.tagName.toLowerCase() === 'textarea';
+};
+var normalizePluginArray = function (plugins) {
+    if (typeof plugins === 'undefined' || plugins === '') {
+        return [];
+    }
+    return Array.isArray(plugins) ? plugins : plugins.split(' ');
+};
+var mergePlugins = function (initPlugins, inputPlugins) {
+    return normalizePluginArray(initPlugins).concat(normalizePluginArray(inputPlugins));
+};
+var isNullOrUndefined = function (value) {
+    return value === null || value === undefined;
+};
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/components/Editor.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/components/Editor.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Editor": () => (/* binding */ Editor)
+/* harmony export */ });
+/* harmony import */ var _ScriptLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ScriptLoader */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/ScriptLoader.js");
+/* harmony import */ var _TinyMCE__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../TinyMCE */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/TinyMCE.js");
+/* harmony import */ var _Utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Utils */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/Utils.js");
+/* harmony import */ var _EditorPropTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditorPropTypes */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/components/EditorPropTypes.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/**
+ * Copyright (c) 2018-present, Ephox, Inc.
+ *
+ * This source code is licensed under the Apache 2 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+
+
+
+var renderInline = function (ce, id, elementRef, tagName) {
+    return ce(tagName ? tagName : 'div', {
+        id: id,
+        ref: elementRef
+    });
+};
+var renderIframe = function (ce, id, elementRef) {
+    return ce('textarea', {
+        id: id,
+        visibility: 'hidden',
+        ref: elementRef
+    });
+};
+var Editor = (0,vue__WEBPACK_IMPORTED_MODULE_4__.defineComponent)({
+    props: _EditorPropTypes__WEBPACK_IMPORTED_MODULE_3__.editorProps,
+    setup: function (props, ctx) {
+        var conf = props.init ? __assign({}, props.init) : {};
+        var _a = (0,vue__WEBPACK_IMPORTED_MODULE_4__.toRefs)(props), disabled = _a.disabled, modelValue = _a.modelValue, tagName = _a.tagName;
+        var element = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(null);
+        var vueEditor = null;
+        var elementId = props.id || (0,_Utils__WEBPACK_IMPORTED_MODULE_2__.uuid)('tiny-vue');
+        var inlineEditor = (props.init && props.init.inline) || props.inline;
+        var modelBind = !!ctx.attrs['onUpdate:modelValue'];
+        var mounting = true;
+        var initialValue = props.initialValue ? props.initialValue : '';
+        var cache = '';
+        var getContent = function (isMounting) { return modelBind ?
+            function () { return ((modelValue === null || modelValue === void 0 ? void 0 : modelValue.value) ? modelValue.value : ''); } :
+            function () { return isMounting ? initialValue : cache; }; };
+        var initWrapper = function () {
+            var content = getContent(mounting);
+            var finalInit = __assign(__assign({}, conf), { readonly: props.disabled, selector: "#" + elementId, plugins: (0,_Utils__WEBPACK_IMPORTED_MODULE_2__.mergePlugins)(conf.plugins, props.plugins), toolbar: props.toolbar || (conf.toolbar), inline: inlineEditor, setup: function (editor) {
+                    vueEditor = editor;
+                    editor.on('init', function (e) { return (0,_Utils__WEBPACK_IMPORTED_MODULE_2__.initEditor)(e, props, ctx, editor, modelValue, content); });
+                    if (typeof conf.setup === 'function') {
+                        conf.setup(editor);
+                    }
+                } });
+            if ((0,_Utils__WEBPACK_IMPORTED_MODULE_2__.isTextarea)(element.value)) {
+                element.value.style.visibility = '';
+            }
+            (0,_TinyMCE__WEBPACK_IMPORTED_MODULE_1__.getTinymce)().init(finalInit);
+            mounting = false;
+        };
+        (0,vue__WEBPACK_IMPORTED_MODULE_4__.watch)(disabled, function (disable) {
+            var _a;
+            if (vueEditor !== null) {
+                if (typeof ((_a = vueEditor.mode) === null || _a === void 0 ? void 0 : _a.set) === 'function') {
+                    vueEditor.mode.set(disable ? 'readonly' : 'design');
+                }
+                else {
+                    vueEditor.setMode(disable ? 'readonly' : 'design');
+                }
+            }
+        });
+        (0,vue__WEBPACK_IMPORTED_MODULE_4__.watch)(tagName, function (_) {
+            var _a;
+            if (!modelBind) {
+                cache = vueEditor.getContent();
+            }
+            (_a = (0,_TinyMCE__WEBPACK_IMPORTED_MODULE_1__.getTinymce)()) === null || _a === void 0 ? void 0 : _a.remove(vueEditor);
+            (0,vue__WEBPACK_IMPORTED_MODULE_4__.nextTick)(function () { return initWrapper(); });
+        });
+        (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(function () {
+            if ((0,_TinyMCE__WEBPACK_IMPORTED_MODULE_1__.getTinymce)() !== null) {
+                initWrapper();
+            }
+            else if (element.value && element.value.ownerDocument) {
+                var channel = props.cloudChannel ? props.cloudChannel : '5';
+                var apiKey = props.apiKey ? props.apiKey : 'no-api-key';
+                var scriptSrc = (0,_Utils__WEBPACK_IMPORTED_MODULE_2__.isNullOrUndefined)(props.tinymceScriptSrc) ?
+                    "https://cdn.tiny.cloud/1/" + apiKey + "/tinymce/" + channel + "/tinymce.min.js" :
+                    props.tinymceScriptSrc;
+                _ScriptLoader__WEBPACK_IMPORTED_MODULE_0__.ScriptLoader.load(element.value.ownerDocument, scriptSrc, initWrapper);
+            }
+        });
+        (0,vue__WEBPACK_IMPORTED_MODULE_4__.onBeforeUnmount)(function () {
+            if ((0,_TinyMCE__WEBPACK_IMPORTED_MODULE_1__.getTinymce)() !== null) {
+                (0,_TinyMCE__WEBPACK_IMPORTED_MODULE_1__.getTinymce)().remove(vueEditor);
+            }
+        });
+        if (!inlineEditor) {
+            (0,vue__WEBPACK_IMPORTED_MODULE_4__.onActivated)(function () {
+                if (!mounting) {
+                    initWrapper();
+                }
+            });
+            (0,vue__WEBPACK_IMPORTED_MODULE_4__.onDeactivated)(function () {
+                var _a;
+                if (!modelBind) {
+                    cache = vueEditor.getContent();
+                }
+                (_a = (0,_TinyMCE__WEBPACK_IMPORTED_MODULE_1__.getTinymce)()) === null || _a === void 0 ? void 0 : _a.remove(vueEditor);
+            });
+        }
+        var rerender = function (init) {
+            var _a;
+            cache = vueEditor.getContent();
+            (_a = (0,_TinyMCE__WEBPACK_IMPORTED_MODULE_1__.getTinymce)()) === null || _a === void 0 ? void 0 : _a.remove(vueEditor);
+            conf = __assign(__assign({}, conf), init);
+            (0,vue__WEBPACK_IMPORTED_MODULE_4__.nextTick)(function () { return initWrapper(); });
+        };
+        ctx.expose({
+            rerender: rerender
+        });
+        return function () { return inlineEditor ?
+            renderInline(vue__WEBPACK_IMPORTED_MODULE_4__.h, elementId, element, props.tagName) :
+            renderIframe(vue__WEBPACK_IMPORTED_MODULE_4__.h, elementId, element); };
+    }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/components/EditorPropTypes.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/components/EditorPropTypes.js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "editorProps": () => (/* binding */ editorProps)
+/* harmony export */ });
+var editorProps = {
+    apiKey: String,
+    cloudChannel: String,
+    id: String,
+    init: Object,
+    initialValue: String,
+    inline: Boolean,
+    modelEvents: [String, Array],
+    plugins: [String, Array],
+    tagName: String,
+    toolbar: [String, Array],
+    modelValue: String,
+    disabled: Boolean,
+    tinymceScriptSrc: String,
+    outputFormat: {
+        type: String,
+        validator: function (prop) { return prop === 'html' || prop === 'text'; }
+    },
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/index.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/index.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _components_Editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Editor */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/components/Editor.js");
+/**
+ * Copyright (c) 2018-present, Ephox, Inc.
+ *
+ * This source code is licensed under the Apache 2 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_components_Editor__WEBPACK_IMPORTED_MODULE_0__.Editor);
+
+
+/***/ }),
+
 /***/ "./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js":
 /*!***************************************************************************!*\
   !*** ./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js ***!
@@ -24616,9 +25082,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _tinymce_tinymce_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tinymce/tinymce-vue */ "./node_modules/@tinymce/tinymce-vue/lib/es2015/main/ts/index.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    'editor': _tinymce_tinymce_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   setup: function setup() {
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       name: null,
@@ -26349,14 +26820,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "border-b-2 border-t-2 border-black relative"
+  "class": "relative"
 };
 var _hoisted_2 = {
   "class": "flex gap-y-6 max-w-8xl mx-auto px-2 xl:px-0 lg:items-center gap-2 flex-col lg:flex-row lg:justify-between"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "text-4xl mb- lg:mb-4 font_courier"
+  "class": "text-4xl mb- lg:mb-4 font-bold"
 }, "Learn and discover new technologies", -1
 /* HOISTED */
 );
@@ -26397,7 +26868,7 @@ var _hoisted_1 = {
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "name",
   "class": "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-}, "Product Name", -1
+}, "Book Title", -1
 /* HOISTED */
 );
 
@@ -26406,7 +26877,6 @@ var _hoisted_3 = {
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "description",
   "class": "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
 }, "Product Description", -1
 /* HOISTED */
@@ -26461,7 +26931,7 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300",
   "for": "banner"
 }, "Upload Banner Image"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  "class": "block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400",
+  "class": "block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400",
   "aria-describedby": "banner_help",
   id: "banner",
   type: "file"
@@ -26479,25 +26949,27 @@ var _hoisted_14 = {
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300",
   "for": "epub"
-}, "Upload ePub file", -1
+}, "Upload EPUB file", -1
 /* HOISTED */
 );
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-1 text-sm text-gray-500 dark:text-gray-300",
   id: "epub_help"
-}, "A profile picture is useful to confirm your are logged into your account", -1
+}, "An EPUB file (short for electronic publication) is in the Open eBook file format. You can download EPUB files and read them on your smartphone, tablet, e-reader, or computer. This freely available eBook standard supports more hardware eBook readers than any other file format. ", -1
 /* HOISTED */
 );
 
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
-  "class": "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  "class": "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 }, "Submit", -1
 /* HOISTED */
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_editor = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("editor");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.submit && $setup.submit.apply($setup, arguments);
@@ -26509,28 +26981,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.name = $event;
     }),
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+    "class": "bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
     placeholder: "Is HTML a Programming Language?",
     required: ""
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    id: "description",
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_editor, {
+    content_style: "div { margin: 10px; border: 5px solid red; padding: 3px; }",
+    "class": "opacity-0",
+    modelValue: $setup.form.description,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.form.description = $event;
     }),
-    rows: "10",
-    "class": "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-    placeholder: "Describe your product"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    apiKey: "1b47gx6ut5u6v0f3x3bppqtt1zv2omav3ub0kss3mb0s3iqo",
+    init: {
+      height: 500,
+      menubar: true,
+      plugins: ['advlist autolink lists link image charmap print preview anchor', 'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount'],
+      toolbar: 'undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent code image link | removeformat | help'
+    }
+  }, null, 8
+  /* PROPS */
+  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     id: "snippet",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.form.snippet = $event;
     }),
     rows: "4",
-    "class": "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+    "class": "bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
     placeholder: "Favorite quote  of your book"
   }, null, 512
   /* NEED_PATCH */
@@ -26540,13 +27020,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.price = $event;
     }),
-    "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+    "class": "bg-white border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
     placeholder: "Give your product a price",
     required: ""
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "class": "block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400",
+    "class": "block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400",
     "aria-describedby": "cover_help",
     id: "cover",
     onInput: _cache[4] || (_cache[4] = function ($event) {
@@ -26556,7 +27036,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 32
   /* HYDRATE_EVENTS */
   ), _hoisted_12]), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "class": "block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400",
+    "class": "block w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400",
     "aria-describedby": "epub_help",
     id: "epub",
     onInput: _cache[5] || (_cache[5] = function ($event) {
@@ -26709,7 +27189,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "relative flex flex-col items-center justify-center overflow-hidden"
+  "class": "relative flex flex-col items-center justify-center"
 };
 var _hoisted_2 = {
   "class": "relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 xl:mx-0 max-w-8xl mx-auto gap-2 w-full px-2 xl:px-0"
@@ -26753,7 +27233,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-beige-5 relative border-t-2 border-black"
+  "class": "relative"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"fill-current text-white\"><svg class=\"lg:hidden\" data-name=\"Ebene 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 63.46 22.17\"><path d=\"M146 319.79v-8.47h1.9v8.47Zm1.46-3.08v-1.48h1.82a1.33 1.33 0 0 0 .63-.14 1 1 0 0 0 .45-.41 1.24 1.24 0 0 0 .17-.66 1.28 1.28 0 0 0-.17-.67 1.07 1.07 0 0 0-.45-.42 1.45 1.45 0 0 0-.63-.13h-1.82v-1.48h2.1a3.28 3.28 0 0 1 1.45.32 2.51 2.51 0 0 1 1 .93 2.64 2.64 0 0 1 .38 1.45 2.57 2.57 0 0 1-.38 1.43 2.38 2.38 0 0 1-1 .93 3.16 3.16 0 0 1-1.45.33ZM156 319.92a3.26 3.26 0 0 1-1.63-.4 3.11 3.11 0 0 1-1.14-1.11 3.08 3.08 0 0 1 0-3.09 3.06 3.06 0 0 1 1.14-1.09 3.27 3.27 0 0 1 1.64-.4 3.41 3.41 0 0 1 1.63.39 3.06 3.06 0 0 1 1.14 1.09 2.9 2.9 0 0 1 .42 1.54 3 3 0 0 1-.42 1.57 3.17 3.17 0 0 1-1.14 1.1 3.26 3.26 0 0 1-1.64.4Zm0-1.68a1.37 1.37 0 0 0 .68-.16 1.23 1.23 0 0 0 .47-.49 1.54 1.54 0 0 0 .16-.73 1.48 1.48 0 0 0-.17-.7 1.25 1.25 0 0 0-.46-.48 1.37 1.37 0 0 0-.68-.17 1.4 1.4 0 0 0-.68.17 1.23 1.23 0 0 0-.47.49 1.47 1.47 0 0 0-.17.69 1.54 1.54 0 0 0 .17.73 1.23 1.23 0 0 0 .47.49 1.39 1.39 0 0 0 .68.16ZM161.35 319.79l-2-5.83h1.82l1.26 4.24h-.54l1.37-4.25h1.51l1.38 4.25h-.55l1.27-4.24h1.81l-2 5.83h-1.51l-1.34-4h.45l-1.37 4ZM172.1 319.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.08 3.08 0 0 1 1.54.37 2.78 2.78 0 0 1 1 1 2.92 2.92 0 0 1 .38 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.23l-.8.54a2 2 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.22 1.22 0 0 0-.67-.18 1.32 1.32 0 0 0-.75.21 1.3 1.3 0 0 0-.5.56 2.06 2.06 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.67 1.67 0 0 0 .61-.45l1 1a2.7 2.7 0 0 1-1 .76 3.7 3.7 0 0 1-1.38.27ZM175.8 319.79V314h1.85v5.83Zm1.85-3.19-.77-.6a3.29 3.29 0 0 1 .77-1.6 2 2 0 0 1 1.5-.56 1.83 1.83 0 0 1 .73.13 1.52 1.52 0 0 1 .56.37l-1.09 1.4a.79.79 0 0 0-.29-.2 1.24 1.24 0 0 0-.4-.07 1 1 0 0 0-.74.28 1.19 1.19 0 0 0-.27.85ZM183.63 319.92a3.46 3.46 0 0 1-1.67-.39 3 3 0 0 1-1.16-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.05 3.05 0 0 1 1.54.37 2.71 2.71 0 0 1 1 1 2.93 2.93 0 0 1 .39 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.22l-.79.54a2.17 2.17 0 0 0-.16-.82 1.12 1.12 0 0 0-.42-.51 1.25 1.25 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.28 1.28 0 0 0-.49.56 1.91 1.91 0 0 0-.18.86 1.87 1.87 0 0 0 .19.88 1.27 1.27 0 0 0 .53.57 1.56 1.56 0 0 0 .8.2 1.89 1.89 0 0 0 .77-.15 1.79 1.79 0 0 0 .62-.45l1 1a2.73 2.73 0 0 1-1 .76 3.7 3.7 0 0 1-1.39.27ZM189.83 319.91a2.83 2.83 0 0 1-1.49-.39 2.89 2.89 0 0 1-1-1.08 3.32 3.32 0 0 1-.36-1.56 3.27 3.27 0 0 1 .36-1.56 2.75 2.75 0 0 1 2.49-1.48 2.58 2.58 0 0 1 1.08.22 2.16 2.16 0 0 1 .8.63 1.66 1.66 0 0 1 .36.93v2.46a1.78 1.78 0 0 1-.36.93 2.3 2.3 0 0 1-1.88.9Zm.32-1.67a1.25 1.25 0 0 0 .68-.17 1.12 1.12 0 0 0 .45-.49 1.57 1.57 0 0 0 0-1.42 1.15 1.15 0 0 0-.45-.48 1.31 1.31 0 0 0-.67-.17 1.24 1.24 0 0 0-.67.18 1.32 1.32 0 0 0-.46.48 1.39 1.39 0 0 0-.18.71 1.45 1.45 0 0 0 .17.7 1.14 1.14 0 0 0 .46.49 1.26 1.26 0 0 0 .67.17Zm3 1.55h-1.82v-1.57l.28-1.43-.31-1.4v-4.31h1.85ZM196.75 319.79v-8.71h1.85v4.31l-.3 1.4.27 1.43v1.57Zm3.38.12a2.45 2.45 0 0 1-1.09-.24 2.36 2.36 0 0 1-.8-.66 1.86 1.86 0 0 1-.35-.93v-2.46a1.66 1.66 0 0 1 .36-.93 2.16 2.16 0 0 1 .8-.63 2.58 2.58 0 0 1 1.08-.22 2.67 2.67 0 0 1 1.46.4 2.79 2.79 0 0 1 1 1.08 3.27 3.27 0 0 1 .37 1.56 3.14 3.14 0 0 1-.37 1.55 2.83 2.83 0 0 1-1 1.08 2.7 2.7 0 0 1-1.46.4Zm-.33-1.67a1.2 1.2 0 0 0 .66-.17 1.23 1.23 0 0 0 .47-.49 1.35 1.35 0 0 0 .18-.7 1.39 1.39 0 0 0-.18-.71 1.23 1.23 0 0 0-.47-.49 1.3 1.3 0 0 0-.66-.17 1.41 1.41 0 0 0-.69.17 1.21 1.21 0 0 0-.46.49 1.46 1.46 0 0 0-.16.69 1.54 1.54 0 0 0 .17.73 1.21 1.21 0 0 0 .46.49 1.37 1.37 0 0 0 .68.16ZM205.53 319.83l-2.4-5.87h2l1.52 4.64h-.73l1.55-4.64h2l-2.5 5.86Zm-1.5 2.42 1.76-3.79 1.17 1.36-1 2.43ZM146 330.79v-8.47h1.9v8.47Zm1.3 0v-1.65h2.09a2.77 2.77 0 0 0 1.34-.32 2.1 2.1 0 0 0 .88-.89 3.18 3.18 0 0 0 0-2.76 2.18 2.18 0 0 0-.89-.89 2.79 2.79 0 0 0-1.32-.3h-2.15v-1.66h2.17a4.84 4.84 0 0 1 1.77.31 4.22 4.22 0 0 1 1.42.87 4.06 4.06 0 0 1 .94 1.34 4.44 4.44 0 0 1 0 3.41 4 4 0 0 1-.94 1.35 4.26 4.26 0 0 1-1.41.88 4.77 4.77 0 0 1-1.75.31ZM157.76 330.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.08 3.08 0 0 1 1.54.37 2.71 2.71 0 0 1 1 1 2.92 2.92 0 0 1 .38 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.23l-.79.54a2.17 2.17 0 0 0-.16-.82 1.14 1.14 0 0 0-.43-.51 1.22 1.22 0 0 0-.67-.18 1.32 1.32 0 0 0-.75.21 1.3 1.3 0 0 0-.5.56 2.06 2.06 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.67 1.67 0 0 0 .61-.45l1 1a2.63 2.63 0 0 1-1 .76 3.7 3.7 0 0 1-1.38.27ZM163.2 330.79l-2.47-5.79h2l1.68 4.85h-.88l1.7-4.85h1.95l-2.48 5.82ZM170.53 330.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.18 3.18 0 0 1 0-3.14 3 3 0 0 1 1.11-1.09 3.3 3.3 0 0 1 1.6-.39 3.08 3.08 0 0 1 1.54.37 2.78 2.78 0 0 1 1 1 2.92 2.92 0 0 1 .38 1.51v.35c0 .12 0 .24-.08.39h-5v-1.27h4.23l-.8.54a2.18 2.18 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.23 1.23 0 0 0-.68-.18 1.37 1.37 0 0 0-.75.21 1.34 1.34 0 0 0-.49.56 2.06 2.06 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.67 1.67 0 0 0 .61-.45l1 1a2.7 2.7 0 0 1-1 .76 3.7 3.7 0 0 1-1.38.27ZM174.23 330.79v-8.71h1.85v8.71ZM180.18 330.92a3.26 3.26 0 0 1-1.63-.4 3.11 3.11 0 0 1-1.14-1.11 2.94 2.94 0 0 1-.42-1.56 2.83 2.83 0 0 1 .41-1.53 3 3 0 0 1 1.13-1.09 3.3 3.3 0 0 1 1.65-.4 3.35 3.35 0 0 1 1.62.39 3 3 0 0 1 1.15 1.09 2.9 2.9 0 0 1 .42 1.54 3 3 0 0 1-.42 1.57 3.17 3.17 0 0 1-1.14 1.1 3.26 3.26 0 0 1-1.63.4Zm0-1.68a1.39 1.39 0 0 0 .68-.16 1.14 1.14 0 0 0 .46-.49 1.54 1.54 0 0 0 .17-.73 1.48 1.48 0 0 0-.17-.7 1.32 1.32 0 0 0-.46-.48 1.4 1.4 0 0 0-.68-.17 1.34 1.34 0 0 0-.68.17 1.17 1.17 0 0 0-.47.49 1.36 1.36 0 0 0-.17.69 1.43 1.43 0 0 0 .17.73 1.17 1.17 0 0 0 .47.49 1.34 1.34 0 0 0 .68.16ZM184.27 333.25V325h1.85v1.49l-.3 1.43.27 1.41v4Zm3.38-2.34a2.45 2.45 0 0 1-1.09-.23 2.08 2.08 0 0 1-.8-.63 1.73 1.73 0 0 1-.35-.91v-2.46a1.79 1.79 0 0 1 .36-.95 2.26 2.26 0 0 1 .81-.65 2.37 2.37 0 0 1 1.07-.24 2.67 2.67 0 0 1 1.46.4 2.79 2.79 0 0 1 1 1.08 3.45 3.45 0 0 1 0 3.11 2.83 2.83 0 0 1-1 1.08 2.7 2.7 0 0 1-1.46.4Zm-.34-1.67a1.24 1.24 0 0 0 1.14-.66 1.35 1.35 0 0 0 .18-.7 1.39 1.39 0 0 0-.18-.71 1.28 1.28 0 0 0-.46-.49 1.33 1.33 0 0 0-.67-.17 1.37 1.37 0 0 0-.68.17 1.21 1.21 0 0 0-.46.49 1.49 1.49 0 0 0-.17.71 1.45 1.45 0 0 0 .17.7 1.21 1.21 0 0 0 .46.49 1.26 1.26 0 0 0 .67.17ZM194.29 330.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3 3 0 0 1-.42-1.59 2.92 2.92 0 0 1 .41-1.55 3 3 0 0 1 1.11-1.09 3.27 3.27 0 0 1 1.6-.39 3 3 0 0 1 1.53.37 2.8 2.8 0 0 1 1.05 1 3 3 0 0 1 .38 1.51 2.06 2.06 0 0 1 0 .35 2.32 2.32 0 0 1-.07.39h-5v-1.27h4.22l-.79.54a2.4 2.4 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.23 1.23 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.34 1.34 0 0 0-.49.56 1.91 1.91 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.76 1.76 0 0 0 .61-.45l1 1a2.77 2.77 0 0 1-1 .76 3.7 3.7 0 0 1-1.42.27ZM198 330.79V325h1.84v5.83Zm1.84-3.19-.76-.6a3.29 3.29 0 0 1 .77-1.6 2 2 0 0 1 1.49-.56 1.88 1.88 0 0 1 .74.13 1.61 1.61 0 0 1 .56.37l-1.09 1.4a.79.79 0 0 0-.29-.2 1.3 1.3 0 0 0-.41-.07 1 1 0 0 0-.74.28 1.19 1.19 0 0 0-.28.85ZM205.11 331a4 4 0 0 1-1.94-.52 3.84 3.84 0 0 1-.73-.57l1.05-1.06a2.06 2.06 0 0 0 1.56.66 1 1 0 0 0 .48-.1.29.29 0 0 0 .17-.27.34.34 0 0 0-.2-.32 3 3 0 0 0-.54-.19l-.69-.21a2.94 2.94 0 0 1-.68-.3 1.58 1.58 0 0 1-.53-.53 1.74 1.74 0 0 1-.2-.88 1.59 1.59 0 0 1 .29-1 1.91 1.91 0 0 1 .85-.71 3 3 0 0 1 1.26-.24 3.63 3.63 0 0 1 1.37.26 2.45 2.45 0 0 1 1 .76l-1 1.07a1.57 1.57 0 0 0-.62-.46 1.83 1.83 0 0 0-.67-.14.86.86 0 0 0-.47.1.27.27 0 0 0-.15.25.34.34 0 0 0 .21.29 2.88 2.88 0 0 0 .53.19c.21.05.43.12.67.2a2.69 2.69 0 0 1 .69.32 1.74 1.74 0 0 1 .53.55 1.82 1.82 0 0 1 .2.9 1.65 1.65 0 0 1-.64 1.36 2.73 2.73 0 0 1-1.8.59Z\" transform=\"translate(-146 -311.08)\"></path></svg><svg class=\"hidden lg:block\" data-name=\"Ebene 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 128.18 11.25\"><path d=\"M146 319.79v-8.47h1.9v8.47Zm1.46-3.08v-1.48h1.82a1.33 1.33 0 0 0 .63-.14 1 1 0 0 0 .45-.41 1.24 1.24 0 0 0 .17-.66 1.28 1.28 0 0 0-.17-.67 1.07 1.07 0 0 0-.45-.42 1.45 1.45 0 0 0-.63-.13h-1.82v-1.48h2.1a3.28 3.28 0 0 1 1.45.32 2.51 2.51 0 0 1 1 .93 2.64 2.64 0 0 1 .38 1.45 2.57 2.57 0 0 1-.38 1.43 2.38 2.38 0 0 1-1 .93 3.16 3.16 0 0 1-1.45.33ZM156 319.92a3.26 3.26 0 0 1-1.63-.4 3.11 3.11 0 0 1-1.14-1.11 3.08 3.08 0 0 1 0-3.09 3.06 3.06 0 0 1 1.14-1.09 3.27 3.27 0 0 1 1.64-.4 3.41 3.41 0 0 1 1.63.39 3.06 3.06 0 0 1 1.14 1.09 2.9 2.9 0 0 1 .42 1.54 3 3 0 0 1-.42 1.57 3.17 3.17 0 0 1-1.14 1.1 3.26 3.26 0 0 1-1.64.4Zm0-1.68a1.37 1.37 0 0 0 .68-.16 1.23 1.23 0 0 0 .47-.49 1.54 1.54 0 0 0 .16-.73 1.48 1.48 0 0 0-.17-.7 1.25 1.25 0 0 0-.46-.48 1.37 1.37 0 0 0-.68-.17 1.4 1.4 0 0 0-.68.17 1.23 1.23 0 0 0-.47.49 1.47 1.47 0 0 0-.17.69 1.54 1.54 0 0 0 .17.73 1.23 1.23 0 0 0 .47.49 1.39 1.39 0 0 0 .68.16ZM161.35 319.79l-2-5.83h1.82l1.26 4.24h-.54l1.37-4.25h1.51l1.38 4.25h-.55l1.27-4.24h1.81l-2 5.83h-1.51l-1.34-4h.45l-1.37 4ZM172.1 319.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.08 3.08 0 0 1 1.54.37 2.78 2.78 0 0 1 1 1 2.92 2.92 0 0 1 .38 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.23l-.8.54a2 2 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.22 1.22 0 0 0-.67-.18 1.32 1.32 0 0 0-.75.21 1.3 1.3 0 0 0-.5.56 2.06 2.06 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.67 1.67 0 0 0 .61-.45l1 1a2.7 2.7 0 0 1-1 .76 3.7 3.7 0 0 1-1.38.27ZM175.8 319.79V314h1.85v5.83Zm1.85-3.19-.77-.6a3.29 3.29 0 0 1 .77-1.6 2 2 0 0 1 1.5-.56 1.83 1.83 0 0 1 .73.13 1.52 1.52 0 0 1 .56.37l-1.09 1.4a.79.79 0 0 0-.29-.2 1.24 1.24 0 0 0-.4-.07 1 1 0 0 0-.74.28 1.19 1.19 0 0 0-.27.85ZM183.63 319.92a3.46 3.46 0 0 1-1.67-.39 3 3 0 0 1-1.16-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.05 3.05 0 0 1 1.54.37 2.71 2.71 0 0 1 1 1 2.93 2.93 0 0 1 .39 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.22l-.79.54a2.17 2.17 0 0 0-.16-.82 1.12 1.12 0 0 0-.42-.51 1.25 1.25 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.28 1.28 0 0 0-.49.56 1.91 1.91 0 0 0-.18.86 1.87 1.87 0 0 0 .19.88 1.27 1.27 0 0 0 .53.57 1.56 1.56 0 0 0 .8.2 1.89 1.89 0 0 0 .77-.15 1.79 1.79 0 0 0 .62-.45l1 1a2.73 2.73 0 0 1-1 .76 3.7 3.7 0 0 1-1.39.27ZM189.83 319.91a2.83 2.83 0 0 1-1.49-.39 2.89 2.89 0 0 1-1-1.08 3.32 3.32 0 0 1-.36-1.56 3.27 3.27 0 0 1 .36-1.56 2.75 2.75 0 0 1 2.49-1.48 2.58 2.58 0 0 1 1.08.22 2.16 2.16 0 0 1 .8.63 1.66 1.66 0 0 1 .36.93v2.46a1.78 1.78 0 0 1-.36.93 2.3 2.3 0 0 1-1.88.9Zm.32-1.67a1.25 1.25 0 0 0 .68-.17 1.12 1.12 0 0 0 .45-.49 1.57 1.57 0 0 0 0-1.42 1.15 1.15 0 0 0-.45-.48 1.31 1.31 0 0 0-.67-.17 1.24 1.24 0 0 0-.67.18 1.32 1.32 0 0 0-.46.48 1.39 1.39 0 0 0-.18.71 1.45 1.45 0 0 0 .17.7 1.14 1.14 0 0 0 .46.49 1.26 1.26 0 0 0 .67.17Zm3 1.55h-1.82v-1.57l.28-1.43-.31-1.4v-4.31h1.85ZM196.75 319.79v-8.71h1.85v4.31l-.3 1.4.27 1.43v1.57Zm3.38.12a2.45 2.45 0 0 1-1.09-.24 2.36 2.36 0 0 1-.8-.66 1.86 1.86 0 0 1-.35-.93v-2.46a1.66 1.66 0 0 1 .36-.93 2.16 2.16 0 0 1 .8-.63 2.58 2.58 0 0 1 1.08-.22 2.67 2.67 0 0 1 1.46.4 2.79 2.79 0 0 1 1 1.08 3.27 3.27 0 0 1 .37 1.56 3.14 3.14 0 0 1-.37 1.55 2.83 2.83 0 0 1-1 1.08 2.7 2.7 0 0 1-1.46.4Zm-.33-1.67a1.2 1.2 0 0 0 .66-.17 1.23 1.23 0 0 0 .47-.49 1.35 1.35 0 0 0 .18-.7 1.39 1.39 0 0 0-.18-.71 1.23 1.23 0 0 0-.47-.49 1.3 1.3 0 0 0-.66-.17 1.41 1.41 0 0 0-.69.17 1.21 1.21 0 0 0-.46.49 1.46 1.46 0 0 0-.16.69 1.54 1.54 0 0 0 .17.73 1.21 1.21 0 0 0 .46.49 1.37 1.37 0 0 0 .68.16ZM205.53 319.83l-2.4-5.87h2l1.52 4.64h-.73l1.55-4.64h2l-2.5 5.86Zm-1.5 2.42 1.76-3.79 1.17 1.36-1 2.43ZM212.59 319.79v-8.47h1.9v8.47Zm1.3 0v-1.65H216a2.71 2.71 0 0 0 1.34-.32 2 2 0 0 0 .88-.89 3.14 3.14 0 0 0 0-2.76 2.18 2.18 0 0 0-.89-.89A2.81 2.81 0 0 0 216 313h-2.14v-1.66H216a4.84 4.84 0 0 1 1.77.31 4.14 4.14 0 0 1 2.36 2.21 4.29 4.29 0 0 1 .33 1.72 4.25 4.25 0 0 1-.33 1.69 4.15 4.15 0 0 1-.94 1.35 4.26 4.26 0 0 1-1.41.88 4.83 4.83 0 0 1-1.76.31ZM224.35 319.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3 3 0 0 1-.42-1.59 2.92 2.92 0 0 1 .41-1.55 3 3 0 0 1 1.11-1.09 3.27 3.27 0 0 1 1.6-.39 3 3 0 0 1 1.53.37 2.8 2.8 0 0 1 1.05 1 3 3 0 0 1 .38 1.51 2.06 2.06 0 0 1 0 .35 2.32 2.32 0 0 1-.07.39h-5v-1.27h4.22l-.79.54a2.4 2.4 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.23 1.23 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.34 1.34 0 0 0-.49.56 1.91 1.91 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.76 1.76 0 0 0 .61-.45l1 1a2.77 2.77 0 0 1-1 .76 3.7 3.7 0 0 1-1.42.27ZM229.79 319.79l-2.48-5.79h2l1.68 4.85h-.88l1.69-4.85h2l-2.49 5.82ZM237.12 319.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.21 3.21 0 0 1 0-3.14 3.08 3.08 0 0 1 1.12-1.09 3.24 3.24 0 0 1 1.6-.39 3 3 0 0 1 1.53.37 2.8 2.8 0 0 1 1 1 3 3 0 0 1 .38 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.22l-.79.54a2.17 2.17 0 0 0-.16-.82 1.06 1.06 0 0 0-.42-.51 1.25 1.25 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.28 1.28 0 0 0-.49.56 1.91 1.91 0 0 0-.18.86 2 2 0 0 0 .19.88 1.27 1.27 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 2 2 0 0 0 .77-.15 1.76 1.76 0 0 0 .61-.45l1 1a2.73 2.73 0 0 1-1.05.76 3.65 3.65 0 0 1-1.33.27ZM240.81 319.79v-8.71h1.85v8.71ZM246.77 319.92a3.29 3.29 0 0 1-1.64-.4 3.11 3.11 0 0 1-1.14-1.11 2.94 2.94 0 0 1-.42-1.56 2.84 2.84 0 0 1 .42-1.53 3 3 0 0 1 1.13-1.09 3.3 3.3 0 0 1 1.65-.4 3.35 3.35 0 0 1 1.62.39 3 3 0 0 1 1.15 1.09 2.9 2.9 0 0 1 .42 1.54 3 3 0 0 1-.42 1.57 3.17 3.17 0 0 1-1.14 1.1 3.28 3.28 0 0 1-1.63.4Zm0-1.68a1.39 1.39 0 0 0 .68-.16 1.21 1.21 0 0 0 .46-.49 1.54 1.54 0 0 0 .16-.73 1.47 1.47 0 0 0-.16-.7 1.35 1.35 0 0 0-.47-.48 1.33 1.33 0 0 0-.67-.17 1.41 1.41 0 0 0-.69.17 1.3 1.3 0 0 0-.47.49 1.46 1.46 0 0 0-.16.69 1.54 1.54 0 0 0 .16.73 1.3 1.3 0 0 0 .47.49 1.41 1.41 0 0 0 .69.16ZM250.86 322.25V314h1.85v1.49l-.3 1.43.27 1.41v4Zm3.38-2.34a2.45 2.45 0 0 1-1.09-.23 2.08 2.08 0 0 1-.8-.63 1.73 1.73 0 0 1-.35-.91v-2.46a1.79 1.79 0 0 1 .36-.95 2.23 2.23 0 0 1 .8-.65 2.44 2.44 0 0 1 1.08-.24 2.67 2.67 0 0 1 1.46.4 2.7 2.7 0 0 1 1 1.08 3.16 3.16 0 0 1 .38 1.56 3.26 3.26 0 0 1-.37 1.55 2.83 2.83 0 0 1-1 1.08 2.73 2.73 0 0 1-1.47.4Zm-.35-1.67a1.25 1.25 0 0 0 .68-.17 1.3 1.3 0 0 0 .47-.49 1.35 1.35 0 0 0 .17-.7 1.38 1.38 0 0 0-.17-.71 1.36 1.36 0 0 0-.46-.49 1.43 1.43 0 0 0-1.35 0 1.21 1.21 0 0 0-.46.49 1.38 1.38 0 0 0-.17.71 1.35 1.35 0 0 0 .17.7 1.21 1.21 0 0 0 .46.49 1.23 1.23 0 0 0 .66.17ZM260.88 319.92a3.53 3.53 0 0 1-1.68-.39 3 3 0 0 1-1.16-1.08 3.12 3.12 0 0 1-.42-1.59 3 3 0 0 1 .41-1.55 3.08 3.08 0 0 1 1.12-1.09 3.24 3.24 0 0 1 1.6-.39 3 3 0 0 1 1.53.37 2.8 2.8 0 0 1 1.05 1 3 3 0 0 1 .38 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.22l-.79.54a2.17 2.17 0 0 0-.16-.82 1.12 1.12 0 0 0-.42-.51 1.25 1.25 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.28 1.28 0 0 0-.49.56 1.91 1.91 0 0 0-.18.86 2 2 0 0 0 .19.88 1.27 1.27 0 0 0 .53.57 1.59 1.59 0 0 0 .81.2 2 2 0 0 0 .77-.15 1.76 1.76 0 0 0 .61-.45l1 1a2.73 2.73 0 0 1-1 .76 3.65 3.65 0 0 1-1.41.27ZM264.57 319.79V314h1.85v5.83Zm1.85-3.19-.77-.6a3.3 3.3 0 0 1 .78-1.6 2 2 0 0 1 1.49-.56 1.88 1.88 0 0 1 .74.13 1.61 1.61 0 0 1 .56.37l-1.09 1.4a.88.88 0 0 0-.29-.2 1.3 1.3 0 0 0-.41-.07 1 1 0 0 0-.74.28 1.19 1.19 0 0 0-.27.85ZM271.7 320a4 4 0 0 1-1.94-.52 3.55 3.55 0 0 1-.73-.57l1.05-1.06a2.06 2.06 0 0 0 1.56.66 1 1 0 0 0 .48-.1.29.29 0 0 0 .17-.27.34.34 0 0 0-.2-.32 3 3 0 0 0-.54-.19l-.69-.21a2.76 2.76 0 0 1-.68-.3 1.58 1.58 0 0 1-.53-.53 1.92 1.92 0 0 1 .08-1.85 2 2 0 0 1 .82-.66 3 3 0 0 1 1.26-.24 3.67 3.67 0 0 1 1.37.26 2.45 2.45 0 0 1 1 .76l-1.05 1.07a1.54 1.54 0 0 0-.61-.46 1.83 1.83 0 0 0-.67-.14.86.86 0 0 0-.47.1.27.27 0 0 0-.15.25.34.34 0 0 0 .21.29 3 3 0 0 0 .52.19c.22.05.44.12.68.2a2.69 2.69 0 0 1 .69.32 1.61 1.61 0 0 1 .52.55 1.71 1.71 0 0 1 .21.9 1.68 1.68 0 0 1-.64 1.36 2.73 2.73 0 0 1-1.72.51Z\" transform=\"translate(-146 -311.08)\"></path></svg></div>", 1);
@@ -26828,10 +27308,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904&scoped=true":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904&scoped=true ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904":
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904 ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -26840,21 +27320,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _assets_reader_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/reader.png */ "./resources/assets/reader.png");
 
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-b4adf904"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
 
 var _hoisted_1 = {
-  "class": "relative css-selector border-b-2 border-black"
+  "class": "relative"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"max-w-8xl mx-auto px-2 xl:px-0\" data-v-b4adf904><h1 class=\"text-3xl md:text-[2.5rem] z-10 courier_prime relative font_courier mb-4\" data-v-b4adf904><i class=\"fa fa-times\" data-v-b4adf904></i>Join the eBook Marketplace for Developers</h1><div class=\"relative md:grid md:grid-cols-12 justify-center gap-x-14\" data-v-b4adf904><!-- Line that seperates the headlines from the text and links --><div class=\"absolute w-[2px] h-full bg-black left-2/4 -translate-x-2/4 hidden md:block\" data-v-b4adf904></div><div class=\"md:col-span-6 pb-2 md:pb-0 relative\" data-v-b4adf904><!-- &lt;h2 class=&quot;text-[2.2rem] xs:text-[2.3rem] sm:text-[3.3rem] md:text-[4.2rem] lg:text-[5.5rem] xl:text-[7rem] 2xl:text-[8rem]  font-bold z-10 pb-[2rem] lg:pb-[3rem]&quot;&gt;\n                    Powered by Developers&lt;/h2&gt; --><div class=\"relative w-full\" data-v-b4adf904><svg data-name=\"Ebene 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 63.46 22.17\" data-v-b4adf904><path d=\"M146 319.79v-8.47h1.9v8.47Zm1.46-3.08v-1.48h1.82a1.33 1.33 0 0 0 .63-.14 1 1 0 0 0 .45-.41 1.24 1.24 0 0 0 .17-.66 1.28 1.28 0 0 0-.17-.67 1.07 1.07 0 0 0-.45-.42 1.45 1.45 0 0 0-.63-.13h-1.82v-1.48h2.1a3.28 3.28 0 0 1 1.45.32 2.51 2.51 0 0 1 1 .93 2.64 2.64 0 0 1 .38 1.45 2.57 2.57 0 0 1-.38 1.43 2.38 2.38 0 0 1-1 .93 3.16 3.16 0 0 1-1.45.33ZM156 319.92a3.26 3.26 0 0 1-1.63-.4 3.11 3.11 0 0 1-1.14-1.11 3.08 3.08 0 0 1 0-3.09 3.06 3.06 0 0 1 1.14-1.09 3.27 3.27 0 0 1 1.64-.4 3.41 3.41 0 0 1 1.63.39 3.06 3.06 0 0 1 1.14 1.09 2.9 2.9 0 0 1 .42 1.54 3 3 0 0 1-.42 1.57 3.17 3.17 0 0 1-1.14 1.1 3.26 3.26 0 0 1-1.64.4Zm0-1.68a1.37 1.37 0 0 0 .68-.16 1.23 1.23 0 0 0 .47-.49 1.54 1.54 0 0 0 .16-.73 1.48 1.48 0 0 0-.17-.7 1.25 1.25 0 0 0-.46-.48 1.37 1.37 0 0 0-.68-.17 1.4 1.4 0 0 0-.68.17 1.23 1.23 0 0 0-.47.49 1.47 1.47 0 0 0-.17.69 1.54 1.54 0 0 0 .17.73 1.23 1.23 0 0 0 .47.49 1.39 1.39 0 0 0 .68.16ZM161.35 319.79l-2-5.83h1.82l1.26 4.24h-.54l1.37-4.25h1.51l1.38 4.25h-.55l1.27-4.24h1.81l-2 5.83h-1.51l-1.34-4h.45l-1.37 4ZM172.1 319.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.08 3.08 0 0 1 1.54.37 2.78 2.78 0 0 1 1 1 2.92 2.92 0 0 1 .38 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.23l-.8.54a2 2 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.22 1.22 0 0 0-.67-.18 1.32 1.32 0 0 0-.75.21 1.3 1.3 0 0 0-.5.56 2.06 2.06 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.67 1.67 0 0 0 .61-.45l1 1a2.7 2.7 0 0 1-1 .76 3.7 3.7 0 0 1-1.38.27ZM175.8 319.79V314h1.85v5.83Zm1.85-3.19-.77-.6a3.29 3.29 0 0 1 .77-1.6 2 2 0 0 1 1.5-.56 1.83 1.83 0 0 1 .73.13 1.52 1.52 0 0 1 .56.37l-1.09 1.4a.79.79 0 0 0-.29-.2 1.24 1.24 0 0 0-.4-.07 1 1 0 0 0-.74.28 1.19 1.19 0 0 0-.27.85ZM183.63 319.92a3.46 3.46 0 0 1-1.67-.39 3 3 0 0 1-1.16-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.05 3.05 0 0 1 1.54.37 2.71 2.71 0 0 1 1 1 2.93 2.93 0 0 1 .39 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.22l-.79.54a2.17 2.17 0 0 0-.16-.82 1.12 1.12 0 0 0-.42-.51 1.25 1.25 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.28 1.28 0 0 0-.49.56 1.91 1.91 0 0 0-.18.86 1.87 1.87 0 0 0 .19.88 1.27 1.27 0 0 0 .53.57 1.56 1.56 0 0 0 .8.2 1.89 1.89 0 0 0 .77-.15 1.79 1.79 0 0 0 .62-.45l1 1a2.73 2.73 0 0 1-1 .76 3.7 3.7 0 0 1-1.39.27ZM189.83 319.91a2.83 2.83 0 0 1-1.49-.39 2.89 2.89 0 0 1-1-1.08 3.32 3.32 0 0 1-.36-1.56 3.27 3.27 0 0 1 .36-1.56 2.75 2.75 0 0 1 2.49-1.48 2.58 2.58 0 0 1 1.08.22 2.16 2.16 0 0 1 .8.63 1.66 1.66 0 0 1 .36.93v2.46a1.78 1.78 0 0 1-.36.93 2.3 2.3 0 0 1-1.88.9Zm.32-1.67a1.25 1.25 0 0 0 .68-.17 1.12 1.12 0 0 0 .45-.49 1.57 1.57 0 0 0 0-1.42 1.15 1.15 0 0 0-.45-.48 1.31 1.31 0 0 0-.67-.17 1.24 1.24 0 0 0-.67.18 1.32 1.32 0 0 0-.46.48 1.39 1.39 0 0 0-.18.71 1.45 1.45 0 0 0 .17.7 1.14 1.14 0 0 0 .46.49 1.26 1.26 0 0 0 .67.17Zm3 1.55h-1.82v-1.57l.28-1.43-.31-1.4v-4.31h1.85ZM196.75 319.79v-8.71h1.85v4.31l-.3 1.4.27 1.43v1.57Zm3.38.12a2.45 2.45 0 0 1-1.09-.24 2.36 2.36 0 0 1-.8-.66 1.86 1.86 0 0 1-.35-.93v-2.46a1.66 1.66 0 0 1 .36-.93 2.16 2.16 0 0 1 .8-.63 2.58 2.58 0 0 1 1.08-.22 2.67 2.67 0 0 1 1.46.4 2.79 2.79 0 0 1 1 1.08 3.27 3.27 0 0 1 .37 1.56 3.14 3.14 0 0 1-.37 1.55 2.83 2.83 0 0 1-1 1.08 2.7 2.7 0 0 1-1.46.4Zm-.33-1.67a1.2 1.2 0 0 0 .66-.17 1.23 1.23 0 0 0 .47-.49 1.35 1.35 0 0 0 .18-.7 1.39 1.39 0 0 0-.18-.71 1.23 1.23 0 0 0-.47-.49 1.3 1.3 0 0 0-.66-.17 1.41 1.41 0 0 0-.69.17 1.21 1.21 0 0 0-.46.49 1.46 1.46 0 0 0-.16.69 1.54 1.54 0 0 0 .17.73 1.21 1.21 0 0 0 .46.49 1.37 1.37 0 0 0 .68.16ZM205.53 319.83l-2.4-5.87h2l1.52 4.64h-.73l1.55-4.64h2l-2.5 5.86Zm-1.5 2.42 1.76-3.79 1.17 1.36-1 2.43ZM146 330.79v-8.47h1.9v8.47Zm1.3 0v-1.65h2.09a2.77 2.77 0 0 0 1.34-.32 2.1 2.1 0 0 0 .88-.89 3.18 3.18 0 0 0 0-2.76 2.18 2.18 0 0 0-.89-.89 2.79 2.79 0 0 0-1.32-.3h-2.15v-1.66h2.17a4.84 4.84 0 0 1 1.77.31 4.22 4.22 0 0 1 1.42.87 4.06 4.06 0 0 1 .94 1.34 4.44 4.44 0 0 1 0 3.41 4 4 0 0 1-.94 1.35 4.26 4.26 0 0 1-1.41.88 4.77 4.77 0 0 1-1.75.31ZM157.76 330.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.18 3.18 0 0 1 0-3.14 2.93 2.93 0 0 1 1.12-1.09 3.23 3.23 0 0 1 1.59-.39 3.08 3.08 0 0 1 1.54.37 2.71 2.71 0 0 1 1 1 2.92 2.92 0 0 1 .38 1.51v.35a2.46 2.46 0 0 1-.08.39h-5v-1.27h4.23l-.79.54a2.17 2.17 0 0 0-.16-.82 1.14 1.14 0 0 0-.43-.51 1.22 1.22 0 0 0-.67-.18 1.32 1.32 0 0 0-.75.21 1.3 1.3 0 0 0-.5.56 2.06 2.06 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.67 1.67 0 0 0 .61-.45l1 1a2.63 2.63 0 0 1-1 .76 3.7 3.7 0 0 1-1.38.27ZM163.2 330.79l-2.47-5.79h2l1.68 4.85h-.88l1.7-4.85h1.95l-2.48 5.82ZM170.53 330.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3.18 3.18 0 0 1 0-3.14 3 3 0 0 1 1.11-1.09 3.3 3.3 0 0 1 1.6-.39 3.08 3.08 0 0 1 1.54.37 2.78 2.78 0 0 1 1 1 2.92 2.92 0 0 1 .38 1.51v.35c0 .12 0 .24-.08.39h-5v-1.27h4.23l-.8.54a2.18 2.18 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.23 1.23 0 0 0-.68-.18 1.37 1.37 0 0 0-.75.21 1.34 1.34 0 0 0-.49.56 2.06 2.06 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.67 1.67 0 0 0 .61-.45l1 1a2.7 2.7 0 0 1-1 .76 3.7 3.7 0 0 1-1.38.27ZM174.23 330.79v-8.71h1.85v8.71ZM180.18 330.92a3.26 3.26 0 0 1-1.63-.4 3.11 3.11 0 0 1-1.14-1.11 2.94 2.94 0 0 1-.42-1.56 2.83 2.83 0 0 1 .41-1.53 3 3 0 0 1 1.13-1.09 3.3 3.3 0 0 1 1.65-.4 3.35 3.35 0 0 1 1.62.39 3 3 0 0 1 1.15 1.09 2.9 2.9 0 0 1 .42 1.54 3 3 0 0 1-.42 1.57 3.17 3.17 0 0 1-1.14 1.1 3.26 3.26 0 0 1-1.63.4Zm0-1.68a1.39 1.39 0 0 0 .68-.16 1.14 1.14 0 0 0 .46-.49 1.54 1.54 0 0 0 .17-.73 1.48 1.48 0 0 0-.17-.7 1.32 1.32 0 0 0-.46-.48 1.4 1.4 0 0 0-.68-.17 1.34 1.34 0 0 0-.68.17 1.17 1.17 0 0 0-.47.49 1.36 1.36 0 0 0-.17.69 1.43 1.43 0 0 0 .17.73 1.17 1.17 0 0 0 .47.49 1.34 1.34 0 0 0 .68.16ZM184.27 333.25V325h1.85v1.49l-.3 1.43.27 1.41v4Zm3.38-2.34a2.45 2.45 0 0 1-1.09-.23 2.08 2.08 0 0 1-.8-.63 1.73 1.73 0 0 1-.35-.91v-2.46a1.79 1.79 0 0 1 .36-.95 2.26 2.26 0 0 1 .81-.65 2.37 2.37 0 0 1 1.07-.24 2.67 2.67 0 0 1 1.46.4 2.79 2.79 0 0 1 1 1.08 3.45 3.45 0 0 1 0 3.11 2.83 2.83 0 0 1-1 1.08 2.7 2.7 0 0 1-1.46.4Zm-.34-1.67a1.24 1.24 0 0 0 1.14-.66 1.35 1.35 0 0 0 .18-.7 1.39 1.39 0 0 0-.18-.71 1.28 1.28 0 0 0-.46-.49 1.33 1.33 0 0 0-.67-.17 1.37 1.37 0 0 0-.68.17 1.21 1.21 0 0 0-.46.49 1.49 1.49 0 0 0-.17.71 1.45 1.45 0 0 0 .17.7 1.21 1.21 0 0 0 .46.49 1.26 1.26 0 0 0 .67.17ZM194.29 330.92a3.53 3.53 0 0 1-1.68-.39 2.92 2.92 0 0 1-1.15-1.08 3 3 0 0 1-.42-1.59 2.92 2.92 0 0 1 .41-1.55 3 3 0 0 1 1.11-1.09 3.27 3.27 0 0 1 1.6-.39 3 3 0 0 1 1.53.37 2.8 2.8 0 0 1 1.05 1 3 3 0 0 1 .38 1.51 2.06 2.06 0 0 1 0 .35 2.32 2.32 0 0 1-.07.39h-5v-1.27h4.22l-.79.54a2.4 2.4 0 0 0-.15-.82 1.14 1.14 0 0 0-.43-.51 1.23 1.23 0 0 0-.68-.18 1.32 1.32 0 0 0-.75.21 1.34 1.34 0 0 0-.49.56 1.91 1.91 0 0 0-.17.86 2 2 0 0 0 .18.88 1.33 1.33 0 0 0 .53.57 1.62 1.62 0 0 0 .81.2 1.92 1.92 0 0 0 .77-.15 1.76 1.76 0 0 0 .61-.45l1 1a2.77 2.77 0 0 1-1 .76 3.7 3.7 0 0 1-1.42.27ZM198 330.79V325h1.84v5.83Zm1.84-3.19-.76-.6a3.29 3.29 0 0 1 .77-1.6 2 2 0 0 1 1.49-.56 1.88 1.88 0 0 1 .74.13 1.61 1.61 0 0 1 .56.37l-1.09 1.4a.79.79 0 0 0-.29-.2 1.3 1.3 0 0 0-.41-.07 1 1 0 0 0-.74.28 1.19 1.19 0 0 0-.28.85ZM205.11 331a4 4 0 0 1-1.94-.52 3.84 3.84 0 0 1-.73-.57l1.05-1.06a2.06 2.06 0 0 0 1.56.66 1 1 0 0 0 .48-.1.29.29 0 0 0 .17-.27.34.34 0 0 0-.2-.32 3 3 0 0 0-.54-.19l-.69-.21a2.94 2.94 0 0 1-.68-.3 1.58 1.58 0 0 1-.53-.53 1.74 1.74 0 0 1-.2-.88 1.59 1.59 0 0 1 .29-1 1.91 1.91 0 0 1 .85-.71 3 3 0 0 1 1.26-.24 3.63 3.63 0 0 1 1.37.26 2.45 2.45 0 0 1 1 .76l-1 1.07a1.57 1.57 0 0 0-.62-.46 1.83 1.83 0 0 0-.67-.14.86.86 0 0 0-.47.1.27.27 0 0 0-.15.25.34.34 0 0 0 .21.29 2.88 2.88 0 0 0 .53.19c.21.05.43.12.67.2a2.69 2.69 0 0 1 .69.32 1.74 1.74 0 0 1 .53.55 1.82 1.82 0 0 1 .2.9 1.65 1.65 0 0 1-.64 1.36 2.73 2.73 0 0 1-1.8.59Z\" transform=\"translate(-146 -311.08)\" data-v-b4adf904></path></svg><h2 class=\"sr-only\" data-v-b4adf904>Powered by Developers</h2></div></div><div class=\"md:col-span-6 flex flex-col gap-y-3\" data-v-b4adf904><p class=\"text-lg leading-[1.4rem] md:leading[1.1rem] md:text-xl pb-1 md:pb-0 relative\" data-v-b4adf904> Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis natoque adipiscing elit. Aenean bus et magnis discommodo sociis natoque ligula eget dolor. Aenean massa sociis natoquesociis magnis dis penatibus et magnis dis natoque. sociis natoque bus et magnis dis penatibus et magnis. </p><!-- Start of hero links --><div class=\"flex gap-x-5\" data-v-b4adf904><div class=\"flex gap-x-2 items-center relative hover:scale-[1.05] active:scale-[0.9] transition-transform\" data-v-b4adf904><a class=\"absolute w-full h-full\" href=\"#discover\" data-v-b4adf904></a><div class=\"w-[2.1rem] fill-current\" data-v-b4adf904><svg viewBox=\"2 2 20 20\" data-v-b4adf904><path d=\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1.5 11.5L8 16l2.5-5.5L16 8Z\" data-v-b4adf904></path></svg></div><p class=\"text-lg lg:text-xl\" data-v-b4adf904>Discover</p></div><div class=\"flex gap-x-2 items-center relative hover:scale-[1.05] active:scale-[0.9] transition-transform\" data-v-b4adf904><a class=\"absolute w-full h-full\" href=\"#library\" data-v-b4adf904></a><div class=\"w-[2.1rem] fill-current\" data-v-b4adf904><svg xml:space=\"preserve\" viewBox=\"10 16.67 80 66.67\" data-v-b4adf904><path d=\"M86.667 30h-3.334v35.618H55.286a37.494 37.494 0 0 1 21.381-6.666V16.667c-10.41 0-19.841 4.225-26.667 11.055-6.826-6.83-16.257-11.055-26.667-11.055v42.285c7.943 0 15.3 2.467 21.381 6.666H16.667V30h-3.334A3.346 3.346 0 0 0 10 33.333v40a3.343 3.343 0 0 0 3.333 3.334h30c0 3.685 2.985 6.666 6.667 6.666s6.667-2.981 6.667-6.666h30A3.343 3.343 0 0 0 90 73.333v-40A3.346 3.346 0 0 0 86.667 30z\" data-v-b4adf904></path></svg></div><p class=\"text-lg lg:text-xl\" data-v-b4adf904>Library</p></div></div><!-- End of hero links --></div></div></div>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"absolute bottom-0 left-0 w-full\"><svg preserveAspectRatio=\"none\" viewBox=\"0 0 1200 120\" xmlns=\"http://www.w3.org/2000/svg\" style=\"fill:#ffffff;width:400%;height:77px;transform:rotate(180deg) scaleX(-1);\"><path d=\"M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z\" opacity=\".25\"></path><path d=\"M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z\" opacity=\".5\"></path><path d=\"M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z\"></path></svg></div><div class=\"absolute top-0 left-0 w-full\"><svg preserveAspectRatio=\"none\" viewBox=\"0 0 1200 120\" xmlns=\"http://www.w3.org/2000/svg\" style=\"fill:#ffffff;width:400%;height:77px;\"><path d=\"M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z\" opacity=\".25\"></path><path d=\"M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z\" opacity=\".5\"></path><path d=\"M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z\"></path></svg></div><div class=\"lg:grid grid-cols-2 max-w-8xl mx-auto gap-x-16 items-center px-2 xl:px-0 relative\"><div class=\"flex flex-col gap-y-3 pb-10 lg:pb-0\"><h1 class=\"leading-tight text-5xl font-bold\">Join the eBook <span class=\"bg-yellow-200 px-1\">Marketplace</span> for Developers</h1><p> Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis natoque adipiscing elit. Aenean bus et magnis discommodo sociis natoque atibus et magnis dis natoque. sociis natoque bus et magnis dis penatibus et magnis. </p><button type=\"button\" class=\"w-fit bg-orange-200 hover:bg-orange-300 focus:ring-4 focus:outline-none focus:ring-black font-medium text-sm px-5 py-2.5 text-center inline-flex items-center\"> Get started <svg class=\"w-5 h-5 ml-2 -mr-1\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" d=\"M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z\" clip-rule=\"evenodd\"></path></svg></button></div><div><div><img src=\"" + _assets_reader_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"w-full\" alt=\"reader\"></div></div></div>", 3);
 
-var _hoisted_3 = [_hoisted_2];
+var _hoisted_5 = [_hoisted_2];
 function render(_ctx, _cache) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_3);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_5);
 }
 
 /***/ }),
@@ -26873,106 +27350,123 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  id: "navbar"
+  key: 0,
+  style: {
+    "animation-duration": "0.3s"
+  }
 };
 var _hoisted_2 = {
-  "class": "z-40 relative"
+  "class": "bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800"
 };
 var _hoisted_3 = {
-  "class": "relative w-full bg-white items-center h-[3.3rem] max-w-8xl mx-auto"
-};
-var _hoisted_4 = {
-  "class": "absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 text-black hover:scale-[1.05] active:scale-[0.9] transition-transform"
-};
-var _hoisted_5 = {
-  "class": "w-[8rem] relative"
+  "class": "max-w-8xl flex flex-wrap justify-between items-center mx-auto"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Home");
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<svg class=\"fill-current stroke-4 stroke-current\" viewBox=\"2.62 3.57 142.94 37.24\"><defs><clipPath id=\"a\"><path data-name=\"Rechteck 3\" transform=\"translate(-1.643 -3)\" d=\"M0 0h150v45H0z\"></path></clipPath></defs><g data-name=\"Gruppe 5\" transform=\"translate(1.643 3)\" clip-path=\"url(#a)\"><path data-name=\"Pfad 29\" d=\"M20.542 24.747v-2.5a18.558 18.558 0 0 0-6.615 1.092 7.154 7.154 0 0 0-3.991 3.172v9.234h9.377a1.235 1.235 0 0 1 .824.249.746.746 0 0 1-.014 1.2 1.255 1.255 0 0 1-.837.26H2.262a1.519 1.519 0 0 1-.949-.26.761.761 0 0 1-.335-.614.734.734 0 0 1 .307-.582 1.339 1.339 0 0 1 .865-.249h5.107v-13.04l-3.4.52a2 2 0 0 1-.335.021 1.232 1.232 0 0 1-.823-.249.748.748 0 0 1-.293-.583.689.689 0 0 1 .224-.509 1.1 1.1 0 0 1 .614-.281l4.773-.707a3.876 3.876 0 0 1 .642-.062.96.96 0 0 1 .823.291 1.635 1.635 0 0 1 .237.873l.112 2.163q3.182-3.639 10.941-3.64a4.162 4.162 0 0 1 1.9.312 1.009 1.009 0 0 1 .558.936v2.87a1.012 1.012 0 0 1-.4.863 1.567 1.567 0 0 1-.963.3 1.538 1.538 0 0 1-.921-.281.926.926 0 0 1-.391-.8\" stroke=\"rgba(0,0,0,0)\"></path><path data-name=\"Pfad 30\" d=\"M20.542 24.747v-2.5a18.558 18.558 0 0 0-6.615 1.092 7.154 7.154 0 0 0-3.991 3.172v9.234h9.377a1.235 1.235 0 0 1 .824.249.746.746 0 0 1-.014 1.2 1.255 1.255 0 0 1-.837.26H2.262a1.519 1.519 0 0 1-.949-.26.761.761 0 0 1-.335-.614.734.734 0 0 1 .307-.582 1.339 1.339 0 0 1 .865-.249h5.107v-13.04l-3.4.52a2 2 0 0 1-.335.021 1.232 1.232 0 0 1-.823-.249.748.748 0 0 1-.293-.583.689.689 0 0 1 .224-.509 1.1 1.1 0 0 1 .614-.281l4.773-.707a3.876 3.876 0 0 1 .642-.062.96.96 0 0 1 .823.291 1.635 1.635 0 0 1 .237.873l.112 2.163q3.182-3.639 10.941-3.64a4.162 4.162 0 0 1 1.9.312 1.009 1.009 0 0 1 .558.936v2.87a1.012 1.012 0 0 1-.4.863 1.567 1.567 0 0 1-.963.3 1.538 1.538 0 0 1-.921-.281.926.926 0 0 1-.404-.799Z\" fill=\"none\" stroke-miterlimit=\"10\"></path><path data-name=\"Pfad 31\" d=\"M24.756 28.989a6.637 6.637 0 0 1 1.66-4.492 10.526 10.526 0 0 1 4.466-2.933 18.07 18.07 0 0 1 6.21-1.019 15.551 15.551 0 0 1 5.177.8 7.96 7.96 0 0 1 3.573 2.361 5.723 5.723 0 0 1 1.3 3.785 1.646 1.646 0 0 1-.586 1.3 2.3 2.3 0 0 1-1.563.51l-17.555.1a5.885 5.885 0 0 0 2.791 4.992 12.665 12.665 0 0 0 6.949 1.705 15.038 15.038 0 0 0 4.117-.572 11.756 11.756 0 0 0 3.614-1.695 2.21 2.21 0 0 1 1.144-.354 1.178 1.178 0 0 1 .809.27.832.832 0 0 1 .307.645 1.157 1.157 0 0 1-.5.873 10.935 10.935 0 0 1-4.172 1.851 20.881 20.881 0 0 1-5.094.686 18.921 18.921 0 0 1-6.6-1.061 9.982 9.982 0 0 1-4.452-3.047 7.3 7.3 0 0 1-1.595-4.705m12.392-6.739a12.982 12.982 0 0 0-6.6 1.477 5.925 5.925 0 0 0-3.028 4.139l17.248-.083a6.354 6.354 0 0 0-1.73-3.89q-1.535-1.642-5.889-1.643\" stroke=\"rgba(0,0,0,0)\"></path><path data-name=\"Pfad 32\" d=\"M24.756 28.989a6.637 6.637 0 0 1 1.66-4.492 10.526 10.526 0 0 1 4.466-2.933 18.07 18.07 0 0 1 6.21-1.019 15.551 15.551 0 0 1 5.177.8 7.96 7.96 0 0 1 3.573 2.361 5.723 5.723 0 0 1 1.3 3.785 1.646 1.646 0 0 1-.586 1.3 2.3 2.3 0 0 1-1.563.51l-17.555.1a5.885 5.885 0 0 0 2.791 4.992 12.665 12.665 0 0 0 6.949 1.705 15.038 15.038 0 0 0 4.117-.572 11.756 11.756 0 0 0 3.614-1.695 2.21 2.21 0 0 1 1.144-.354 1.178 1.178 0 0 1 .809.27.832.832 0 0 1 .307.645 1.157 1.157 0 0 1-.5.873 10.935 10.935 0 0 1-4.172 1.851 20.881 20.881 0 0 1-5.094.686 18.921 18.921 0 0 1-6.6-1.061 9.982 9.982 0 0 1-4.452-3.047 7.3 7.3 0 0 1-1.595-4.705Zm12.392-6.739a12.982 12.982 0 0 0-6.6 1.477 5.925 5.925 0 0 0-3.028 4.139l17.248-.083a6.354 6.354 0 0 0-1.73-3.89q-1.534-1.642-5.888-1.642Z\" fill=\"none\" stroke-miterlimit=\"10\"></path><path data-name=\"Pfad 33\" d=\"M65.538 27.264a5.089 5.089 0 0 0-1.27-3.723q-1.271-1.29-4.4-1.29a21.926 21.926 0 0 0-3.223.218 17.035 17.035 0 0 0-2.944.717 6.9 6.9 0 0 1-.5 2.413 1.37 1.37 0 0 1-1.34.811 1.721 1.721 0 0 1-1.242-.416 1.432 1.432 0 0 1-.433-1.082 2.873 2.873 0 0 1 1.229-2.246 8.89 8.89 0 0 1 3.432-1.56 20.548 20.548 0 0 1 5.052-.561 11.661 11.661 0 0 1 5.037.894 5.094 5.094 0 0 1 2.554 2.569 10.632 10.632 0 0 1 .726 4.212v6.489a1.1 1.1 0 0 0 .39.988 1.889 1.889 0 0 0 1.061.26 4.156 4.156 0 0 0 1.535-.322 5.18 5.18 0 0 0 1.283-.7 1.041 1.041 0 0 1 .67-.249 1.065 1.065 0 0 1 .726.27.8.8 0 0 1 .306.6.625.625 0 0 1-.279.52 7 7 0 0 1-2.051 1.113 7.255 7.255 0 0 1-2.414.405 5.141 5.141 0 0 1-2.4-.51 2.761 2.761 0 0 1-1.311-1.986 11.131 11.131 0 0 1-3.838 1.914 18 18 0 0 1-5.373.769 8.173 8.173 0 0 1-4.883-1.272 4.024 4.024 0 0 1-1.758-3.422 3.573 3.573 0 0 1 1.842-3.265 11.74 11.74 0 0 1 4.536-1.456q2.692-.354 7.242-.583l2.038-.1Zm0 6.26v-4.409l-1.144.083q-4.578.332-6.852.634a10.247 10.247 0 0 0-3.614 1.05 2.39 2.39 0 0 0-1.34 2.2 2.5 2.5 0 0 0 1.159 2.3 5.8 5.8 0 0 0 3.084.718 16.987 16.987 0 0 0 4.842-.7 11.44 11.44 0 0 0 3.865-1.872\" stroke=\"rgba(0,0,0,0)\"></path><path data-name=\"Pfad 34\" d=\"M65.538 27.264a5.089 5.089 0 0 0-1.27-3.723q-1.271-1.29-4.4-1.29a21.926 21.926 0 0 0-3.223.218 17.035 17.035 0 0 0-2.944.717 6.9 6.9 0 0 1-.5 2.413 1.37 1.37 0 0 1-1.34.811 1.721 1.721 0 0 1-1.242-.416 1.432 1.432 0 0 1-.433-1.082 2.873 2.873 0 0 1 1.229-2.246 8.89 8.89 0 0 1 3.432-1.56 20.548 20.548 0 0 1 5.052-.561 11.661 11.661 0 0 1 5.037.894 5.094 5.094 0 0 1 2.554 2.569 10.632 10.632 0 0 1 .726 4.212v6.489a1.1 1.1 0 0 0 .39.988 1.889 1.889 0 0 0 1.061.26 4.156 4.156 0 0 0 1.535-.322 5.18 5.18 0 0 0 1.283-.7 1.041 1.041 0 0 1 .67-.249 1.065 1.065 0 0 1 .726.27.8.8 0 0 1 .306.6.625.625 0 0 1-.279.52 7 7 0 0 1-2.051 1.113 7.255 7.255 0 0 1-2.414.405 5.141 5.141 0 0 1-2.4-.51 2.761 2.761 0 0 1-1.311-1.986 11.131 11.131 0 0 1-3.838 1.914 18 18 0 0 1-5.373.769 8.173 8.173 0 0 1-4.883-1.272 4.024 4.024 0 0 1-1.758-3.422 3.573 3.573 0 0 1 1.842-3.265 11.74 11.74 0 0 1 4.536-1.456q2.692-.354 7.242-.583l2.038-.1Zm0 6.26v-4.409l-1.144.083q-4.578.332-6.852.634a10.247 10.247 0 0 0-3.614 1.05 2.39 2.39 0 0 0-1.34 2.2 2.5 2.5 0 0 0 1.159 2.3 5.8 5.8 0 0 0 3.084.718 16.987 16.987 0 0 0 4.842-.7 11.44 11.44 0 0 0 3.865-1.872Z\" fill=\"none\" stroke-miterlimit=\"10\"></path><path data-name=\"Pfad 35\" d=\"M94.952 37.517a1.537 1.537 0 0 1-.921-.26.964.964 0 0 1-.391-.78l-.084-1.248a9.729 9.729 0 0 1-3.446 1.862 14.954 14.954 0 0 1-4.731.717 13.224 13.224 0 0 1-5.6-1.1 8.543 8.543 0 0 1-3.67-3.057 8.374 8.374 0 0 1 0-8.912 8.588 8.588 0 0 1 3.67-3.078 13.131 13.131 0 0 1 5.6-1.113 15.262 15.262 0 0 1 4.4.562 13.918 13.918 0 0 1 3.531 1.643v-7.99l-3.573.166a7.676 7.676 0 0 1-.251.042 2.039 2.039 0 0 1-.307.021 1.273 1.273 0 0 1-.781-.229.68.68 0 0 1-.307-.561.8.8 0 0 1 .223-.541 1.093 1.093 0 0 1 .7-.312l5.274-.395q.447-.042.559-.042 1.144 0 1.144.811l.029 22.212 2.518.016h.168a1.4 1.4 0 0 1 .837.208.626.626 0 0 1 .279.52.773.773 0 0 1-.279.572 1.431 1.431 0 0 1-.777.294Zm-9.406-15.266a9.455 9.455 0 0 0-4.381.936 6.529 6.529 0 0 0-2.735 2.517 7.012 7.012 0 0 0 0 6.947 6.568 6.568 0 0 0 2.707 2.516 9.154 9.154 0 0 0 4.3.936 10.247 10.247 0 0 0 7.871-3.016v-8.154a10.92 10.92 0 0 0-7.759-2.683\" stroke=\"rgba(0,0,0,0)\"></path><path data-name=\"Pfad 36\" d=\"M94.952 37.517a1.537 1.537 0 0 1-.921-.26.964.964 0 0 1-.391-.78l-.084-1.248a9.729 9.729 0 0 1-3.446 1.862 14.954 14.954 0 0 1-4.731.717 13.224 13.224 0 0 1-5.6-1.1 8.543 8.543 0 0 1-3.67-3.057 8.374 8.374 0 0 1 0-8.912 8.588 8.588 0 0 1 3.67-3.078 13.131 13.131 0 0 1 5.6-1.113 15.262 15.262 0 0 1 4.4.562 13.918 13.918 0 0 1 3.531 1.643v-7.99l-3.573.166a7.676 7.676 0 0 1-.251.042 2.039 2.039 0 0 1-.307.021 1.273 1.273 0 0 1-.781-.229.68.68 0 0 1-.307-.561.8.8 0 0 1 .223-.541 1.093 1.093 0 0 1 .7-.312l5.274-.395q.447-.042.559-.042 1.144 0 1.144.811l.029 22.212 2.518.016h.168a1.4 1.4 0 0 1 .837.208.626.626 0 0 1 .279.52.773.773 0 0 1-.279.572 1.431 1.431 0 0 1-.777.294Zm-9.406-15.266a9.455 9.455 0 0 0-4.381.936 6.529 6.529 0 0 0-2.735 2.517 7.012 7.012 0 0 0 0 6.947 6.568 6.568 0 0 0 2.707 2.516 9.154 9.154 0 0 0 4.3.936 10.247 10.247 0 0 0 7.871-3.016v-8.154a10.92 10.92 0 0 0-7.762-2.682Z\" fill=\"none\" stroke-miterlimit=\"10\"></path><path data-name=\"Pfad 37\" d=\"M113.487 36.873v-7.836a3.6 3.6 0 0 0-.592-2.277 1.937 1.937 0 0 0-1.588-.733 3.293 3.293 0 0 0-1.734.512 4.407 4.407 0 0 0-1.391 1.339 3.381 3.381 0 0 0-.591 1.742v6.635h1.763a1.237 1.237 0 0 1 .737.189.544.544 0 0 1 .26.442.564.564 0 0 1-.281.465 1.293 1.293 0 0 1-.758.2h-5.876a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.249-.473.537.537 0 0 1 .229-.433 1.01 1.01 0 0 1 .644-.181h2.242v-9.886l-2.242.347a1.873 1.873 0 0 1-.416.047.936.936 0 0 1-.581-.173.518.518 0 0 1-.228-.426.582.582 0 0 1 .166-.4.9.9 0 0 1 .519-.244l3.405-.52a4.57 4.57 0 0 1 .373-.031q.767 0 .81.614l.1 1.891a4.864 4.864 0 0 1 1.64-2.025 4.066 4.066 0 0 1 2.367-.717 3.969 3.969 0 0 1 2.2.63 3.645 3.645 0 0 1 1.433 1.875 5.109 5.109 0 0 1 1.858-1.86 4.842 4.842 0 0 1 2.44-.646 4.064 4.064 0 0 1 2 .488 3.479 3.479 0 0 1 1.4 1.482 5.231 5.231 0 0 1 .519 2.443v7.107h2.263a.906.906 0 0 1 .613.189.57.57 0 0 1 .218.442.6.6 0 0 1-.229.465.953.953 0 0 1-.643.2h-3.26a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.248-.473v-7.836a3.9 3.9 0 0 0-.53-2.293 1.781 1.781 0 0 0-1.526-.717 3.641 3.641 0 0 0-1.786.5 4.339 4.339 0 0 0-1.464 1.308 3.026 3.026 0 0 0-.591 1.694v6.729h2.45a.905.905 0 0 1 .612.189.57.57 0 0 1 .217.442.6.6 0 0 1-.228.465.957.957 0 0 1-.644.2h-3.447a1.083 1.083 0 0 1-.706-.205.6.6 0 0 1-.249-.473\" stroke=\"rgba(0,0,0,0)\"></path><path data-name=\"Pfad 38\" d=\"M113.487 36.873v-7.836a3.6 3.6 0 0 0-.592-2.277 1.937 1.937 0 0 0-1.588-.733 3.293 3.293 0 0 0-1.734.512 4.407 4.407 0 0 0-1.391 1.339 3.381 3.381 0 0 0-.591 1.742v6.635h1.763a1.237 1.237 0 0 1 .737.189.544.544 0 0 1 .26.442.564.564 0 0 1-.281.465 1.293 1.293 0 0 1-.758.2h-5.876a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.249-.473.537.537 0 0 1 .229-.433 1.01 1.01 0 0 1 .644-.181h2.242v-9.886l-2.242.347a1.873 1.873 0 0 1-.416.047.936.936 0 0 1-.581-.173.518.518 0 0 1-.228-.426.582.582 0 0 1 .166-.4.9.9 0 0 1 .519-.244l3.405-.52a4.57 4.57 0 0 1 .373-.031q.767 0 .81.614l.1 1.891a4.864 4.864 0 0 1 1.64-2.025 4.066 4.066 0 0 1 2.367-.717 3.969 3.969 0 0 1 2.2.63 3.645 3.645 0 0 1 1.433 1.875 5.109 5.109 0 0 1 1.858-1.86 4.842 4.842 0 0 1 2.44-.646 4.064 4.064 0 0 1 2 .488 3.479 3.479 0 0 1 1.4 1.482 5.231 5.231 0 0 1 .519 2.443v7.107h2.263a.906.906 0 0 1 .613.189.57.57 0 0 1 .218.442.6.6 0 0 1-.229.465.953.953 0 0 1-.643.2h-3.26a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.248-.473v-7.836a3.9 3.9 0 0 0-.53-2.293 1.781 1.781 0 0 0-1.526-.717 3.641 3.641 0 0 0-1.786.5 4.339 4.339 0 0 0-1.464 1.308 3.026 3.026 0 0 0-.591 1.694v6.729h2.45a.905.905 0 0 1 .612.189.57.57 0 0 1 .217.442.6.6 0 0 1-.228.465.957.957 0 0 1-.644.2h-3.447a1.083 1.083 0 0 1-.706-.205.6.6 0 0 1-.237-.476Z\" fill=\"none\" stroke-miterlimit=\"10\"></path><path data-name=\"Pfad 39\" d=\"M127.247 31.002a5.084 5.084 0 0 1 1.235-3.4 7.828 7.828 0 0 1 3.322-2.222 13.226 13.226 0 0 1 4.62-.772 11.369 11.369 0 0 1 3.851.607 5.909 5.909 0 0 1 2.658 1.789 4.391 4.391 0 0 1 .965 2.868 1.258 1.258 0 0 1-.436.985 1.689 1.689 0 0 1-1.163.386l-13.06.071a4.479 4.479 0 0 0 2.076 3.782 9.288 9.288 0 0 0 5.17 1.292 11.008 11.008 0 0 0 3.062-.433 8.673 8.673 0 0 0 2.692-1.284 1.621 1.621 0 0 1 .851-.268.869.869 0 0 1 .6.2.635.635 0 0 1 .229.489.884.884 0 0 1-.373.662 8.074 8.074 0 0 1-3.1 1.4 15.258 15.258 0 0 1-3.789.52 13.858 13.858 0 0 1-4.911-.8 7.43 7.43 0 0 1-3.311-2.309 5.6 5.6 0 0 1-1.183-3.57m9.219-5.106a9.514 9.514 0 0 0-4.91 1.119 4.482 4.482 0 0 0-2.252 3.137l12.831-.064a4.857 4.857 0 0 0-1.288-2.947q-1.143-1.245-4.381-1.245\" stroke=\"rgba(0,0,0,0)\"></path><path data-name=\"Pfad 40\" d=\"M127.247 31.002a5.084 5.084 0 0 1 1.235-3.4 7.828 7.828 0 0 1 3.322-2.222 13.226 13.226 0 0 1 4.62-.772 11.369 11.369 0 0 1 3.851.607 5.909 5.909 0 0 1 2.658 1.789 4.391 4.391 0 0 1 .965 2.868 1.258 1.258 0 0 1-.436.985 1.689 1.689 0 0 1-1.163.386l-13.06.071a4.479 4.479 0 0 0 2.076 3.782 9.288 9.288 0 0 0 5.17 1.292 11.008 11.008 0 0 0 3.062-.433 8.673 8.673 0 0 0 2.692-1.284 1.621 1.621 0 0 1 .851-.268.869.869 0 0 1 .6.2.635.635 0 0 1 .229.489.884.884 0 0 1-.373.662 8.074 8.074 0 0 1-3.1 1.4 15.258 15.258 0 0 1-3.789.52 13.858 13.858 0 0 1-4.911-.8 7.43 7.43 0 0 1-3.311-2.309 5.6 5.6 0 0 1-1.188-3.563Zm9.219-5.106a9.514 9.514 0 0 0-4.91 1.119 4.482 4.482 0 0 0-2.252 3.137l12.831-.064a4.857 4.857 0 0 0-1.288-2.947q-1.143-1.248-4.381-1.248Z\" fill=\"none\" stroke-miterlimit=\"10\"></path><path data-name=\"Pfad 41\" d=\"M124.714 20.06c-3.54.265-6.68-2.327-6.68-5.2v-2.6a1.318 1.318 0 0 0-1.337-1.3h-2.337a1.3 1.3 0 1 1 0-2.6h2.337a1.318 1.318 0 0 0 1.337-1.3v-2.8a1.32 1.32 0 0 0-1.337-1.1h-.689c-3.268 0-5.635 1.827-6.213 4.24a1.32 1.32 0 0 1-1.121 1.016c-3.314.39-5.829 2.675-5.664 5.391.17 2.8 3.265 4.946 6.861 4.946h.144a1.318 1.318 0 0 0 1.336-1.3c0-1.435-1.495-2.6-3.339-2.6h-.334a1.319 1.319 0 0 1-1.337-1.3 1.319 1.319 0 0 1 1.337-1.3h.333c3.689 0 6.68 2.327 6.68 5.2v1.3c0 2.153 2.243 3.9 5.01 3.9h3.34\" stroke=\"rgba(0,0,0,0)\"></path><path data-name=\"Pfad 42\" d=\"M133.276 22.659c2.765 0 5.01-1.746 5.01-3.9v-.648a1.247 1.247 0 0 1 .539-1.026 5.949 5.949 0 0 0 2.8-4.823 6.024 6.024 0 0 0-2.966-4.959 1.315 1.315 0 0 0-2.043 1.065c0 2.869-2.991 5.2-6.68 5.2s-6.68-2.326-6.68-5.2V5.741a1.292 1.292 0 0 1 1.31-1.273h.719a1.293 1.293 0 0 1 1.311 1.274v2.626c0 1.434 1.5 2.6 3.34 2.6s3.34-1.164 3.34-2.6V5.929c0-2.808-2.772-5.231-6.377-5.355-3.827-.132-6.983 2.244-6.983 5.194v9.079c0 1.445 1.506 2.616 3.362 2.616h8.687a1.293 1.293 0 0 1 1.31 1.274v1.325\" stroke=\"rgba(0,0,0,0)\"></path></g></svg>", 1);
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"absolute right-0 top-2/4 -translate-y-2/4 pr-4 7xl:pr-0 mt-[0.02rem] lg:hidden\"><div class=\"relative h-[4.5rem] flex flex-col justify-center items-center gap-y-[0.4rem] top-0\" id=\"j-menuBtn\"><a href=\"#\" class=\"absolute w-full h-full\"></a><div class=\"bg-black w-[2.2rem] h-[0.20rem]\"></div><div class=\"bg-black w-[2.2rem] h-[0.20rem]\"></div><div class=\"bg-black w-[2.2rem] h-[0.20rem]\"></div></div></div>", 1);
-
-var _hoisted_9 = {
-  "class": "items-center gap-x-3 absolute right-0 top-2/4 -translate-y-2/4 text-lg hidden lg:flex 7xl:pr-0"
-};
-var _hoisted_10 = {
-  "class": ""
-};
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Discover");
-
-var _hoisted_12 = {
-  key: 0,
-  "class": ""
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Library ");
-
-var _hoisted_14 = {
-  key: 1,
-  "class": ""
-};
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Account ");
-
-var _hoisted_16 = {
-  key: 2,
-  "class": ""
-};
-
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Login ");
-
-var _hoisted_18 = {
-  key: 3,
-  "class": ""
-};
-
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
-
-var _hoisted_20 = {
-  key: 4,
-  "class": ""
-};
-
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Log Out ");
-
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-full h-[2px] bg-black"
-}, null, -1
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  "class": "mr-3 h-10",
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 76.78 37.34"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("defs"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("g", {
+  id: "Ebene_2",
+  "data-name": "Ebene 2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("g", {
+  id: "Ebene_1-2",
+  "data-name": "Ebene 1"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "class": "cls-1",
+  d: "M0 23.62V5.37h5.78v18.25Zm5.78-10-2.4-1.87a10.2 10.2 0 0 1 2.42-5A6.2 6.2 0 0 1 10.48 5a6.32 6.32 0 0 1 2.31.39 5 5 0 0 1 1.75 1.18l-3.42 4.36a2.45 2.45 0 0 0-.9-.6 3.47 3.47 0 0 0-1.28-.23 3 3 0 0 0-2.31.9 3.69 3.69 0 0 0-.85 2.63ZM24.53 24a11 11 0 0 1-5.26-1.22 9.23 9.23 0 0 1-3.61-3.4 9.47 9.47 0 0 1-1.31-5 9.38 9.38 0 0 1 1.27-4.78 9.22 9.22 0 0 1 3.5-3.4 10 10 0 0 1 5-1.24 9.7 9.7 0 0 1 4.81 1.16 8.67 8.67 0 0 1 3.27 3.23 9.27 9.27 0 0 1 1.2 4.73 9.59 9.59 0 0 1-.06 1.07 7.35 7.35 0 0 1-.24 1.23l-15.7.07v-4l13.22-.08-2.48 1.69a6.8 6.8 0 0 0-.49-2.57 3.43 3.43 0 0 0-1.33-1.59 3.84 3.84 0 0 0-2.12-.57 4.12 4.12 0 0 0-3.89 2.41 6.19 6.19 0 0 0-.54 2.7 6 6 0 0 0 .58 2.74A4.21 4.21 0 0 0 22 19a5 5 0 0 0 2.54.62 6.08 6.08 0 0 0 2.4-.47 5.46 5.46 0 0 0 1.91-1.41L32 20.88a8.12 8.12 0 0 1-3.27 2.39 11.35 11.35 0 0 1-4.2.73ZM43.72 24a8.2 8.2 0 0 1-4.47-1.26 9 9 0 0 1-3.14-3.38A10.08 10.08 0 0 1 35 14.5a10.33 10.33 0 0 1 1.14-4.9 8.71 8.71 0 0 1 3.12-3.38A8.29 8.29 0 0 1 43.72 5a7.52 7.52 0 0 1 3.28.71 6.42 6.42 0 0 1 2.42 2 5.35 5.35 0 0 1 1.06 2.87v7.89a5.35 5.35 0 0 1-1 2.87 6.31 6.31 0 0 1-2.4 2 7.74 7.74 0 0 1-3.36.66Zm1.2-5.22a3.82 3.82 0 0 0 2.95-1.2A4.41 4.41 0 0 0 49 14.46a4.85 4.85 0 0 0-.49-2.2 3.57 3.57 0 0 0-1.43-1.5 4.23 4.23 0 0 0-2.14-.54 4.07 4.07 0 0 0-2.09.54 4 4 0 0 0-1.46 1.52 4.5 4.5 0 0 0-.54 2.22 4.49 4.49 0 0 0 .54 2.21 4 4 0 0 0 1.46 1.53 4.07 4.07 0 0 0 2.07.54Zm3.83 4.84V18.7l.86-4.46-.86-4.4V5.37h5.67v18.25ZM66.25 24a8.47 8.47 0 0 1-7.77-4.62 10.33 10.33 0 0 1-1.13-4.88 10.3 10.3 0 0 1 1.13-4.88 8.48 8.48 0 0 1 3.15-3.38A8.69 8.69 0 0 1 66.25 5a8.14 8.14 0 0 1 3.38.69 6.45 6.45 0 0 1 2.52 1.95 5.47 5.47 0 0 1 1.13 2.91v7.7a5.59 5.59 0 0 1-1.13 2.91 6.92 6.92 0 0 1-2.52 2.07 7.46 7.46 0 0 1-3.38.77Zm1-5.22a4.1 4.1 0 0 0 2.14-.54 3.79 3.79 0 0 0 1.41-1.53 4.91 4.91 0 0 0 .5-2.25 4.72 4.72 0 0 0-.5-2.2 3.78 3.78 0 0 0-1.41-1.5 4 4 0 0 0-2.11-.54 3.84 3.84 0 0 0-2.1.56 4.23 4.23 0 0 0-1.45 1.52 4.4 4.4 0 0 0-.54 2.2 4.71 4.71 0 0 0 .51 2.21 3.73 3.73 0 0 0 1.44 1.53 4.17 4.17 0 0 0 2.13.54Zm9.5 4.84H71.1v-4.26l.9-3.87-1-3.81V0h5.78ZM46.2 37.3V26.2h3.52v11.1Zm7.13 0v-6.49a1.66 1.66 0 0 0-.52-1.29 1.8 1.8 0 0 0-1.26-.46 2 2 0 0 0-.94.21 1.66 1.66 0 0 0-.65.61 1.74 1.74 0 0 0-.24.93l-1.35-.61A4.19 4.19 0 0 1 49 28a4 4 0 0 1 1.56-1.46 4.58 4.58 0 0 1 2.17-.54 4.11 4.11 0 0 1 2.07.53A4 4 0 0 1 56.29 28a4.3 4.3 0 0 1 .56 2.24v7.1Zm7.08 0v-6.49a1.69 1.69 0 0 0-.51-1.29 1.81 1.81 0 0 0-1.25-.46 2 2 0 0 0-.92.21 1.62 1.62 0 0 0-.66.61 1.83 1.83 0 0 0-.22.93l-2-.27a5.21 5.21 0 0 1 .69-2.44 4 4 0 0 1 1.67-1.58 4.94 4.94 0 0 1 2.31-.52 4.69 4.69 0 0 1 2.26.54A3.92 3.92 0 0 1 63.36 28a4.62 4.62 0 0 1 .57 2.37v6.9ZM71.48 37.3a6.53 6.53 0 0 1-3.12-.72 5.43 5.43 0 0 1-2.14-2 6 6 0 0 1 0-5.84 5.45 5.45 0 0 1 2.08-2 5.84 5.84 0 0 1 3-.74 5.67 5.67 0 0 1 2.85.69A5 5 0 0 1 76 28.56a5.48 5.48 0 0 1 .72 2.82 4.68 4.68 0 0 1 0 .64 4.53 4.53 0 0 1-.14.72h-9.32v-2.32l7.85-.05-1.47 1a4.38 4.38 0 0 0-.29-1.53 2.08 2.08 0 0 0-.8-1 2.26 2.26 0 0 0-1.25-.34A2.44 2.44 0 0 0 69 30a4.17 4.17 0 0 0 0 3.25 2.52 2.52 0 0 0 1 1.06 3 3 0 0 0 1.51.37 3.63 3.63 0 0 0 1.42-.28 3.31 3.31 0 0 0 1.07-.85l1.89 1.88A4.79 4.79 0 0 1 74 36.84a6.61 6.61 0 0 1-2.52.46Z"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "class": "cls-2",
+  d: "M15.58 26.2h12.26v11.11H15.58zM39.88 26.2H32.8l-3.54 5.55 3.54 5.56h7.08l3.54-5.56-3.54-5.55zM10.62 26.2H3.54L0 31.75l3.54 5.56h7.08l3.54-5.56-3.54-5.55z"
+})])])], -1
 /* HOISTED */
 );
 
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "self-center text-xl font-semibold whitespace-nowrap dark:text-white hidden"
+}, "readme Marketplace", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
+  "class": "flex md:order-2"
+};
+var _hoisted_7 = {
+  "class": "flex gap-x-1"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Log Out ");
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Get started");
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<button data-collapse-toggle=\"mobile-menu-4\" type=\"button\" class=\"inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600\" aria-controls=\"mobile-menu-4\" aria-expanded=\"false\"><span class=\"sr-only\">Open main menu</span><svg class=\"w-6 h-6\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" d=\"M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z\" clip-rule=\"evenodd\"></path></svg><svg class=\"hidden w-6 h-6\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" d=\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\" clip-rule=\"evenodd\"></path></svg></button>", 1);
+
+var _hoisted_11 = {
+  "class": "hidden justify-between items-center w-full md:flex md:w-auto md:order-1",
+  id: "mobile-menu-4"
+};
+var _hoisted_12 = {
+  "class": "flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Discover");
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("All Products");
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Library ");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Navigation"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Home Link"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    name: "fade"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_ctx.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_1, "hello")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     href: _ctx.route('home'),
-    "class": "absolute w-full h-full opacity-0"
+    "class": "flex items-center"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_6];
+      return [_hoisted_4, _hoisted_5];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["href"]), _hoisted_7])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Menu Button"), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Desktop Links"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
-    href: _ctx.route('discover'),
-    "class": ""
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_11];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["href"])]), $props.canLogin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, [_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
+  , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["BreezeResponsiveNavLink"], {
     key: 0,
-    href: _ctx.route('library'),
-    "class": ""
+    href: _ctx.route('logout'),
+    method: "post",
+    as: "button"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_8];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
+    key: 1,
+    href: _ctx.route('register'),
+    "class": "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_9];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_10]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+    href: _ctx.route('discover'),
+    "class": "text-lg block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_13];
@@ -26982,10 +27476,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.canLogin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_14, [_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
+  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+    "class": "text-lg block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_14];
+    }),
+    _: 1
+    /* STABLE */
+
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
     key: 0,
-    href: _ctx.route('dashboard'),
-    "class": ""
+    href: _ctx.route('library'),
+    "class": "text-lg block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_15];
@@ -26995,50 +27498,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.canLogin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_16, [!_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
-    key: 0,
-    href: _ctx.route('login'),
-    method: "post",
-    as: "button"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_17];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.canRegister ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_18, [!_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
-    key: 0,
-    href: _ctx.route('register'),
-    method: "post",
-    as: "button"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_19];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.canLogin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_20, [_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["BreezeResponsiveNavLink"], {
-    key: 0,
-    href: _ctx.route('logout'),
-    method: "post",
-    as: "button"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_21];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Dark/Light Mode Toggler"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div class=\"absolute left-0 top-2/4 -translate-y-2/4 pl-4 7xl:pl-0\">\n                <div class=\"w-[1.3rem] justify-center items-center\">\n                    <svg style=\"enable-background:new 0 0 512 512\" xml:space=\"preserve\" viewBox=\"147.8 140.8 216.3 230.3\"><path d=\"M343.1 315c-1.8.1-3.5.1-5.3.1-29.1 0-56.5-11.3-77.1-31.9-20.6-20.6-31.9-48-31.9-77.1 0-16.6 3.7-32.6 10.6-47.1 3.1-6.4 6.8-12.5 11.1-18.2-7.6.8-14.9 2.4-22 4.6-46.8 14.8-80.7 58.5-80.7 110.2 0 63.8 51.7 115.5 115.5 115.5 35.3 0 66.8-15.8 88-40.7 4.8-5.7 9.2-11.9 12.8-18.5-6.8 1.7-13.8 2.8-21 3.1z\"></path></svg>\n\n                </div>\n                <div class=\"w-[1.6rem] justify-center items-center hidden\">\n                    <svg viewBox=\"2 2 20 20\"><path d=\"M7 12a5 5 0 1 1 5 5 5 5 0 0 1-5-5Zm5-7a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm-1 15v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-2 0Zm10-9h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2ZM3 13h1a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm14.657-5.657a1 1 0 0 0 .707-.293l.707-.707a1 1 0 1 0-1.414-1.414l-.707.707a1 1 0 0 0 .707 1.707ZM5.636 16.95l-.707.707a1 1 0 1 0 1.414 1.414l.707-.707a1 1 0 0 0-1.414-1.414Zm11.314 0a1 1 0 0 0 0 1.414l.707.707a1 1 0 0 0 1.414-1.414l-.707-.707a1 1 0 0 0-1.414 0ZM5.636 7.05A1 1 0 0 0 7.05 5.636l-.707-.707a1 1 0 0 0-1.414 1.414Z\"></path></svg>\n                </div>\n\n            </div>")]), _hoisted_22])])], 2112
-  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Navigation"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <nav id=\"navbar\">\n        <div class=\"z-40 relative\">\n            <div class=\"relative w-full bg-white items-center h-[3.3rem]  max-w-8xl mx-auto  \">\n\n                &lt;!&ndash;Home Link&ndash;&gt;\n                <div class=\"absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 text-black hover:scale-[1.05] active:scale-[0.9] transition-transform\">\n                    <div class=\"w-[8rem] relative \">\n                        <Link :href=\"route('home')\" class=\"absolute w-full h-full opacity-0\">Home</Link>\n                        <svg class=\"fill-current stroke-4 stroke-current\" viewBox=\"2.62 3.57 142.94 37.24\">\n                            <defs>\n                                <clipPath id=\"a\">\n                                    <path data-name=\"Rechteck 3\" transform=\"translate(-1.643 -3)\" d=\"M0 0h150v45H0z\">\n                                    </path>\n                                </clipPath>\n                            </defs>\n                            <g data-name=\"Gruppe 5\" transform=\"translate(1.643 3)\" clip-path=\"url(#a)\">\n                                <path data-name=\"Pfad 29\"\n                                      d=\"M20.542 24.747v-2.5a18.558 18.558 0 0 0-6.615 1.092 7.154 7.154 0 0 0-3.991 3.172v9.234h9.377a1.235 1.235 0 0 1 .824.249.746.746 0 0 1-.014 1.2 1.255 1.255 0 0 1-.837.26H2.262a1.519 1.519 0 0 1-.949-.26.761.761 0 0 1-.335-.614.734.734 0 0 1 .307-.582 1.339 1.339 0 0 1 .865-.249h5.107v-13.04l-3.4.52a2 2 0 0 1-.335.021 1.232 1.232 0 0 1-.823-.249.748.748 0 0 1-.293-.583.689.689 0 0 1 .224-.509 1.1 1.1 0 0 1 .614-.281l4.773-.707a3.876 3.876 0 0 1 .642-.062.96.96 0 0 1 .823.291 1.635 1.635 0 0 1 .237.873l.112 2.163q3.182-3.639 10.941-3.64a4.162 4.162 0 0 1 1.9.312 1.009 1.009 0 0 1 .558.936v2.87a1.012 1.012 0 0 1-.4.863 1.567 1.567 0 0 1-.963.3 1.538 1.538 0 0 1-.921-.281.926.926 0 0 1-.391-.8\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                                <path data-name=\"Pfad 30\"\n                                      d=\"M20.542 24.747v-2.5a18.558 18.558 0 0 0-6.615 1.092 7.154 7.154 0 0 0-3.991 3.172v9.234h9.377a1.235 1.235 0 0 1 .824.249.746.746 0 0 1-.014 1.2 1.255 1.255 0 0 1-.837.26H2.262a1.519 1.519 0 0 1-.949-.26.761.761 0 0 1-.335-.614.734.734 0 0 1 .307-.582 1.339 1.339 0 0 1 .865-.249h5.107v-13.04l-3.4.52a2 2 0 0 1-.335.021 1.232 1.232 0 0 1-.823-.249.748.748 0 0 1-.293-.583.689.689 0 0 1 .224-.509 1.1 1.1 0 0 1 .614-.281l4.773-.707a3.876 3.876 0 0 1 .642-.062.96.96 0 0 1 .823.291 1.635 1.635 0 0 1 .237.873l.112 2.163q3.182-3.639 10.941-3.64a4.162 4.162 0 0 1 1.9.312 1.009 1.009 0 0 1 .558.936v2.87a1.012 1.012 0 0 1-.4.863 1.567 1.567 0 0 1-.963.3 1.538 1.538 0 0 1-.921-.281.926.926 0 0 1-.404-.799Z\"\n                                      fill=\"none\" stroke-miterlimit=\"10\"></path>\n                                <path data-name=\"Pfad 31\"\n                                      d=\"M24.756 28.989a6.637 6.637 0 0 1 1.66-4.492 10.526 10.526 0 0 1 4.466-2.933 18.07 18.07 0 0 1 6.21-1.019 15.551 15.551 0 0 1 5.177.8 7.96 7.96 0 0 1 3.573 2.361 5.723 5.723 0 0 1 1.3 3.785 1.646 1.646 0 0 1-.586 1.3 2.3 2.3 0 0 1-1.563.51l-17.555.1a5.885 5.885 0 0 0 2.791 4.992 12.665 12.665 0 0 0 6.949 1.705 15.038 15.038 0 0 0 4.117-.572 11.756 11.756 0 0 0 3.614-1.695 2.21 2.21 0 0 1 1.144-.354 1.178 1.178 0 0 1 .809.27.832.832 0 0 1 .307.645 1.157 1.157 0 0 1-.5.873 10.935 10.935 0 0 1-4.172 1.851 20.881 20.881 0 0 1-5.094.686 18.921 18.921 0 0 1-6.6-1.061 9.982 9.982 0 0 1-4.452-3.047 7.3 7.3 0 0 1-1.595-4.705m12.392-6.739a12.982 12.982 0 0 0-6.6 1.477 5.925 5.925 0 0 0-3.028 4.139l17.248-.083a6.354 6.354 0 0 0-1.73-3.89q-1.535-1.642-5.889-1.643\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                                <path data-name=\"Pfad 32\"\n                                      d=\"M24.756 28.989a6.637 6.637 0 0 1 1.66-4.492 10.526 10.526 0 0 1 4.466-2.933 18.07 18.07 0 0 1 6.21-1.019 15.551 15.551 0 0 1 5.177.8 7.96 7.96 0 0 1 3.573 2.361 5.723 5.723 0 0 1 1.3 3.785 1.646 1.646 0 0 1-.586 1.3 2.3 2.3 0 0 1-1.563.51l-17.555.1a5.885 5.885 0 0 0 2.791 4.992 12.665 12.665 0 0 0 6.949 1.705 15.038 15.038 0 0 0 4.117-.572 11.756 11.756 0 0 0 3.614-1.695 2.21 2.21 0 0 1 1.144-.354 1.178 1.178 0 0 1 .809.27.832.832 0 0 1 .307.645 1.157 1.157 0 0 1-.5.873 10.935 10.935 0 0 1-4.172 1.851 20.881 20.881 0 0 1-5.094.686 18.921 18.921 0 0 1-6.6-1.061 9.982 9.982 0 0 1-4.452-3.047 7.3 7.3 0 0 1-1.595-4.705Zm12.392-6.739a12.982 12.982 0 0 0-6.6 1.477 5.925 5.925 0 0 0-3.028 4.139l17.248-.083a6.354 6.354 0 0 0-1.73-3.89q-1.534-1.642-5.888-1.642Z\"\n                                      fill=\"none\" stroke-miterlimit=\"10\"></path>\n                                <path data-name=\"Pfad 33\"\n                                      d=\"M65.538 27.264a5.089 5.089 0 0 0-1.27-3.723q-1.271-1.29-4.4-1.29a21.926 21.926 0 0 0-3.223.218 17.035 17.035 0 0 0-2.944.717 6.9 6.9 0 0 1-.5 2.413 1.37 1.37 0 0 1-1.34.811 1.721 1.721 0 0 1-1.242-.416 1.432 1.432 0 0 1-.433-1.082 2.873 2.873 0 0 1 1.229-2.246 8.89 8.89 0 0 1 3.432-1.56 20.548 20.548 0 0 1 5.052-.561 11.661 11.661 0 0 1 5.037.894 5.094 5.094 0 0 1 2.554 2.569 10.632 10.632 0 0 1 .726 4.212v6.489a1.1 1.1 0 0 0 .39.988 1.889 1.889 0 0 0 1.061.26 4.156 4.156 0 0 0 1.535-.322 5.18 5.18 0 0 0 1.283-.7 1.041 1.041 0 0 1 .67-.249 1.065 1.065 0 0 1 .726.27.8.8 0 0 1 .306.6.625.625 0 0 1-.279.52 7 7 0 0 1-2.051 1.113 7.255 7.255 0 0 1-2.414.405 5.141 5.141 0 0 1-2.4-.51 2.761 2.761 0 0 1-1.311-1.986 11.131 11.131 0 0 1-3.838 1.914 18 18 0 0 1-5.373.769 8.173 8.173 0 0 1-4.883-1.272 4.024 4.024 0 0 1-1.758-3.422 3.573 3.573 0 0 1 1.842-3.265 11.74 11.74 0 0 1 4.536-1.456q2.692-.354 7.242-.583l2.038-.1Zm0 6.26v-4.409l-1.144.083q-4.578.332-6.852.634a10.247 10.247 0 0 0-3.614 1.05 2.39 2.39 0 0 0-1.34 2.2 2.5 2.5 0 0 0 1.159 2.3 5.8 5.8 0 0 0 3.084.718 16.987 16.987 0 0 0 4.842-.7 11.44 11.44 0 0 0 3.865-1.872\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                                <path data-name=\"Pfad 34\"\n                                      d=\"M65.538 27.264a5.089 5.089 0 0 0-1.27-3.723q-1.271-1.29-4.4-1.29a21.926 21.926 0 0 0-3.223.218 17.035 17.035 0 0 0-2.944.717 6.9 6.9 0 0 1-.5 2.413 1.37 1.37 0 0 1-1.34.811 1.721 1.721 0 0 1-1.242-.416 1.432 1.432 0 0 1-.433-1.082 2.873 2.873 0 0 1 1.229-2.246 8.89 8.89 0 0 1 3.432-1.56 20.548 20.548 0 0 1 5.052-.561 11.661 11.661 0 0 1 5.037.894 5.094 5.094 0 0 1 2.554 2.569 10.632 10.632 0 0 1 .726 4.212v6.489a1.1 1.1 0 0 0 .39.988 1.889 1.889 0 0 0 1.061.26 4.156 4.156 0 0 0 1.535-.322 5.18 5.18 0 0 0 1.283-.7 1.041 1.041 0 0 1 .67-.249 1.065 1.065 0 0 1 .726.27.8.8 0 0 1 .306.6.625.625 0 0 1-.279.52 7 7 0 0 1-2.051 1.113 7.255 7.255 0 0 1-2.414.405 5.141 5.141 0 0 1-2.4-.51 2.761 2.761 0 0 1-1.311-1.986 11.131 11.131 0 0 1-3.838 1.914 18 18 0 0 1-5.373.769 8.173 8.173 0 0 1-4.883-1.272 4.024 4.024 0 0 1-1.758-3.422 3.573 3.573 0 0 1 1.842-3.265 11.74 11.74 0 0 1 4.536-1.456q2.692-.354 7.242-.583l2.038-.1Zm0 6.26v-4.409l-1.144.083q-4.578.332-6.852.634a10.247 10.247 0 0 0-3.614 1.05 2.39 2.39 0 0 0-1.34 2.2 2.5 2.5 0 0 0 1.159 2.3 5.8 5.8 0 0 0 3.084.718 16.987 16.987 0 0 0 4.842-.7 11.44 11.44 0 0 0 3.865-1.872Z\"\n                                      fill=\"none\" stroke-miterlimit=\"10\"></path>\n                                <path data-name=\"Pfad 35\"\n                                      d=\"M94.952 37.517a1.537 1.537 0 0 1-.921-.26.964.964 0 0 1-.391-.78l-.084-1.248a9.729 9.729 0 0 1-3.446 1.862 14.954 14.954 0 0 1-4.731.717 13.224 13.224 0 0 1-5.6-1.1 8.543 8.543 0 0 1-3.67-3.057 8.374 8.374 0 0 1 0-8.912 8.588 8.588 0 0 1 3.67-3.078 13.131 13.131 0 0 1 5.6-1.113 15.262 15.262 0 0 1 4.4.562 13.918 13.918 0 0 1 3.531 1.643v-7.99l-3.573.166a7.676 7.676 0 0 1-.251.042 2.039 2.039 0 0 1-.307.021 1.273 1.273 0 0 1-.781-.229.68.68 0 0 1-.307-.561.8.8 0 0 1 .223-.541 1.093 1.093 0 0 1 .7-.312l5.274-.395q.447-.042.559-.042 1.144 0 1.144.811l.029 22.212 2.518.016h.168a1.4 1.4 0 0 1 .837.208.626.626 0 0 1 .279.52.773.773 0 0 1-.279.572 1.431 1.431 0 0 1-.777.294Zm-9.406-15.266a9.455 9.455 0 0 0-4.381.936 6.529 6.529 0 0 0-2.735 2.517 7.012 7.012 0 0 0 0 6.947 6.568 6.568 0 0 0 2.707 2.516 9.154 9.154 0 0 0 4.3.936 10.247 10.247 0 0 0 7.871-3.016v-8.154a10.92 10.92 0 0 0-7.759-2.683\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                                <path data-name=\"Pfad 36\"\n                                      d=\"M94.952 37.517a1.537 1.537 0 0 1-.921-.26.964.964 0 0 1-.391-.78l-.084-1.248a9.729 9.729 0 0 1-3.446 1.862 14.954 14.954 0 0 1-4.731.717 13.224 13.224 0 0 1-5.6-1.1 8.543 8.543 0 0 1-3.67-3.057 8.374 8.374 0 0 1 0-8.912 8.588 8.588 0 0 1 3.67-3.078 13.131 13.131 0 0 1 5.6-1.113 15.262 15.262 0 0 1 4.4.562 13.918 13.918 0 0 1 3.531 1.643v-7.99l-3.573.166a7.676 7.676 0 0 1-.251.042 2.039 2.039 0 0 1-.307.021 1.273 1.273 0 0 1-.781-.229.68.68 0 0 1-.307-.561.8.8 0 0 1 .223-.541 1.093 1.093 0 0 1 .7-.312l5.274-.395q.447-.042.559-.042 1.144 0 1.144.811l.029 22.212 2.518.016h.168a1.4 1.4 0 0 1 .837.208.626.626 0 0 1 .279.52.773.773 0 0 1-.279.572 1.431 1.431 0 0 1-.777.294Zm-9.406-15.266a9.455 9.455 0 0 0-4.381.936 6.529 6.529 0 0 0-2.735 2.517 7.012 7.012 0 0 0 0 6.947 6.568 6.568 0 0 0 2.707 2.516 9.154 9.154 0 0 0 4.3.936 10.247 10.247 0 0 0 7.871-3.016v-8.154a10.92 10.92 0 0 0-7.762-2.682Z\"\n                                      fill=\"none\" stroke-miterlimit=\"10\"></path>\n                                <path data-name=\"Pfad 37\"\n                                      d=\"M113.487 36.873v-7.836a3.6 3.6 0 0 0-.592-2.277 1.937 1.937 0 0 0-1.588-.733 3.293 3.293 0 0 0-1.734.512 4.407 4.407 0 0 0-1.391 1.339 3.381 3.381 0 0 0-.591 1.742v6.635h1.763a1.237 1.237 0 0 1 .737.189.544.544 0 0 1 .26.442.564.564 0 0 1-.281.465 1.293 1.293 0 0 1-.758.2h-5.876a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.249-.473.537.537 0 0 1 .229-.433 1.01 1.01 0 0 1 .644-.181h2.242v-9.886l-2.242.347a1.873 1.873 0 0 1-.416.047.936.936 0 0 1-.581-.173.518.518 0 0 1-.228-.426.582.582 0 0 1 .166-.4.9.9 0 0 1 .519-.244l3.405-.52a4.57 4.57 0 0 1 .373-.031q.767 0 .81.614l.1 1.891a4.864 4.864 0 0 1 1.64-2.025 4.066 4.066 0 0 1 2.367-.717 3.969 3.969 0 0 1 2.2.63 3.645 3.645 0 0 1 1.433 1.875 5.109 5.109 0 0 1 1.858-1.86 4.842 4.842 0 0 1 2.44-.646 4.064 4.064 0 0 1 2 .488 3.479 3.479 0 0 1 1.4 1.482 5.231 5.231 0 0 1 .519 2.443v7.107h2.263a.906.906 0 0 1 .613.189.57.57 0 0 1 .218.442.6.6 0 0 1-.229.465.953.953 0 0 1-.643.2h-3.26a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.248-.473v-7.836a3.9 3.9 0 0 0-.53-2.293 1.781 1.781 0 0 0-1.526-.717 3.641 3.641 0 0 0-1.786.5 4.339 4.339 0 0 0-1.464 1.308 3.026 3.026 0 0 0-.591 1.694v6.729h2.45a.905.905 0 0 1 .612.189.57.57 0 0 1 .217.442.6.6 0 0 1-.228.465.957.957 0 0 1-.644.2h-3.447a1.083 1.083 0 0 1-.706-.205.6.6 0 0 1-.249-.473\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                                <path data-name=\"Pfad 38\"\n                                      d=\"M113.487 36.873v-7.836a3.6 3.6 0 0 0-.592-2.277 1.937 1.937 0 0 0-1.588-.733 3.293 3.293 0 0 0-1.734.512 4.407 4.407 0 0 0-1.391 1.339 3.381 3.381 0 0 0-.591 1.742v6.635h1.763a1.237 1.237 0 0 1 .737.189.544.544 0 0 1 .26.442.564.564 0 0 1-.281.465 1.293 1.293 0 0 1-.758.2h-5.876a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.249-.473.537.537 0 0 1 .229-.433 1.01 1.01 0 0 1 .644-.181h2.242v-9.886l-2.242.347a1.873 1.873 0 0 1-.416.047.936.936 0 0 1-.581-.173.518.518 0 0 1-.228-.426.582.582 0 0 1 .166-.4.9.9 0 0 1 .519-.244l3.405-.52a4.57 4.57 0 0 1 .373-.031q.767 0 .81.614l.1 1.891a4.864 4.864 0 0 1 1.64-2.025 4.066 4.066 0 0 1 2.367-.717 3.969 3.969 0 0 1 2.2.63 3.645 3.645 0 0 1 1.433 1.875 5.109 5.109 0 0 1 1.858-1.86 4.842 4.842 0 0 1 2.44-.646 4.064 4.064 0 0 1 2 .488 3.479 3.479 0 0 1 1.4 1.482 5.231 5.231 0 0 1 .519 2.443v7.107h2.263a.906.906 0 0 1 .613.189.57.57 0 0 1 .218.442.6.6 0 0 1-.229.465.953.953 0 0 1-.643.2h-3.26a1.084 1.084 0 0 1-.706-.205.6.6 0 0 1-.248-.473v-7.836a3.9 3.9 0 0 0-.53-2.293 1.781 1.781 0 0 0-1.526-.717 3.641 3.641 0 0 0-1.786.5 4.339 4.339 0 0 0-1.464 1.308 3.026 3.026 0 0 0-.591 1.694v6.729h2.45a.905.905 0 0 1 .612.189.57.57 0 0 1 .217.442.6.6 0 0 1-.228.465.957.957 0 0 1-.644.2h-3.447a1.083 1.083 0 0 1-.706-.205.6.6 0 0 1-.237-.476Z\"\n                                      fill=\"none\" stroke-miterlimit=\"10\"></path>\n                                <path data-name=\"Pfad 39\"\n                                      d=\"M127.247 31.002a5.084 5.084 0 0 1 1.235-3.4 7.828 7.828 0 0 1 3.322-2.222 13.226 13.226 0 0 1 4.62-.772 11.369 11.369 0 0 1 3.851.607 5.909 5.909 0 0 1 2.658 1.789 4.391 4.391 0 0 1 .965 2.868 1.258 1.258 0 0 1-.436.985 1.689 1.689 0 0 1-1.163.386l-13.06.071a4.479 4.479 0 0 0 2.076 3.782 9.288 9.288 0 0 0 5.17 1.292 11.008 11.008 0 0 0 3.062-.433 8.673 8.673 0 0 0 2.692-1.284 1.621 1.621 0 0 1 .851-.268.869.869 0 0 1 .6.2.635.635 0 0 1 .229.489.884.884 0 0 1-.373.662 8.074 8.074 0 0 1-3.1 1.4 15.258 15.258 0 0 1-3.789.52 13.858 13.858 0 0 1-4.911-.8 7.43 7.43 0 0 1-3.311-2.309 5.6 5.6 0 0 1-1.183-3.57m9.219-5.106a9.514 9.514 0 0 0-4.91 1.119 4.482 4.482 0 0 0-2.252 3.137l12.831-.064a4.857 4.857 0 0 0-1.288-2.947q-1.143-1.245-4.381-1.245\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                                <path data-name=\"Pfad 40\"\n                                      d=\"M127.247 31.002a5.084 5.084 0 0 1 1.235-3.4 7.828 7.828 0 0 1 3.322-2.222 13.226 13.226 0 0 1 4.62-.772 11.369 11.369 0 0 1 3.851.607 5.909 5.909 0 0 1 2.658 1.789 4.391 4.391 0 0 1 .965 2.868 1.258 1.258 0 0 1-.436.985 1.689 1.689 0 0 1-1.163.386l-13.06.071a4.479 4.479 0 0 0 2.076 3.782 9.288 9.288 0 0 0 5.17 1.292 11.008 11.008 0 0 0 3.062-.433 8.673 8.673 0 0 0 2.692-1.284 1.621 1.621 0 0 1 .851-.268.869.869 0 0 1 .6.2.635.635 0 0 1 .229.489.884.884 0 0 1-.373.662 8.074 8.074 0 0 1-3.1 1.4 15.258 15.258 0 0 1-3.789.52 13.858 13.858 0 0 1-4.911-.8 7.43 7.43 0 0 1-3.311-2.309 5.6 5.6 0 0 1-1.188-3.563Zm9.219-5.106a9.514 9.514 0 0 0-4.91 1.119 4.482 4.482 0 0 0-2.252 3.137l12.831-.064a4.857 4.857 0 0 0-1.288-2.947q-1.143-1.248-4.381-1.248Z\"\n                                      fill=\"none\" stroke-miterlimit=\"10\"></path>\n                                <path data-name=\"Pfad 41\"\n                                      d=\"M124.714 20.06c-3.54.265-6.68-2.327-6.68-5.2v-2.6a1.318 1.318 0 0 0-1.337-1.3h-2.337a1.3 1.3 0 1 1 0-2.6h2.337a1.318 1.318 0 0 0 1.337-1.3v-2.8a1.32 1.32 0 0 0-1.337-1.1h-.689c-3.268 0-5.635 1.827-6.213 4.24a1.32 1.32 0 0 1-1.121 1.016c-3.314.39-5.829 2.675-5.664 5.391.17 2.8 3.265 4.946 6.861 4.946h.144a1.318 1.318 0 0 0 1.336-1.3c0-1.435-1.495-2.6-3.339-2.6h-.334a1.319 1.319 0 0 1-1.337-1.3 1.319 1.319 0 0 1 1.337-1.3h.333c3.689 0 6.68 2.327 6.68 5.2v1.3c0 2.153 2.243 3.9 5.01 3.9h3.34\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                                <path data-name=\"Pfad 42\"\n                                      d=\"M133.276 22.659c2.765 0 5.01-1.746 5.01-3.9v-.648a1.247 1.247 0 0 1 .539-1.026 5.949 5.949 0 0 0 2.8-4.823 6.024 6.024 0 0 0-2.966-4.959 1.315 1.315 0 0 0-2.043 1.065c0 2.869-2.991 5.2-6.68 5.2s-6.68-2.326-6.68-5.2V5.741a1.292 1.292 0 0 1 1.31-1.273h.719a1.293 1.293 0 0 1 1.311 1.274v2.626c0 1.434 1.5 2.6 3.34 2.6s3.34-1.164 3.34-2.6V5.929c0-2.808-2.772-5.231-6.377-5.355-3.827-.132-6.983 2.244-6.983 5.194v9.079c0 1.445 1.506 2.616 3.362 2.616h8.687a1.293 1.293 0 0 1 1.31 1.274v1.325\"\n                                      stroke=\"rgba(0,0,0,0)\"></path>\n                            </g>\n                        </svg>\n                    </div>\n                </div>\n\n                &lt;!&ndash;Menu Button&ndash;&gt;\n                <div class=\"absolute right-0 top-2/4 -translate-y-2/4 pr-4 7xl:pr-0 mt-[0.02rem] lg:hidden\">\n                    <div class=\"relative  h-[4.5rem]  flex flex-col justify-center items-center gap-y-[0.4rem] top-0\"\n                         id=\"j-menuBtn\">\n                        <a href=\"#\" class=\"absolute w-full h-full\"></a>\n                        <div class=\"bg-black w-[2.2rem] h-[0.20rem]\"></div>\n                        <div class=\"bg-black w-[2.2rem] h-[0.20rem]\"></div>\n                        <div class=\"bg-black w-[2.2rem] h-[0.20rem]\"></div>\n                    </div>\n                </div>\n\n                &lt;!&ndash;Desktop Links&ndash;&gt;\n                <ul class=\"items-center gap-x-3 absolute right-0 top-2/4 -translate-y-2/4 text-lg hidden lg:flex  7xl:pr-0\">\n                    <li class=\"\">\n                        <Link :href=\"route('discover')\" class=\"\">Discover</Link>\n                    </li>\n\n                    <li  v-if=\"canLogin\" class=\"\">\n                        <Link v-if=\"$page.props.auth.user\" :href=\"route('library')\" class=\"\">\n                            Library\n                        </Link>\n                    </li>\n\n                    <li  v-if=\"canLogin\" class=\"\">\n                        <Link v-if=\"$page.props.auth.user\" :href=\"route('dashboard')\" class=\"\">\n                            Account\n                        </Link>\n                    </li>\n\n                    <li  v-if=\"canLogin\" class=\"\">\n                        <Link v-if=\"!$page.props.auth.user\" :href=\"route('login')\" method=\"post\" as=\"button\">\n                            Login\n                        </Link>\n                    </li>\n\n                    <li v-if=\"canRegister\" class=\"\">\n                        <Link v-if=\"!$page.props.auth.user\" :href=\"route('register')\" method=\"post\" as=\"button\">\n                            Register\n                        </Link>\n                    </li>\n\n                    <li  v-if=\"canLogin\" class=\"\">\n                        <BreezeResponsiveNavLink v-if=\"$page.props.auth.user\" :href=\"route('logout')\" method=\"post\" as=\"button\">\n                            Log Out\n                        </BreezeResponsiveNavLink>\n                    </li>\n\n                </ul>\n\n                &lt;!&ndash;Dark/Light Mode Toggler&ndash;&gt;\n                &lt;!&ndash;<div class=\"absolute left-0 top-2/4 -translate-y-2/4 pl-4 7xl:pl-0\">\n                <div class=\"w-[1.3rem] justify-center items-center\">\n                    <svg style=\"enable-background:new 0 0 512 512\" xml:space=\"preserve\" viewBox=\"147.8 140.8 216.3 230.3\"><path d=\"M343.1 315c-1.8.1-3.5.1-5.3.1-29.1 0-56.5-11.3-77.1-31.9-20.6-20.6-31.9-48-31.9-77.1 0-16.6 3.7-32.6 10.6-47.1 3.1-6.4 6.8-12.5 11.1-18.2-7.6.8-14.9 2.4-22 4.6-46.8 14.8-80.7 58.5-80.7 110.2 0 63.8 51.7 115.5 115.5 115.5 35.3 0 66.8-15.8 88-40.7 4.8-5.7 9.2-11.9 12.8-18.5-6.8 1.7-13.8 2.8-21 3.1z\"></path></svg>\n\n                </div>\n                <div class=\"w-[1.6rem] justify-center items-center hidden\">\n                    <svg viewBox=\"2 2 20 20\"><path d=\"M7 12a5 5 0 1 1 5 5 5 5 0 0 1-5-5Zm5-7a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm-1 15v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-2 0Zm10-9h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2ZM3 13h1a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm14.657-5.657a1 1 0 0 0 .707-.293l.707-.707a1 1 0 1 0-1.414-1.414l-.707.707a1 1 0 0 0 .707 1.707ZM5.636 16.95l-.707.707a1 1 0 1 0 1.414 1.414l.707-.707a1 1 0 0 0-1.414-1.414Zm11.314 0a1 1 0 0 0 0 1.414l.707.707a1 1 0 0 0 1.414-1.414l-.707-.707a1 1 0 0 0-1.414 0ZM5.636 7.05A1 1 0 0 0 7.05 5.636l-.707-.707a1 1 0 0 0-1.414 1.414Z\"></path></svg>\n                </div>\n\n            </div>&ndash;&gt;\n\n            </div>\n            <div class=\"w-full h-[2px] bg-black\"></div>\n\n        </div>\n    </nav>")], 64
+  /* STABLE_FRAGMENT */
   );
 }
 
@@ -27073,7 +27534,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_2 = {
-  "class": "max-w-8xl mx-auto sm:grid sm:grid-cols-12 gap-x-14 px-2 lg:px-10 bg-[#F7F7F7] pt-8 sm:pt-16"
+  "class": "max-w-8xl mx-auto sm:grid sm:grid-cols-12 gap-x-14 px-2 lg:px-10 bg-white pt-8 sm:pt-16"
 };
 var _hoisted_3 = {
   "class": "sm:sticky sm:top-1 h-fit w-full sm:col-span-4 md:col-span-3 sm:order-2 mx-auto relative"
@@ -28029,16 +28490,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["canLogin", "canRegister"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Hero"], {
-    "class": "py-[3.5rem] md:py-[7rem]"
+    "class": "py-[3.5rem] md:py-[8rem]"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["FeaturedProducts"], {
-    "class": "py-[3.5rem] md:py-[7rem]",
+    "class": "py-[3.5rem] md:py-[7rem] bg-white",
     products: $props.products
   }, null, 8
   /* PROPS */
   , ["products"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Banner"], {
     "class": "py-[3.5rem] md:py-[7rem]"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Steps"], {
-    "class": "py-[3.5rem] md:py-[7rem]"
+    "class": "py-[3.5rem] md:py-[7rem] bg-white"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Footer"], {
     "class": "py-[3.5rem] md:py-[7rem]"
   })], 64
@@ -28360,12 +28821,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
-/* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flowbite */ "./node_modules/flowbite/dist/flowbite.js");
-/* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flowbite__WEBPACK_IMPORTED_MODULE_3__);
 var _window$document$getE;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
 
 
 
@@ -30473,106 +30931,6 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.css-selector[data-v-b4adf904] {\n    background: linear-gradient(270deg, #ffffff, #ffffdb, #ffffff, #ffe6c8);\n    background-size: 800% 800%;\n\n    -webkit-animation: gradient_animated-b4adf904 30s ease infinite;\n    animation: gradient_animated-b4adf904 30s ease infinite;\n}\n@-webkit-keyframes gradient_animated-b4adf904 {\n0% {\n        background-position: 0% 50%\n}\n50% {\n        background-position: 100% 50%\n}\n100% {\n        background-position: 0% 50%\n}\n}\n@keyframes gradient_animated-b4adf904 {\n0% {\n        background-position: 0% 50%\n}\n50% {\n        background-position: 100% 50%\n}\n100% {\n        background-position: 0% 50%\n}\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-// eslint-disable-next-line func-names
-module.exports = function (cssWithMappingToString) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = cssWithMappingToString(item);
-
-      if (item[2]) {
-        return "@media ".concat(item[2], " {").concat(content, "}");
-      }
-
-      return content;
-    }).join("");
-  }; // import a list of modules into the list
-  // eslint-disable-next-line func-names
-
-
-  list.i = function (modules, mediaQuery, dedupe) {
-    if (typeof modules === "string") {
-      // eslint-disable-next-line no-param-reassign
-      modules = [[null, modules, ""]];
-    }
-
-    var alreadyImportedModules = {};
-
-    if (dedupe) {
-      for (var i = 0; i < this.length; i++) {
-        // eslint-disable-next-line prefer-destructuring
-        var id = this[i][0];
-
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-
-    for (var _i = 0; _i < modules.length; _i++) {
-      var item = [].concat(modules[_i]);
-
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        // eslint-disable-next-line no-continue
-        continue;
-      }
-
-      if (mediaQuery) {
-        if (!item[2]) {
-          item[2] = mediaQuery;
-        } else {
-          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
-        }
-      }
-
-      list.push(item);
-    }
-  };
-
-  return list;
-};
 
 /***/ }),
 
@@ -46065,6 +46423,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/reader.png":
+/*!*************************************!*\
+  !*** ./resources/assets/reader.png ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/reader.png?713ead1eea66c9765a38ec04c324178b");
+
+/***/ }),
+
 /***/ "./resources/assets/tablet.jpg":
 /*!*************************************!*\
   !*** ./resources/assets/tablet.jpg ***!
@@ -46077,2650 +46450,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/tablet.jpg?a7db371057f6b10f1cfe4e2d437becaf");
-
-/***/ }),
-
-/***/ "./node_modules/flowbite/dist/flowbite.js":
-/*!************************************************!*\
-  !*** ./node_modules/flowbite/dist/flowbite.js ***!
-  \************************************************/
-/***/ (() => {
-
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ 366:
-/***/ (() => {
-
-var hideAllOtherAccordionHeaderElements = function hideAllOtherAccordionHeaderElements(accordionHeaderElements, currentAccordionHeaderEl, activeClassesArray, inactiveClassesArray) {
-  accordionHeaderElements.forEach(function (headerEl) {
-    if (currentAccordionHeaderEl !== headerEl) {
-      var bodyEl = document.querySelector(headerEl.getAttribute('data-accordion-target'));
-      headerEl.setAttribute('aria-expanded', false); // active classes
-
-      activeClassesArray.map(function (c) {
-        headerEl.classList.remove(c);
-      }); // inactive classes
-
-      inactiveClassesArray.map(function (c) {
-        headerEl.classList.add(c);
-      });
-      bodyEl.classList.add('hidden');
-
-      if (headerEl.querySelector('[data-accordion-icon]')) {
-        headerEl.querySelector('[data-accordion-icon]').classList.remove('rotate-180');
-      }
-    }
-  });
-};
-
-var rotateAccordionIcon = function rotateAccordionIcon(accordionHeaderEl) {
-  if (accordionHeaderEl.querySelector('[data-accordion-icon]')) {
-    accordionHeaderEl.querySelector('[data-accordion-icon]').classList.toggle('rotate-180');
-  }
-};
-
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('[data-accordion]').forEach(function (accordionEl) {
-    var accordionId = accordionEl.getAttribute('id');
-    var collapseAccordion = accordionEl.getAttribute('data-accordion');
-    var accordionHeaderElements = document.querySelectorAll('#' + accordionId + ' [data-accordion-target]');
-    var activeClasses = accordionEl.getAttribute('data-active-classes');
-    var inactiveClasses = accordionEl.getAttribute('data-inactive-classes');
-    var activeClassesArray = null;
-
-    if (activeClasses && activeClasses !== '') {
-      activeClassesArray = activeClasses.split(" ");
-    } else {
-      // fallback classes if option not set
-      activeClassesArray = ['bg-gray-100', 'dark:bg-gray-800', 'text-gray-900', 'dark:text-white'];
-    }
-
-    var inactiveClassesArray = null;
-
-    if (inactiveClasses && inactiveClasses !== '') {
-      inactiveClassesArray = inactiveClasses.split(" ");
-    } else {
-      // fallback classes if option not set
-      inactiveClassesArray = ['text-gray-500', 'dark:text-gray-400'];
-    }
-
-    accordionHeaderElements.forEach(function (accordionHeaderEl) {
-      var accordionBodyEl = document.querySelector(accordionHeaderEl.getAttribute('data-accordion-target'));
-      accordionHeaderEl.addEventListener('click', function () {
-        if (collapseAccordion === 'collapse') {
-          hideAllOtherAccordionHeaderElements(accordionHeaderElements, accordionHeaderEl, activeClassesArray, inactiveClassesArray);
-        }
-
-        if (accordionHeaderEl.getAttribute('aria-expanded') === 'true') {
-          accordionHeaderEl.setAttribute('aria-expanded', false); // active classes
-
-          activeClassesArray.map(function (c) {
-            accordionHeaderEl.classList.remove(c);
-          }); // inactive classes
-
-          inactiveClassesArray.map(function (c) {
-            accordionHeaderEl.classList.add(c);
-          });
-          accordionBodyEl.classList.add('hidden');
-          rotateAccordionIcon(accordionHeaderEl);
-        } else {
-          accordionHeaderEl.setAttribute('aria-expanded', true); // active classes
-
-          activeClassesArray.map(function (c) {
-            accordionHeaderEl.classList.add(c);
-          }); // inactive classes
-
-          inactiveClassesArray.map(function (c) {
-            accordionHeaderEl.classList.remove(c);
-          });
-          accordionBodyEl.classList.remove('hidden');
-          rotateAccordionIcon(accordionHeaderEl);
-        }
-      });
-    });
-  });
-});
-
-/***/ }),
-
-/***/ 791:
-/***/ (() => {
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('[data-carousel]').forEach(function (carouselEl) {
-    var interval = carouselEl.getAttribute('data-carousel-interval');
-    var slide = carouselEl.getAttribute('data-carousel') === 'slide' ? true : false;
-    var carousel = new Carousel(carouselEl.getAttribute('id'), {
-      interval: interval
-    });
-
-    if (slide) {
-      carousel.cycle();
-    } // check for controls
-
-
-    var carouselNextEl = carouselEl.querySelector('[data-carousel-next]');
-    var carouselPrevEl = carouselEl.querySelector('[data-carousel-prev]');
-
-    if (carouselNextEl) {
-      carouselNextEl.addEventListener('click', function () {
-        carousel.nextSlide();
-      });
-    }
-
-    if (carouselPrevEl) {
-      carouselPrevEl.addEventListener('click', function () {
-        carousel.prevSlide();
-      });
-    } // check for indicators
-
-
-    carouselEl.querySelectorAll('[data-carousel-slide-to]').forEach(function (slideToEl) {
-      slideToEl.addEventListener('click', function () {
-        var id = slideToEl.getAttribute('data-carousel-slide-to');
-        carousel.slideTo(id);
-      });
-    });
-  });
-});
-var Default = {
-  interval: 3000
-};
-
-var Carousel = /*#__PURE__*/function () {
-  function Carousel(id, options) {
-    _classCallCheck(this, Carousel);
-
-    this._el = document.getElementById(id);
-    this._items = _toConsumableArray(this._el.querySelectorAll('[data-carousel-item]')).length ? _toConsumableArray(this._el.querySelectorAll('[data-carousel-item]')).map(function (el, id) {
-      return {
-        id: id,
-        el: el,
-        active: el.getAttribute(['data-carousel-item']) === 'active' ? true : false
-      };
-    }) : [];
-    this._indicators = _toConsumableArray(this._el.querySelectorAll('[data-carousel-slide-to]')).length ? _toConsumableArray(this._el.querySelectorAll('[data-carousel-slide-to]')).map(function (el, id) {
-      return {
-        id: id,
-        el: el
-      };
-    }) : [];
-    this._interval = null;
-    this._intervalDuration = options.interval ? options.interval : Default.interval;
-
-    this._init();
-  }
-  /**
-   * Initialise carousel and items based on active one
-   */
-
-
-  _createClass(Carousel, [{
-    key: "_init",
-    value: function _init() {
-      var activeItem = this._getActiveItem();
-
-      this._items.map(function (item) {
-        item.el.classList.add('absolute', 'inset-0', 'transition-all', 'transform');
-      });
-
-      this.slideTo(activeItem.id);
-    }
-    /**
-     * Slide to the element based on id
-     * @param {*} id 
-     */
-
-  }, {
-    key: "slideTo",
-    value: function slideTo(id) {
-      var nextItem = this._items[id];
-      var rotationItems = {
-        'left': nextItem.id === 0 ? this._items[this._items.length - 1] : this._items[nextItem.id - 1],
-        'middle': nextItem,
-        'right': nextItem.id === this._items.length - 1 ? this._items[0] : this._items[nextItem.id + 1]
-      };
-
-      this._rotate(rotationItems);
-
-      this._setActiveItem(nextItem.id);
-
-      if (this._interval) {
-        this.pause();
-        this.cycle();
-      }
-    }
-    /**
-     * Based on the currently active item it will go to the next position
-     */
-
-  }, {
-    key: "nextSlide",
-    value: function nextSlide() {
-      var activeItem = this._getActiveItem();
-
-      var nextItem = null; // check if last item
-
-      if (activeItem.id === this._items.length - 1) {
-        nextItem = this._items[0];
-      } else {
-        nextItem = this._items[activeItem.id + 1];
-      }
-
-      this.slideTo(nextItem.id);
-    }
-    /**
-     * Based on the currently active item it will go to the previous position
-     */
-
-  }, {
-    key: "prevSlide",
-    value: function prevSlide() {
-      var activeItem = this._getActiveItem();
-
-      var prevItem = null; // check if first item
-
-      if (activeItem.id === 0) {
-        prevItem = this._items[this._items.length - 1];
-      } else {
-        prevItem = this._items[activeItem.id - 1];
-      }
-
-      this.slideTo(prevItem.id);
-    }
-    /**
-     * This method applies the transform classes based on the left, middle, and right rotation carousel items
-     * @param {*} rotationItems 
-     */
-
-  }, {
-    key: "_rotate",
-    value: function _rotate(rotationItems) {
-      // reset
-      this._items.map(function (item) {
-        item.el.classList.add('hidden');
-      }); // left item (previously active)
-
-
-      rotationItems.left.el.classList.remove('-translate-x-full', 'translate-x-full', 'translate-x-0', 'hidden');
-      rotationItems.left.el.classList.add('-translate-x-full'); // currently active item
-
-      rotationItems.middle.el.classList.remove('-translate-x-full', 'translate-x-full', 'translate-x-0', 'hidden');
-      rotationItems.middle.el.classList.add('translate-x-0'); // right item (upcoming active)
-
-      rotationItems.right.el.classList.remove('-translate-x-full', 'translate-x-full', 'translate-x-0', 'hidden');
-      rotationItems.right.el.classList.add('translate-x-full');
-    }
-    /**
-     * Set an interval to cycle through the carousel items
-     */
-
-  }, {
-    key: "cycle",
-    value: function cycle(intervalDuration) {
-      var _this = this;
-
-      if (intervalDuration) {
-        this._intervalDuration = intervalDuration;
-      }
-
-      this._interval = setInterval(function () {
-        _this.nextSlide();
-      }, this._intervalDuration);
-    }
-    /**
-     * Clears the cycling interval
-     */
-
-  }, {
-    key: "pause",
-    value: function pause() {
-      clearInterval(this._interval);
-    }
-    /**
-     * Get the currently active item
-     */
-
-  }, {
-    key: "_getActiveItem",
-    value: function _getActiveItem() {
-      return this._items.filter(function (item) {
-        return item.active;
-      })[0];
-    }
-    /**
-     * Set the currently active item and data attribute
-     * @param {*} id 
-     */
-
-  }, {
-    key: "_setActiveItem",
-    value: function _setActiveItem(id) {
-      this._items.map(function (item) {
-        item.active = false;
-        item.el.setAttribute('data-carousel-item', '');
-
-        if (item.id === id) {
-          item.active = true;
-          item.el.setAttribute('data-carousel-item', 'active');
-        }
-      }); // update the indicators if available
-
-
-      this._indicators.map(function (indicator) {
-        indicator.el.setAttribute('aria-current', 'false');
-        indicator.el.classList.remove('bg-white', 'dark:bg-gray-800');
-        indicator.el.classList.add('bg-white/50', 'dark:bg-gray-800/50');
-
-        if (indicator.id === id) {
-          indicator.el.classList.add('bg-white', 'dark:bg-gray-800');
-          indicator.el.classList.remove('bg-white/50', 'dark:bg-gray-800/50');
-          indicator.el.setAttribute('aria-current', 'true');
-        }
-      });
-    }
-  }]);
-
-  return Carousel;
-}();
-
-/***/ }),
-
-/***/ 540:
-/***/ (() => {
-
-var toggleCollapse = function toggleCollapse(elementId) {
-  var show = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  var collapseEl = document.getElementById(elementId);
-
-  if (show) {
-    collapseEl.classList.remove('hidden');
-  } else {
-    collapseEl.classList.add('hidden');
-  }
-};
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Toggle target elements using [data-collapse-toggle]
-  document.querySelectorAll('[data-collapse-toggle]').forEach(function (collapseToggleEl) {
-    var collapseId = collapseToggleEl.getAttribute('data-collapse-toggle');
-    collapseToggleEl.addEventListener('click', function () {
-      toggleCollapse(collapseId, document.getElementById(collapseId).classList.contains('hidden'));
-    });
-  });
-});
-window.toggleCollapse = toggleCollapse;
-
-/***/ }),
-
-/***/ 84:
-/***/ (() => {
-
-var toggleModal = function toggleModal(modalId) {
-  var show = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  var modalEl = document.getElementById(modalId);
-
-  if (show) {
-    modalEl.classList.add('flex');
-    modalEl.classList.remove('hidden');
-    modalEl.setAttribute('aria-modal', 'true');
-    modalEl.setAttribute('role', 'dialog');
-    modalEl.removeAttribute('aria-hidden'); // create backdrop element
-
-    var backdropEl = document.createElement('div');
-    backdropEl.setAttribute('modal-backdrop', '');
-    backdropEl.classList.add('bg-gray-900', 'bg-opacity-50', 'dark:bg-opacity-80', 'fixed', 'inset-0', 'z-40');
-    document.querySelector('body').append(backdropEl);
-  } else {
-    modalEl.classList.add('hidden');
-    modalEl.classList.remove('flex');
-    modalEl.setAttribute('aria-hidden', 'true');
-    modalEl.removeAttribute('aria-modal');
-    modalEl.removeAttribute('role');
-    document.querySelector('[modal-backdrop]').remove();
-  }
-};
-
-window.toggleModal = toggleModal;
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('[data-modal-toggle]').forEach(function (modalToggleEl) {
-    var modalId = modalToggleEl.getAttribute('data-modal-toggle');
-    var modalEl = document.getElementById(modalId);
-
-    if (modalEl) {
-      if (!modalEl.hasAttribute('aria-hidden') && !modalEl.hasAttribute('aria-modal')) {
-        modalEl.setAttribute('aria-hidden', 'true');
-      }
-
-      modalToggleEl.addEventListener('click', function () {
-        toggleModal(modalId, modalEl.hasAttribute('aria-hidden', 'true'));
-      });
-    }
-  });
-});
-
-/***/ }),
-
-/***/ 97:
-/***/ (() => {
-
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('[data-tabs-toggle]').forEach(function (tabsToggleEl) {
-    var tabsToggleElementsId = tabsToggleEl.getAttribute('id');
-    var tabsToggleElements = document.querySelectorAll('#' + tabsToggleElementsId + ' [role="tab"]');
-    var activeTabToggleEl = null;
-    var activeTabContentEl = null;
-    tabsToggleElements.forEach(function (tabToggleEl) {
-      tabToggleEl.addEventListener('click', function (event) {
-        var tabToggleEl = event.target;
-        var tabTargetSelector = tabToggleEl.getAttribute('data-tabs-target');
-        var tabContentEl = document.querySelector(tabTargetSelector); // don't do anything if it's already active
-
-        if (tabToggleEl !== activeTabToggleEl) {
-          // find currently active tab toggle and content if not set
-          if (!activeTabToggleEl && !activeTabContentEl) {
-            activeTabToggleEl = document.querySelector('#' + tabsToggleElementsId + ' [aria-selected="true"]');
-            activeTabContentEl = document.querySelector(activeTabToggleEl.getAttribute('data-tabs-target'));
-          } // show and activate tab
-
-
-          tabToggleEl.classList.add('active');
-          tabToggleEl.setAttribute('aria-selected', true);
-          tabContentEl.classList.remove('hidden'); // hide and deactive currently active tab toggle and content
-
-          activeTabToggleEl.setAttribute('aria-selected', false);
-          activeTabToggleEl.classList.remove('active');
-          activeTabContentEl.classList.add('hidden'); // set currently active toggle and content tabs
-
-          activeTabToggleEl = tabToggleEl;
-          activeTabContentEl = tabContentEl;
-        }
-      });
-    });
-  });
-});
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __nested_webpack_require_16998__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_16998__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-
-// EXTERNAL MODULE: ./src/components/accordion.js
-var accordion = __nested_webpack_require_16998__(366);
-// EXTERNAL MODULE: ./src/components/collapse.js
-var collapse = __nested_webpack_require_16998__(540);
-// EXTERNAL MODULE: ./src/components/carousel.js
-var carousel = __nested_webpack_require_16998__(791);
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getWindow.js
-function getWindow(node) {
-  if (node == null) {
-    return window;
-  }
-
-  if (node.toString() !== '[object Window]') {
-    var ownerDocument = node.ownerDocument;
-    return ownerDocument ? ownerDocument.defaultView || window : window;
-  }
-
-  return node;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/instanceOf.js
-
-
-function isElement(node) {
-  var OwnElement = getWindow(node).Element;
-  return node instanceof OwnElement || node instanceof Element;
-}
-
-function isHTMLElement(node) {
-  var OwnElement = getWindow(node).HTMLElement;
-  return node instanceof OwnElement || node instanceof HTMLElement;
-}
-
-function isShadowRoot(node) {
-  // IE 11 has no ShadowRoot
-  if (typeof ShadowRoot === 'undefined') {
-    return false;
-  }
-
-  var OwnElement = getWindow(node).ShadowRoot;
-  return node instanceof OwnElement || node instanceof ShadowRoot;
-}
-
-
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/math.js
-var math_max = Math.max;
-var math_min = Math.min;
-var round = Math.round;
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js
-
-
-function getBoundingClientRect(element, includeScale) {
-  if (includeScale === void 0) {
-    includeScale = false;
-  }
-
-  var rect = element.getBoundingClientRect();
-  var scaleX = 1;
-  var scaleY = 1;
-
-  if (isHTMLElement(element) && includeScale) {
-    var offsetHeight = element.offsetHeight;
-    var offsetWidth = element.offsetWidth; // Do not attempt to divide by 0, otherwise we get `Infinity` as scale
-    // Fallback to 1 in case both values are `0`
-
-    if (offsetWidth > 0) {
-      scaleX = round(rect.width) / offsetWidth || 1;
-    }
-
-    if (offsetHeight > 0) {
-      scaleY = round(rect.height) / offsetHeight || 1;
-    }
-  }
-
-  return {
-    width: rect.width / scaleX,
-    height: rect.height / scaleY,
-    top: rect.top / scaleY,
-    right: rect.right / scaleX,
-    bottom: rect.bottom / scaleY,
-    left: rect.left / scaleX,
-    x: rect.left / scaleX,
-    y: rect.top / scaleY
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getWindowScroll.js
-
-function getWindowScroll(node) {
-  var win = getWindow(node);
-  var scrollLeft = win.pageXOffset;
-  var scrollTop = win.pageYOffset;
-  return {
-    scrollLeft: scrollLeft,
-    scrollTop: scrollTop
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getHTMLElementScroll.js
-function getHTMLElementScroll(element) {
-  return {
-    scrollLeft: element.scrollLeft,
-    scrollTop: element.scrollTop
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getNodeScroll.js
-
-
-
-
-function getNodeScroll(node) {
-  if (node === getWindow(node) || !isHTMLElement(node)) {
-    return getWindowScroll(node);
-  } else {
-    return getHTMLElementScroll(node);
-  }
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getNodeName.js
-function getNodeName(element) {
-  return element ? (element.nodeName || '').toLowerCase() : null;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js
-
-function getDocumentElement(element) {
-  // $FlowFixMe[incompatible-return]: assume body is always available
-  return ((isElement(element) ? element.ownerDocument : // $FlowFixMe[prop-missing]
-  element.document) || window.document).documentElement;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getWindowScrollBarX.js
-
-
-
-function getWindowScrollBarX(element) {
-  // If <html> has a CSS width greater than the viewport, then this will be
-  // incorrect for RTL.
-  // Popper 1 is broken in this case and never had a bug report so let's assume
-  // it's not an issue. I don't think anyone ever specifies width on <html>
-  // anyway.
-  // Browsers where the left scrollbar doesn't cause an issue report `0` for
-  // this (e.g. Edge 2019, IE11, Safari)
-  return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getComputedStyle.js
-
-function getComputedStyle(element) {
-  return getWindow(element).getComputedStyle(element);
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/isScrollParent.js
-
-function isScrollParent(element) {
-  // Firefox wants us to check `-x` and `-y` variations as well
-  var _getComputedStyle = getComputedStyle(element),
-      overflow = _getComputedStyle.overflow,
-      overflowX = _getComputedStyle.overflowX,
-      overflowY = _getComputedStyle.overflowY;
-
-  return /auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX);
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getCompositeRect.js
-
-
-
-
-
-
-
-
-
-function isElementScaled(element) {
-  var rect = element.getBoundingClientRect();
-  var scaleX = round(rect.width) / element.offsetWidth || 1;
-  var scaleY = round(rect.height) / element.offsetHeight || 1;
-  return scaleX !== 1 || scaleY !== 1;
-} // Returns the composite rect of an element relative to its offsetParent.
-// Composite means it takes into account transforms as well as layout.
-
-
-function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
-  if (isFixed === void 0) {
-    isFixed = false;
-  }
-
-  var isOffsetParentAnElement = isHTMLElement(offsetParent);
-  var offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
-  var documentElement = getDocumentElement(offsetParent);
-  var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled);
-  var scroll = {
-    scrollLeft: 0,
-    scrollTop: 0
-  };
-  var offsets = {
-    x: 0,
-    y: 0
-  };
-
-  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
-    if (getNodeName(offsetParent) !== 'body' || // https://github.com/popperjs/popper-core/issues/1078
-    isScrollParent(documentElement)) {
-      scroll = getNodeScroll(offsetParent);
-    }
-
-    if (isHTMLElement(offsetParent)) {
-      offsets = getBoundingClientRect(offsetParent, true);
-      offsets.x += offsetParent.clientLeft;
-      offsets.y += offsetParent.clientTop;
-    } else if (documentElement) {
-      offsets.x = getWindowScrollBarX(documentElement);
-    }
-  }
-
-  return {
-    x: rect.left + scroll.scrollLeft - offsets.x,
-    y: rect.top + scroll.scrollTop - offsets.y,
-    width: rect.width,
-    height: rect.height
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getLayoutRect.js
- // Returns the layout rect of an element relative to its offsetParent. Layout
-// means it doesn't take into account transforms.
-
-function getLayoutRect(element) {
-  var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
-  // Fixes https://github.com/popperjs/popper-core/issues/1223
-
-  var width = element.offsetWidth;
-  var height = element.offsetHeight;
-
-  if (Math.abs(clientRect.width - width) <= 1) {
-    width = clientRect.width;
-  }
-
-  if (Math.abs(clientRect.height - height) <= 1) {
-    height = clientRect.height;
-  }
-
-  return {
-    x: element.offsetLeft,
-    y: element.offsetTop,
-    width: width,
-    height: height
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getParentNode.js
-
-
-
-function getParentNode(element) {
-  if (getNodeName(element) === 'html') {
-    return element;
-  }
-
-  return (// this is a quicker (but less type safe) way to save quite some bytes from the bundle
-    // $FlowFixMe[incompatible-return]
-    // $FlowFixMe[prop-missing]
-    element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
-    element.parentNode || ( // DOM Element detected
-    isShadowRoot(element) ? element.host : null) || // ShadowRoot detected
-    // $FlowFixMe[incompatible-call]: HTMLElement is a Node
-    getDocumentElement(element) // fallback
-
-  );
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getScrollParent.js
-
-
-
-
-function getScrollParent(node) {
-  if (['html', 'body', '#document'].indexOf(getNodeName(node)) >= 0) {
-    // $FlowFixMe[incompatible-return]: assume body is always available
-    return node.ownerDocument.body;
-  }
-
-  if (isHTMLElement(node) && isScrollParent(node)) {
-    return node;
-  }
-
-  return getScrollParent(getParentNode(node));
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/listScrollParents.js
-
-
-
-
-/*
-given a DOM element, return the list of all scroll parents, up the list of ancesors
-until we get to the top window object. This list is what we attach scroll listeners
-to, because if any of these parent elements scroll, we'll need to re-calculate the
-reference element's position.
-*/
-
-function listScrollParents(element, list) {
-  var _element$ownerDocumen;
-
-  if (list === void 0) {
-    list = [];
-  }
-
-  var scrollParent = getScrollParent(element);
-  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
-  var win = getWindow(scrollParent);
-  var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
-  var updatedList = list.concat(target);
-  return isBody ? updatedList : // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
-  updatedList.concat(listScrollParents(getParentNode(target)));
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/isTableElement.js
-
-function isTableElement(element) {
-  return ['table', 'td', 'th'].indexOf(getNodeName(element)) >= 0;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js
-
-
-
-
-
-
-
-function getTrueOffsetParent(element) {
-  if (!isHTMLElement(element) || // https://github.com/popperjs/popper-core/issues/837
-  getComputedStyle(element).position === 'fixed') {
-    return null;
-  }
-
-  return element.offsetParent;
-} // `.offsetParent` reports `null` for fixed elements, while absolute elements
-// return the containing block
-
-
-function getContainingBlock(element) {
-  var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
-  var isIE = navigator.userAgent.indexOf('Trident') !== -1;
-
-  if (isIE && isHTMLElement(element)) {
-    // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
-    var elementCss = getComputedStyle(element);
-
-    if (elementCss.position === 'fixed') {
-      return null;
-    }
-  }
-
-  var currentNode = getParentNode(element);
-
-  while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
-    var css = getComputedStyle(currentNode); // This is non-exhaustive but covers the most common CSS properties that
-    // create a containing block.
-    // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
-
-    if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].indexOf(css.willChange) !== -1 || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
-      return currentNode;
-    } else {
-      currentNode = currentNode.parentNode;
-    }
-  }
-
-  return null;
-} // Gets the closest ancestor positioned element. Handles some edge cases,
-// such as table ancestors and cross browser bugs.
-
-
-function getOffsetParent(element) {
-  var window = getWindow(element);
-  var offsetParent = getTrueOffsetParent(element);
-
-  while (offsetParent && isTableElement(offsetParent) && getComputedStyle(offsetParent).position === 'static') {
-    offsetParent = getTrueOffsetParent(offsetParent);
-  }
-
-  if (offsetParent && (getNodeName(offsetParent) === 'html' || getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static')) {
-    return window;
-  }
-
-  return offsetParent || getContainingBlock(element) || window;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/enums.js
-var enums_top = 'top';
-var bottom = 'bottom';
-var right = 'right';
-var left = 'left';
-var auto = 'auto';
-var basePlacements = [enums_top, bottom, right, left];
-var start = 'start';
-var end = 'end';
-var clippingParents = 'clippingParents';
-var viewport = 'viewport';
-var popper = 'popper';
-var reference = 'reference';
-var variationPlacements = /*#__PURE__*/basePlacements.reduce(function (acc, placement) {
-  return acc.concat([placement + "-" + start, placement + "-" + end]);
-}, []);
-var enums_placements = /*#__PURE__*/[].concat(basePlacements, [auto]).reduce(function (acc, placement) {
-  return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
-}, []); // modifiers that need to read the DOM
-
-var beforeRead = 'beforeRead';
-var read = 'read';
-var afterRead = 'afterRead'; // pure-logic modifiers
-
-var beforeMain = 'beforeMain';
-var main = 'main';
-var afterMain = 'afterMain'; // modifier with the purpose to write to the DOM (or write into a framework state)
-
-var beforeWrite = 'beforeWrite';
-var write = 'write';
-var afterWrite = 'afterWrite';
-var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite];
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/orderModifiers.js
- // source: https://stackoverflow.com/questions/49875255
-
-function order(modifiers) {
-  var map = new Map();
-  var visited = new Set();
-  var result = [];
-  modifiers.forEach(function (modifier) {
-    map.set(modifier.name, modifier);
-  }); // On visiting object, check for its dependencies and visit them recursively
-
-  function sort(modifier) {
-    visited.add(modifier.name);
-    var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
-    requires.forEach(function (dep) {
-      if (!visited.has(dep)) {
-        var depModifier = map.get(dep);
-
-        if (depModifier) {
-          sort(depModifier);
-        }
-      }
-    });
-    result.push(modifier);
-  }
-
-  modifiers.forEach(function (modifier) {
-    if (!visited.has(modifier.name)) {
-      // check for visited object
-      sort(modifier);
-    }
-  });
-  return result;
-}
-
-function orderModifiers(modifiers) {
-  // order based on dependencies
-  var orderedModifiers = order(modifiers); // order based on phase
-
-  return modifierPhases.reduce(function (acc, phase) {
-    return acc.concat(orderedModifiers.filter(function (modifier) {
-      return modifier.phase === phase;
-    }));
-  }, []);
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/debounce.js
-function debounce(fn) {
-  var pending;
-  return function () {
-    if (!pending) {
-      pending = new Promise(function (resolve) {
-        Promise.resolve().then(function () {
-          pending = undefined;
-          resolve(fn());
-        });
-      });
-    }
-
-    return pending;
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/mergeByName.js
-function mergeByName(modifiers) {
-  var merged = modifiers.reduce(function (merged, current) {
-    var existing = merged[current.name];
-    merged[current.name] = existing ? Object.assign({}, existing, current, {
-      options: Object.assign({}, existing.options, current.options),
-      data: Object.assign({}, existing.data, current.data)
-    }) : current;
-    return merged;
-  }, {}); // IE11 does not support Object.values
-
-  return Object.keys(merged).map(function (key) {
-    return merged[key];
-  });
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/createPopper.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var INVALID_ELEMENT_ERROR = 'Popper: Invalid reference or popper argument provided. They must be either a DOM element or virtual element.';
-var INFINITE_LOOP_ERROR = 'Popper: An infinite loop in the modifiers cycle has been detected! The cycle has been interrupted to prevent a browser crash.';
-var DEFAULT_OPTIONS = {
-  placement: 'bottom',
-  modifiers: [],
-  strategy: 'absolute'
-};
-
-function areValidElements() {
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  return !args.some(function (element) {
-    return !(element && typeof element.getBoundingClientRect === 'function');
-  });
-}
-
-function popperGenerator(generatorOptions) {
-  if (generatorOptions === void 0) {
-    generatorOptions = {};
-  }
-
-  var _generatorOptions = generatorOptions,
-      _generatorOptions$def = _generatorOptions.defaultModifiers,
-      defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
-      _generatorOptions$def2 = _generatorOptions.defaultOptions,
-      defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
-  return function createPopper(reference, popper, options) {
-    if (options === void 0) {
-      options = defaultOptions;
-    }
-
-    var state = {
-      placement: 'bottom',
-      orderedModifiers: [],
-      options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
-      modifiersData: {},
-      elements: {
-        reference: reference,
-        popper: popper
-      },
-      attributes: {},
-      styles: {}
-    };
-    var effectCleanupFns = [];
-    var isDestroyed = false;
-    var instance = {
-      state: state,
-      setOptions: function setOptions(setOptionsAction) {
-        var options = typeof setOptionsAction === 'function' ? setOptionsAction(state.options) : setOptionsAction;
-        cleanupModifierEffects();
-        state.options = Object.assign({}, defaultOptions, state.options, options);
-        state.scrollParents = {
-          reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
-          popper: listScrollParents(popper)
-        }; // Orders the modifiers based on their dependencies and `phase`
-        // properties
-
-        var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
-
-        state.orderedModifiers = orderedModifiers.filter(function (m) {
-          return m.enabled;
-        }); // Validate the provided modifiers so that the consumer will get warned
-        // if one of the modifiers is invalid for any reason
-
-        if (false) { var _getComputedStyle, marginTop, marginRight, marginBottom, marginLeft, flipModifier, modifiers; }
-
-        runModifierEffects();
-        return instance.update();
-      },
-      // Sync update – it will always be executed, even if not necessary. This
-      // is useful for low frequency updates where sync behavior simplifies the
-      // logic.
-      // For high frequency updates (e.g. `resize` and `scroll` events), always
-      // prefer the async Popper#update method
-      forceUpdate: function forceUpdate() {
-        if (isDestroyed) {
-          return;
-        }
-
-        var _state$elements = state.elements,
-            reference = _state$elements.reference,
-            popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
-        // anymore
-
-        if (!areValidElements(reference, popper)) {
-          if (false) {}
-
-          return;
-        } // Store the reference and popper rects to be read by modifiers
-
-
-        state.rects = {
-          reference: getCompositeRect(reference, getOffsetParent(popper), state.options.strategy === 'fixed'),
-          popper: getLayoutRect(popper)
-        }; // Modifiers have the ability to reset the current update cycle. The
-        // most common use case for this is the `flip` modifier changing the
-        // placement, which then needs to re-run all the modifiers, because the
-        // logic was previously ran for the previous placement and is therefore
-        // stale/incorrect
-
-        state.reset = false;
-        state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
-        // is filled with the initial data specified by the modifier. This means
-        // it doesn't persist and is fresh on each update.
-        // To ensure persistent data, use `${name}#persistent`
-
-        state.orderedModifiers.forEach(function (modifier) {
-          return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
-        });
-        var __debug_loops__ = 0;
-
-        for (var index = 0; index < state.orderedModifiers.length; index++) {
-          if (false) {}
-
-          if (state.reset === true) {
-            state.reset = false;
-            index = -1;
-            continue;
-          }
-
-          var _state$orderedModifie = state.orderedModifiers[index],
-              fn = _state$orderedModifie.fn,
-              _state$orderedModifie2 = _state$orderedModifie.options,
-              _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
-              name = _state$orderedModifie.name;
-
-          if (typeof fn === 'function') {
-            state = fn({
-              state: state,
-              options: _options,
-              name: name,
-              instance: instance
-            }) || state;
-          }
-        }
-      },
-      // Async and optimistically optimized update – it will not be executed if
-      // not necessary (debounced to run at most once-per-tick)
-      update: debounce(function () {
-        return new Promise(function (resolve) {
-          instance.forceUpdate();
-          resolve(state);
-        });
-      }),
-      destroy: function destroy() {
-        cleanupModifierEffects();
-        isDestroyed = true;
-      }
-    };
-
-    if (!areValidElements(reference, popper)) {
-      if (false) {}
-
-      return instance;
-    }
-
-    instance.setOptions(options).then(function (state) {
-      if (!isDestroyed && options.onFirstUpdate) {
-        options.onFirstUpdate(state);
-      }
-    }); // Modifiers have the ability to execute arbitrary code before the first
-    // update cycle runs. They will be executed in the same order as the update
-    // cycle. This is useful when a modifier adds some persistent data that
-    // other modifiers need to use, but the modifier is run after the dependent
-    // one.
-
-    function runModifierEffects() {
-      state.orderedModifiers.forEach(function (_ref3) {
-        var name = _ref3.name,
-            _ref3$options = _ref3.options,
-            options = _ref3$options === void 0 ? {} : _ref3$options,
-            effect = _ref3.effect;
-
-        if (typeof effect === 'function') {
-          var cleanupFn = effect({
-            state: state,
-            name: name,
-            instance: instance,
-            options: options
-          });
-
-          var noopFn = function noopFn() {};
-
-          effectCleanupFns.push(cleanupFn || noopFn);
-        }
-      });
-    }
-
-    function cleanupModifierEffects() {
-      effectCleanupFns.forEach(function (fn) {
-        return fn();
-      });
-      effectCleanupFns = [];
-    }
-
-    return instance;
-  };
-}
-var createPopper = /*#__PURE__*/(/* unused pure expression or super */ null && (0)); // eslint-disable-next-line import/no-unused-modules
-
-
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/eventListeners.js
- // eslint-disable-next-line import/no-unused-modules
-
-var passive = {
-  passive: true
-};
-
-function effect(_ref) {
-  var state = _ref.state,
-      instance = _ref.instance,
-      options = _ref.options;
-  var _options$scroll = options.scroll,
-      scroll = _options$scroll === void 0 ? true : _options$scroll,
-      _options$resize = options.resize,
-      resize = _options$resize === void 0 ? true : _options$resize;
-  var window = getWindow(state.elements.popper);
-  var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
-
-  if (scroll) {
-    scrollParents.forEach(function (scrollParent) {
-      scrollParent.addEventListener('scroll', instance.update, passive);
-    });
-  }
-
-  if (resize) {
-    window.addEventListener('resize', instance.update, passive);
-  }
-
-  return function () {
-    if (scroll) {
-      scrollParents.forEach(function (scrollParent) {
-        scrollParent.removeEventListener('scroll', instance.update, passive);
-      });
-    }
-
-    if (resize) {
-      window.removeEventListener('resize', instance.update, passive);
-    }
-  };
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const eventListeners = ({
-  name: 'eventListeners',
-  enabled: true,
-  phase: 'write',
-  fn: function fn() {},
-  effect: effect,
-  data: {}
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/getBasePlacement.js
-
-function getBasePlacement(placement) {
-  return placement.split('-')[0];
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/getVariation.js
-function getVariation(placement) {
-  return placement.split('-')[1];
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/getMainAxisFromPlacement.js
-function getMainAxisFromPlacement(placement) {
-  return ['top', 'bottom'].indexOf(placement) >= 0 ? 'x' : 'y';
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/computeOffsets.js
-
-
-
-
-function computeOffsets(_ref) {
-  var reference = _ref.reference,
-      element = _ref.element,
-      placement = _ref.placement;
-  var basePlacement = placement ? getBasePlacement(placement) : null;
-  var variation = placement ? getVariation(placement) : null;
-  var commonX = reference.x + reference.width / 2 - element.width / 2;
-  var commonY = reference.y + reference.height / 2 - element.height / 2;
-  var offsets;
-
-  switch (basePlacement) {
-    case enums_top:
-      offsets = {
-        x: commonX,
-        y: reference.y - element.height
-      };
-      break;
-
-    case bottom:
-      offsets = {
-        x: commonX,
-        y: reference.y + reference.height
-      };
-      break;
-
-    case right:
-      offsets = {
-        x: reference.x + reference.width,
-        y: commonY
-      };
-      break;
-
-    case left:
-      offsets = {
-        x: reference.x - element.width,
-        y: commonY
-      };
-      break;
-
-    default:
-      offsets = {
-        x: reference.x,
-        y: reference.y
-      };
-  }
-
-  var mainAxis = basePlacement ? getMainAxisFromPlacement(basePlacement) : null;
-
-  if (mainAxis != null) {
-    var len = mainAxis === 'y' ? 'height' : 'width';
-
-    switch (variation) {
-      case start:
-        offsets[mainAxis] = offsets[mainAxis] - (reference[len] / 2 - element[len] / 2);
-        break;
-
-      case end:
-        offsets[mainAxis] = offsets[mainAxis] + (reference[len] / 2 - element[len] / 2);
-        break;
-
-      default:
-    }
-  }
-
-  return offsets;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/popperOffsets.js
-
-
-function popperOffsets(_ref) {
-  var state = _ref.state,
-      name = _ref.name;
-  // Offsets are the actual position the popper needs to have to be
-  // properly positioned near its reference element
-  // This is the most basic placement, and will be adjusted by
-  // the modifiers in the next step
-  state.modifiersData[name] = computeOffsets({
-    reference: state.rects.reference,
-    element: state.rects.popper,
-    strategy: 'absolute',
-    placement: state.placement
-  });
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_popperOffsets = ({
-  name: 'popperOffsets',
-  enabled: true,
-  phase: 'read',
-  fn: popperOffsets,
-  data: {}
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/computeStyles.js
-
-
-
-
-
-
-
- // eslint-disable-next-line import/no-unused-modules
-
-var unsetSides = {
-  top: 'auto',
-  right: 'auto',
-  bottom: 'auto',
-  left: 'auto'
-}; // Round the offsets to the nearest suitable subpixel based on the DPR.
-// Zooming can change the DPR, but it seems to report a value that will
-// cleanly divide the values into the appropriate subpixels.
-
-function roundOffsetsByDPR(_ref) {
-  var x = _ref.x,
-      y = _ref.y;
-  var win = window;
-  var dpr = win.devicePixelRatio || 1;
-  return {
-    x: round(x * dpr) / dpr || 0,
-    y: round(y * dpr) / dpr || 0
-  };
-}
-
-function mapToStyles(_ref2) {
-  var _Object$assign2;
-
-  var popper = _ref2.popper,
-      popperRect = _ref2.popperRect,
-      placement = _ref2.placement,
-      variation = _ref2.variation,
-      offsets = _ref2.offsets,
-      position = _ref2.position,
-      gpuAcceleration = _ref2.gpuAcceleration,
-      adaptive = _ref2.adaptive,
-      roundOffsets = _ref2.roundOffsets,
-      isFixed = _ref2.isFixed;
-
-  var _ref3 = roundOffsets === true ? roundOffsetsByDPR(offsets) : typeof roundOffsets === 'function' ? roundOffsets(offsets) : offsets,
-      _ref3$x = _ref3.x,
-      x = _ref3$x === void 0 ? 0 : _ref3$x,
-      _ref3$y = _ref3.y,
-      y = _ref3$y === void 0 ? 0 : _ref3$y;
-
-  var hasX = offsets.hasOwnProperty('x');
-  var hasY = offsets.hasOwnProperty('y');
-  var sideX = left;
-  var sideY = enums_top;
-  var win = window;
-
-  if (adaptive) {
-    var offsetParent = getOffsetParent(popper);
-    var heightProp = 'clientHeight';
-    var widthProp = 'clientWidth';
-
-    if (offsetParent === getWindow(popper)) {
-      offsetParent = getDocumentElement(popper);
-
-      if (getComputedStyle(offsetParent).position !== 'static' && position === 'absolute') {
-        heightProp = 'scrollHeight';
-        widthProp = 'scrollWidth';
-      }
-    } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
-
-
-    offsetParent = offsetParent;
-
-    if (placement === enums_top || (placement === left || placement === right) && variation === end) {
-      sideY = bottom;
-      var offsetY = isFixed && win.visualViewport ? win.visualViewport.height : // $FlowFixMe[prop-missing]
-      offsetParent[heightProp];
-      y -= offsetY - popperRect.height;
-      y *= gpuAcceleration ? 1 : -1;
-    }
-
-    if (placement === left || (placement === enums_top || placement === bottom) && variation === end) {
-      sideX = right;
-      var offsetX = isFixed && win.visualViewport ? win.visualViewport.width : // $FlowFixMe[prop-missing]
-      offsetParent[widthProp];
-      x -= offsetX - popperRect.width;
-      x *= gpuAcceleration ? 1 : -1;
-    }
-  }
-
-  var commonStyles = Object.assign({
-    position: position
-  }, adaptive && unsetSides);
-
-  if (gpuAcceleration) {
-    var _Object$assign;
-
-    return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) <= 1 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
-  }
-
-  return Object.assign({}, commonStyles, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
-}
-
-function computeStyles(_ref4) {
-  var state = _ref4.state,
-      options = _ref4.options;
-  var _options$gpuAccelerat = options.gpuAcceleration,
-      gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
-      _options$adaptive = options.adaptive,
-      adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
-      _options$roundOffsets = options.roundOffsets,
-      roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
-
-  if (false) { var transitionProperty; }
-
-  var commonStyles = {
-    placement: getBasePlacement(state.placement),
-    variation: getVariation(state.placement),
-    popper: state.elements.popper,
-    popperRect: state.rects.popper,
-    gpuAcceleration: gpuAcceleration,
-    isFixed: state.options.strategy === 'fixed'
-  };
-
-  if (state.modifiersData.popperOffsets != null) {
-    state.styles.popper = Object.assign({}, state.styles.popper, mapToStyles(Object.assign({}, commonStyles, {
-      offsets: state.modifiersData.popperOffsets,
-      position: state.options.strategy,
-      adaptive: adaptive,
-      roundOffsets: roundOffsets
-    })));
-  }
-
-  if (state.modifiersData.arrow != null) {
-    state.styles.arrow = Object.assign({}, state.styles.arrow, mapToStyles(Object.assign({}, commonStyles, {
-      offsets: state.modifiersData.arrow,
-      position: 'absolute',
-      adaptive: false,
-      roundOffsets: roundOffsets
-    })));
-  }
-
-  state.attributes.popper = Object.assign({}, state.attributes.popper, {
-    'data-popper-placement': state.placement
-  });
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_computeStyles = ({
-  name: 'computeStyles',
-  enabled: true,
-  phase: 'beforeWrite',
-  fn: computeStyles,
-  data: {}
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/applyStyles.js
-
- // This modifier takes the styles prepared by the `computeStyles` modifier
-// and applies them to the HTMLElements such as popper and arrow
-
-function applyStyles(_ref) {
-  var state = _ref.state;
-  Object.keys(state.elements).forEach(function (name) {
-    var style = state.styles[name] || {};
-    var attributes = state.attributes[name] || {};
-    var element = state.elements[name]; // arrow is optional + virtual elements
-
-    if (!isHTMLElement(element) || !getNodeName(element)) {
-      return;
-    } // Flow doesn't support to extend this property, but it's the most
-    // effective way to apply styles to an HTMLElement
-    // $FlowFixMe[cannot-write]
-
-
-    Object.assign(element.style, style);
-    Object.keys(attributes).forEach(function (name) {
-      var value = attributes[name];
-
-      if (value === false) {
-        element.removeAttribute(name);
-      } else {
-        element.setAttribute(name, value === true ? '' : value);
-      }
-    });
-  });
-}
-
-function applyStyles_effect(_ref2) {
-  var state = _ref2.state;
-  var initialStyles = {
-    popper: {
-      position: state.options.strategy,
-      left: '0',
-      top: '0',
-      margin: '0'
-    },
-    arrow: {
-      position: 'absolute'
-    },
-    reference: {}
-  };
-  Object.assign(state.elements.popper.style, initialStyles.popper);
-  state.styles = initialStyles;
-
-  if (state.elements.arrow) {
-    Object.assign(state.elements.arrow.style, initialStyles.arrow);
-  }
-
-  return function () {
-    Object.keys(state.elements).forEach(function (name) {
-      var element = state.elements[name];
-      var attributes = state.attributes[name] || {};
-      var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]); // Set all values to an empty string to unset them
-
-      var style = styleProperties.reduce(function (style, property) {
-        style[property] = '';
-        return style;
-      }, {}); // arrow is optional + virtual elements
-
-      if (!isHTMLElement(element) || !getNodeName(element)) {
-        return;
-      }
-
-      Object.assign(element.style, style);
-      Object.keys(attributes).forEach(function (attribute) {
-        element.removeAttribute(attribute);
-      });
-    });
-  };
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_applyStyles = ({
-  name: 'applyStyles',
-  enabled: true,
-  phase: 'write',
-  fn: applyStyles,
-  effect: applyStyles_effect,
-  requires: ['computeStyles']
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/offset.js
-
- // eslint-disable-next-line import/no-unused-modules
-
-function distanceAndSkiddingToXY(placement, rects, offset) {
-  var basePlacement = getBasePlacement(placement);
-  var invertDistance = [left, enums_top].indexOf(basePlacement) >= 0 ? -1 : 1;
-
-  var _ref = typeof offset === 'function' ? offset(Object.assign({}, rects, {
-    placement: placement
-  })) : offset,
-      skidding = _ref[0],
-      distance = _ref[1];
-
-  skidding = skidding || 0;
-  distance = (distance || 0) * invertDistance;
-  return [left, right].indexOf(basePlacement) >= 0 ? {
-    x: distance,
-    y: skidding
-  } : {
-    x: skidding,
-    y: distance
-  };
-}
-
-function offset(_ref2) {
-  var state = _ref2.state,
-      options = _ref2.options,
-      name = _ref2.name;
-  var _options$offset = options.offset,
-      offset = _options$offset === void 0 ? [0, 0] : _options$offset;
-  var data = enums_placements.reduce(function (acc, placement) {
-    acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
-    return acc;
-  }, {});
-  var _data$state$placement = data[state.placement],
-      x = _data$state$placement.x,
-      y = _data$state$placement.y;
-
-  if (state.modifiersData.popperOffsets != null) {
-    state.modifiersData.popperOffsets.x += x;
-    state.modifiersData.popperOffsets.y += y;
-  }
-
-  state.modifiersData[name] = data;
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_offset = ({
-  name: 'offset',
-  enabled: true,
-  phase: 'main',
-  requires: ['popperOffsets'],
-  fn: offset
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/getOppositePlacement.js
-var hash = {
-  left: 'right',
-  right: 'left',
-  bottom: 'top',
-  top: 'bottom'
-};
-function getOppositePlacement(placement) {
-  return placement.replace(/left|right|bottom|top/g, function (matched) {
-    return hash[matched];
-  });
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/getOppositeVariationPlacement.js
-var getOppositeVariationPlacement_hash = {
-  start: 'end',
-  end: 'start'
-};
-function getOppositeVariationPlacement(placement) {
-  return placement.replace(/start|end/g, function (matched) {
-    return getOppositeVariationPlacement_hash[matched];
-  });
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getViewportRect.js
-
-
-
-function getViewportRect(element) {
-  var win = getWindow(element);
-  var html = getDocumentElement(element);
-  var visualViewport = win.visualViewport;
-  var width = html.clientWidth;
-  var height = html.clientHeight;
-  var x = 0;
-  var y = 0; // NB: This isn't supported on iOS <= 12. If the keyboard is open, the popper
-  // can be obscured underneath it.
-  // Also, `html.clientHeight` adds the bottom bar height in Safari iOS, even
-  // if it isn't open, so if this isn't available, the popper will be detected
-  // to overflow the bottom of the screen too early.
-
-  if (visualViewport) {
-    width = visualViewport.width;
-    height = visualViewport.height; // Uses Layout Viewport (like Chrome; Safari does not currently)
-    // In Chrome, it returns a value very close to 0 (+/-) but contains rounding
-    // errors due to floating point numbers, so we need to check precision.
-    // Safari returns a number <= 0, usually < -1 when pinch-zoomed
-    // Feature detection fails in mobile emulation mode in Chrome.
-    // Math.abs(win.innerWidth / visualViewport.scale - visualViewport.width) <
-    // 0.001
-    // Fallback here: "Not Safari" userAgent
-
-    if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
-      x = visualViewport.offsetLeft;
-      y = visualViewport.offsetTop;
-    }
-  }
-
-  return {
-    width: width,
-    height: height,
-    x: x + getWindowScrollBarX(element),
-    y: y
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getDocumentRect.js
-
-
-
-
- // Gets the entire size of the scrollable document area, even extending outside
-// of the `<html>` and `<body>` rect bounds if horizontally scrollable
-
-function getDocumentRect(element) {
-  var _element$ownerDocumen;
-
-  var html = getDocumentElement(element);
-  var winScroll = getWindowScroll(element);
-  var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
-  var width = math_max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
-  var height = math_max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
-  var x = -winScroll.scrollLeft + getWindowScrollBarX(element);
-  var y = -winScroll.scrollTop;
-
-  if (getComputedStyle(body || html).direction === 'rtl') {
-    x += math_max(html.clientWidth, body ? body.clientWidth : 0) - width;
-  }
-
-  return {
-    width: width,
-    height: height,
-    x: x,
-    y: y
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/contains.js
-
-function contains(parent, child) {
-  var rootNode = child.getRootNode && child.getRootNode(); // First, attempt with faster native method
-
-  if (parent.contains(child)) {
-    return true;
-  } // then fallback to custom implementation with Shadow DOM support
-  else if (rootNode && isShadowRoot(rootNode)) {
-      var next = child;
-
-      do {
-        if (next && parent.isSameNode(next)) {
-          return true;
-        } // $FlowFixMe[prop-missing]: need a better way to handle this...
-
-
-        next = next.parentNode || next.host;
-      } while (next);
-    } // Give up, the result is false
-
-
-  return false;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/rectToClientRect.js
-function rectToClientRect(rect) {
-  return Object.assign({}, rect, {
-    left: rect.x,
-    top: rect.y,
-    right: rect.x + rect.width,
-    bottom: rect.y + rect.height
-  });
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/dom-utils/getClippingRect.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getInnerBoundingClientRect(element) {
-  var rect = getBoundingClientRect(element);
-  rect.top = rect.top + element.clientTop;
-  rect.left = rect.left + element.clientLeft;
-  rect.bottom = rect.top + element.clientHeight;
-  rect.right = rect.left + element.clientWidth;
-  rect.width = element.clientWidth;
-  rect.height = element.clientHeight;
-  rect.x = rect.left;
-  rect.y = rect.top;
-  return rect;
-}
-
-function getClientRectFromMixedType(element, clippingParent) {
-  return clippingParent === viewport ? rectToClientRect(getViewportRect(element)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
-} // A "clipping parent" is an overflowable container with the characteristic of
-// clipping (or hiding) overflowing elements with a position different from
-// `initial`
-
-
-function getClippingParents(element) {
-  var clippingParents = listScrollParents(getParentNode(element));
-  var canEscapeClipping = ['absolute', 'fixed'].indexOf(getComputedStyle(element).position) >= 0;
-  var clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
-
-  if (!isElement(clipperElement)) {
-    return [];
-  } // $FlowFixMe[incompatible-return]: https://github.com/facebook/flow/issues/1414
-
-
-  return clippingParents.filter(function (clippingParent) {
-    return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body' && (canEscapeClipping ? getComputedStyle(clippingParent).position !== 'static' : true);
-  });
-} // Gets the maximum area that the element is visible in due to any number of
-// clipping parents
-
-
-function getClippingRect(element, boundary, rootBoundary) {
-  var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
-  var clippingParents = [].concat(mainClippingParents, [rootBoundary]);
-  var firstClippingParent = clippingParents[0];
-  var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
-    var rect = getClientRectFromMixedType(element, clippingParent);
-    accRect.top = math_max(rect.top, accRect.top);
-    accRect.right = math_min(rect.right, accRect.right);
-    accRect.bottom = math_min(rect.bottom, accRect.bottom);
-    accRect.left = math_max(rect.left, accRect.left);
-    return accRect;
-  }, getClientRectFromMixedType(element, firstClippingParent));
-  clippingRect.width = clippingRect.right - clippingRect.left;
-  clippingRect.height = clippingRect.bottom - clippingRect.top;
-  clippingRect.x = clippingRect.left;
-  clippingRect.y = clippingRect.top;
-  return clippingRect;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/getFreshSideObject.js
-function getFreshSideObject() {
-  return {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  };
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/mergePaddingObject.js
-
-function mergePaddingObject(paddingObject) {
-  return Object.assign({}, getFreshSideObject(), paddingObject);
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/expandToHashMap.js
-function expandToHashMap(value, keys) {
-  return keys.reduce(function (hashMap, key) {
-    hashMap[key] = value;
-    return hashMap;
-  }, {});
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/detectOverflow.js
-
-
-
-
-
-
-
-
- // eslint-disable-next-line import/no-unused-modules
-
-function detectOverflow(state, options) {
-  if (options === void 0) {
-    options = {};
-  }
-
-  var _options = options,
-      _options$placement = _options.placement,
-      placement = _options$placement === void 0 ? state.placement : _options$placement,
-      _options$boundary = _options.boundary,
-      boundary = _options$boundary === void 0 ? clippingParents : _options$boundary,
-      _options$rootBoundary = _options.rootBoundary,
-      rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary,
-      _options$elementConte = _options.elementContext,
-      elementContext = _options$elementConte === void 0 ? popper : _options$elementConte,
-      _options$altBoundary = _options.altBoundary,
-      altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
-      _options$padding = _options.padding,
-      padding = _options$padding === void 0 ? 0 : _options$padding;
-  var paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
-  var altContext = elementContext === popper ? reference : popper;
-  var popperRect = state.rects.popper;
-  var element = state.elements[altBoundary ? altContext : elementContext];
-  var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary);
-  var referenceClientRect = getBoundingClientRect(state.elements.reference);
-  var popperOffsets = computeOffsets({
-    reference: referenceClientRect,
-    element: popperRect,
-    strategy: 'absolute',
-    placement: placement
-  });
-  var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
-  var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
-  // 0 or negative = within the clipping rect
-
-  var overflowOffsets = {
-    top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
-    bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
-    left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
-    right: elementClientRect.right - clippingClientRect.right + paddingObject.right
-  };
-  var offsetData = state.modifiersData.offset; // Offsets can be applied only to the popper element
-
-  if (elementContext === popper && offsetData) {
-    var offset = offsetData[placement];
-    Object.keys(overflowOffsets).forEach(function (key) {
-      var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
-      var axis = [enums_top, bottom].indexOf(key) >= 0 ? 'y' : 'x';
-      overflowOffsets[key] += offset[axis] * multiply;
-    });
-  }
-
-  return overflowOffsets;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/computeAutoPlacement.js
-
-
-
-
-function computeAutoPlacement(state, options) {
-  if (options === void 0) {
-    options = {};
-  }
-
-  var _options = options,
-      placement = _options.placement,
-      boundary = _options.boundary,
-      rootBoundary = _options.rootBoundary,
-      padding = _options.padding,
-      flipVariations = _options.flipVariations,
-      _options$allowedAutoP = _options.allowedAutoPlacements,
-      allowedAutoPlacements = _options$allowedAutoP === void 0 ? enums_placements : _options$allowedAutoP;
-  var variation = getVariation(placement);
-  var placements = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
-    return getVariation(placement) === variation;
-  }) : basePlacements;
-  var allowedPlacements = placements.filter(function (placement) {
-    return allowedAutoPlacements.indexOf(placement) >= 0;
-  });
-
-  if (allowedPlacements.length === 0) {
-    allowedPlacements = placements;
-
-    if (false) {}
-  } // $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
-
-
-  var overflows = allowedPlacements.reduce(function (acc, placement) {
-    acc[placement] = detectOverflow(state, {
-      placement: placement,
-      boundary: boundary,
-      rootBoundary: rootBoundary,
-      padding: padding
-    })[getBasePlacement(placement)];
-    return acc;
-  }, {});
-  return Object.keys(overflows).sort(function (a, b) {
-    return overflows[a] - overflows[b];
-  });
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/flip.js
-
-
-
-
-
-
- // eslint-disable-next-line import/no-unused-modules
-
-function getExpandedFallbackPlacements(placement) {
-  if (getBasePlacement(placement) === auto) {
-    return [];
-  }
-
-  var oppositePlacement = getOppositePlacement(placement);
-  return [getOppositeVariationPlacement(placement), oppositePlacement, getOppositeVariationPlacement(oppositePlacement)];
-}
-
-function flip(_ref) {
-  var state = _ref.state,
-      options = _ref.options,
-      name = _ref.name;
-
-  if (state.modifiersData[name]._skip) {
-    return;
-  }
-
-  var _options$mainAxis = options.mainAxis,
-      checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
-      _options$altAxis = options.altAxis,
-      checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis,
-      specifiedFallbackPlacements = options.fallbackPlacements,
-      padding = options.padding,
-      boundary = options.boundary,
-      rootBoundary = options.rootBoundary,
-      altBoundary = options.altBoundary,
-      _options$flipVariatio = options.flipVariations,
-      flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio,
-      allowedAutoPlacements = options.allowedAutoPlacements;
-  var preferredPlacement = state.options.placement;
-  var basePlacement = getBasePlacement(preferredPlacement);
-  var isBasePlacement = basePlacement === preferredPlacement;
-  var fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipVariations ? [getOppositePlacement(preferredPlacement)] : getExpandedFallbackPlacements(preferredPlacement));
-  var placements = [preferredPlacement].concat(fallbackPlacements).reduce(function (acc, placement) {
-    return acc.concat(getBasePlacement(placement) === auto ? computeAutoPlacement(state, {
-      placement: placement,
-      boundary: boundary,
-      rootBoundary: rootBoundary,
-      padding: padding,
-      flipVariations: flipVariations,
-      allowedAutoPlacements: allowedAutoPlacements
-    }) : placement);
-  }, []);
-  var referenceRect = state.rects.reference;
-  var popperRect = state.rects.popper;
-  var checksMap = new Map();
-  var makeFallbackChecks = true;
-  var firstFittingPlacement = placements[0];
-
-  for (var i = 0; i < placements.length; i++) {
-    var placement = placements[i];
-
-    var _basePlacement = getBasePlacement(placement);
-
-    var isStartVariation = getVariation(placement) === start;
-    var isVertical = [enums_top, bottom].indexOf(_basePlacement) >= 0;
-    var len = isVertical ? 'width' : 'height';
-    var overflow = detectOverflow(state, {
-      placement: placement,
-      boundary: boundary,
-      rootBoundary: rootBoundary,
-      altBoundary: altBoundary,
-      padding: padding
-    });
-    var mainVariationSide = isVertical ? isStartVariation ? right : left : isStartVariation ? bottom : enums_top;
-
-    if (referenceRect[len] > popperRect[len]) {
-      mainVariationSide = getOppositePlacement(mainVariationSide);
-    }
-
-    var altVariationSide = getOppositePlacement(mainVariationSide);
-    var checks = [];
-
-    if (checkMainAxis) {
-      checks.push(overflow[_basePlacement] <= 0);
-    }
-
-    if (checkAltAxis) {
-      checks.push(overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0);
-    }
-
-    if (checks.every(function (check) {
-      return check;
-    })) {
-      firstFittingPlacement = placement;
-      makeFallbackChecks = false;
-      break;
-    }
-
-    checksMap.set(placement, checks);
-  }
-
-  if (makeFallbackChecks) {
-    // `2` may be desired in some cases – research later
-    var numberOfChecks = flipVariations ? 3 : 1;
-
-    var _loop = function _loop(_i) {
-      var fittingPlacement = placements.find(function (placement) {
-        var checks = checksMap.get(placement);
-
-        if (checks) {
-          return checks.slice(0, _i).every(function (check) {
-            return check;
-          });
-        }
-      });
-
-      if (fittingPlacement) {
-        firstFittingPlacement = fittingPlacement;
-        return "break";
-      }
-    };
-
-    for (var _i = numberOfChecks; _i > 0; _i--) {
-      var _ret = _loop(_i);
-
-      if (_ret === "break") break;
-    }
-  }
-
-  if (state.placement !== firstFittingPlacement) {
-    state.modifiersData[name]._skip = true;
-    state.placement = firstFittingPlacement;
-    state.reset = true;
-  }
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_flip = ({
-  name: 'flip',
-  enabled: true,
-  phase: 'main',
-  fn: flip,
-  requiresIfExists: ['offset'],
-  data: {
-    _skip: false
-  }
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/getAltAxis.js
-function getAltAxis(axis) {
-  return axis === 'x' ? 'y' : 'x';
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/utils/within.js
-
-function within(min, value, max) {
-  return math_max(min, math_min(value, max));
-}
-function withinMaxClamp(min, value, max) {
-  var v = within(min, value, max);
-  return v > max ? max : v;
-}
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/preventOverflow.js
-
-
-
-
-
-
-
-
-
-
-
-
-function preventOverflow(_ref) {
-  var state = _ref.state,
-      options = _ref.options,
-      name = _ref.name;
-  var _options$mainAxis = options.mainAxis,
-      checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
-      _options$altAxis = options.altAxis,
-      checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
-      boundary = options.boundary,
-      rootBoundary = options.rootBoundary,
-      altBoundary = options.altBoundary,
-      padding = options.padding,
-      _options$tether = options.tether,
-      tether = _options$tether === void 0 ? true : _options$tether,
-      _options$tetherOffset = options.tetherOffset,
-      tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
-  var overflow = detectOverflow(state, {
-    boundary: boundary,
-    rootBoundary: rootBoundary,
-    padding: padding,
-    altBoundary: altBoundary
-  });
-  var basePlacement = getBasePlacement(state.placement);
-  var variation = getVariation(state.placement);
-  var isBasePlacement = !variation;
-  var mainAxis = getMainAxisFromPlacement(basePlacement);
-  var altAxis = getAltAxis(mainAxis);
-  var popperOffsets = state.modifiersData.popperOffsets;
-  var referenceRect = state.rects.reference;
-  var popperRect = state.rects.popper;
-  var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign({}, state.rects, {
-    placement: state.placement
-  })) : tetherOffset;
-  var normalizedTetherOffsetValue = typeof tetherOffsetValue === 'number' ? {
-    mainAxis: tetherOffsetValue,
-    altAxis: tetherOffsetValue
-  } : Object.assign({
-    mainAxis: 0,
-    altAxis: 0
-  }, tetherOffsetValue);
-  var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null;
-  var data = {
-    x: 0,
-    y: 0
-  };
-
-  if (!popperOffsets) {
-    return;
-  }
-
-  if (checkMainAxis) {
-    var _offsetModifierState$;
-
-    var mainSide = mainAxis === 'y' ? enums_top : left;
-    var altSide = mainAxis === 'y' ? bottom : right;
-    var len = mainAxis === 'y' ? 'height' : 'width';
-    var offset = popperOffsets[mainAxis];
-    var min = offset + overflow[mainSide];
-    var max = offset - overflow[altSide];
-    var additive = tether ? -popperRect[len] / 2 : 0;
-    var minLen = variation === start ? referenceRect[len] : popperRect[len];
-    var maxLen = variation === start ? -popperRect[len] : -referenceRect[len]; // We need to include the arrow in the calculation so the arrow doesn't go
-    // outside the reference bounds
-
-    var arrowElement = state.elements.arrow;
-    var arrowRect = tether && arrowElement ? getLayoutRect(arrowElement) : {
-      width: 0,
-      height: 0
-    };
-    var arrowPaddingObject = state.modifiersData['arrow#persistent'] ? state.modifiersData['arrow#persistent'].padding : getFreshSideObject();
-    var arrowPaddingMin = arrowPaddingObject[mainSide];
-    var arrowPaddingMax = arrowPaddingObject[altSide]; // If the reference length is smaller than the arrow length, we don't want
-    // to include its full size in the calculation. If the reference is small
-    // and near the edge of a boundary, the popper can overflow even if the
-    // reference is not overflowing as well (e.g. virtual elements with no
-    // width or height)
-
-    var arrowLen = within(0, referenceRect[len], arrowRect[len]);
-    var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis : minLen - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis;
-    var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis : maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis;
-    var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
-    var clientOffset = arrowOffsetParent ? mainAxis === 'y' ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
-    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
-    var tetherMin = offset + minOffset - offsetModifierValue - clientOffset;
-    var tetherMax = offset + maxOffset - offsetModifierValue;
-    var preventedOffset = within(tether ? math_min(min, tetherMin) : min, offset, tether ? math_max(max, tetherMax) : max);
-    popperOffsets[mainAxis] = preventedOffset;
-    data[mainAxis] = preventedOffset - offset;
-  }
-
-  if (checkAltAxis) {
-    var _offsetModifierState$2;
-
-    var _mainSide = mainAxis === 'x' ? enums_top : left;
-
-    var _altSide = mainAxis === 'x' ? bottom : right;
-
-    var _offset = popperOffsets[altAxis];
-
-    var _len = altAxis === 'y' ? 'height' : 'width';
-
-    var _min = _offset + overflow[_mainSide];
-
-    var _max = _offset - overflow[_altSide];
-
-    var isOriginSide = [enums_top, left].indexOf(basePlacement) !== -1;
-
-    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
-
-    var _tetherMin = isOriginSide ? _min : _offset - referenceRect[_len] - popperRect[_len] - _offsetModifierValue + normalizedTetherOffsetValue.altAxis;
-
-    var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
-
-    var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
-
-    popperOffsets[altAxis] = _preventedOffset;
-    data[altAxis] = _preventedOffset - _offset;
-  }
-
-  state.modifiersData[name] = data;
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_preventOverflow = ({
-  name: 'preventOverflow',
-  enabled: true,
-  phase: 'main',
-  fn: preventOverflow,
-  requiresIfExists: ['offset']
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/arrow.js
-
-
-
-
-
-
-
-
-
- // eslint-disable-next-line import/no-unused-modules
-
-var toPaddingObject = function toPaddingObject(padding, state) {
-  padding = typeof padding === 'function' ? padding(Object.assign({}, state.rects, {
-    placement: state.placement
-  })) : padding;
-  return mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
-};
-
-function arrow(_ref) {
-  var _state$modifiersData$;
-
-  var state = _ref.state,
-      name = _ref.name,
-      options = _ref.options;
-  var arrowElement = state.elements.arrow;
-  var popperOffsets = state.modifiersData.popperOffsets;
-  var basePlacement = getBasePlacement(state.placement);
-  var axis = getMainAxisFromPlacement(basePlacement);
-  var isVertical = [left, right].indexOf(basePlacement) >= 0;
-  var len = isVertical ? 'height' : 'width';
-
-  if (!arrowElement || !popperOffsets) {
-    return;
-  }
-
-  var paddingObject = toPaddingObject(options.padding, state);
-  var arrowRect = getLayoutRect(arrowElement);
-  var minProp = axis === 'y' ? enums_top : left;
-  var maxProp = axis === 'y' ? bottom : right;
-  var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets[axis] - state.rects.popper[len];
-  var startDiff = popperOffsets[axis] - state.rects.reference[axis];
-  var arrowOffsetParent = getOffsetParent(arrowElement);
-  var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
-  var centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the popper if the center point is
-  // outside of the popper bounds
-
-  var min = paddingObject[minProp];
-  var max = clientSize - arrowRect[len] - paddingObject[maxProp];
-  var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
-  var offset = within(min, center, max); // Prevents breaking syntax highlighting...
-
-  var axisProp = axis;
-  state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
-}
-
-function arrow_effect(_ref2) {
-  var state = _ref2.state,
-      options = _ref2.options;
-  var _options$element = options.element,
-      arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
-
-  if (arrowElement == null) {
-    return;
-  } // CSS selector
-
-
-  if (typeof arrowElement === 'string') {
-    arrowElement = state.elements.popper.querySelector(arrowElement);
-
-    if (!arrowElement) {
-      return;
-    }
-  }
-
-  if (false) {}
-
-  if (!contains(state.elements.popper, arrowElement)) {
-    if (false) {}
-
-    return;
-  }
-
-  state.elements.arrow = arrowElement;
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_arrow = ({
-  name: 'arrow',
-  enabled: true,
-  phase: 'main',
-  fn: arrow,
-  effect: arrow_effect,
-  requires: ['popperOffsets'],
-  requiresIfExists: ['preventOverflow']
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/modifiers/hide.js
-
-
-
-function getSideOffsets(overflow, rect, preventedOffsets) {
-  if (preventedOffsets === void 0) {
-    preventedOffsets = {
-      x: 0,
-      y: 0
-    };
-  }
-
-  return {
-    top: overflow.top - rect.height - preventedOffsets.y,
-    right: overflow.right - rect.width + preventedOffsets.x,
-    bottom: overflow.bottom - rect.height + preventedOffsets.y,
-    left: overflow.left - rect.width - preventedOffsets.x
-  };
-}
-
-function isAnySideFullyClipped(overflow) {
-  return [enums_top, right, bottom, left].some(function (side) {
-    return overflow[side] >= 0;
-  });
-}
-
-function hide(_ref) {
-  var state = _ref.state,
-      name = _ref.name;
-  var referenceRect = state.rects.reference;
-  var popperRect = state.rects.popper;
-  var preventedOffsets = state.modifiersData.preventOverflow;
-  var referenceOverflow = detectOverflow(state, {
-    elementContext: 'reference'
-  });
-  var popperAltOverflow = detectOverflow(state, {
-    altBoundary: true
-  });
-  var referenceClippingOffsets = getSideOffsets(referenceOverflow, referenceRect);
-  var popperEscapeOffsets = getSideOffsets(popperAltOverflow, popperRect, preventedOffsets);
-  var isReferenceHidden = isAnySideFullyClipped(referenceClippingOffsets);
-  var hasPopperEscaped = isAnySideFullyClipped(popperEscapeOffsets);
-  state.modifiersData[name] = {
-    referenceClippingOffsets: referenceClippingOffsets,
-    popperEscapeOffsets: popperEscapeOffsets,
-    isReferenceHidden: isReferenceHidden,
-    hasPopperEscaped: hasPopperEscaped
-  };
-  state.attributes.popper = Object.assign({}, state.attributes.popper, {
-    'data-popper-reference-hidden': isReferenceHidden,
-    'data-popper-escaped': hasPopperEscaped
-  });
-} // eslint-disable-next-line import/no-unused-modules
-
-
-/* harmony default export */ const modifiers_hide = ({
-  name: 'hide',
-  enabled: true,
-  phase: 'main',
-  requiresIfExists: ['preventOverflow'],
-  fn: hide
-});
-;// CONCATENATED MODULE: ./node_modules/@popperjs/core/lib/popper.js
-
-
-
-
-
-
-
-
-
-
-var defaultModifiers = [eventListeners, modifiers_popperOffsets, modifiers_computeStyles, modifiers_applyStyles, modifiers_offset, modifiers_flip, modifiers_preventOverflow, modifiers_arrow, modifiers_hide];
-var popper_createPopper = /*#__PURE__*/popperGenerator({
-  defaultModifiers: defaultModifiers
-}); // eslint-disable-next-line import/no-unused-modules
-
- // eslint-disable-next-line import/no-unused-modules
-
- // eslint-disable-next-line import/no-unused-modules
-
-
-;// CONCATENATED MODULE: ./src/components/dropdown.js
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Toggle dropdown elements using [data-dropdown-toggle]
-  document.querySelectorAll('[data-dropdown-toggle]').forEach(function (dropdownToggleEl) {
-    var dropdownMenuId = dropdownToggleEl.getAttribute('data-dropdown-toggle');
-    var dropdownMenuEl = document.getElementById(dropdownMenuId); // options
-
-    var placement = dropdownToggleEl.getAttribute('data-dropdown-placement');
-    dropdownToggleEl.addEventListener('click', function (event) {
-      var element = event.target;
-
-      while (element.nodeName !== "BUTTON") {
-        element = element.parentNode;
-      }
-
-      popper_createPopper(element, dropdownMenuEl, {
-        placement: placement ? placement : 'bottom-start',
-        modifiers: [{
-          name: 'offset',
-          options: {
-            offset: [0, 10]
-          }
-        }]
-      }); // toggle when click on the button
-
-      dropdownMenuEl.classList.toggle('hidden');
-      dropdownMenuEl.classList.toggle('block');
-
-      function handleDropdownOutsideClick(event) {
-        var targetElement = event.target; // clicked element
-
-        if (targetElement !== dropdownMenuEl && targetElement !== dropdownToggleEl && !dropdownToggleEl.contains(targetElement)) {
-          dropdownMenuEl.classList.add('hidden');
-          dropdownMenuEl.classList.remove('block');
-          document.body.removeEventListener('click', handleDropdownOutsideClick, true);
-        }
-      } // hide popper when clicking outside the element
-
-
-      document.body.addEventListener('click', handleDropdownOutsideClick, true);
-    });
-  });
-});
-// EXTERNAL MODULE: ./src/components/tabs.js
-var tabs = __nested_webpack_require_16998__(97);
-// EXTERNAL MODULE: ./src/components/modal.js
-var modal = __nested_webpack_require_16998__(84);
-;// CONCATENATED MODULE: ./src/components/tooltip.js
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Toggle dropdown elements using [data-dropdown-toggle]
-  document.querySelectorAll('[data-tooltip-target]').forEach(function (tooltipToggleEl) {
-    var tooltipEl = document.getElementById(tooltipToggleEl.getAttribute('data-tooltip-target'));
-    var placement = tooltipToggleEl.getAttribute('data-tooltip-placement');
-    var trigger = tooltipToggleEl.getAttribute('data-tooltip-trigger');
-    var popperInstance = popper_createPopper(tooltipToggleEl, tooltipEl, {
-      placement: placement ? placement : 'top',
-      modifiers: [{
-        name: 'offset',
-        options: {
-          offset: [0, 8]
-        }
-      }]
-    });
-
-    function show() {
-      // Make the tooltip visible
-      tooltipEl.classList.remove('opacity-0');
-      tooltipEl.classList.add('opacity-100');
-      tooltipEl.classList.remove('invisible');
-      tooltipEl.classList.add('visible'); // Enable the event listeners
-
-      popperInstance.setOptions(function (options) {
-        return _objectSpread(_objectSpread({}, options), {}, {
-          modifiers: [].concat(_toConsumableArray(options.modifiers), [{
-            name: 'eventListeners',
-            enabled: true
-          }])
-        });
-      }); // Update its position
-
-      popperInstance.update();
-    }
-
-    function hide() {
-      // Hide the tooltip
-      tooltipEl.classList.remove('opacity-100');
-      tooltipEl.classList.add('opacity-0');
-      tooltipEl.classList.remove('visible');
-      tooltipEl.classList.add('invisible'); // Disable the event listeners
-
-      popperInstance.setOptions(function (options) {
-        return _objectSpread(_objectSpread({}, options), {}, {
-          modifiers: [].concat(_toConsumableArray(options.modifiers), [{
-            name: 'eventListeners',
-            enabled: false
-          }])
-        });
-      });
-    }
-
-    var showEvents = [];
-    var hideEvents = [];
-
-    switch (trigger) {
-      case 'hover':
-        showEvents = ['mouseenter', 'focus'];
-        hideEvents = ['mouseleave', 'blur'];
-        break;
-
-      case 'click':
-        showEvents = ['click', 'focus'];
-        hideEvents = ['focusout', 'blur'];
-        break;
-
-      default:
-        showEvents = ['mouseenter', 'focus'];
-        hideEvents = ['mouseleave', 'blur'];
-    }
-
-    showEvents.forEach(function (event) {
-      tooltipToggleEl.addEventListener(event, show);
-    });
-    hideEvents.forEach(function (event) {
-      tooltipToggleEl.addEventListener(event, hide);
-    });
-  });
-});
-;// CONCATENATED MODULE: ./src/flowbite.js
- // core components
-
-
-
-
-
-
-
-
-})();
-
-/******/ })()
-;
-//# sourceMappingURL=flowbite.js.map
 
 /***/ }),
 
@@ -88450,315 +86179,6 @@ module.exports = function getSideChannel() {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_style_index_0_id_b4adf904_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_style_index_0_id_b4adf904_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_style_index_0_id_b4adf904_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \****************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-var isOldIE = function isOldIE() {
-  var memo;
-  return function memorize() {
-    if (typeof memo === 'undefined') {
-      // Test for IE <= 9 as proposed by Browserhacks
-      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-      // Tests for existence of standard globals is to allow style-loader
-      // to operate correctly into non-standard environments
-      // @see https://github.com/webpack-contrib/style-loader/issues/177
-      memo = Boolean(window && document && document.all && !window.atob);
-    }
-
-    return memo;
-  };
-}();
-
-var getTarget = function getTarget() {
-  var memo = {};
-  return function memorize(target) {
-    if (typeof memo[target] === 'undefined') {
-      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
-
-      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-        try {
-          // This will throw an exception if access to iframe is blocked
-          // due to cross-origin restrictions
-          styleTarget = styleTarget.contentDocument.head;
-        } catch (e) {
-          // istanbul ignore next
-          styleTarget = null;
-        }
-      }
-
-      memo[target] = styleTarget;
-    }
-
-    return memo[target];
-  };
-}();
-
-var stylesInDom = [];
-
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-
-  for (var i = 0; i < stylesInDom.length; i++) {
-    if (stylesInDom[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-
-  return result;
-}
-
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var index = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3]
-    };
-
-    if (index !== -1) {
-      stylesInDom[index].references++;
-      stylesInDom[index].updater(obj);
-    } else {
-      stylesInDom.push({
-        identifier: identifier,
-        updater: addStyle(obj, options),
-        references: 1
-      });
-    }
-
-    identifiers.push(identifier);
-  }
-
-  return identifiers;
-}
-
-function insertStyleElement(options) {
-  var style = document.createElement('style');
-  var attributes = options.attributes || {};
-
-  if (typeof attributes.nonce === 'undefined') {
-    var nonce =  true ? __webpack_require__.nc : 0;
-
-    if (nonce) {
-      attributes.nonce = nonce;
-    }
-  }
-
-  Object.keys(attributes).forEach(function (key) {
-    style.setAttribute(key, attributes[key]);
-  });
-
-  if (typeof options.insert === 'function') {
-    options.insert(style);
-  } else {
-    var target = getTarget(options.insert || 'head');
-
-    if (!target) {
-      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
-    }
-
-    target.appendChild(style);
-  }
-
-  return style;
-}
-
-function removeStyleElement(style) {
-  // istanbul ignore if
-  if (style.parentNode === null) {
-    return false;
-  }
-
-  style.parentNode.removeChild(style);
-}
-/* istanbul ignore next  */
-
-
-var replaceText = function replaceText() {
-  var textStore = [];
-  return function replace(index, replacement) {
-    textStore[index] = replacement;
-    return textStore.filter(Boolean).join('\n');
-  };
-}();
-
-function applyToSingletonTag(style, index, remove, obj) {
-  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
-
-  /* istanbul ignore if  */
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = replaceText(index, css);
-  } else {
-    var cssNode = document.createTextNode(css);
-    var childNodes = style.childNodes;
-
-    if (childNodes[index]) {
-      style.removeChild(childNodes[index]);
-    }
-
-    if (childNodes.length) {
-      style.insertBefore(cssNode, childNodes[index]);
-    } else {
-      style.appendChild(cssNode);
-    }
-  }
-}
-
-function applyToTag(style, options, obj) {
-  var css = obj.css;
-  var media = obj.media;
-  var sourceMap = obj.sourceMap;
-
-  if (media) {
-    style.setAttribute('media', media);
-  } else {
-    style.removeAttribute('media');
-  }
-
-  if (sourceMap && typeof btoa !== 'undefined') {
-    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
-  } // For old IE
-
-  /* istanbul ignore if  */
-
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    while (style.firstChild) {
-      style.removeChild(style.firstChild);
-    }
-
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var singleton = null;
-var singletonCounter = 0;
-
-function addStyle(obj, options) {
-  var style;
-  var update;
-  var remove;
-
-  if (options.singleton) {
-    var styleIndex = singletonCounter++;
-    style = singleton || (singleton = insertStyleElement(options));
-    update = applyToSingletonTag.bind(null, style, styleIndex, false);
-    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-  } else {
-    style = insertStyleElement(options);
-    update = applyToTag.bind(null, style, options);
-
-    remove = function remove() {
-      removeStyleElement(style);
-    };
-  }
-
-  update(obj);
-  return function updateStyle(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
-        return;
-      }
-
-      update(obj = newObj);
-    } else {
-      remove();
-    }
-  };
-}
-
-module.exports = function (list, options) {
-  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-  // tags it will allow on a page
-
-  if (!options.singleton && typeof options.singleton !== 'boolean') {
-    options.singleton = isOldIE();
-  }
-
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-
-    if (Object.prototype.toString.call(newList) !== '[object Array]') {
-      return;
-    }
-
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDom[index].references--;
-    }
-
-    var newLastIdentifiers = modulesToDom(newList, options);
-
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-
-      var _index = getIndexByIdentifier(_identifier);
-
-      if (stylesInDom[_index].references === 0) {
-        stylesInDom[_index].updater();
-
-        stylesInDom.splice(_index, 1);
-      }
-    }
-
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
-
-/***/ }),
-
 /***/ "./node_modules/type/function/is.js":
 /*!******************************************!*\
   !*** ./node_modules/type/function/is.js ***!
@@ -89215,16 +86635,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Hero_vue_vue_type_template_id_b4adf904_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Hero.vue?vue&type=template&id=b4adf904&scoped=true */ "./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904&scoped=true");
-/* harmony import */ var _Hero_vue_vue_type_style_index_0_id_b4adf904_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css */ "./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css");
-/* harmony import */ var _Users_benk_code_lv_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Hero_vue_vue_type_template_id_b4adf904__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Hero.vue?vue&type=template&id=b4adf904 */ "./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904");
+/* harmony import */ var _Users_benk_code_lv_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 const script = {}
 
 ;
-
-
-const __exports__ = /*#__PURE__*/(0,_Users_benk_code_lv_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_Hero_vue_vue_type_template_id_b4adf904_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-b4adf904"],['__file',"resources/js/Layouts/Hero.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_benk_code_lv_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_Hero_vue_vue_type_template_id_b4adf904__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Layouts/Hero.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -90685,18 +88102,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904&scoped=true":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904&scoped=true ***!
-  \*********************************************************************************/
+/***/ "./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904":
+/*!*********************************************************************!*\
+  !*** ./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904 ***!
+  \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_template_id_b4adf904_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_template_id_b4adf904__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_template_id_b4adf904_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Hero.vue?vue&type=template&id=b4adf904&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904&scoped=true");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_template_id_b4adf904__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Hero.vue?vue&type=template&id=b4adf904 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=template&id=b4adf904");
 
 
 /***/ }),
@@ -91097,19 +88514,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YellowBtn_vue_vue_type_template_id_248c0c09__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_YellowBtn_vue_vue_type_template_id_248c0c09__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./YellowBtn.vue?vue&type=template&id=248c0c09 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Partials/YellowBtn.vue?vue&type=template&id=248c0c09");
-
-
-/***/ }),
-
-/***/ "./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css ***!
-  \***********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Hero_vue_vue_type_style_index_0_id_b4adf904_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Layouts/Hero.vue?vue&type=style&index=0&id=b4adf904&scoped=true&lang=css");
 
 
 /***/ }),

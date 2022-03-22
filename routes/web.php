@@ -17,6 +17,8 @@ use Inertia\Inertia;
 |
 */
 
+/*Route::post('/startimport', [ProductController::class, 'startimport']);*/
+
 
 
 Route::get('/', [ProductController::class, 'index', ])->name('home');
