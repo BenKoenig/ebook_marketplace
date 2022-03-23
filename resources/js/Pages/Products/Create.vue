@@ -20,6 +20,7 @@ defineProps({
     laravelVersion: String,
     phpVersion: String,
     products: Object,
+    errors: Object,
 })
 </script>
 
@@ -29,7 +30,7 @@ defineProps({
 
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
 
-    <CreateForm :products="products"/>
+    <CreateForm :products="products" :errors="errors"/>
     <Footer class="py-[3.5rem] md:py-[7rem]"/>
 
 

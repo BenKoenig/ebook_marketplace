@@ -25,6 +25,7 @@ class Product extends Authenticatable
         'sale_price',
         'is_featured',
         'cover',
+        'banner',
         'epub',
         'create_at',
         'updated_at',

@@ -25,6 +25,7 @@ class ProductFactory extends Factory
             'snippet' => $this->faker->text,
             'price' => 9.99,
             'cover' => 'temp.png',
+            'banner' => 'temp.png',
             'epub' => 'temp.epub',
             /* 'sale_price' => 4.99,*/
             'is_featured' => false,

@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
 
 
-    
+
     public function index()
     {
         return Inertia::render('Welcome', [
@@ -52,12 +52,23 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'max:100'],
+            'description' => ['required', 'max:50000'],
+            'snippet' => ['required', 'max:1000'],
+            'price' => ['required', 'numeric', 'between:0,500'],
+            'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg'],
+            'banner' => ['required', 'max:10000', 'mimes:png,jpg,jpeg'],
+            'epub' => ['required', 'max:1000000', 'mimes:epub'],
+
+        ]);
         Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'snippet' => $request->input('snippet'),
             'price' => $request->input('price'),
             'cover' => $request->file('cover')->store('covers', 'public'),
+            'banner' => $request->file('banner')->store('banners', 'public'),
             'epub' => $request->file('epub')->store('epubs', 'public'),
             'user_id' => Auth::user()->id
         ]);

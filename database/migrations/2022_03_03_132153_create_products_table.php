@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('snippet');
             $table->string('cover');
             $table->string('epub');
+            $table->string('banner');
             $table->float('price');
             /* $table->float('sale_price'); */
             $table->boolean('is_featured');
