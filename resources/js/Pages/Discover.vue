@@ -28,9 +28,9 @@ defineProps({
 
 <script>
 // import { Head } from '@inertiajs/inertia-vue3'
-import Nav from "@/Layouts/Nav";
-import Footer from "@/Layouts/Footer";
-import DailySnippet from "@/Layouts/DailySnippet";
+import Nav from "@/Components/NavigationComponent";
+import Footer from "@/Components/FooterComponent";
+import DailySnippet from "@/Components/Products/DailySnippetComponent";
 
 
 export default {

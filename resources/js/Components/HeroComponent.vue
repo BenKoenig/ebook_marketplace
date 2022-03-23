@@ -57,7 +57,7 @@
             <div>
                 <div>
 
-                    <img src="../../assets/reader.png"  class="w-full" alt="reader">
+                    <img src="../../assets/reader.png" class="w-full" alt="reader">
 
                 </div>
 

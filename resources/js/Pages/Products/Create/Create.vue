@@ -1,17 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Hero from "@/Layouts/Hero";
-import Nav from "@/Layouts/Nav";
-import Steps from "@/Layouts/Steps";
-import FeaturedProducts from "@/Layouts/FeaturedProducts";
-import Banner from "@/Layouts/Banner";
-import Footer from "@/Layouts/Footer";
-import Headline from "@/Partials/Headline";
-import CreateForm from "@/Layouts/CreateForm";
-
-
-
-
+import Nav from "@/Components/NavigationComponent";
+import Footer from "@/Components/FooterComponent";
+import CreateForm from "@/Components/Products/Forms/Create/CreateComponent";
 
 
 defineProps({

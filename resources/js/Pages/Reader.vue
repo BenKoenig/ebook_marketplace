@@ -27,7 +27,7 @@ defineProps({
 
 <script>
 import ePub from "epubjs";
-import Nav from "@/Layouts/Nav";
+import Nav from "@/Components/NavigationComponent";
 
 
 
@@ -57,7 +57,7 @@ export default {
   methods: {
     getCover() {
         return this.book.coverUrl()
-    
+
     },
     loadEpub(e) {
       this.book = ePub(e ? e.target.result : this.epub);

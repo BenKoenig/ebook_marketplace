@@ -20,8 +20,8 @@ defineProps({
 
 
 <script>
-import ProductDetail from "@/Layouts/ProductDetail";
-import Nav from "@/Layouts/Nav";
+import ProductDetail from "@/Components/ProductDetail";
+import Nav from "@/Components/NavigationComponent";
 export default {
 
     components: {

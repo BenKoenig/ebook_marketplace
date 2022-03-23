@@ -24,6 +24,10 @@ class ProductController extends Controller
 
 
 
+
+    /**
+     * @return \Inertia\Response
+     */
     public function index()
     {
         return Inertia::render('Welcome', [
@@ -38,25 +42,31 @@ class ProductController extends Controller
     }
 
 
-
-
+    /**
+     * @return \Inertia\Response
+     */
     public function create()
     {
 
-        return Inertia::render('Products/Create', [
+        return Inertia::render('Products/Create/Create', [
             'products' => Product::all(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);
     }
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'max:100'],
             'description' => ['required', 'max:50000'],
             'snippet' => ['required', 'max:1000'],
-            'price' => ['required', 'numeric', 'between:0,500'],
+            'price' => ['required', 'numeric', 'between:0,150'],
             'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg'],
             'banner' => ['required', 'max:10000', 'mimes:png,jpg,jpeg'],
             'epub' => ['required', 'max:1000000', 'mimes:epub'],
@@ -72,9 +82,50 @@ class ProductController extends Controller
             'epub' => $request->file('epub')->store('epubs', 'public'),
             'user_id' => Auth::user()->id
         ]);
-
-        return redirect('/');
+        $request->session()->put('store_token', 'value');
+        return redirect('/create/success');
     }
+
+
+    /**
+     * @param Request $request
+     * @return \Inertia\Response|void
+     */
+    public function createSuccess(Request $request)
+    {
+        /**
+         * Checks session token,
+         * so the user can only access this page if they have successfully created a product
+         */
+        $value = $request->session()->get('store_token');
+
+        /**
+         * Forgets session token,
+         * so the user can't access this page again, once they leave.
+         */
+        $forget = $request->session()->forget('store_token');
+
+
+        if($value) {
+            $forget;
+            return Inertia::render('Products/Create/Success', [
+                'products' => Product::all(),
+                'canLogin' => Route::has('login'),
+                'canRegister' => Route::has('register'),
+            ]);
+        } else {
+            abort('404');
+        }
+
+    }
+
+
+
+
+
+
+
+
 
     public function getPubliclyStorgeFile($filename)
     {
@@ -139,6 +190,13 @@ class ProductController extends Controller
 
         ]);
     }
+
+
+
+
+
+
+
 
 }
 

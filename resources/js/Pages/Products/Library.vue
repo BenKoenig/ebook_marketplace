@@ -1,11 +1,11 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Hero from "@/Layouts/Hero";
-import Nav from "@/Layouts/Nav";
-import Steps from "@/Layouts/Steps";
-import FeaturedProducts from "@/Layouts/FeaturedProducts";
-import Banner from "@/Layouts/Banner";
-import Footer from "@/Layouts/Footer";
+import Hero from "@/Components/HeroComponent";
+import Nav from "@/Components/NavigationComponent";
+import Steps from "@/Components/StepsComponent";
+import FeaturedProducts from "@/Components/Products/FeaturedComponent";
+import Banner from "@/Components/BannerComponent";
+import Footer from "@/Components/FooterComponent";
 import Headline from "@/Partials/Headline";
 
 defineProps({
@@ -41,7 +41,7 @@ defineProps({
 
     <Nav />
     <FeaturedProducts class="pb-[3.5rem] md:py-[5.5rem]"/>
-    <Footerpy class="py-[3.5rem] md:py-[7rem]"/>
+    <Footer class="py-[3.5rem] md:py-[7rem]"/>
 
 
 </template>
