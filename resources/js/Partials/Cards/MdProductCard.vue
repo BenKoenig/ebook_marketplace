@@ -1,4 +1,9 @@
 <template>
+
+
+
+
+
     <div class="flex items-end   w-scale grow border-2 border-black">
         <img src="{{ coverUrl }}" alt="img">
         <div>

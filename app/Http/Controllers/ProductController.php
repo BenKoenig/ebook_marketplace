@@ -11,8 +11,11 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 
-
 // == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
+
+
+
+
 
 class ProductController extends Controller
 {
@@ -154,6 +157,7 @@ class ProductController extends Controller
         return Inertia::render('Products/Show', [
             /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
             /*'products' => Product::all(),*/
+
 
 
             'product' => Product::query()->where('id', '=', $id)->firstOrFail(),

@@ -1,11 +1,11 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Hero from "@/Components/HeroComponent";
-import Nav from "@/Components/NavigationComponent";
+import Nav from "@/Components/Structure/NavigationComponent";
 import Steps from "@/Components/StepsComponent";
 import FeaturedProducts from "@/Components/Products/FeaturedComponent";
 import Banner from "@/Components/BannerComponent";
-import Footer from "@/Components/FooterComponent";
+import Footer from "@/Components/Structure/FooterComponent";
 import Headline from "@/Partials/Headline";
 
 defineProps({

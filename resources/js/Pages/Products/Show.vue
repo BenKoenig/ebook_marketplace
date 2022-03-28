@@ -15,13 +15,24 @@ defineProps({
 <template>
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
 
+
+
+
+
+
+
+
     <ProductDetail :product="product" />
 </template>
 
 
 <script>
-import ProductDetail from "@/Components/ProductDetail";
-import Nav from "@/Components/NavigationComponent";
+import ProductDetail from "@/Components/Products/DetailComponent";
+import Nav from "@/Components/Structure/NavigationComponent";
+
+
+
+
 export default {
 
     components: {
@@ -30,3 +41,5 @@ export default {
     },
 }
 </script>
+
+

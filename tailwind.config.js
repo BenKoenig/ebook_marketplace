@@ -25,12 +25,15 @@ module.exports = {
             },
             colors: {
                 'beige-5': '#ecebe2',
+                'beige-4': '#f9f8f3',
+                'bluu-3': '#f1f6fe',
             }
         },
     },
 
     plugins: [
         require('@tailwindcss/forms'),
-        require('flowbite/plugin')
+        require('flowbite/plugin'),
+
     ],
 };

@@ -27,7 +27,7 @@ defineProps({
 
 <script>
 import ePub from "epubjs";
-import Nav from "@/Components/NavigationComponent";
+import Nav from "@/Components/Structure/NavigationComponent";
 
 
 

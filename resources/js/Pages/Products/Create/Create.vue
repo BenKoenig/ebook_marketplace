@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Nav from "@/Components/NavigationComponent";
-import Footer from "@/Components/FooterComponent";
+import Nav from "@/Components/Structure/NavigationComponent";
+import Footer from "@/Components/Structure/FooterComponent";
 import CreateForm from "@/Components/Products/Forms/Create/CreateComponent";
 
 
@@ -17,7 +17,6 @@ defineProps({
 
 <template>
     <Head title="Sell an eBook" />
-
 
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
 

@@ -23,7 +23,6 @@ import Headline from "@/Partials/Headline";
 
 
 export default {
-    name: 'App',
     components: {
         Headline,
         MdProductCard,

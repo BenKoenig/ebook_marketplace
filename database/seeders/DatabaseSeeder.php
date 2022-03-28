@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
         $users = \App\Models\User::factory(10)->create();
 
 
+
+
+
         \App\Models\User::factory()->create([
             'name' => 'Admin Guy',
             'email' => 'me@m.com',
@@ -26,6 +29,12 @@ class DatabaseSeeder extends Seeder
 
         foreach ($users as $user) {
             \App\Models\Product::factory(10)->create([
+                'user_id' => $user->id,
+            ]);
+            foreach($products as $product) {
+
+            }
+            \App\Models\Review::factory(10)->create([
                 'user_id' => $user->id,
             ]);
         }
