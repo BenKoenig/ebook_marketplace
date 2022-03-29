@@ -893,6 +893,12 @@ input:checked + .toggle-bg{
 .z-20{
   z-index: 20;
 }
+.col-span-5{
+  grid-column: span 5 / span 5;
+}
+.col-span-7{
+  grid-column: span 7 / span 7;
+}
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -995,6 +1001,9 @@ input:checked + .toggle-bg{
 }
 .mb-6{
   margin-bottom: 1.5rem;
+}
+.mt-10{
+  margin-top: 2.5rem;
 }
 .block{
   display: block;
@@ -1138,6 +1147,12 @@ input:checked + .toggle-bg{
 .w-1\/2{
   width: 50%;
 }
+.w-2{
+  width: 0.5rem;
+}
+.w-\[150px\]{
+  width: 150px;
+}
 .max-w-xl{
   max-width: 36rem;
 }
@@ -1270,6 +1285,9 @@ input:checked + .toggle-bg{
 .grid-cols-7{
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
+.grid-cols-12{
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
 .flex-col{
   flex-direction: column;
 }
@@ -1299,9 +1317,6 @@ input:checked + .toggle-bg{
 }
 .gap-1{
   gap: 0.25rem;
-}
-.gap-3{
-  gap: 0.75rem;
 }
 .gap-y-6{
   row-gap: 1.5rem;
@@ -1507,6 +1522,10 @@ input:checked + .toggle-bg{
   --tw-bg-opacity: 1;
   background-color: rgb(249 248 243 / var(--tw-bg-opacity));
 }
+.bg-yellow-100{
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 246 178 / var(--tw-bg-opacity));
+}
 .bg-blue-700{
   --tw-bg-opacity: 1;
   background-color: rgb(26 86 219 / var(--tw-bg-opacity));
@@ -1518,10 +1537,6 @@ input:checked + .toggle-bg{
 .bg-blue-300{
   --tw-bg-opacity: 1;
   background-color: rgb(164 202 254 / var(--tw-bg-opacity));
-}
-.bg-yellow-100{
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 246 178 / var(--tw-bg-opacity));
 }
 .bg-green-700{
   --tw-bg-opacity: 1;
@@ -1537,6 +1552,10 @@ input:checked + .toggle-bg{
 .bg-gray-900{
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+.bg-yellow-50{
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 253 234 / var(--tw-bg-opacity));
 }
 .bg-opacity-50{
   --tw-bg-opacity: 0.5;
@@ -1567,6 +1586,9 @@ input:checked + .toggle-bg{
 }
 .p-1{
   padding: 0.25rem;
+}
+.p-5{
+  padding: 1.25rem;
 }
 .px-4{
   padding-left: 1rem;
@@ -1849,9 +1871,6 @@ input:checked + .toggle-bg{
 .text-green-600{
   --tw-text-opacity: 1;
   color: rgb(5 122 85 / var(--tw-text-opacity));
-}
-.text-transparent{
-  color: transparent;
 }
 .underline{
   -webkit-text-decoration-line: underline;
@@ -13078,6 +13097,9 @@ in order to display the code of the rich text editor.
   .lg\:w-\[15rem\]{
     width: 15rem;
   }
+  .lg\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .lg\:flex-row{
     flex-direction: row;
   }
@@ -13086,6 +13108,9 @@ in order to display the code of the rich text editor.
   }
   .lg\:justify-between{
     justify-content: space-between;
+  }
+  .lg\:p-10{
+    padding: 2.5rem;
   }
   .lg\:px-8{
     padding-left: 2rem;
@@ -13106,10 +13131,6 @@ in order to display the code of the rich text editor.
   .lg\:py-0{
     padding-top: 0px;
     padding-bottom: 0px;
-  }
-  .lg\:px-10{
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
   .lg\:pb-0{
     padding-bottom: 0px;
@@ -13160,6 +13181,9 @@ in order to display the code of the rich text editor.
   }
   .xl\:grid-cols-11{
     grid-template-columns: repeat(11, minmax(0, 1fr));
+  }
+  .xl\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .xl\:grid-rows-1{
     grid-template-rows: repeat(1, minmax(0, 1fr));

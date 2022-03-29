@@ -4,13 +4,15 @@
 
 
 
-    <div class="flex items-end   w-scale grow border-2 border-black">
-        <img src="{{ coverUrl }}" alt="img">
-        <div>
+    <div class="grid grid-cols-12 items-end   w-scale grow border-2 border-black ">
+
+        <img :src="coverUrl" alt="img" class="  col-span-5">
+
+        <div class="col-span-7">
             <h3 class="text-xl font-semibold py-3 px-1 leading-[1.3rem]">{{ title.length > 50 ?title.slice(0, 50) + '..' : title }}</h3>
             <div class="bg-beige-5 py-5 px-1">
                 <p class="text-gray-400">Author</p>
-                <p class="text-lg mb-2 leading-[1.3rem] ">{{authorName}}</p>
+                <p class="text-lg mb-2 leading-[1.3rem] ">@{{authorName}}</p>
                 <YellowBtn msg="Read about it" />
 
             </div>

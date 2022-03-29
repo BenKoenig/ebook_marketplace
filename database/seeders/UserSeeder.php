@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         \App\Models\User::factory()->create([
             'firstname' => 'Admin',
             'lastname' => 'Guy',
+            'username' => 'Admin',
             'email' => 'me@m.com',
             'password' => bcrypt('letmein'),
         ]);
