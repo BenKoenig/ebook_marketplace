@@ -4,12 +4,12 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <template>
 
-    <div class="my-1">
+    <div class="mb-2">
         <div class="container mx-auto ">
             <p></p>
             <div class="overflow-hidden relative h-72  sm:h-64 xl:h-80 2xl:h-96  rounded-lg">
-                    <div class=" duration-700 ease-in-out" data-carousel-item>
-                        <img v-bind:src="'../storage/' + product.banner" class=" block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" v-bind:alt="product.name + ' banner'" >
+                    <div>
+                        <img v-bind:src="'../storage/' + product.banner" class=" block absolute  top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" v-bind:alt="product.name + ' banner'" >
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
     <div class="">
         <div class="container mx-auto sm:grid sm:grid-cols-12 gap-x-14 p-2 lg:p-10  rounded-lg  bg-beige-4">
-            <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-4 md:col-span-3 sm:order-2  mx-auto relative">
+            <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-4 xl:col-span-3 sm:order-2  mx-auto relative">
 
                 <!-- Displays book cover -->
                 <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >
@@ -46,7 +46,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                 </div>
             </div>
 
-            <div class="w-full sm:col-span-8 md:col-span-9  sm:order-1 ">
+            <div class="w-full sm:col-span-8 xl:col-span-9  sm:order-1 ">
                 <h1 class="text-2xl md:text-5xl font-bold pb-5 pt-8 sm:pt-0">{{ product.name }}</h1>
                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
                 <div class="bg-beige-5 py-10 px-2 md:px-10  relative my-8 sm:my-16 rounded-lg">
