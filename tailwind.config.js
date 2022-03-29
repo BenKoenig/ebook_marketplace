@@ -19,6 +19,7 @@ module.exports = {
                 'pencils': "url('../assets/pencils.jpg')",
                 'tablet': "url('../assets/tablet.jpg')",
                 'happy_guy': "url('../assets/happy_guy.jpg')",
+                'grandcanyon': "url('../assets/grandcanyon.png')",
             },
             maxWidth: {
                 '8xl': '85rem',

@@ -863,12 +863,6 @@ input:checked + .toggle-bg{
 .left-1{
   left: 0.25rem;
 }
-.top-1\/2{
-  top: 50%;
-}
-.left-1\/2{
-  left: 50%;
-}
 .right-1{
   right: 0.25rem;
 }
@@ -909,10 +903,6 @@ input:checked + .toggle-bg{
 .mx-2{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-.my-1{
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
 }
 .my-8{
   margin-top: 2rem;
@@ -1008,9 +998,6 @@ input:checked + .toggle-bg{
 .mb-6{
   margin-bottom: 1.5rem;
 }
-.mb-10{
-  margin-bottom: 2.5rem;
-}
 .block{
   display: block;
 }
@@ -1070,9 +1057,6 @@ input:checked + .toggle-bg{
 .h-\[0\.25rem\]{
   height: 0.25rem;
 }
-.h-72{
-  height: 18rem;
-}
 .h-\[3\.3rem\]{
   height: 3.3rem;
 }
@@ -1126,6 +1110,9 @@ input:checked + .toggle-bg{
 .w-16{
   width: 4rem;
 }
+.w-10{
+  width: 2.5rem;
+}
 .w-\[8rem\]{
   width: 8rem;
 }
@@ -1137,9 +1124,6 @@ input:checked + .toggle-bg{
 }
 .w-\[1\.6rem\]{
   width: 1.6rem;
-}
-.w-10{
-  width: 2.5rem;
 }
 .w-64{
   width: 16rem;
@@ -1203,14 +1187,6 @@ input:checked + .toggle-bg{
 }
 .-translate-x-2\/4{
   --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.-translate-x-1\/2{
-  --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.-translate-y-1\/2{
-  --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .-translate-y-2\/4{
@@ -1563,11 +1539,24 @@ input:checked + .toggle-bg{
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
+.bg-yellow-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(227 160 8 / var(--tw-bg-opacity));
+}
 .bg-opacity-50{
   --tw-bg-opacity: 0.5;
 }
 .bg-building{
   background-image: url(/images/building.png?49bdbe5dd614e38dc108b193ffec9bb9);
+}
+.bg-grandcanyon{
+  background-image: url(/images/grandcanyon.png?d175fc47a1f2538c677e11b519208b4d);
+}
+.bg-contain{
+  background-size: contain;
+}
+.bg-cover{
+  background-size: cover;
 }
 .fill-current{
   fill: currentColor;
@@ -1982,9 +1971,6 @@ input:checked + .toggle-bg{
 }
 .duration-75{
   transition-duration: 75ms;
-}
-.duration-700{
-  transition-duration: 700ms;
 }
 .ease-in-out{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -12891,9 +12877,6 @@ in order to display the code of the rich text editor.
   .sm\:hidden{
     display: none;
   }
-  .sm\:h-64{
-    height: 16rem;
-  }
   .sm\:w-auto{
     width: auto;
   }
@@ -13041,6 +13024,10 @@ in order to display the code of the rich text editor.
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
+  .md\:text-4xl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
   .md\:text-sm{
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -13168,9 +13155,6 @@ in order to display the code of the rich text editor.
     margin-left: 0px;
     margin-right: 0px;
   }
-  .xl\:h-80{
-    height: 20rem;
-  }
   .xl\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -13186,11 +13170,5 @@ in order to display the code of the rich text editor.
   .xl\:px-0{
     padding-left: 0px;
     padding-right: 0px;
-  }
-}
-
-@media (min-width: 1536px){
-  .\32xl\:h-96{
-    height: 24rem;
   }
 }

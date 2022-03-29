@@ -6,19 +6,15 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
     <div class="mb-2">
         <div class="container mx-auto ">
-            <p></p>
-            <div class="overflow-hidden relative h-72  sm:h-64 xl:h-80 2xl:h-96  rounded-lg">
-                    <div>
-                        <img v-bind:src="'../storage/' + product.banner" class=" block absolute  top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" v-bind:alt="product.name + ' banner'" >
-                </div>
-            </div>
+            <img v-bind:src="'../storage/' + product.banner" class="  w-full rounded-lg" v-bind:alt="product.name + ' banner'" >
+
         </div>
     </div>
 
 
     <div class="">
         <div class="container mx-auto sm:grid sm:grid-cols-12 gap-x-14 p-2 lg:p-10  rounded-lg  bg-beige-4">
-            <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-4 xl:col-span-3 sm:order-2  mx-auto relative">
+            <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-4 xl:col-span-3 sm:order-2  mx-auto relative ">
 
                 <!-- Displays book cover -->
                 <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >

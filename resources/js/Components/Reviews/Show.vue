@@ -5,8 +5,8 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <template>
     <div class="py-36">
-        <div class="container mx-auto ">
-            <h3 class="font-bold text-4xl mb-4 text-center">Heres what buyers have to say.</h3>
+        <div class="container mx-auto  px-2 xl:px-0 ">
+            <h3 class="font-bold text-3xl md:text-4xl mb-4 text-center">Heres what buyers have to say.</h3>
             <ul id="reviews" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1  py-10">
                 <li v-for="review in reviews" class="bg-white  rounded-lg" >
                     <div class="bg-yellow-100 border-b-2 border-black rounded-t-lg text-center flex items-center gap-x-2 px-2">
