@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -27,8 +28,11 @@ class ProductFactory extends Factory
             'cover' => 'temp.png',
             'banner' => 'temp.png',
             'epub' => 'temp.epub',
-            /* 'sale_price' => 4.99,*/
             'is_featured' => false,
+
+            'user_id' => function() {
+                return User::all()->random();
+            },
             'created_at' => $this->faker->dateTimeBetween('-3 years', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('2020-04-03', '2022-02-07'),
         ];

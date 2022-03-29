@@ -41,6 +41,11 @@ class Product extends Authenticatable
         return $this->belongsTo(User::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeFeatured() {
         return $query->where('is_featured', true);
     }

@@ -14,29 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $users = \App\Models\User::factory(10)->create();
 
-
-
-
-
-        \App\Models\User::factory()->create([
-            'name' => 'Admin Guy',
-            'email' => 'me@m.com',
-            'password' => bcrypt('letmein'),
+        $this->call([
+            UserSeeder::class,
+            ProductSeeder::class,
         ]);
 
-        foreach ($users as $user) {
-            \App\Models\Product::factory(10)->create([
-                'user_id' => $user->id,
-            ]);
-            foreach($products as $product) {
-
-            }
-            \App\Models\Review::factory(10)->create([
-                'user_id' => $user->id,
-            ]);
-        }
     }
 }
