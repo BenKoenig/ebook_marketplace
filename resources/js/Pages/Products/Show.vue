@@ -6,6 +6,7 @@ defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     product: Object,
+    reviews: Object
 })
 
 
@@ -20,9 +21,7 @@ defineProps({
 
 
 
-
-
-    <ProductDetail :product="product" />
+    <ProductDetail :product="product" :reviews="reviews"/>
 </template>
 
 

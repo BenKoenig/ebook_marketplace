@@ -5,7 +5,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 <template>
 
     <div class="bg-beige-4">
-        <div class="max-w-8xl mx-auto">
+        <div class="container mx-auto">
             <p></p>
             <!-- Carousel wrapper -->
             <div class="overflow-hidden relative h-72  sm:h-64 xl:h-80 2xl:h-96">
@@ -19,7 +19,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 
     <div class="bg-beige-5">
-        <div class="max-w-8xl mx-auto sm:grid sm:grid-cols-12 gap-x-14 px-2 lg:px-10  pt-8 sm:pt-16 bg-white">
+        <div class="container mx-auto sm:grid sm:grid-cols-12 gap-x-14 px-2 lg:px-10  pt-8 sm:pt-16 bg-white">
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-4 md:col-span-3 sm:order-2  mx-auto relative">
 
                 <!-- Displays book cover -->
@@ -75,6 +75,23 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
             </div>
         </div>
+
+
+        <ul class="container mx-auto grid grid-cols-3 bg-white gap-1 bg-beige-5 my-4">
+            <li v-for="review in reviews" class="bg-white border-2 border-black" >
+                <div class="bg-yellow-100">
+                    <p class="border-text text-3xl font-bold p-2">{{ review.rating }} {{ review.rating > 1 ? 'Points' : 'Point' }}</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-md text-gray-400">@{{ review.user.name }}</p>
+
+                    <p class="text-xl font-bold">{{ review.title }}</p>
+                    <p class="text-lg">{{ review.review }}</p>
+                </div>
+
+            </li>
+        </ul>
+
     </div>
 
 
@@ -85,12 +102,12 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
 
-
 export default {
 
-    props: ['product'],
+    props: ['product', 'reviews'],
 
 }
 </script>
+
 
 

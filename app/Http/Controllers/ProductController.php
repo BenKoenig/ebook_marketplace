@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
@@ -154,16 +155,16 @@ class ProductController extends Controller
     public function show($id)
     {
 
-        return Inertia::render('Products/Show', [
+        return Inertia::render('Products/Show', array(
             /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
             /*'products' => Product::all(),*/
 
+            'reviews' => Review::with('user')->get()->where('product_id', '=', $id),
 
-
-            'product' => Product::query()->where('id', '=', $id)->firstOrFail(),
+            'product' => Product::query()->get()->where('id', '=', $id)->firstOrFail(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-        ]);
+        ));
     }
 
 

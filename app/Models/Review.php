@@ -27,6 +27,11 @@ class Review extends Model
         'product_id'
     ];
 
+    public static function paginate(int $int)
+    {
+    }
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -7,7 +7,7 @@
 
 
             <div v-for="product in products" :key="product.id">
-                <MdProductCard  v-bind:title="product.name"  v-bind:authorName="product.user.name" v-bind:coverUrl="asdasd" />
+                <MdProductCard  v-bind:title="product.name"  v-bind:authorName="product.user.firstName" v-bind:coverUrl="asdasd" />
             </div>
         </div>
     </div>

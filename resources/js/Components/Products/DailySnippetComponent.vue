@@ -19,7 +19,7 @@
 
 
             <!-- Start of information card -->
-            <MdProductCard class="xl:col-span-3" :title="product.name" :authorName="product.user.name"></MdProductCard>
+            <MdProductCard class="xl:col-span-3" :title="product.name" :authorName="product.user.firstName"></MdProductCard>
 
 
             <!-- End of information card -->
