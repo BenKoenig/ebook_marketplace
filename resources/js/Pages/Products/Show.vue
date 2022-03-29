@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import FooterComponent from "@/Components/Structure/FooterComponent";
 
 
 defineProps({
@@ -19,6 +20,7 @@ defineProps({
 
     <ProductDetail :product="product" />
     <Show :reviews="reviews" />
+    <FooterComponent class="py-[3.5rem] md:py-[7rem]"/>
 
 </template>
 

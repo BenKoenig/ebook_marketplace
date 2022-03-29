@@ -18,7 +18,7 @@
 
                     <div class="">
                         <h3 class="px-2 lg:px-4 py-5 text-2xl font-bold ">Create account</h3>
-                        <p class="bg-beige-5 px-4 py-6 border-t-2 border-black">Lorem ipsum dolor sit amet, consectetuer
+                        <p class="bg-beige-5 px-4 py-6 border-t-2 border-black rounded-b-lg">Lorem ipsum dolor sit amet, consectetuer
                             adipiscing
                             elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
                     </div>
@@ -32,7 +32,7 @@
 
                     <div class="">
                         <h3 class="px-2 lg:px-4 py-5 text-2xl font-bold ">Upload eBook</h3>
-                        <p class="bg-beige-5 px-4 py-6 border-t-2 border-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+                        <p class="bg-beige-5 px-4 py-6 border-t-2 border-black rounded-b-lg">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
 
                     <div class="">
                         <h3 class="px-2 lg:px-4 py-5 text-2xl font-bold">Wait for approval</h3>
-                        <p class="bg-beige-5 px-4 py-6 border-t-2 border-black">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+                        <p class="bg-beige-5 px-4 py-6 border-t-2 border-black rounded-b-lg">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
                     </div>
                 </div>
             </div>

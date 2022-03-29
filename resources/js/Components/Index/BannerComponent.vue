@@ -12,15 +12,16 @@
                     felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
                     vulputate eleifend tellus.
                 </p>
-                <YellowBtn msg="Get started"/>
+                <CustomLink msg="Get started" init_background-color="#FDB383" init_text-color="#000" init_hoverColor="#FFC7A2" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import YellowBtn from "../Partials/YellowBtn";
+import YellowBtn from "../../Partials/YellowBtn";
+import CustomLink from "@/Partials/CustomLink";
 export default {
-    components: {YellowBtn}
+    components: {CustomLink, YellowBtn}
 }
 </script>

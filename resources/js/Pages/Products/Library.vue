@@ -1,10 +1,10 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Hero from "@/Components/HeroComponent";
+import Hero from "@/Components/Index/HeroComponent";
 import Nav from "@/Components/Structure/NavigationComponent";
-import Steps from "@/Components/StepsComponent";
+import Steps from "@/Components/Index/StepsComponent";
 import FeaturedProducts from "@/Components/Products/FeaturedComponent";
-import Banner from "@/Components/BannerComponent";
+import Banner from "@/Components/Index/BannerComponent";
 import Footer from "@/Components/Structure/FooterComponent";
 import Headline from "@/Partials/Headline";
 
