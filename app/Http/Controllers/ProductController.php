@@ -158,10 +158,25 @@ class ProductController extends Controller
         return Inertia::render('Products/Show', array(
             /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
             /*'products' => Product::all(),*/
+            /*'reviews' => Review::query()->with('user')->get()->where('product_id', '=', $id),*/
 
-            'reviews' => Review::with('user')->get()->where('product_id', '=', $id),
+            'reviews' => Review::query()
+                ->with('user')
+                ->where('product_id', '=', $id)
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($review) => [
+                    'name' => $review->name,
+                    'title' => $review->title,
+                    'review' => $review->review,
+                    'rating' => $review->rating,
+                    'product_id' => $review->product_id,
+                    'user_id' => $review->user_id,
 
-            'product' => Product::query()->get()->where('id', '=', $id)->firstOrFail(),
+                ]),
+
+
+            'product' => Product::with('user')->get()->where('id', '=', $id)->firstOrFail(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ));

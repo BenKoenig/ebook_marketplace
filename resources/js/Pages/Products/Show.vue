@@ -19,14 +19,14 @@ defineProps({
 
 
     <ProductDetail :product="product" />
-    <Show :reviews="reviews" />
+    <Show class="py-[3.5rem] md:py-[7rem]" :reviews="reviews" />
     <FooterComponent class="py-[3.5rem] md:py-[7rem]"/>
 
 </template>
 
 
 <script>
-import ProductDetail from "@/Components/Products/ViewComponent";
+import ProductDetail from "@/Components/Products/Show";
 import Show from "@/Components/Reviews/Show";
 import Nav from "@/Components/Structure/NavigationComponent";
 

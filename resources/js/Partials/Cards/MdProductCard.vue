@@ -4,7 +4,7 @@
 
 
 
-    <div class="grid grid-cols-12 items-end   w-scale grow border-2 border-black rounded-lg">
+    <div class="grid grid-cols-12 items-end   w-scale grow border-[1px] border-black rounded-lg">
 
         <img :src="coverUrl" alt="img" class="  col-span-5">
 

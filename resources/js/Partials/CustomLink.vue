@@ -3,7 +3,7 @@ import {Link} from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
-    <Link :href="route('dashboard')" id="link" type="button" :style="cssVars" class="transition-colors h-10 items-center flex rounded-lg font-medium text-lg w-fit focus:outline-none border-2 border-black focus:ring-4 focus:black  text-sm px-5  ">{{ msg }}</Link>
+    <Link :href="route('dashboard')" id="link" type="button" :style="cssVars" class="transition-colors h-10 items-center flex rounded-lg font-medium text-lg w-fit focus:outline-none border-[1px] border-black focus:ring-4 focus:black  text-sm px-5  ">{{ msg }}</Link>
 </template>
 
 <!--route('dashboard')-->

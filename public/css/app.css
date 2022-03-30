@@ -896,6 +896,12 @@ input:checked + .toggle-bg{
 .col-span-7{
   grid-column: span 7 / span 7;
 }
+.col-span-2{
+  grid-column: span 2 / span 2;
+}
+.col-span-4{
+  grid-column: span 4 / span 4;
+}
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -903,10 +909,6 @@ input:checked + .toggle-bg{
 .mx-2{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-.my-8{
-  margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 .ml-3{
   margin-left: 0.75rem;
@@ -977,8 +979,8 @@ input:checked + .toggle-bg{
 .mb-2{
   margin-bottom: 0.5rem;
 }
-.-mt-1{
-  margin-top: -0.25rem;
+.mb-7{
+  margin-bottom: 1.75rem;
 }
 .ml-0{
   margin-left: 0px;
@@ -997,6 +999,15 @@ input:checked + .toggle-bg{
 }
 .mb-6{
   margin-bottom: 1.5rem;
+}
+.mb-10{
+  margin-bottom: 2.5rem;
+}
+.-mb-1{
+  margin-bottom: -0.25rem;
+}
+.mr-1{
+  margin-right: 0.25rem;
 }
 .block{
   display: block;
@@ -1057,11 +1068,11 @@ input:checked + .toggle-bg{
 .h-\[0\.25rem\]{
   height: 0.25rem;
 }
-.h-\[3\.3rem\]{
-  height: 3.3rem;
-}
 .h-full{
   height: 100%;
+}
+.h-\[3\.3rem\]{
+  height: 3.3rem;
 }
 .h-\[0\.20rem\]{
   height: 0.20rem;
@@ -1074,6 +1085,9 @@ input:checked + .toggle-bg{
 }
 .h-9{
   height: 2.25rem;
+}
+.h-3{
+  height: 0.75rem;
 }
 .min-h-screen{
   min-height: 100vh;
@@ -1131,6 +1145,12 @@ input:checked + .toggle-bg{
 .w-1\/2{
   width: 50%;
 }
+.w-3{
+  width: 0.75rem;
+}
+.w-px{
+  width: 1px;
+}
 .max-w-xl{
   max-width: 36rem;
 }
@@ -1170,6 +1190,9 @@ input:checked + .toggle-bg{
 .flex-shrink{
   flex-shrink: 1;
 }
+.flex-shrink-0{
+  flex-shrink: 0;
+}
 .shrink-0{
   flex-shrink: 0;
 }
@@ -1203,6 +1226,10 @@ input:checked + .toggle-bg{
 }
 .translate-x-0{
   --tw-translate-x: 0px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.translate-y-2\/4{
+  --tw-translate-y: 50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .rotate-180{
@@ -1306,6 +1333,10 @@ input:checked + .toggle-bg{
 .gap-y-3{
   row-gap: 0.75rem;
 }
+.gap-x-1{
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
+}
 .gap-y-4{
   row-gap: 1rem;
 }
@@ -1315,10 +1346,6 @@ input:checked + .toggle-bg{
 }
 .gap-y-1{
   row-gap: 0.25rem;
-}
-.gap-x-1{
-  -moz-column-gap: 0.25rem;
-       column-gap: 0.25rem;
 }
 .gap-y-\[0\.4rem\]{
   row-gap: 0.4rem;
@@ -1332,6 +1359,14 @@ input:checked + .toggle-bg{
 }
 .gap-y-2{
   row-gap: 0.5rem;
+}
+.gap-x-8{
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+.gap-x-5{
+  -moz-column-gap: 1.25rem;
+       column-gap: 1.25rem;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
@@ -1388,13 +1423,13 @@ input:checked + .toggle-bg{
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
-.rounded-t-lg{
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-}
 .rounded-l-lg{
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
+}
+.rounded-t-lg{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 .rounded-r-lg{
   border-top-right-radius: 0.5rem;
@@ -1403,11 +1438,26 @@ input:checked + .toggle-bg{
 .rounded-br-lg{
   border-bottom-right-radius: 0.5rem;
 }
+.rounded-tl-lg{
+  border-top-left-radius: 0.5rem;
+}
+.rounded-tr-lg{
+  border-top-right-radius: 0.5rem;
+}
+.rounded-tr-none{
+  border-top-right-radius: 0px;
+}
+.rounded-bl-lg{
+  border-bottom-left-radius: 0.5rem;
+}
 .border{
   border-width: 1px;
 }
 .border-2{
   border-width: 2px;
+}
+.border-\[1px\]{
+  border-width: 1px;
 }
 .border-\[0\.1rem\]{
   border-width: 0.1rem;
@@ -1432,6 +1482,12 @@ input:checked + .toggle-bg{
 }
 .border-t-2{
   border-top-width: 2px;
+}
+.border-r-\[1px\]{
+  border-right-width: 1px;
+}
+.border-b-\[1px\]{
+  border-bottom-width: 1px;
 }
 .border-gray-300{
   --tw-border-opacity: 1;
@@ -1539,10 +1595,6 @@ input:checked + .toggle-bg{
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
-.bg-yellow-400{
-  --tw-bg-opacity: 1;
-  background-color: rgb(227 160 8 / var(--tw-bg-opacity));
-}
 .bg-opacity-50{
   --tw-bg-opacity: 0.5;
 }
@@ -1552,14 +1604,14 @@ input:checked + .toggle-bg{
 .bg-grandcanyon{
   background-image: url(/images/grandcanyon.png?d175fc47a1f2538c677e11b519208b4d);
 }
-.bg-contain{
-  background-size: contain;
-}
 .bg-cover{
   background-size: cover;
 }
 .fill-current{
   fill: currentColor;
+}
+.fill-gray-400{
+  fill: #9CA3AF;
 }
 .stroke-current{
   stroke: currentColor;
@@ -1706,8 +1758,14 @@ input:checked + .toggle-bg{
 .pb-2{
   padding-bottom: 0.5rem;
 }
-.pb-5{
-  padding-bottom: 1.25rem;
+.pb-7{
+  padding-bottom: 1.75rem;
+}
+.pl-6{
+  padding-left: 1.5rem;
+}
+.pr-6{
+  padding-right: 1.5rem;
 }
 .pl-4{
   padding-left: 1rem;
@@ -1762,10 +1820,6 @@ input:checked + .toggle-bg{
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-.text-7xl{
-  font-size: 4.5rem;
-  line-height: 1;
 }
 .font-medium{
   font-weight: 500;
@@ -12465,6 +12519,11 @@ in order to display the code of the rich text editor.
   background-image: repeating-linear-gradient(to right, #f1f1f1, #f1f1f1 1px, #ffffff 1px, #ffffff);
 }
 
+.focus-within\:bg-gray-100:focus-within{
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 .hover\:scale-\[1\.05\]:hover{
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -12509,6 +12568,11 @@ in order to display the code of the rich text editor.
 .hover\:bg-green-800:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(3 84 63 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-white:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-500:hover{
@@ -12579,6 +12643,11 @@ in order to display the code of the rich text editor.
   border-color: transparent;
 }
 
+.focus\:border-indigo-500:focus{
+  --tw-border-opacity: 1;
+  border-color: rgb(104 117 245 / var(--tw-border-opacity));
+}
+
 .focus\:bg-gray-100:focus{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -12612,6 +12681,11 @@ in order to display the code of the rich text editor.
 .focus\:text-gray-500:focus{
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.focus\:text-indigo-500:focus{
+  --tw-text-opacity: 1;
+  color: rgb(104 117 245 / var(--tw-text-opacity));
 }
 
 .focus\:outline-none:focus{
@@ -12845,13 +12919,15 @@ in order to display the code of the rich text editor.
   .sm\:col-span-8{
     grid-column: span 8 / span 8;
   }
+  .sm\:col-span-5{
+    grid-column: span 5 / span 5;
+  }
+  .sm\:col-span-7{
+    grid-column: span 7 / span 7;
+  }
   .sm\:-my-px{
     margin-top: -1px;
     margin-bottom: -1px;
-  }
-  .sm\:my-16{
-    margin-top: 4rem;
-    margin-bottom: 4rem;
   }
   .sm\:ml-10{
     margin-left: 2.5rem;
@@ -12942,6 +13018,9 @@ in order to display the code of the rich text editor.
   .md\:col-span-2{
     grid-column: span 2 / span 2;
   }
+  .md\:mb-2{
+    margin-bottom: 0.5rem;
+  }
   .md\:mt-0{
     margin-top: 0px;
   }
@@ -12980,6 +13059,10 @@ in order to display the code of the rich text editor.
   }
   .md\:flex-row{
     flex-direction: row;
+  }
+  .md\:gap-x-7{
+    -moz-column-gap: 1.75rem;
+         column-gap: 1.75rem;
   }
   .md\:space-x-8 > :not([hidden]) ~ :not([hidden]){
     --tw-space-x-reverse: 0;
@@ -13083,8 +13166,14 @@ in order to display the code of the rich text editor.
   .lg\:hidden{
     display: none;
   }
+  .lg\:h-16{
+    height: 4rem;
+  }
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .lg\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .lg\:flex-row{
     flex-direction: row;
@@ -13094,6 +13183,14 @@ in order to display the code of the rich text editor.
   }
   .lg\:justify-between{
     justify-content: space-between;
+  }
+  .lg\:gap-x-14{
+    -moz-column-gap: 3.5rem;
+         column-gap: 3.5rem;
+  }
+  .lg\:gap-x-9{
+    -moz-column-gap: 2.25rem;
+         column-gap: 2.25rem;
   }
   .lg\:p-10{
     padding: 2.5rem;
@@ -13155,6 +13252,12 @@ in order to display the code of the rich text editor.
     margin-left: 0px;
     margin-right: 0px;
   }
+  .xl\:flex{
+    display: flex;
+  }
+  .xl\:h-16{
+    height: 4rem;
+  }
   .xl\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -13167,8 +13270,56 @@ in order to display the code of the rich text editor.
   .xl\:grid-rows-1{
     grid-template-rows: repeat(1, minmax(0, 1fr));
   }
+  .xl\:flex-row{
+    flex-direction: row;
+  }
+  .xl\:gap-x-14{
+    -moz-column-gap: 3.5rem;
+         column-gap: 3.5rem;
+  }
+  .xl\:gap-x-11{
+    -moz-column-gap: 2.75rem;
+         column-gap: 2.75rem;
+  }
+  .xl\:rounded{
+    border-radius: 0.25rem;
+  }
+  .xl\:rounded-l-lg{
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .xl\:rounded-r-lg{
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+  .xl\:rounded-t-none{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+  .xl\:rounded-tr-none{
+    border-top-right-radius: 0px;
+  }
+  .xl\:rounded-br-none{
+    border-bottom-right-radius: 0px;
+  }
+  .xl\:rounded-bl-none{
+    border-bottom-left-radius: 0px;
+  }
+  .xl\:border-r-\[1px\]{
+    border-right-width: 1px;
+  }
+  .xl\:border-black{
+    --tw-border-opacity: 1;
+    border-color: rgb(0 0 0 / var(--tw-border-opacity));
+  }
   .xl\:px-0{
     padding-left: 0px;
     padding-right: 0px;
+  }
+  .xl\:pl-6{
+    padding-left: 1.5rem;
+  }
+  .xl\:pr-6{
+    padding-right: 1.5rem;
   }
 }
