@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 // == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
 
@@ -152,17 +154,22 @@ class ProductController extends Controller
 
 
 
-    public function show($id)
+    public function show($slug)
     {
 
+        /*Convert slug to id*/
+        $product_id = DB::select('SELECT id FROM products WHERE slug = ?', [$slug]);
+        /*Convert Object to array*/
+        $product_id = @json_decode(json_encode($product_id[0]), true);
+        /*Convert array to string*/
+        $product_id = implode(" ",$product_id);
+
+
         return Inertia::render('Products/Show', array(
-            /*'products' => Product::all()->where('is_featured', true)->with('user')->get*/
-            /*'products' => Product::all(),*/
-            /*'reviews' => Review::query()->with('user')->get()->where('product_id', '=', $id),*/
 
             'reviews' => Review::query()
                 ->with('user')
-                ->where('product_id', '=', $id)
+                ->where('product_id', '=', $product_id)
                 ->paginate(6)
                 ->withQueryString()
                 ->through(fn ($review) => [
@@ -176,7 +183,7 @@ class ProductController extends Controller
                 ]),
 
 
-            'product' => Product::with('user')->get()->where('id', '=', $id)->firstOrFail(),
+            'product' => Product::with('user')->get()->where('slug', '=', $slug)->firstOrFail(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ));

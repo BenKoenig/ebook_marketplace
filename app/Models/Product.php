@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Product extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +22,7 @@ class Product extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'slug',
         'description',
         'snippet',
         'price',
@@ -32,6 +35,36 @@ class Product extends Authenticatable
         'updated_at',
         'user_id'
     ];
+
+    public static function where(string $string, string $string1)
+    {
+    }
+
+    public static function find($slug, string $string)
+    {
+    }
+
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => ['name', 'id'],
+                'onUpdate'=>true
+            ]
+        ];
+    }
+
+/*    public function setSlugAttribute($name){
+        $this->attributes['slug'] = $this->uniqueSlug($name);
+    }
+
+    private function uniqueSlug($name){
+        $slug = Str::slug($name, '-');
+        $count = Product::where('slug', 'LIKE', "{$slug}%")->count();
+        $newCount = $count > 0 ? ++$count : '';
+        return $newCount > 0 ? "$slug-$newCount" : $slug;
+    }*/
 
     protected $attributes = [
         'is_featured' => 0
@@ -47,9 +80,7 @@ class Product extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-/*    public function scopeFeatured() {
-        return $query->where('is_featured', true);
-    }*/
+
 
 
 

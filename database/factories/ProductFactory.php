@@ -23,6 +23,7 @@ class ProductFactory extends Factory
 
             'name' => $this->faker->unique()->catchPhrase,
             'description' => $this->faker->text,
+            /*'slug' => $this->faker->slug,*/
             'snippet' => $this->faker->text,
             'price' => 9.99,
             'cover' => 'covers/wZkYeIFj0EvCNNlvRD5fmyrIwS2yK0RfybYlFtbz.jpg',

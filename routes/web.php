@@ -122,7 +122,7 @@ Route::get('/discover', function () {
 // });
 
 
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
 
 // Route::get('/products/{id}', function () {
