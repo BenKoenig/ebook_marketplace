@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class Product extends Authenticatable
 {
@@ -46,9 +47,12 @@ class Product extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function scopeFeatured() {
+/*    public function scopeFeatured() {
         return $query->where('is_featured', true);
-    }
+    }*/
+
+
+
 
 
 

@@ -163,7 +163,7 @@ class ProductController extends Controller
             'reviews' => Review::query()
                 ->with('user')
                 ->where('product_id', '=', $id)
-                ->paginate(10)
+                ->paginate(6)
                 ->withQueryString()
                 ->through(fn ($review) => [
                     'name' => $review->name,

@@ -39,6 +39,8 @@
         "@tinymce/tinymce-vue": "^4.0.7",
         "ckeditor5-custom-build": "file:ckeditor5",
         "epubjs": "^0.3.93",
-        "flowbite": "^1.3.4"
+        "flowbite": "^1.3.4",
+        "vue-agile": "^2.0.0",
+        "vue3-carousel": "^0.1.38"
     }
 }

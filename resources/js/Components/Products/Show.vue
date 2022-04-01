@@ -12,6 +12,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
     </div>-->
 
 
+
     <div>
         <div class="mt-3 container mx-auto sm:grid sm:grid-cols-12 gap-x-5 md:gap-x-7 lg:gap-x-9 xl:gap-x-11 p-2 lg:p-10  rounded-lg  bg-beige-4">
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
@@ -61,7 +62,25 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
             </div>
         </div>
 
+<!--        <agile :slidesToShow="3" >
+            <div class="slide flex">
+                <h3><img src="../../../assets/pencils.jpg"></h3>
 
+            </div>
+            <div class="slide">
+                <h3><img src="../../../assets/tablet.jpg"></h3>
+
+            </div>
+            <div class="slide">
+                <h3><img src="../../../assets/tablet.jpg"></h3>
+
+            </div>
+
+            <div class="slide">
+                <h3><img src="../../../assets/tablet.jpg"></h3>
+
+            </div>
+        </agile>-->
 
     </div>
 
@@ -71,10 +90,13 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <script>
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import { VueAgile } from 'vue-agile'
 
 
 export default {
-
+    components: {
+        agile: VueAgile
+    },
     props: ['product', 'reviews'],
 
 }

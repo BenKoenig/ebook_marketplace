@@ -3,7 +3,6 @@
 <template>
     <div class="w-full bg-white">
         <form @submit.prevent="submit" class="max-w-4xl mx-auto py-10" novalidate>
-
             <div class="mb-6">
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Title</label>
                 <textarea id="title" v-model="form.title" rows="4" class="bg-white border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Favorite quote  of your book"></textarea>
