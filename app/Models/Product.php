@@ -55,17 +55,6 @@ class Product extends Authenticatable
         ];
     }
 
-/*    public function setSlugAttribute($name){
-        $this->attributes['slug'] = $this->uniqueSlug($name);
-    }
-
-    private function uniqueSlug($name){
-        $slug = Str::slug($name, '-');
-        $count = Product::where('slug', 'LIKE', "{$slug}%")->count();
-        $newCount = $count > 0 ? ++$count : '';
-        return $newCount > 0 ? "$slug-$newCount" : $slug;
-    }*/
-
     protected $attributes = [
         'is_featured' => 0
     ];

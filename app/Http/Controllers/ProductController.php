@@ -154,7 +154,7 @@ class ProductController extends Controller
 
 
 
-    public function show($slug)
+    public function show($user, $slug)
     {
 
         /*Convert slug to id*/
@@ -163,6 +163,12 @@ class ProductController extends Controller
         $product_id = @json_decode(json_encode($product_id[0]), true);
         /*Convert array to string*/
         $product_id = implode(" ",$product_id);
+
+        $user_id = DB::select('SELECT id FROM users WHERE username = ?', [$user]);
+        /*Convert Object to array*/
+        $user_id = @json_decode(json_encode($user_id[0]), true);
+        /*Convert array to string*/
+        $user_id = implode(" ",$user_id);
 
 
         return Inertia::render('Products/Show', array(
@@ -183,7 +189,13 @@ class ProductController extends Controller
                 ]),
 
 
-            'product' => Product::with('user')->get()->where('slug', '=', $slug)->firstOrFail(),
+
+
+
+            'product' => Product::with('user')->get()->where("user_id", $user_id)->where("slug", $slug)->firstOrFail(),
+
+
+
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ));
