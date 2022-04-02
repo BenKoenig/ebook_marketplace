@@ -2,7 +2,7 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Nav from "@/Components/Structure/NavigationComponent";
 import Footer from "@/Components/Structure/FooterComponent";
-import CreateForm from "@/Components/Products/Forms/Create/CreateComponent";
+import CreateForm from "@/Components/Products/Create/Create";
 
 
 defineProps({

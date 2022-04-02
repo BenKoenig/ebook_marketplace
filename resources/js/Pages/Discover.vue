@@ -30,7 +30,7 @@ defineProps({
 // import { Head } from '@inertiajs/inertia-vue3'
 import Nav from "@/Components/Structure/NavigationComponent";
 import Footer from "@/Components/Structure/FooterComponent";
-import DailySnippet from "@/Components/Products/DailySnippetComponent";
+import DailySnippet from "@/Components/Products/DailySnippet";
 
 
 export default {

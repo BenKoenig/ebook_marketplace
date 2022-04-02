@@ -6,13 +6,11 @@ use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 
 // == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
 
@@ -45,6 +43,7 @@ class ProductController extends Controller
             'phpVersion' => PHP_VERSION,
 
         ]);
+
     }
 
 
@@ -154,15 +153,32 @@ class ProductController extends Controller
 
 
 
-    public function show($user, $slug)
+    public function show($user, $slug, Request $request)
     {
-
         /*Convert slug to id*/
         $product_id = DB::select('SELECT id FROM products WHERE slug = ?', [$slug]);
         /*Convert Object to array*/
         $product_id = @json_decode(json_encode($product_id[0]), true);
         /*Convert array to string*/
         $product_id = implode(" ",$product_id);
+
+        $request->session()->put('store_product', $product_id);
+
+
+        $reviews = Review::query()
+            ->with('user')
+            ->where('product_id', '=', $product_id)
+            ->paginate(6)
+            ->withQueryString()
+            ->through(fn ($review) => [
+                'name' => $review->name,
+                'title' => $review->title,
+                'review' => $review->review,
+                'rating' => $review->rating,
+                'product_id' => $review->product_id,
+                'user_id' => $review->user_id,
+
+            ]);
 
         $user_id = DB::select('SELECT id FROM users WHERE username = ?', [$user]);
         /*Convert Object to array*/
@@ -171,34 +187,21 @@ class ProductController extends Controller
         $user_id = implode(" ",$user_id);
 
 
+        $product = Product::with('user')->get()->where("user_id", $user_id)->where("slug", $slug)->firstOrFail();
+
+
+        if(!$product) {
+            abort("404");
+        }
         return Inertia::render('Products/Show', array(
 
-            'reviews' => Review::query()
-                ->with('user')
-                ->where('product_id', '=', $product_id)
-                ->paginate(6)
-                ->withQueryString()
-                ->through(fn ($review) => [
-                    'name' => $review->name,
-                    'title' => $review->title,
-                    'review' => $review->review,
-                    'rating' => $review->rating,
-                    'product_id' => $review->product_id,
-                    'user_id' => $review->user_id,
-
-                ]),
-
-
-
-
-
-            'product' => Product::with('user')->get()->where("user_id", $user_id)->where("slug", $slug)->firstOrFail(),
-
-
-
+            'reviews' => $reviews,
+            'product' => $product,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ));
+
+
     }
 
 

@@ -43,7 +43,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                     <p class="text-xl py-3 px-4 border-[1px] border-black h-full flex items-center bg-yellow-100 rounded-tl-lg rounded-tr-lg xl:rounded-tr-none xl:rounded-l-lg"><!--<i class="fa-solid fa-tag"></i>-->$ {{ product.price }}</p>
                     <p class="text-xl py-3 px-4  border-[1px] border-black  h-full flex items-center ">@{{ product.user.username }}</p>
                     <div class="flex py-3 px-4 gap-x-1 items-center  text-xl   border-[1px] border-black h-full">
-                        <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> 24 Reviews <!--{{ reviews.rating.length() }}--></p>
+                        <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> {{ reviews.total }} Reviews </p>
                     </div>
                     <p class="text-xl py-3 px-4 border-[1px] h-full border-black flex items-center rounded-bl-lg rounded-br-lg xl:rounded-bl-none  xl:rounded-r-lg gap-x-2  "><i class="fa-solid fa-cart-shopping"></i> 53 Purchases</p>
 
@@ -62,25 +62,9 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
             </div>
         </div>
 
-<!--        <agile :slidesToShow="3" >
-            <div class="slide flex">
-                <h3><img src="../../../assets/pencils.jpg"></h3>
 
-            </div>
-            <div class="slide">
-                <h3><img src="../../../assets/tablet.jpg"></h3>
 
-            </div>
-            <div class="slide">
-                <h3><img src="../../../assets/tablet.jpg"></h3>
 
-            </div>
-
-            <div class="slide">
-                <h3><img src="../../../assets/tablet.jpg"></h3>
-
-            </div>
-        </agile>-->
 
     </div>
 
@@ -89,15 +73,12 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 </template>
 
 <script>
-import { Head, Link } from '@inertiajs/inertia-vue3';
-import { VueAgile } from 'vue-agile'
-
 
 export default {
-    components: {
-        agile: VueAgile
-    },
     props: ['product', 'reviews'],
+
+
+
 
 }
 </script>

@@ -896,6 +896,15 @@ input:checked + .toggle-bg{
 .col-span-7{
   grid-column: span 7 / span 7;
 }
+.m-2{
+  margin: 0.5rem;
+}
+.m-10{
+  margin: 2.5rem;
+}
+.m-auto{
+  margin: auto;
+}
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -903,6 +912,14 @@ input:checked + .toggle-bg{
 .mx-2{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+.mx-1{
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+.mx-10{
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 .ml-3{
   margin-left: 0.75rem;
@@ -994,6 +1011,9 @@ input:checked + .toggle-bg{
 .mb-6{
   margin-bottom: 1.5rem;
 }
+.mb-10{
+  margin-bottom: 2.5rem;
+}
 .block{
   display: block;
 }
@@ -1070,6 +1090,12 @@ input:checked + .toggle-bg{
 }
 .h-9{
   height: 2.25rem;
+}
+.h-\[20\]{
+  height: 20;
+}
+.h-\[20rem\]{
+  height: 20rem;
 }
 .min-h-screen{
   min-height: 100vh;
@@ -1479,6 +1505,10 @@ input:checked + .toggle-bg{
   --tw-border-opacity: 1;
   border-color: rgb(26 86 219 / var(--tw-border-opacity));
 }
+.border-red-300{
+  --tw-border-opacity: 1;
+  border-color: rgb(248 180 180 / var(--tw-border-opacity));
+}
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1657,6 +1687,10 @@ input:checked + .toggle-bg{
 .py-\[2rem\]{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+.py-7{
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
 }
 .pt-8{
   padding-top: 2rem;
@@ -13071,6 +13105,10 @@ in order to display the code of the rich text editor.
   .lg\:right-4{
     right: 1rem;
   }
+  .lg\:mx-10{
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
   .lg\:mb-4{
     margin-bottom: 1rem;
   }
@@ -13128,6 +13166,10 @@ in order to display the code of the rich text editor.
     padding-top: 0px;
     padding-bottom: 0px;
   }
+  .lg\:py-10{
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
   .lg\:pb-\[3rem\]{
     padding-bottom: 3rem;
   }
@@ -13161,9 +13203,16 @@ in order to display the code of the rich text editor.
   .xl\:col-span-9{
     grid-column: span 9 / span 9;
   }
+  .xl\:m-10{
+    margin: 2.5rem;
+  }
   .xl\:mx-0{
     margin-left: 0px;
     margin-right: 0px;
+  }
+  .xl\:mx-10{
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
   }
   .xl\:flex{
     display: flex;
@@ -13201,5 +13250,9 @@ in order to display the code of the rich text editor.
   .xl\:px-0{
     padding-left: 0px;
     padding-right: 0px;
+  }
+  .xl\:py-10{
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 }

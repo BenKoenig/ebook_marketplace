@@ -29,6 +29,10 @@ class Review extends Model
 
 
 
+    public function getRatingAverageAttribute()
+    {
+        return round((array_sum($this->rating) / count($this->rating))*2);
+    }
 
 
 

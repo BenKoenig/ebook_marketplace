@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,8 @@ Route::get('/create/success', [ProductController::class, 'createSuccess'])->midd
 /*Route::get('/create/success', 'Products/Create/Success')->name('products.create.success');*/
 
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
 

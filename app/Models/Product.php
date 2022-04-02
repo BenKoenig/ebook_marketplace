@@ -36,6 +36,10 @@ class Product extends Authenticatable
         'user_id'
     ];
 
+/*    public function getNameAttribute($value) {
+        return ucfirst($value);
+    }*/
+
     public static function where(string $string, string $string1)
     {
     }

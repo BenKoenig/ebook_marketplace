@@ -15,7 +15,6 @@ defineProps({
 
 
 <template>
-
     <div class="gradient-bg">
         <Nav :canLogin="canLogin" :canRegister="canRegister"  />
         <Hero class="py-[2.5rem] md:py-[6rem]" />
@@ -35,7 +34,7 @@ import { Head } from '@inertiajs/inertia-vue3'
 import Nav from "@/Components/Structure/NavigationComponent";
 import Hero from "@/Components/Index/HeroComponent";
 import Banner from "@/Components/Index/BannerComponent";
-import FeaturedProducts from "@/Components/Products/FeaturedComponent";
+import FeaturedProducts from "@/Components/Products/Featured";
 import Steps from "@/Components/Index/StepsComponent";
 import Footer from "@/Components/Structure/FooterComponent";
 

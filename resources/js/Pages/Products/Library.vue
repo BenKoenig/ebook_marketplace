@@ -3,7 +3,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import Hero from "@/Components/Index/HeroComponent";
 import Nav from "@/Components/Structure/NavigationComponent";
 import Steps from "@/Components/Index/StepsComponent";
-import FeaturedProducts from "@/Components/Products/FeaturedComponent";
+import FeaturedProducts from "@/Components/Products/Featured";
 import Banner from "@/Components/Index/BannerComponent";
 import Footer from "@/Components/Structure/FooterComponent";
 import Headline from "@/Partials/Headline";
