@@ -29,20 +29,30 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => ['required', 'max:100'],
-            'review' => ['required', 'max:50000'],
-            'rating' => ['required', 'numeric', 'between:1,5'],
-        ]);
-        Review::create([
-            'title' => $request->input('title'),
-            'review' => $request->input('review'),
-            'rating' => $request->input('rating'),
-            'product_id' => $request->session()->get('store_product'),
-            'user_id' => Auth::user()->id
-        ]);
-/*        $request->session()->put('store_token', 'value');*/
-        return redirect('/');
+
+        $userHasReviewed = DB::select('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]);
+
+
+        if(!$userHasReviewed){
+            $request->validate([
+                'title' => ['required', 'max:100'],
+                'review' => ['required', 'max:50000'],
+                'rating' => ['required', 'numeric', 'between:1,5'],
+            ]);
+
+            Review::create([
+                'title' => $request->input('title'),
+                'review' => $request->input('review'),
+                'rating' => $request->input('rating'),
+                'product_id' => $request->session()->get('store_product'),
+                'user_id' => Auth::user()->id
+            ]);
+            return redirect('/');
+        } else {
+            abort("403");
+        }
+
+
     }
 
 }

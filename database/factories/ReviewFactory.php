@@ -22,8 +22,8 @@ class ReviewFactory extends Factory
             'user_id' => function() {
                 return User::all()->random();
             },
-            'created_at' => $this->faker->dateTimeBetween('-3 years', 'now'),
-            'updated_at' => $this->faker->dateTimeBetween('2020-04-03', '2022-02-07'),
+            'created_at' => $this->faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),
+            'updated_at' => $this->faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),
         ];
     }
 }

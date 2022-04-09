@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -155,6 +156,8 @@ class ProductController extends Controller
 
     public function show($user, $slug, Request $request)
     {
+
+
         /*Convert slug to id*/
         $product_id = DB::select('SELECT id FROM products WHERE slug = ?', [$slug]);
         /*Convert Object to array*/
@@ -189,14 +192,17 @@ class ProductController extends Controller
 
         $product = Product::with('user')->get()->where("user_id", $user_id)->where("slug", $slug)->firstOrFail();
 
+        $userHasReviewed = DB::select('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]);
+
 
         if(!$product) {
             abort("404");
         }
         return Inertia::render('Products/Show', array(
-
+            'username' => $user,
             'reviews' => $reviews,
             'product' => $product,
+            'userHasReviewed' => $userHasReviewed,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ));
@@ -210,10 +216,25 @@ class ProductController extends Controller
     }*/
 
 
+    public function library() {
+        $user = \auth()->user();
+
+
+        $productIds = DB::select('SELECT * FROM purchases WHERE user_id = ?', [$user->id]);
+
+/*        $products = DB::select('SELECT * FROM products WHERE id = ?', [$user->id]);*/
+
+        return Inertia::render('Products/Library', [
+            'user' => \auth()->user(),
+            'products' => $productIds,
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+        ]);
+    }
+
+
     public function discover()
     {
-
-
         return Inertia::render('Discover', [
             'foo' => 'bar',
             'canLogin' => Route::has('login'),

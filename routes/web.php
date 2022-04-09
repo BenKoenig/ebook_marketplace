@@ -57,6 +57,9 @@ Route::post('/products', [ProductController::class, 'store'])->name('products.st
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
+Route::get('/library', [ProductController::class, 'library'])->middleware(['auth', 'verified'])->name('library');
+
+
 
 
 // Route::post('/products', function() {
@@ -85,15 +88,6 @@ Route::get('image/{filename}', [ProductController::class,'getPubliclyStorgeFile'
     ]);
 })->name('home');*/
 
-Route::get('/library', function () {
-    return Inertia::render('Library', [
-        'foo' => 'bar',
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->middleware(['auth', 'verified'])->name('library');
 
 
 

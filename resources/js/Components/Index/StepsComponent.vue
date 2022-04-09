@@ -1,6 +1,6 @@
 <template>
     <!--Steps-->
-        <div class="text-center relative flex flex-col items-center justify-center overflow-hidden">
+        <div class="text-center  flex flex-col items-center justify-center ">
 
             <Headline firstHeadline="It's really easy!" secondHeadline="Sell your eBooks"/>
 

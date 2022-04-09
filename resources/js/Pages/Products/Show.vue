@@ -10,6 +10,8 @@ defineProps({
     product: Object,
     reviews: Object,
     errors: Object,
+    username: String,
+    userHasReviewed: Array,
 })
 
 
@@ -21,7 +23,7 @@ defineProps({
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
     <ProductDetail :product="product" :reviews="reviews"  />
     <Show class="py-[3.5rem] md:py-[7rem]" :reviews="reviews" />
-    <CreateReview  :reviews="reviews" :product="product" :errors="errors" class="py-[3.5rem] md:py-[7rem]" />
+    <CreateReview  :username="username" :reviews="reviews" :product="product" :errors="errors" :userHasReviewed="userHasReviewed" class="py-[3.5rem] md:py-[7rem]" />
     <FooterComponent class="py-[3.5rem] md:py-[7rem]"/>
 
 </template>

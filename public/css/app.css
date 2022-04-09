@@ -884,26 +884,11 @@ input:checked + .toggle-bg{
 .z-20{
   z-index: 20;
 }
-.col-span-3{
-  grid-column: span 3 / span 3;
-}
-.col-span-6{
-  grid-column: span 6 / span 6;
-}
 .col-span-5{
   grid-column: span 5 / span 5;
 }
 .col-span-7{
   grid-column: span 7 / span 7;
-}
-.m-2{
-  margin: 0.5rem;
-}
-.m-10{
-  margin: 2.5rem;
-}
-.m-auto{
-  margin: auto;
 }
 .mx-auto{
   margin-left: auto;
@@ -912,14 +897,6 @@ input:checked + .toggle-bg{
 .mx-2{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-.mx-1{
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-}
-.mx-10{
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
 }
 .ml-3{
   margin-left: 0.75rem;
@@ -993,6 +970,9 @@ input:checked + .toggle-bg{
 .mb-7{
   margin-bottom: 1.75rem;
 }
+.mb-6{
+  margin-bottom: 1.5rem;
+}
 .-mt-3{
   margin-top: -0.75rem;
 }
@@ -1007,12 +987,6 @@ input:checked + .toggle-bg{
 }
 .mt-1{
   margin-top: 0.25rem;
-}
-.mb-6{
-  margin-bottom: 1.5rem;
-}
-.mb-10{
-  margin-bottom: 2.5rem;
 }
 .block{
   display: block;
@@ -1091,12 +1065,6 @@ input:checked + .toggle-bg{
 .h-9{
   height: 2.25rem;
 }
-.h-\[20\]{
-  height: 20;
-}
-.h-\[20rem\]{
-  height: 20rem;
-}
 .min-h-screen{
   min-height: 100vh;
 }
@@ -1173,9 +1141,6 @@ input:checked + .toggle-bg{
 }
 .max-w-\[13rem\]{
   max-width: 13rem;
-}
-.max-w-md{
-  max-width: 28rem;
 }
 .max-w-2xl{
   max-width: 42rem;
@@ -1335,9 +1300,6 @@ input:checked + .toggle-bg{
 .gap-x-1{
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
-}
-.gap-y-4{
-  row-gap: 1rem;
 }
 .gap-x-4{
   -moz-column-gap: 1rem;
@@ -1504,10 +1466,6 @@ input:checked + .toggle-bg{
 .border-blue-700{
   --tw-border-opacity: 1;
   border-color: rgb(26 86 219 / var(--tw-border-opacity));
-}
-.border-red-300{
-  --tw-border-opacity: 1;
-  border-color: rgb(248 180 180 / var(--tw-border-opacity));
 }
 .bg-white{
   --tw-bg-opacity: 1;
@@ -1684,13 +1642,13 @@ input:checked + .toggle-bg{
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
-.py-\[2rem\]{
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
 .py-7{
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
+}
+.py-\[2rem\]{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .pt-8{
   padding-top: 2rem;
@@ -1745,9 +1703,6 @@ input:checked + .toggle-bg{
 }
 .pl-4{
   padding-left: 1rem;
-}
-.pb-\[3\.5rem\]{
-  padding-bottom: 3.5rem;
 }
 .text-left{
   text-align: left;
@@ -1953,10 +1908,6 @@ input:checked + .toggle-bg{
 }
 .ring-opacity-5{
   --tw-ring-opacity: 0.05;
-}
-.blur-2xl{
-  --tw-blur: blur(40px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .blur{
   --tw-blur: blur(8px);
@@ -12673,9 +12624,9 @@ in order to display the code of the rich text editor.
   --tw-ring-color: rgb(205 219 254 / var(--tw-ring-opacity));
 }
 
-.focus\:ring-gray-200:focus{
+.focus\:ring-blue-500:focus{
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(63 131 248 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-blue-300:focus{
@@ -12683,9 +12634,9 @@ in order to display the code of the rich text editor.
   --tw-ring-color: rgb(164 202 254 / var(--tw-ring-opacity));
 }
 
-.focus\:ring-blue-500:focus{
+.focus\:ring-gray-200:focus{
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(63 131 248 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-gray-300:focus{
@@ -12781,9 +12732,9 @@ in order to display the code of the rich text editor.
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
-.dark .dark\:text-white{
+.dark .dark\:text-gray-300{
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
 .dark .dark\:text-red-500{
@@ -12791,9 +12742,9 @@ in order to display the code of the rich text editor.
   color: rgb(240 82 82 / var(--tw-text-opacity));
 }
 
-.dark .dark\:text-gray-300{
+.dark .dark\:text-white{
   --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .dark .dark\:placeholder-gray-400::-moz-placeholder{
@@ -12836,14 +12787,14 @@ in order to display the code of the rich text editor.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.dark .dark\:focus\:ring-gray-600:focus{
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
-}
-
 .dark .dark\:focus\:ring-blue-800:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(30 66 159 / var(--tw-ring-opacity));
+}
+
+.dark .dark\:focus\:ring-gray-600:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
 }
 
 .dark .dark\:focus\:ring-gray-700:focus{
@@ -12897,9 +12848,6 @@ in order to display the code of the rich text editor.
   }
   .sm\:mt-\[5rem\]{
     margin-top: 5rem;
-  }
-  .sm\:block{
-    display: block;
   }
   .sm\:flex{
     display: flex;
@@ -13105,10 +13053,6 @@ in order to display the code of the rich text editor.
   .lg\:right-4{
     right: 1rem;
   }
-  .lg\:mx-10{
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-  }
   .lg\:mb-4{
     margin-bottom: 1rem;
   }
@@ -13166,10 +13110,6 @@ in order to display the code of the rich text editor.
     padding-top: 0px;
     padding-bottom: 0px;
   }
-  .lg\:py-10{
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
   .lg\:pb-\[3rem\]{
     padding-bottom: 3rem;
   }
@@ -13203,16 +13143,9 @@ in order to display the code of the rich text editor.
   .xl\:col-span-9{
     grid-column: span 9 / span 9;
   }
-  .xl\:m-10{
-    margin: 2.5rem;
-  }
   .xl\:mx-0{
     margin-left: 0px;
     margin-right: 0px;
-  }
-  .xl\:mx-10{
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
   }
   .xl\:flex{
     display: flex;
@@ -13250,9 +13183,5 @@ in order to display the code of the rich text editor.
   .xl\:px-0{
     padding-left: 0px;
     padding-right: 0px;
-  }
-  .xl\:py-10{
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
   }
 }

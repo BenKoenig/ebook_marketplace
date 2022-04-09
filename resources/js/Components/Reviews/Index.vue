@@ -49,17 +49,8 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                 </li>
             </ul>
 
-            <div class="md:grid grid-cols-12 items-center flex flex-col justify-center gap-y-4">
-                <div class="col-span-3">
-                    <CustomLink routeme="dashboard"  msg="Leave a review" init_background-color="#FDB383" init_text-color="#000" init_hoverColor="#FFC7A2" />
-                </div>
-
-
-                <div class="col-span-6 mx-auto">
+            <div class="flex justify-center">
                     <pagination class="mt-6" :links="reviews.links" />
-                </div>
-
-
             </div>
 
         </div>
