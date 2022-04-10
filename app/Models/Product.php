@@ -73,16 +73,19 @@ class Product extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function purchases()
+
+
+
+
+    public function orders()
     {
-        return $this->hasMany(Purchase::class);
+        return $this->hasMany(Order::class);
     }
 
-
-
-
-
-
+    static function detail($id)
+    {
+        return self::find($id)->toArray();
+    }
 
 
 

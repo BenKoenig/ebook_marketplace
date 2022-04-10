@@ -4,19 +4,21 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
-class PurchaseFactory extends Factory
+class OrderFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function definition()
     {
+        // == https://laravel.com/docs/8.x/database-testing#defining-model-factories
+
+        // == https://github.com/fzaninotto/Faker
+
         return [
             'user_id' => function() {
                 return User::all()->random();
@@ -28,4 +30,6 @@ class PurchaseFactory extends Factory
             'updated_at' => $this->faker->dateTimeBetween('2020-04-03', '2022-02-07'),
         ];
     }
+
+
 }

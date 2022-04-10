@@ -54,15 +54,35 @@ class User extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
+
+/*    public function findProducts(i) {
+        $user = User::find(i);
+
+        foreach ($user->products as $product) {
+
+            return $product;
+
+        }
+    }*/
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
 
-    public function purchases()
+    protected function firstname(): Attribute
     {
-        return $this->hasMany(Purchase::class);
+        return Attribute::make(
+            get: fn ($value) => ucfirst($value),
+        );
     }
+
 
 
 }

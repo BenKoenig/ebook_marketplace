@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase extends Model
+class Order extends Model
 {
     use \Laravel\Sanctum\HasApiTokens, \Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,5 +25,7 @@ class Purchase extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
@@ -35,9 +36,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Welcome', [
 
+
+
+
+        return Inertia::render('Welcome', [
             'products' => Product::with('user')->get()->where('is_featured', true),
+
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
@@ -220,13 +225,29 @@ class ProductController extends Controller
         $user = \auth()->user();
 
 
-        $productIds = DB::select('SELECT * FROM purchases WHERE user_id = ?', [$user->id]);
+/*        $p = Product::with('order')->get();*/
 
-/*        $products = DB::select('SELECT * FROM products WHERE id = ?', [$user->id]);*/
+
+/*        $productIds = DB::select('SELECT * FROM orders WHERE user_id = ?', [$user->id]);*/
+
+
+/*        $products = DB:select('SELECT * FROM products WHERE ')*/
+
+
+        $products = DB::select('SELECT products.id, products.name, products.cover, products.epub
+            FROM products
+            LEFT JOIN orders
+            ON orders.product_id = products.id
+            LEFT JOIN users
+            ON orders.user_id = ?
+            WHERE users.id = ?', [$user->id, $user->id]);
+
+
 
         return Inertia::render('Products/Library', [
             'user' => \auth()->user(),
-            'products' => $productIds,
+            'products' => $products,
+
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);

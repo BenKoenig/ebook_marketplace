@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PurchaseSeeder extends Seeder
+class OrderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class PurchaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Purchase::factory(150)->create();
+        \App\Models\Order::factory(150)->create();
     }
 }
