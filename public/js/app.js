@@ -26194,7 +26194,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
-var URL_EPUB = "http://benjamins-macbook-pro.local:5757";
+var URL_EPUB = "http://lv.test";
 var __default__ = {
   name: "Reader",
   components: {
@@ -26202,13 +26202,12 @@ var __default__ = {
   },
   data: function data() {
     return {
-      epub: "".concat(URL_EPUB, "/assets/pg67651-images.epub"),
+      epub: "".concat(URL_EPUB, "/epubs/0Pfn4iy0HYsJbrkR7PyesiBlQUUoDOSsWMUf8CnI.epub"),
       newEpub: [],
       show: false,
       book: {},
       rendition: {},
       chapter: "",
-      toc: [],
       coverUrl: ""
     };
   },
@@ -27606,7 +27605,7 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = {
   key: "product.product_id",
-  "class": "relative"
+  "class": "relative flex flex-col border-[1px] border-black rounded-lg"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -27617,15 +27616,23 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_5 = ["src", "alt"];
+var _hoisted_6 = {
+  "class": "mx-2 py-3"
+};
+var _hoisted_7 = {
+  "class": "text-lg md:text-xl leading-5 font-bold"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.products, function (product) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: product.cover,
       alt: product.name,
-      "class": ""
+      "class": "mx-1 mt-1 rounded-lg"
     }, null, 8
     /* PROPS */
-    , _hoisted_5)]);
+    , _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <p class=\"text-black h-10 items-center flex rounded-lg font-medium text-lg w-fit focus:outline-none border-[1px] border-black focus:ring-4 focus:black text-sm px-5 \">Read</p>")])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])]);
@@ -29381,7 +29388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "pt-12"
+  "class": "flex justify-center pt-10"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -29392,8 +29399,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["canLogin", "canRegister"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Headline"], {
-    "first-headline": "Purchased eBooks",
-    "second-headline": "All your eBooks at one place."
+    "first-headline": "Library",
+    "second-headline": "Purchased eBooks"
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Library"], {
     products: $props.products
   }, null, 8

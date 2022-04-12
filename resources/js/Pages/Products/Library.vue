@@ -18,12 +18,12 @@ defineProps({
     <Head title="Welcome" />
 
     <Nav :canLogin="canLogin" :canRegister="canRegister"/>
-    <div class="pt-12">
-        <Headline first-headline="Purchased eBooks" second-headline="All your eBooks at one place."></Headline>
+    <div class="flex justify-center pt-10">
+        <Headline first-headline="Library" second-headline="Purchased eBooks"></Headline>
 
     </div>
 
-    <Library :products="products" />
+    <Library  :products="products" />
     <Footer class="py-[3.5rem] md:py-[7rem]"/>
 
 

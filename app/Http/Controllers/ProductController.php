@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Review;
+use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -134,21 +136,30 @@ class ProductController extends Controller
 
 
 
-
-
-
-
     public function getPubliclyStorgeFile($filename)
     {
+        $full_path = Storage::path('public/epubs/'. $filename);
+        $base64 = base64_encode(Storage::get($filename));
+        $file = Storage::get($full_path);
+        $image_data = 'data:'.mime_content_type($full_path) . ';base64,' . $base64;
 
-        $path = storage_path('app/public/upload/'. $filename);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $image_data);
+        return $response;
+    }
 
-        if (!File::exists($path)) {
-            abort(404);
-        }
 
-        $file = File::get($path);
-        $type = File::mimeType($path);
+
+
+    public function d($filename)
+    {
+
+        $path = storage_path('app/public/covers/'. $filename);
+
+
+
+        $file = Storage::get($path);
+        $type = Storage::mimeType($path);
 
         $response = Response::make($file, 200);
 
@@ -221,37 +232,7 @@ class ProductController extends Controller
     }*/
 
 
-    public function library() {
-        $user = \auth()->user();
 
-
-/*        $p = Product::with('order')->get();*/
-
-
-/*        $productIds = DB::select('SELECT * FROM orders WHERE user_id = ?', [$user->id]);*/
-
-
-/*        $products = DB:select('SELECT * FROM products WHERE ')*/
-
-
-        $products = DB::select('SELECT products.id, products.name, products.cover, products.epub
-            FROM products
-            LEFT JOIN orders
-            ON orders.product_id = products.id
-            LEFT JOIN users
-            ON orders.user_id = ?
-            WHERE users.id = ?', [$user->id, $user->id]);
-
-
-
-        return Inertia::render('Products/Library', [
-            'user' => \auth()->user(),
-            'products' => $products,
-
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-        ]);
-    }
 
 
     public function discover()

@@ -31,7 +31,7 @@ import Nav from "@/Components/Structure/NavigationComponent";
 
 
 
-const URL_EPUB = "http://benjamins-macbook-pro.local:5757";
+const URL_EPUB = "http://lv.test";
 export default {
   name: "Reader",
 
@@ -40,13 +40,12 @@ export default {
   },
   data() {
     return {
-      epub: `${URL_EPUB}/assets/pg67651-images.epub`,
+      epub: `${URL_EPUB}/epubs/0Pfn4iy0HYsJbrkR7PyesiBlQUUoDOSsWMUf8CnI.epub`,
       newEpub: [],
       show: false,
       book: {},
       rendition: {},
       chapter: "",
-      toc: [],
       coverUrl: "",
     };
   },

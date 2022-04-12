@@ -18,31 +18,11 @@ use Inertia\Inertia;
 |
 */
 
-/*Route::post('/startimport', [ProductController::class, 'startimport']);*/
-
-
 
 Route::get('/', [ProductController::class, 'index', ])->name('home');
 
 
 Route::inertia('/reader', 'Reader');
-
-/*Route::get('/reader', function () {
-    return Inertia::render('Reader', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-    ]) ;
-})->name('discover');*/
-
-/*Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-        'products' => Product::with('user')->get()->where('is_featured', true)
-    ]);
-});*/
 
 
 
@@ -57,74 +37,23 @@ Route::post('/products', [ProductController::class, 'store'])->name('products.st
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 
-Route::get('/library', [ProductController::class, 'library'])->middleware(['auth', 'verified'])->name('library');
+Route::get('/library', [\App\Http\Controllers\LibraryController::class, 'index'])->middleware(['auth', 'verified'])->name('library');
 
 
 
 
-// Route::post('/products', function() {
-//     $attributes = Request::validate([
-//         'name' => 'required',
-//         'description' => 'required',
-//         'snippet' => 'required',
-//     ]);
-
-//     Product::create($attributes);
-
-//     return redirect('/');
-// });
+Route::get('epubs/{filename}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');
 
 
-Route::get('image/{filename}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');
-
-
-/*Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'foo' => 'bar',
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('home');*/
 
 
 
 
 Route::get('/discover', [ProductController::class, 'discover'])->name('discover');
 
-/*
-Route::get('/discover', function () {
-    return Inertia::render('Discover', [
-        'foo' => 'bar',
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]) ;
-})->name('discover');*/
-
-// Route::get('/discover', function () {
-//     return Inertia::render('Discover') ;
-// })->name('discover');
-
-
-// Route::get('/productPage', function () {
-//     return Inertia::render('ProductPage', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,x
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
 
 
 Route::get('/@{user}/{slug}', [ProductController::class, 'show'])->name('products.show');
-
-
-// Route::get('/products/{id}', function () {
-//     return Inertia::render('Products/Show') ;
-// })->name('products.show');
 
 
 Route::get('/dashboard', function () {
