@@ -62,7 +62,7 @@ export default {
         })
 
         function submit() {
-            Inertia.post('/reviews/' , form, {
+                Inertia.post('/reviews/' , form, {
                 forceFormData: true,
             })
         }

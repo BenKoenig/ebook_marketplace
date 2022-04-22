@@ -21,6 +21,8 @@ use Inertia\Inertia;
 /* Home page*/
 Route::get('/', [ProductController::class, 'index', ])->name('home');
 
+
+
 /* Create a product*/
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
@@ -43,7 +45,10 @@ Route::get('/create/success', [ProductController::class, 'createSuccess'])->midd
 Route::get('/e/{slug}', [ProductController::class, 'show'])->name('products.show');
 
 /* Individual product page */
-Route::get('/e/{slug}/checkout', [CheckoutController::class, 'index'])->name('products.checkout');
+Route::get('/e/{slug}/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+/* Create a product*/
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 /* ePub file direct links */
 Route::get('epubs/{id}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');

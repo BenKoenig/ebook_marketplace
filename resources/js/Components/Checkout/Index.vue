@@ -6,6 +6,14 @@
         </div>
 
         <div>
+            <form @submit.prevent="submit">
+<!--                <Button :type="submit">Pay</Button>-->
+
+
+                <button type="submit" class="rounded-lg text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+
+            </form>
+
         </div>
 
 
@@ -14,7 +22,30 @@
 </template>
 
 <script>
+/*import {Inertia} from "@inertiajs/inertia";*/
+
+import { reactive } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
+
 export default {
-    props: ['product']
+    props: ['product'],
+
+
+
+    setup () {
+        const form = reactive({
+            user_id: null,
+
+        })
+
+        function submit() {
+            Inertia.post(`/checkout/` , form, {
+                forceFormData: true,
+            })
+        }
+
+        return { form, submit }
+    },
+
 }
 </script>

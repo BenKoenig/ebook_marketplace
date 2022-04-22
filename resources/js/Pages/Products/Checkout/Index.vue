@@ -12,8 +12,6 @@ defineProps({
 
 <template>
 
-
-
     <Head title="Checkout" />
 
     <NavigationComponent :canLogin="canLogin" :canRegister="canRegister"/>
