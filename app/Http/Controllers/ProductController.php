@@ -245,43 +245,8 @@ class ProductController extends Controller
 
         ]);
     }
-
-
-
-
-
-
-
-
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
- /*   public function index(Request $request)
-    {*/
-        // == https://laravel.com/docs/8.x/queries
-
-        /*$featuredProducts = Product::query()->featured()->with('user')->paginate(12);
-        return Inertia::render('Welcome', [
-            'featuredProducts' => $featuredProducts
-        ]);*/
-
-
-
-
-
-
-
-/*    }*/
 
 

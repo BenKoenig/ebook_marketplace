@@ -44,7 +44,7 @@
 </template>
 <script>
 import Headline from "@/Partials/Headline";
-import MdProductCard from "@/Partials/Cards/MdProductCard";
+import MdProductCard from "@/Partials/ProductCard";
 export default {
     components: {MdProductCard, Headline},
     props: ['product'],

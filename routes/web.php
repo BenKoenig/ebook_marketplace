@@ -4,6 +4,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\EpubFileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -51,7 +52,7 @@ Route::get('/e/{slug}/checkout', [CheckoutController::class, 'index'])->name('ch
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 /* ePub file direct links */
-Route::get('epubs/{id}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');
+Route::get('epubs/{id}', [EpubFileController::class,'index'])->name('image.displayImage');
 
 /* Uses ePub file content to display eBook */
 Route::get('/read/{slug}', [ReaderController::class, 'index'])->name('reader');

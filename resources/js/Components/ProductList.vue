@@ -29,7 +29,7 @@
 
 
 <script>
-import MdProductCard from "../Partials/Cards/MdProductCard";
+import MdProductCard from "../Partials/ProductCard";
 import Headline from "@/Partials/Headline";
 
 

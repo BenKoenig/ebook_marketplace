@@ -24,7 +24,7 @@ import {Link} from '@inertiajs/inertia-vue3';
 
 
 <script>
-import YellowBtn from "../YellowBtn";
+import YellowBtn from "./YellowBtn";
 import CustomLink from "@/Partials/CustomLink";
 export default {
     name: 'MdProductCard',
