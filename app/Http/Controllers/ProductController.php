@@ -24,14 +24,6 @@ use Illuminate\Foundation\Application;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
-
 
     /**
      * @return \Inertia\Response
@@ -127,49 +119,6 @@ class ProductController extends Controller
 
     }
 
-    public function getPubliclyStorgeFile($id)
-    {
-        /* Get the logged-in user */
-        $user = \auth()->user();
-
-        $product = Product::where('id', '=', $id)->firstOrFail();
-
-        $filename = $product->epub;
-
-        return response()->download(Storage::path('public/' . $filename));
-    }
-
-
-
-
-    public function d($id)
-    {
-        /* Get the logged-in user */
-        $user = \auth()->user();
-
-        $product = Product::where('id', '=', $id)->firstOrFail();
-
-        $filename = $product->epub;
-
-        $full_path = Storage::path('public/'. $filename);
-
-        $base64 = base64_encode(Storage::get($filename));
-
-        $file = Storage::get($full_path);
-
-
-        $image_data = 'data:'.mime_content_type($full_path) . ';base64,' . $base64;
-
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $image_data);
-        return $response;
-    }
-
-
-
-
-
-
 
     public function show($slug, Request $request)
     {
@@ -213,37 +162,6 @@ class ProductController extends Controller
             'canRegister' => Route::has('register'),
         ));
 
-
-    }
-
-
-/*    public function startimport(Request $request) {
-        return response()->json(['data' => $request->importfile]);
-    }*/
-
-
-
-
-
-    public function discover()
-    {
-        return Inertia::render('Discover', [
-            'foo' => 'bar',
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-            //'product' => Product::inRandomOrder()->with('user')->first(),
-
-            //https://laracasts.com/discuss/channels/laravel/how-can-i-display-3-posts-in-slider-for-whole-day-and-changes-on-next-day-randomly-in-laravel-55
-
-            'product' => Cache::remember('randProduct', 60*24, function () {
-                return Product::inRandomOrder()->with('user')->first();
-
-                //return Product::inRandomOrder()->take(3)->get();
-            })
-
-        ]);
     }
 }
 

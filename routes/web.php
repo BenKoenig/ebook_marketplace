@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\EpubFileController;
@@ -34,7 +35,7 @@ Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store
 Route::get('/library', [\App\Http\Controllers\LibraryController::class, 'index'])->middleware(['auth', 'verified'])->name('library');
 
 /* Product Pages*/
-Route::get('/discover', [ProductController::class, 'discover'])->name('discover');
+Route::get('/discover', [DiscoverController::class, 'index'])->name('discover');
 
 /* Create Product Page */
 Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
