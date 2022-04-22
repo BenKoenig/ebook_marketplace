@@ -23,8 +23,9 @@ class LibraryController extends Controller
         /* Get the logged-in user */
         $user = \auth()->user();
 
+
         /* Get the purchased products from the logged-in user */
-        $products = DB::select('SELECT products.id, products.name, products.cover, products.epub
+        $products = DB::select('SELECT products.id, products.name, products.cover, products.epub, products.slug
             FROM products
             LEFT JOIN orders
             ON orders.product_id = products.id

@@ -5,16 +5,15 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <template>
 
-<!--
-    <tr v-for="review in reviews.data" :key="review.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
-        <td class="border-t">
-            <p>{{ review.title }}</p>
-        </td>
+    <!--
+        <tr v-for="review in reviews.data" :key="review.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+            <td class="border-t">
+                <p>{{ review.title }}</p>
+            </td>
 
-    </tr>
-    <pagination class="mt-6" :links="reviews.links" />
--->
-
+        </tr>
+        <pagination class="mt-6" :links="reviews.links" />
+    -->
 
 
 
@@ -50,7 +49,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
             </ul>
 
             <div class="flex justify-center">
-                    <pagination class="mt-6" :links="reviews.links" />
+                <pagination class="mt-6" :links="reviews.links" />
             </div>
 
         </div>

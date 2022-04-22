@@ -17,9 +17,6 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 // == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
 
 
-
-
-
 class ReviewController extends Controller
 {
 

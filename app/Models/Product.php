@@ -40,9 +40,7 @@ class Product extends Authenticatable
         return ucfirst($value);
     }*/
 
-    public static function where(string $string, string $string1)
-    {
-    }
+
 
     public static function find($slug, string $string)
     {
@@ -86,8 +84,6 @@ class Product extends Authenticatable
     {
         return self::find($id)->toArray();
     }
-
-
 
 
 

@@ -18,18 +18,18 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
 
                 <!-- Displays book cover -->
-                <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >
+                    <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >
 
 
-                <div class="flex gap-1">
+                    <div class="flex gap-1">
 
-                    <!-- Link to reviews -->
-<!--                    <Link :href="route('dashboard')" class="bg-white border-[1px] border-black text-lg flex w-full h-10 justify-center items-center rounded-lg">
-                        Reviews
-                    </Link>-->
+                        <!-- Link to reviews -->
+                        <!--                    <Link :href="route('dashboard')" class="bg-white border-[1px] border-black text-lg flex w-full h-10 justify-center items-center rounded-lg">
+                                                Reviews
+                                            </Link>-->
 
                     <!-- Link to buy -->
-                    <Link :href="route('dashboard')" class="bg-yellow-100 border-[1px] border-black text-lg flex w-full h-10 justify-center items-center rounded-lg">
+                    <Link href="/" class="bg-yellow-100 border-[1px] border-black text-lg flex w-full h-10 justify-center items-center rounded-lg">
                         Buy
                     </Link>
 

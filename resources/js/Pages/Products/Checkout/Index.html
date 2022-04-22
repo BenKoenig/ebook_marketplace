@@ -1,0 +1,21 @@
+
+<template>
+
+    <NavigationComponent />
+
+    <div class="flex justify-center pt-10">
+        <Headline first-headline="Library" second-headline="Purchased eBooks"></Headline>
+    </div>
+
+    <FooterComponent class="py-[3.5rem] md:py-[7rem]" ></FooterComponent>
+
+</template>
+
+<script>
+    import FooterComponent from "@/Components/Structure/FooterComponent";
+    import Headline from "@/Partials/Headline";
+    import NavigationComponent from "@/Components/Structure/NavigationComponent";
+    export default {
+        components: {NavigationComponent, Headline, FooterComponent}
+    }
+</script>

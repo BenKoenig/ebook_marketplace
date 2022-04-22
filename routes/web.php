@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use Illuminate\Foundation\Application;
@@ -18,43 +19,35 @@ use Inertia\Inertia;
 |
 */
 
-
+/* Home page*/
 Route::get('/', [ProductController::class, 'index', ])->name('home');
 
-
-Route::inertia('/reader', 'Reader');
-
-
-
-Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
-
-Route::get('/create/success', [ProductController::class, 'createSuccess'])->middleware(['auth', 'verified'])->name('products.createSuccess');
-
-/*Route::get('/create/success', 'Products/Create/Success')->name('products.create.success');*/
-
+/* Create a product*/
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
+/* Create a review*/
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
-
+/* Purchased eBooks from the user */
 Route::get('/library', [\App\Http\Controllers\LibraryController::class, 'index'])->middleware(['auth', 'verified'])->name('library');
 
-
-
-
-Route::get('epubs/{filename}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');
-
-
-
-
-
-
+/* Product Pages*/
 Route::get('/discover', [ProductController::class, 'discover'])->name('discover');
 
+/* Create Product Page */
+Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
 
+/* Product create success page*/
+Route::get('/create/success', [ProductController::class, 'createSuccess'])->middleware(['auth', 'verified'])->name('products.createSuccess');
 
-Route::get('/@{user}/{slug}', [ProductController::class, 'show'])->name('products.show');
+/* Individual product page */
+Route::get('/e/{slug}', [ProductController::class, 'show'])->name('products.show');
 
+/* ePub file direct links */
+Route::get('epubs/{id}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');
+
+/* Uses ePub file content to display eBook */
+Route::get('/read/{slug}', [ReaderController::class, 'index'])->name('reader');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
