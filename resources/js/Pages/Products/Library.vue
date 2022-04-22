@@ -1,8 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Nav from "@/Components/Structure/NavigationComponent";
+import Nav from "@/Components/Structure/Nav";
 import Library from "@/Components/Products/Library";
-import Footer from "@/Components/Structure/FooterComponent";
+import Footer from "@/Components/Structure/Footer";
 import Headline from "@/Partials/Headline";
 
 defineProps({

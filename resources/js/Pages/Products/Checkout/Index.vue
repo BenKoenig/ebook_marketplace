@@ -24,10 +24,10 @@ defineProps({
 
 <script >
 
-import FooterComponent from "@/Components/Structure/FooterComponent";
+import FooterComponent from "@/Components/Structure/Footer";
 import Headline from "@/Partials/Headline";
-import Checkout from "@/Components/Checkout/Index";
-import NavigationComponent from "@/Components/Structure/NavigationComponent";
+import Checkout from "@/Components/Checkout/Checkout";
+import NavigationComponent from "@/Components/Structure/Nav";
 export default {
     components: {NavigationComponent, Headline, FooterComponent}
 }

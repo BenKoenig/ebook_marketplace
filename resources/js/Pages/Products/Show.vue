@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import FooterComponent from "@/Components/Structure/FooterComponent";
+import FooterComponent from "@/Components/Structure/Footer";
 import Create from "@/Components/Reviews/Create";
 
 
@@ -33,7 +33,7 @@ defineProps({
 import ProductDetail from "@/Components/Products";
 import CreateReview from "@/Components/Reviews/Create";
 import Show from "@/Components/Reviews";
-import Nav from "@/Components/Structure/NavigationComponent";
+import Nav from "@/Components/Structure/Nav";
 
 
 

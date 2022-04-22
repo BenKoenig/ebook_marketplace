@@ -31,12 +31,12 @@ defineProps({
 
 <script>
 import { Head } from '@inertiajs/inertia-vue3'
-import Nav from "@/Components/Structure/NavigationComponent";
-import Hero from "@/Components/Index/HeroComponent";
-import Banner from "@/Components/Index/BannerComponent";
+import Nav from "@/Components/Structure/Nav";
+import Hero from "@/Components/Index/Hero";
+import Banner from "@/Components/Index/Banner";
 import FeaturedProducts from "@/Components/Products/Featured";
-import Steps from "@/Components/Index/StepsComponent";
-import Footer from "@/Components/Structure/FooterComponent";
+import Steps from "@/Components/Index/Steps";
+import Footer from "@/Components/Structure/Footer";
 
 
 export default {

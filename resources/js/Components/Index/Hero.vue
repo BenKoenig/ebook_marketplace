@@ -17,7 +17,7 @@
 
 <script>
 import CustomLink from "@/Partials/CustomLink";
-import NavigationComponent from "@/Components/Structure/NavigationComponent";
+import NavigationComponent from "@/Components/Structure/Nav";
 export default {
     components: {NavigationComponent, CustomLink}
 }

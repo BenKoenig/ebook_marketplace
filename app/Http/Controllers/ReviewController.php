@@ -26,11 +26,20 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        /* the id of the product, user wants to review*/
+        $product_id = $request->session()->get('store_product');
 
-        $userHasReviewed = DB::select('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]);
+        /* the id of logged in user */
+        $user_id = Auth::user()->id;
 
+        /* Checks if user has already left a review for this product */
+        $userHasReviewed = DB::select('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [$user_id, $request->session()->get('store_product')]);
 
-        if(!$userHasReviewed){
+        /* checks if user owns the product */
+        $userOwnsProduct = DB::select('SELECT * FROM orders where user_id = ? AND product_id = ?', [$user_id, $product_id]);
+
+        /* makes sure user hasn't already left a review and owns the product */
+        if(!$userHasReviewed && $userOwnsProduct){
             $request->validate([
                 'title' => ['required', 'max:100'],
                 'review' => ['required', 'max:50000'],
@@ -41,15 +50,12 @@ class ReviewController extends Controller
                 'title' => $request->input('title'),
                 'review' => $request->input('review'),
                 'rating' => $request->input('rating'),
-                'product_id' => $request->session()->get('store_product'),
-                'user_id' => Auth::user()->id
+                'product_id' => $product_id,
+                'user_id' => $user_id
             ]);
             return redirect('/');
         } else {
             abort("403");
         }
-
-
     }
-
 }

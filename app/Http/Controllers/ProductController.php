@@ -173,8 +173,6 @@ class ProductController extends Controller
 
     public function show($slug, Request $request)
     {
-
-
         /*Convert slug to id*/
         $product_id = DB::select('SELECT id FROM products WHERE slug = ?', [$slug]);
         /*Convert Object to array*/
@@ -182,12 +180,7 @@ class ProductController extends Controller
         /*Convert array to string*/
         $product_id = implode(" ",$product_id);
 
-
-
-
-
         $request->session()->put('store_product', $product_id);
-
 
         $reviews = Review::query()
             ->with('user')
@@ -202,14 +195,6 @@ class ProductController extends Controller
                 'product_id' => $review->product_id,
                 'user_id' => $review->user_id,
             ]);
-
-
-/*        $i = 0;
-        foreach ($reviews->items() as $item) {
-            $i += $item["rating"];
-            dd($i);
-        }
-        exit();*/
 
         $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
 

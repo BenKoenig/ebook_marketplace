@@ -61,9 +61,9 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 
 
-import NavigationComponent from "@/Components/Structure/NavigationComponent";
+import NavigationComponent from "@/Components/Structure/Nav";
 import CustomLink from "@/Partials/CustomLink";
-import Pagination from '@/Shared/Pagination'
+import Pagination from '@/Partials/Pagination'
 
 
 
