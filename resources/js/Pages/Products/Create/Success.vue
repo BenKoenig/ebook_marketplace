@@ -2,7 +2,6 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Nav from "@/Components/Structure/NavigationComponent";
 import Footer from "@/Components/Structure/FooterComponent";
-import CreateForm from "@/Components/Products/Create/Create";
 import SuccessComponent from "@/Components/Products/Create/Success";
 
 

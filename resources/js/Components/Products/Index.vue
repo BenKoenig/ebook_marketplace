@@ -20,7 +20,6 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                 <!-- Displays book cover -->
                     <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >
 
-
                     <div class="flex gap-1">
 
                         <!-- Link to reviews -->
@@ -29,7 +28,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                                             </Link>-->
 
                     <!-- Link to buy -->
-                    <Link href="/" class="bg-yellow-100 border-[1px] border-black text-lg flex w-full h-10 justify-center items-center rounded-lg">
+                    <Link :href="'/e/' + product.slug + '/checkout'" class="bg-yellow-100 border-[1px] border-black text-lg flex w-full h-10 justify-center items-center rounded-lg">
                         Buy
                     </Link>
 

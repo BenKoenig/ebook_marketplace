@@ -962,14 +962,14 @@ input:checked + .toggle-bg{
 .mr-1{
   margin-right: 0.25rem;
 }
+.mb-2{
+  margin-bottom: 0.5rem;
+}
 .mb-3{
   margin-bottom: 0.75rem;
 }
 .-mb-3{
   margin-bottom: -0.75rem;
-}
-.mb-2{
-  margin-bottom: 0.5rem;
 }
 .mb-7{
   margin-bottom: 1.75rem;
@@ -1148,6 +1148,9 @@ input:checked + .toggle-bg{
 }
 .max-w-\[13rem\]{
   max-width: 13rem;
+}
+.max-w-sm{
+  max-width: 24rem;
 }
 .max-w-2xl{
   max-width: 42rem;
@@ -1498,6 +1501,10 @@ input:checked + .toggle-bg{
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
+.bg-beige-4{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 248 243 / var(--tw-bg-opacity));
+}
 .bg-bluu-3{
   --tw-bg-opacity: 1;
   background-color: rgb(241 246 254 / var(--tw-bg-opacity));
@@ -1505,10 +1512,6 @@ input:checked + .toggle-bg{
 .bg-beige-5{
   --tw-bg-opacity: 1;
   background-color: rgb(236 235 226 / var(--tw-bg-opacity));
-}
-.bg-beige-4{
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 248 243 / var(--tw-bg-opacity));
 }
 .bg-yellow-100{
   --tw-bg-opacity: 1;
@@ -1571,6 +1574,9 @@ input:checked + .toggle-bg{
 }
 .p-10{
   padding: 2.5rem;
+}
+.p-5{
+  padding: 1.25rem;
 }
 .p-2\.5{
   padding: 0.625rem;

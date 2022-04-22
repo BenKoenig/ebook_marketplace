@@ -14,8 +14,6 @@
                 <p class="text-gray-400">Author</p>
                 <p class="text-lg mb-2 leading-[1.3rem] ">@{{authorName}}</p>
                 <CustomLink msg="Read about it" init_background-color="#FDB383" init_text-color="#000" init_hoverColor="#FFC7A2" />
-
-
             </div>
         </div>
     </div>

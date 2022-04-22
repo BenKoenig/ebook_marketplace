@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
-use App\Models\Product;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -42,6 +41,9 @@ Route::get('/create/success', [ProductController::class, 'createSuccess'])->midd
 
 /* Individual product page */
 Route::get('/e/{slug}', [ProductController::class, 'show'])->name('products.show');
+
+/* Individual product page */
+Route::get('/e/{slug}/checkout', [CheckoutController::class, 'index'])->name('products.checkout');
 
 /* ePub file direct links */
 Route::get('epubs/{id}', [ProductController::class,'getPubliclyStorgeFile'])->name('image.displayImage');

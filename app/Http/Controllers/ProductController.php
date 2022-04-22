@@ -38,13 +38,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-
-
-
         return Inertia::render('Welcome', [
             'products' => Product::with('user')->get()->where('is_featured', true),
-
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
