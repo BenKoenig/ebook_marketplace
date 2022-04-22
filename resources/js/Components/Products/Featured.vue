@@ -5,7 +5,7 @@
 
         <div class="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:mx-0  max-w-8xl mx-auto gap-2  w-full px-2 xl:px-0">
             <div v-for="product in products" :key="product.id">
-                <MdProductCard  v-bind:title="product.name"  v-bind:authorName="product.user.username" v-bind:coverUrl="product.cover"  />
+                <MdProductCard  v-bind:title="product.name"  v-bind:authorName="product.user.username" v-bind:coverUrl="product.cover" v-bind:slug="product.slug" />
             </div>
         </div>
     </div>

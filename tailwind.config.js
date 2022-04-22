@@ -28,6 +28,7 @@ module.exports = {
                 'beige-5': '#ecebe2',
                 'beige-4': '#f9f8f3',
                 'bluu-3': '#f1f6fe',
+                'orange-5': '#FDB383',
             }
         },
     },
