@@ -1042,6 +1042,9 @@ input:checked + .toggle-bg{
   height: -moz-fit-content;
   height: fit-content;
 }
+.h-full{
+  height: 100%;
+}
 .h-12{
   height: 3rem;
 }
@@ -1050,9 +1053,6 @@ input:checked + .toggle-bg{
 }
 .h-\[0\.25rem\]{
   height: 0.25rem;
-}
-.h-full{
-  height: 100%;
 }
 .h-\[3\.3rem\]{
   height: 3.3rem;
@@ -1104,6 +1104,9 @@ input:checked + .toggle-bg{
   width: -moz-fit-content;
   width: fit-content;
 }
+.w-36{
+  width: 9rem;
+}
 .w-16{
   width: 4rem;
 }
@@ -1128,9 +1131,6 @@ input:checked + .toggle-bg{
 .w-1\/2{
   width: 50%;
 }
-.w-36{
-  width: 9rem;
-}
 .max-w-xl{
   max-width: 36rem;
 }
@@ -1152,14 +1152,8 @@ input:checked + .toggle-bg{
 .max-w-\[13rem\]{
   max-width: 13rem;
 }
-.max-w-sm{
-  max-width: 24rem;
-}
 .max-w-2xl{
   max-width: 42rem;
-}
-.max-w-3xl{
-  max-width: 48rem;
 }
 .max-w-4xl{
   max-width: 56rem;
@@ -1296,13 +1290,6 @@ input:checked + .toggle-bg{
 .gap-y-6{
   row-gap: 1.5rem;
 }
-.gap-x-16{
-  -moz-column-gap: 4rem;
-       column-gap: 4rem;
-}
-.gap-y-5{
-  row-gap: 1.25rem;
-}
 .gap-y-3{
   row-gap: 0.75rem;
 }
@@ -1401,6 +1388,9 @@ input:checked + .toggle-bg{
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
+.rounded-br-lg{
+  border-bottom-right-radius: 0.5rem;
+}
 .rounded-tl-lg{
   border-top-left-radius: 0.5rem;
 }
@@ -1409,9 +1399,6 @@ input:checked + .toggle-bg{
 }
 .rounded-bl-lg{
   border-bottom-left-radius: 0.5rem;
-}
-.rounded-br-lg{
-  border-bottom-right-radius: 0.5rem;
 }
 .border{
   border-width: 1px;
@@ -1504,29 +1491,29 @@ input:checked + .toggle-bg{
   --tw-bg-opacity: 1;
   background-color: rgb(253 246 178 / var(--tw-bg-opacity));
 }
+.bg-beige-5{
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 235 226 / var(--tw-bg-opacity));
+}
+.bg-orange-5{
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 179 131 / var(--tw-bg-opacity));
+}
 .bg-beige-4{
   --tw-bg-opacity: 1;
   background-color: rgb(249 248 243 / var(--tw-bg-opacity));
-}
-.bg-blue-700{
-  --tw-bg-opacity: 1;
-  background-color: rgb(26 86 219 / var(--tw-bg-opacity));
 }
 .bg-bluu-3{
   --tw-bg-opacity: 1;
   background-color: rgb(241 246 254 / var(--tw-bg-opacity));
 }
-.bg-beige-5{
+.bg-blue-700{
   --tw-bg-opacity: 1;
-  background-color: rgb(236 235 226 / var(--tw-bg-opacity));
+  background-color: rgb(26 86 219 / var(--tw-bg-opacity));
 }
 .bg-black{
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-.bg-orange-5{
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 179 131 / var(--tw-bg-opacity));
 }
 .bg-gray-50{
   --tw-bg-opacity: 1;
@@ -1563,6 +1550,9 @@ input:checked + .toggle-bg{
 }
 .bg-grandcanyon{
   background-image: url(/images/grandcanyon.png?d175fc47a1f2538c677e11b519208b4d);
+}
+.bg-hills-mobile{
+  background-image: url(/images/hills-mobile.svg?be75487bca0983ffc44f7bd789357c02);
 }
 .bg-cover{
   background-size: cover;
@@ -1650,17 +1640,21 @@ input:checked + .toggle-bg{
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
-.py-2\.5{
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-}
 .py-5{
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
+.py-20{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
 .py-10{
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+.py-2\.5{
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 .py-7{
   padding-top: 1.75rem;
@@ -1699,9 +1693,6 @@ input:checked + .toggle-bg{
 }
 .pb-\[2rem\]{
   padding-bottom: 2rem;
-}
-.pb-10{
-  padding-bottom: 2.5rem;
 }
 .pt-\[3rem\]{
   padding-top: 3rem;
@@ -1795,11 +1786,11 @@ input:checked + .toggle-bg{
 .leading-tight{
   line-height: 1.25;
 }
-.leading-\[1\.4rem\]{
-  line-height: 1.4rem;
-}
 .leading-\[1\.3rem\]{
   line-height: 1.3rem;
+}
+.leading-\[1\.4rem\]{
+  line-height: 1.4rem;
 }
 .leading-6{
   line-height: 1.5rem;
@@ -1857,6 +1848,10 @@ input:checked + .toggle-bg{
 .text-red-600{
   --tw-text-opacity: 1;
   color: rgb(224 36 36 / var(--tw-text-opacity));
+}
+.text-gray-8{
+  --tw-text-opacity: 1;
+  color: rgb(74 74 74 / var(--tw-text-opacity));
 }
 .text-white{
   --tw-text-opacity: 1;
@@ -12430,11 +12425,10 @@ in order to display the code of the rich text editor.
   font-family: "Outfit", sans-serif;
 }
 
-.gradient-bg {
-  background: #ffefac;
-  background: linear-gradient(180deg, #ffefac 0%, white 52%);
-}
-
+/*.gradient-bg {
+    background: rgb(255,239,172);
+    background: linear-gradient(180deg, rgba(255,239,172,1) 0%, rgba(255,255,255,1) 52%);
+}*/
 .perspective-r {
   transform: perspective(75em) rotateY(-10deg);
 }
@@ -12627,14 +12621,14 @@ in order to display the code of the rich text editor.
   --tw-ring-color: rgb(205 219 254 / var(--tw-ring-opacity));
 }
 
-.focus\:ring-blue-300:focus{
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(164 202 254 / var(--tw-ring-opacity));
-}
-
 .focus\:ring-blue-500:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(63 131 248 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-blue-300:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(164 202 254 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-gray-200:focus{
@@ -13004,10 +12998,6 @@ in order to display the code of the rich text editor.
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
-  .md\:text-6xl{
-    font-size: 3.75rem;
-    line-height: 1;
-  }
   .md\:text-5xl{
     font-size: 3rem;
     line-height: 1;
@@ -13034,9 +13024,6 @@ in order to display the code of the rich text editor.
   }
   .md\:font-medium{
     font-weight: 500;
-  }
-  .md\:leading-\[4rem\]{
-    line-height: 4rem;
   }
   .md\:hover\:bg-transparent:hover{
     background-color: transparent;
@@ -13124,9 +13111,6 @@ in order to display the code of the rich text editor.
   .lg\:pb-\[3rem\]{
     padding-bottom: 3rem;
   }
-  .lg\:pb-0{
-    padding-bottom: 0px;
-  }
   .lg\:pb-\[5rem\]{
     padding-bottom: 5rem;
   }
@@ -13138,6 +13122,9 @@ in order to display the code of the rich text editor.
   }
   .lg\:pt-4{
     padding-top: 1rem;
+  }
+  .lg\:pb-0{
+    padding-bottom: 0px;
   }
 }
 

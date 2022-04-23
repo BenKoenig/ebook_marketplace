@@ -20,6 +20,8 @@ module.exports = {
                 'tablet': "url('../assets/tablet.jpg')",
                 'happy_guy': "url('../assets/happy_guy.jpg')",
                 'grandcanyon': "url('../assets/grandcanyon.png')",
+                'blob': "url('../assets/blob.svg')",
+                'hills-mobile': "url('../assets/hills-mobile.svg')",
             },
             maxWidth: {
                 '8xl': '85rem',
@@ -28,8 +30,9 @@ module.exports = {
                 'beige-5': '#ecebe2',
                 'beige-4': '#f9f8f3',
                 'bluu-3': '#f1f6fe',
-                'orange-5': '#FDB383',
-            }
+                'gray-8': '#4A4A4A',
+                'gray-5': '#B2B2B2',
+                'orange-5': '#FDB383',            }
         },
     },
     plugins: [

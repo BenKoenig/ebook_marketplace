@@ -15,10 +15,9 @@ defineProps({
 
 
 <template>
-    <div class="gradient-bg">
-        <Nav :canLogin="canLogin" :canRegister="canRegister"  />
-        <Hero class="py-[2.5rem] md:py-[6rem]" />
-    </div>
+    <Nav :canLogin="canLogin" :canRegister="canRegister"  />
+
+    <Hero class="py-[2.5rem] md:py-[6rem]" />
 
 
 
