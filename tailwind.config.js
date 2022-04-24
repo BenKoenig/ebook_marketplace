@@ -22,6 +22,7 @@ module.exports = {
                 'grandcanyon': "url('../assets/grandcanyon.png')",
                 'blob': "url('../assets/blob.svg')",
                 'hills-mobile': "url('../assets/hills-mobile.svg')",
+                'hills-desktop': "url('../assets/hills-desktop.svg')",
             },
             maxWidth: {
                 '8xl': '85rem',
@@ -32,7 +33,9 @@ module.exports = {
                 'bluu-3': '#f1f6fe',
                 'gray-8': '#4A4A4A',
                 'gray-5': '#B2B2B2',
-                'orange-5': '#FDB383',            }
+                'orange-5': '#FDB383',
+                'yellow-5': '#FFEC84',
+            }
         },
     },
     plugins: [
