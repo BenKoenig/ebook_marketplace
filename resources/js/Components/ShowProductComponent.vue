@@ -67,9 +67,7 @@
                 </li>
             </ul>
 
-            <div class="flex justify-center">
-                <pagination class="mt-6" :links="reviews.links" />
-            </div>
+            <Pagination class="mt-3" :links="reviews.links" />
 
         </div>
 
@@ -78,6 +76,7 @@
 
 <script setup>
 import CustomLink from "@/Shared/CustomLink";
+import Pagination from "@/Shared/Pagination";
 
 const props = defineProps({
     product: Object,
