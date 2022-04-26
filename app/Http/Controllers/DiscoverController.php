@@ -18,16 +18,11 @@ class DiscoverController extends Controller
     public function index()
     {
         return Inertia::render('Discover', [
-            'foo' => 'bar',
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-
 
             'product' => Cache::remember('randProduct', 60*24, function () {
                 return Product::inRandomOrder()->with('user')->first();
-
             })
 
         ]);

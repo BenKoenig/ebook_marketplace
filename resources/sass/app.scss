@@ -8,8 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700&display=swap');
 @import 'unreset';
-
-
+@import './helpers/padding';
 
 @font-face {
     font-family: Array;
@@ -18,27 +17,14 @@
 
 * {
     font-family: 'Outfit', sans-serif;
-
 }
 
 
-
-/*.gradient-bg {
-    background: rgb(255,239,172);
-    background: linear-gradient(180deg, rgba(255,239,172,1) 0%, rgba(255,255,255,1) 52%);
-}*/
-
-.perspective-r {
-    transform:
-        perspective(75em)
-        rotateY(-10deg);
+body {
+    @apply bg-slate-100;
 }
-.perspective-l {
-    transform:
-        perspective(75em)
-        rotateY(-15deg);
 
-}
+
 
 .pattern-1{
     background-color: #ffffff;

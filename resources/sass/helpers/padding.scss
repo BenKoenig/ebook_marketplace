@@ -1,0 +1,17 @@
+/* Default Padding */
+.component--padding {
+    @apply p-[1rem];
+    @apply md:p-[2rem];
+}
+
+/* Default Padding Top */
+.component--paddingTop {
+    @apply pt-[1rem];
+    @apply md:pt-[2rem];
+}
+
+/* Default Padding Bottom*/
+.component--paddingBottom {
+    @apply pb-[1rem];
+    @apply md:pb-[2rem];
+}

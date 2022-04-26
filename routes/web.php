@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\ReaderController;
@@ -21,8 +22,7 @@ use Inertia\Inertia;
 */
 
 /* Home page*/
-Route::get('/', [ProductController::class, 'index', ])->name('home');
-
+Route::get('/', [HomeController::class, 'index', ])->name('home');
 
 
 /* Create a product*/
@@ -44,7 +44,7 @@ Route::get('/create', [ProductController::class, 'create'])->middleware(['auth',
 Route::get('/create/success', [ProductController::class, 'createSuccess'])->middleware(['auth', 'verified'])->name('products.createSuccess');
 
 /* Individual product page */
-Route::get('/e/{slug}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/e/{slug}', [ProductController::class, 'show'])->name('show');
 
 /* Individual product page */
 Route::get('/e/{slug}/checkout', [CheckoutController::class, 'index'])->name('checkout.index');

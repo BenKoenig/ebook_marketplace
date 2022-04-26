@@ -30,13 +30,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Welcome', [
-            'products' => Product::with('user')->get()->where('is_featured', true),
+        return Inertia::render('Home', [
+            'featuredProducts' => Product::with('user')->get()->where('is_featured', true),
+            'products' => Product::with('user')->get(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-
         ]);
 
     }
@@ -147,14 +145,12 @@ class ProductController extends Controller
 
         $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
 
-
         $userHasReviewed = auth::user() ? DB::select('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]) : 0;
-
 
         if(!$product) {
             abort("404");
         }
-        return Inertia::render('Products/Show', array(
+        return Inertia::render('Show', array(
             'reviews' => $reviews,
             'product' => $product,
             'userHasReviewed' => $userHasReviewed,
