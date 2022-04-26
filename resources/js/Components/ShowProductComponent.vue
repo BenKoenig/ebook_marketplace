@@ -1,6 +1,86 @@
 <template>
+    <div>
+        <div class="sm:grid sm:grid-cols-12 gap-x-5 md:gap-x-7 lg:gap-x-9 xl:gap-x-11 rounded-lg component--padding">
+            <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
 
+                <!-- Displays book cover -->
+                <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >
+
+                <div class="flex gap-1">
+                    <CustomLink :href="'/e/' + product.slug + '/checkout'" text="Buy"></CustomLink>
+                </div>
+            </div>
+
+            <div class="w-full sm:col-span-7 xl:col-span-9  sm:order-1">
+                <h1 class="text-2xl md:text-5xl font-bold pb-7 pt-8 sm:pt-0">{{ product.name }}</h1>
+
+                <div class="xl:flex grid   items-center   mb-7 flex-wrap">
+                    <p class="text-xl py-3 px-4 border-[1px] border-black h-full flex items-center bg-yellow-100 rounded-tl-lg rounded-tr-lg xl:rounded-tr-none xl:rounded-l-lg"><!--<i class="fa-solid fa-tag"></i>-->$ {{ product.price }}</p>
+                    <p class="text-xl py-3 px-4  border-[1px] border-black  h-full flex items-center ">@{{ product.user.username }}</p>
+                    <div class="flex py-3 px-4 gap-x-1 items-center  text-xl   border-[1px] border-black h-full">
+                        <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> {{ reviews.total }} Reviews </p>
+                    </div>
+                    <p class="text-xl py-3 px-4 border-[1px] h-full border-black flex items-center rounded-bl-lg rounded-br-lg xl:rounded-bl-none  xl:rounded-r-lg gap-x-2  "><i class="fa-solid fa-cart-shopping"></i> 53 Purchases</p>
+
+                </div>
+                <p class="pb-7">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+                <div class="pattern-2 border-[1px] border-black py-10 px-2 md:px-10  relative  rounded-lg">
+                    <svg class="absolute  -bottom-6 right-1 lg:right-4 h-[4.5rem]" viewBox="0.5 1 323.42 115"><text transform="translate(1 92)" fill="#fff" stroke="#000" font-size="91" font-family="Outfit" font-weight="700"><tspan x="0" y="0">Snippet</tspan></text></svg>
+                    <p class="text-xl md:text-3xl ">“{{product.snippet}}“</p>
+
+                </div>
+                <div class="unreset">
+                    <p  v-html="product.description">
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="component--padding ">
+            <h3 class="font-bold text-3xl md:text-4xl ">Heres what buyers have to say.</h3>
+            <ul id="reviews" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1  py-7">
+                <li v-for="review in reviews.data" :key="review.id"  class="bg-white  rounded-lg" >
+                    <div class="bg-yellow-100 border-b-[1px] border-black rounded-t-lg text-center flex items-center gap-x-2 px-2">
+                        <svg class="w-10" viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="80" height="80"><title>Katharine Lee</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#ffad08"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(297 18 18) scale(1)" fill="#73b06f" rx="6"></rect><g transform="translate(3.5 3.5) rotate(7 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
+                        <p>@{{ review.user_id }}</p>
+                        <p> | </p>
+
+                        <div class="flex">
+                            <div v-for="review in review.rating">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="p-2">
+                        <div>
+
+
+                        </div>
+
+                        <p class="text-xl font-bold mb-2">{{ review.title }}</p>
+                        <p class="text-lg">{{ review.review }}</p>
+
+                    </div>
+
+                </li>
+            </ul>
+
+            <div class="flex justify-center">
+                <pagination class="mt-6" :links="reviews.links" />
+            </div>
+
+        </div>
+
+    </div>
 </template>
 
 <script setup>
+import CustomLink from "@/Shared/CustomLink";
+
+const props = defineProps({
+    product: Object,
+    reviews: Object
+});
 </script>

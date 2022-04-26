@@ -1,6 +1,6 @@
 <template>
     <Guest>
-        <ShowProductComponent :product="product" />
+        <ShowProductComponent :product="product" :reviews="reviews" />
     </Guest>
 </template>
 
@@ -12,6 +12,7 @@ import ShowProductComponent from "@/Components/ShowProductComponent";
 
 const props = defineProps({
     product: Object,
+    reviews: Object,
 });
 
 </script>

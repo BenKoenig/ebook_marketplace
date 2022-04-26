@@ -2,9 +2,9 @@
     <div class="bg-beige-400 rounded-2xl component--padding">
         <Headline
             title="See the light"
-            h2="See what's featured"
+            h2="What's featured"
             description="Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis"
-            class="component--paddingBottom"
+            class="component--paddingB"
         />
 
         <!-- start of product list -->
