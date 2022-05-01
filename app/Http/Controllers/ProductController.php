@@ -46,7 +46,7 @@ class ProductController extends Controller
     public function create()
     {
 
-        return Inertia::render('Products/Create/Create', [
+        return Inertia::render('Create', [
             'products' => Product::all(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),

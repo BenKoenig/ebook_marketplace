@@ -1,8 +1,20 @@
 <template>
     <Guest>
         <div class="flex flex-col gap-y-3">
-            <FeaturedProductsComponent :products="featuredProducts"></FeaturedProductsComponent>
+            <ProductListComponent
+                :products="featuredProducts"
+                title="See the light"
+                h2="Featured Ebooks"
+                description="Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis"
+            />
             <RandomProductComponent :product="randomProduct"></RandomProductComponent>
+
+            <ProductListComponent
+                :products="latestProducts"
+                title="What's new?"
+                h2="Recently added Ebooks"
+                description="Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis"
+            />
         </div>
     </Guest>
 </template>
@@ -11,11 +23,12 @@
 <script setup>
 
 import Guest from "@/Layouts/Guest";
-import FeaturedProductsComponent from "@/Components/FeaturedProductsComponent";
 import RandomProductComponent from "@/Components/RandomProductComponent";
+import ProductListComponent from "@/Components/ProductListComponent";
 
 const props = defineProps({
     featuredProducts: Object,
+    latestProducts: Object,
     randomProduct: Object,
 });
 

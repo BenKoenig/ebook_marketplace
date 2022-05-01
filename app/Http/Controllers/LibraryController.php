@@ -35,11 +35,9 @@ class LibraryController extends Controller
 
 
 
-        return Inertia::render('Products/Library', [
+        return Inertia::render('Library', [
             'user' => \auth()->user(),
             'products' => $products,
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
         ]);
     }
 }

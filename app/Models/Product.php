@@ -23,6 +23,7 @@ class Product extends Authenticatable
     protected $fillable = [
         'name',
         'slug',
+        'short_description',
         'description',
         'snippet',
         'price',
@@ -70,9 +71,6 @@ class Product extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
-
-
-
 
 
     public function orders()

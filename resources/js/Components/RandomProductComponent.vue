@@ -1,5 +1,6 @@
 <template>
-    <div class="bg-beige-400 rounded-2xl component--padding">
+    <div class="rand component--padding">
+
 
         <!-- Start of headline - '/Shared/Headline.vue'-->
         <Headline
@@ -11,13 +12,13 @@
         <!-- End of headline -->
 
         <!-- Start of daily feature -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2">
+        <div class="rand__grid">
 
             <!-- Start of snippet card -->
-            <div class="border-2 border-slate-500 bg-slate-200 rounded-2xl p-1 lg:col-span-4 flex items-center relative">
-                <svg class="absolute -top-6 left-1 lg:left-4 h-[3.8rem] md:h-[4.5rem]" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 324.42 115"><text transform="translate(1 92)" fill="#fff" stroke="#000" font-size="91" font-family="Outfit" font-weight="700"><tspan x="0" y="0">Snippet</tspan></text></svg>
+            <div class="rand__grid__item">
+                <svg class="rand__grid__item__svg rand__grid__item__svg--top" viewBox="0 1 324.42 115"><text transform="translate(1 92)" fill="#fff" stroke="#000" font-size="91" font-family="Outfit" font-weight="700"><tspan x="0" y="0">Snippet</tspan></text></svg>
 
-                <p class="text-lg px-2 py-10 md:px-3 md:py-0 lg:px-5">{{ product.snippet }}</p>
+                <p class="rand__grid__item__p">{{ product.snippet }}</p>
             </div>
             <!-- End of snippet card -->
 
@@ -29,10 +30,10 @@
             <!-- End of product card -->
 
             <!-- Start of about card -->
-            <div class="border-2 border-slate-500 bg-slate-200 rounded-2xl p-1  lg:col-span-4 flex items-center relative">
-                <svg class="absolute h-[3.8rem] md:h-[4.5rem] -bottom-6  right-1 lg:right-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 263.08 116"><text transform="translate(1 93)" fill="#fff" stroke="#000" font-size="92" font-family="Outfit" font-weight="700"><tspan x="0" y="0">About</tspan></text></svg>
+            <div class="rand__grid__item">
+                <svg class="rand__grid__item__svg rand__grid__item__svg--bottom" viewBox="0 1 263.08 116"><text transform="translate(1 93)" fill="#fff" stroke="#000" font-size="92" font-family="Outfit" font-weight="700"><tspan x="0" y="0">About</tspan></text></svg>
 
-                <p class="text-lg p-2 py-10 md:px-3 md:py-0 lg:px-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+                <p class="rand__grid__item__p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
             </div>
             <!-- End of about card -->
 
@@ -51,3 +52,58 @@ const props = defineProps({
 });
 
 </script>
+
+<style lang="scss" scoped>
+.rand {
+    @apply bg-beige-400;
+    @apply rounded-2xl;
+
+    &__grid {
+        @apply grid;
+        @apply grid-cols-1;
+        @apply lg:grid-cols-12;
+        @apply gap-2;
+
+        /* Snippet, Product & About Card*/
+        &__item {
+            @apply relative;
+            @apply flex;
+            @apply items-center;
+            @apply border;
+            @apply border-slate-500;
+            @apply bg-white;
+            @apply rounded-2xl;
+            @apply p-1;
+            @apply lg:col-span-4;
+
+            &__p {
+                @apply text-lg;
+                @apply px-2;
+                @apply py-10;
+                @apply md:px-3;
+                @apply md:py-0;
+                @apply lg:px-5;
+            }
+
+            /* SVG */
+            &__svg {
+                @apply absolute;
+                @apply h-[3.8rem];
+                @apply md:h-[4.5rem];
+
+                &--top {
+                    @apply -top-6;
+                    @apply left-1;
+                    @apply lg:left-4;
+                }
+
+                &--bottom {
+                    @apply -bottom-6;
+                    @apply right-1;
+                    @apply lg:right-4;
+                }
+            }
+        }
+    }
+}
+</style>

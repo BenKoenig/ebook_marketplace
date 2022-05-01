@@ -12,9 +12,6 @@ use Inertia\Inertia;
 
 class DiscoverController extends Controller
 {
-
-
-
     public function index()
     {
         return Inertia::render('Discover', [

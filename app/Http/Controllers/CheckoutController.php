@@ -21,9 +21,7 @@ class CheckoutController extends Controller
         session()->put('store_product', $product);
 
 
-        return Inertia::render('Products/Checkout/Index', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+        return Inertia::render('Checkout', [
             'product' => $product,
         ]);
     }
@@ -52,7 +50,7 @@ class CheckoutController extends Controller
             'user_id' => $user->id,
             'product_id' => $product->id,
         ]);
-        return redirect('/library');
+        return redirect('/');
 
         /* Forgets the product information */
         session()->forget('store_product');

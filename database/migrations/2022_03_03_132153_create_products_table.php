@@ -19,13 +19,13 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('name');
+            $table->string('short_description');
             $table->longtext('description');
             $table->string('snippet');
             $table->string('cover');
             $table->string('epub');
-            $table->string('banner');
             $table->float('price');
-            /* $table->float('sale_price'); */
+            $table->float('sale_price');
             $table->boolean('is_featured');
             $table->timestamps();
         });
