@@ -45,4 +45,15 @@ Start the PHP built-in server:
 php artisan serve
 ```
 
-## Documentation
+## About
+
+readme is a marketplace powered by developers.
+eBooks by developers for developers.
+A place for developers to to buy or sell educational eBooks.
+A platform dedicated to making it easier for
+developers to discover eBooks via the featured
+page and increase sales.
+With a beautiful interface, many eReader tools and an outet for developers
+to educate each other, this web app will provide a great user experience.        
+
+                
