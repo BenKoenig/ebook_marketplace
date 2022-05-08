@@ -2,11 +2,11 @@
 
 ## Technologies used
 
--   [Laravel 9.2](https://laravel.com/docs/9.x)
--   [Laravel Breeze](https://laravel.com/docs/9.x/starter-kits#laravel-breeze)
--   [Tailwind](https://tailwindcss.com/)
--   [Vue 3](https://vuejs.org/)
--   [InertiaJs](https://inertiajs.com/)
+-   [Laravel 9.2](https://laravel.com/docs/9.x) :boom:
+-   [Laravel Breeze](https://laravel.com/docs/9.x/starter-kits#laravel-breeze) :dizzy:
+-   [Tailwind](https://tailwindcss.com/) :dash:
+-   [Vue 3](https://vuejs.org/) :green_heart:
+-   [InertiaJs](https://inertiajs.com/) :see_no_evil:
 
 ## Installation
 
