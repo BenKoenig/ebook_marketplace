@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-    <button :type="type" class="btn btn--yellow">
+    <button :type="type" class="btn">
         <slot />
     </button>
 </template>
@@ -23,11 +23,6 @@ defineProps({
     @apply items-center;
     @apply rounded-xl;
     @apply gap-x-2;
-
-    &--yellow {
-        @apply bg-yellow-200;
-        @apply hover:bg-yellow-100;
-        @apply transition-colors;
-    }
+    @apply transition-colors;
 }
 </style>

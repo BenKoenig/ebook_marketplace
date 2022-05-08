@@ -64,7 +64,6 @@ class ProductController extends Controller
             'snippet' => ['required', 'max:1000'],
             'price' => ['required', 'numeric', 'between:0,150'],
             'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg'],
-            'banner' => ['required', 'max:10000', 'mimes:png,jpg,jpeg'],
             'epub' => ['required', 'max:1000000', 'mimes:epub'],
 
         ]);
@@ -74,12 +73,11 @@ class ProductController extends Controller
             'snippet' => $request->input('snippet'),
             'price' => $request->input('price'),
             'cover' => $request->file('cover')->store('covers', 'public'),
-            'banner' => $request->file('banner')->store('banners', 'public'),
             'epub' => $request->file('epub')->store('epubs', 'public'),
             'user_id' => Auth::user()->id
         ]);
         $request->session()->put('store_token', 'value');
-        return redirect('/create/success');
+        return redirect('/');
     }
 
 
@@ -144,7 +142,7 @@ class ProductController extends Controller
 
 
 
-        $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
+        $product = Product::with('user')->get()->where("slug", $slug)->where("is_public", true)->firstOrFail();
 
 
 

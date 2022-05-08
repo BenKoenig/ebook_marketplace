@@ -30,6 +30,7 @@ class ProductFactory extends Factory
             'cover' => 'covers/wZkYeIFj0EvCNNlvRD5fmyrIwS2yK0RfybYlFtbz.jpg',
             'epub' => '9781538745830.epub',
             'is_featured' => false,
+            'is_public' => true,
             'user_id' => function() {
                 return User::all()->random();
             },

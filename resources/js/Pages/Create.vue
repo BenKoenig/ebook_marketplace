@@ -17,6 +17,7 @@ const form = useForm({
     name: '',
     snippet: '',
     cover: '',
+    price: '',
     epub: '',
     description: ''
 });
@@ -41,7 +42,7 @@ const submit = () => {
                 <Headline
                     title="Educate other developers"
                     h1="Sell your Ebook."
-                    description="Enter your email address and we will send you a link to reset your password."
+                    description="Enter everything there is to know about your ebook!"
                 />
             </div>
             <!-- End of headline -->
@@ -116,7 +117,7 @@ const submit = () => {
 
                     <div class="flex items-center justify-end mt-4">
                         <Button  :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                            Email Password Reset Link
+                            Submit
                         </Button>
                     </div>
 

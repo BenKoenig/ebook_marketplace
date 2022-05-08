@@ -29,8 +29,8 @@ class Product extends Authenticatable
         'price',
         'sale_price',
         'is_featured',
+        'is_public',
         'cover',
-        'banner',
         'epub',
         'create_at',
         'updated_at',
@@ -59,7 +59,8 @@ class Product extends Authenticatable
     }
 
     protected $attributes = [
-        'is_featured' => 0
+        'is_featured' => 0,
+        'is_public' => 0
     ];
 
     public function user()

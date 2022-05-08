@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -31,6 +32,12 @@ Route::post('/products', [ProductController::class, 'store'])->name('products.st
 /* Create a review*/
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
+/* Accept a product */
+Route::post('/accept/{id}', [AdminController::class, 'accept'])->name('admin.accept');
+
+/* Reject a product */
+Route::post('/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
+
 /* Purchased eBooks from the user */
 Route::get('/library', [\App\Http\Controllers\LibraryController::class, 'index'])->middleware(['auth', 'verified'])->name('library');
 
@@ -61,5 +68,8 @@ Route::get('/read/{slug}', [ReaderController::class, 'index'])->name('reader');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+/* Admin Page */
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 require __DIR__.'/auth.php';

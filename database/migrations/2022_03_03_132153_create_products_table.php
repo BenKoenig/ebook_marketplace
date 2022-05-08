@@ -27,6 +27,7 @@ return new class extends Migration
             $table->float('price');
             $table->float('sale_price');
             $table->boolean('is_featured');
+            $table->boolean('is_public');
             $table->timestamps();
         });
 
