@@ -1,6 +1,11 @@
 <template>
     <Guest>
+        <Head title="Home" />
+
+
+
         <div class="flex flex-col gap-y-3">
+
             <ProductListComponent
                 :products="featuredProducts"
                 title="See the light"
@@ -15,6 +20,8 @@
                 h2="Recently added Ebooks"
                 description="Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis"
             />
+
+            <GuidelinesCard />
         </div>
     </Guest>
 </template>
@@ -25,6 +32,8 @@
 import Guest from "@/Layouts/Guest";
 import RandomProductComponent from "@/Components/RandomProductComponent";
 import ProductListComponent from "@/Components/ProductListComponent";
+import GuidelinesCard from "@/Shared/GuidelinesCard";
+
 
 const props = defineProps({
     featuredProducts: Object,
@@ -33,3 +42,4 @@ const props = defineProps({
 });
 
 </script>
+

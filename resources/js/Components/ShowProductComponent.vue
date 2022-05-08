@@ -1,5 +1,8 @@
 <template>
     <div>
+
+        <p v-if="userHasPurchased == true">TRUE</p>
+
         <div class="sm:grid sm:grid-cols-12 gap-x-5 md:gap-x-7 lg:gap-x-9 xl:gap-x-11 rounded-lg component--padding bg-beige-400">
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
 
@@ -53,7 +56,7 @@
                 <li v-for="review in reviews.data" :key="review.id"  class="bg-white  rounded-lg" >
                     <div class="bg-yellow-100 border-b-[1px] border-black rounded-t-lg text-center flex items-center gap-x-2 px-2">
                         <svg class="w-10" viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="80" height="80"><title>Katharine Lee</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#ffad08"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(297 18 18) scale(1)" fill="#73b06f" rx="6"></rect><g transform="translate(3.5 3.5) rotate(7 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
-                        <p>@{{ review.user_id }}</p>
+                        <p>@{{ review.user.username }}</p>
                         <p> | </p>
 
                         <div class="flex">
@@ -81,6 +84,38 @@
 
         </div>
 
+        <div v-if="!userHasReviewed.length && userHasPurchased == true" class="component--padding">
+            <h3 class="font-bold text-3xl md:text-4xl  component--paddingB">You have purchased this ebook. Share your experience.</h3>
+
+            <form @submit.prevent="submit"  novalidate>
+                <div class="mb-4">
+                    <Label for="title" value="Title"></Label>
+                    <Input id="title" type="text" class="mt-1 block w-full  " v-model="form.title" required />
+                    <p v-if="errors.title" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.title }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <Label for="review" value="Review"></Label>
+                    <textarea id="review" v-model="form.review" rows="4" class="rounded-lg bg-white border border-slate-500 text-gray-900 text-sm  focus:ring-indigo-200 focus:ring-opacity-50 focus:ring block w-full p-2.5" placeholder="Review this ebook"></textarea>
+                    <p v-if="errors.review" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.review }}</p>
+                </div>
+
+
+                <div class="mb-4">
+                    <Label for="rating" value="Rating"></Label>
+                    <Input id="rating" type="text" class="mt-1 block w-full  " v-model="form.rating" required />
+                    <p v-if="errors.rating" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.rating }}</p>
+                </div>
+
+                <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Submit Review
+                </Button>
+            </form>
+
+
+
+        </div>
+
     </div>
 </template>
 
@@ -88,9 +123,26 @@
 import CustomLink from "@/Shared/CustomLink";
 import Pagination from "@/Shared/Pagination";
 import Headline from "@/Shared/Headline";
+import { useForm } from '@inertiajs/inertia-vue3';
+import Label from "@/Shared/Label";
+import Input from "@/Shared/Input";
+import Button from "@/Shared/Button";
+
 
 const props = defineProps({
     product: Object,
-    reviews: Object
+    reviews: Object,
+    userHasPurchased: Array,
+    userHasReviewed: Array,
+    errors: Object
 });
+
+const form = useForm({
+    title: '',
+    review: '',
+    rating: '',
+});
+const submit = () => {
+    form.post('/reviews');
+};
 </script>

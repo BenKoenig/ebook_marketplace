@@ -28,7 +28,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomFloat(2, 0, 50),
             'sale_price' => '',
             'cover' => 'covers/wZkYeIFj0EvCNNlvRD5fmyrIwS2yK0RfybYlFtbz.jpg',
-            'epub' => 'temp.epub',
+            'epub' => '9781538745830.epub',
             'is_featured' => false,
             'user_id' => function() {
                 return User::all()->random();

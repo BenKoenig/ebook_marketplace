@@ -11,11 +11,11 @@ onMounted(() => {
 </script>
 
 <template>
-    <input class="c" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
+    <input class="input" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
 </template>
 
 <style scoped>
-.c {
+.input {
     @apply border-slate-500;
     @apply focus:border-indigo-300;
     @apply focus:ring;

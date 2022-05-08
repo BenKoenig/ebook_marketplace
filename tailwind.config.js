@@ -12,11 +12,15 @@ module.exports = {
     theme: {
 
         extend: {
+            backgroundImage: {
+                'pattern': "url('../assets/bg/pattern.svg')",
+            },
             maxWidth: {
                 '8xl': '85rem',
             },
             colors: {
                 'beige-400': '#ECEBE2',
+                'beige-600': '#e0dfd3',
             }
         },
     },

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Review;
@@ -33,8 +34,7 @@ class ProductController extends Controller
         return Inertia::render('Home', [
             'featuredProducts' => Product::with('user')->get()->where('is_featured', true),
             'products' => Product::with('user')->get(),
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+
         ]);
 
     }
@@ -48,8 +48,6 @@ class ProductController extends Controller
 
         return Inertia::render('Create', [
             'products' => Product::all(),
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
         ]);
     }
 
@@ -108,8 +106,7 @@ class ProductController extends Controller
             $forget;
             return Inertia::render('Products/Create/Success', [
                 'products' => Product::all(),
-                'canLogin' => Route::has('login'),
-                'canRegister' => Route::has('register'),
+
             ]);
         } else {
             abort('404');
@@ -141,9 +138,21 @@ class ProductController extends Controller
                 'rating' => $review->rating,
                 'product_id' => $review->product_id,
                 'user_id' => $review->user_id,
+                'user' => $review->user
             ]);
 
+
+
+
         $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
+
+
+
+       /* $userHasPurchased = auth::user() ? Order::where('product_id', $product_id)->where('user_id', Auth::user()->id)->get() : true;*/
+/*        $userHasPurchased = auth::user() ? DB::select('SELECT * FROM orders WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]) : 0;*/
+
+        $userHasPurchased = true;
+
 
         $userHasReviewed = auth::user() ? DB::select('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]) : 0;
 
@@ -154,8 +163,7 @@ class ProductController extends Controller
             'reviews' => $reviews,
             'product' => $product,
             'userHasReviewed' => $userHasReviewed,
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+            'userHasPurchased' => $userHasPurchased,
         ));
 
     }

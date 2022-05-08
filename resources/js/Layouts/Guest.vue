@@ -1,6 +1,20 @@
 <template>
     <div class="layout">
 
+
+        <notifications
+            group="foo-css"
+            position="top right"
+            :speed="500"
+        />
+
+<!--        <button
+            class="success"
+            @click="show('foo-css', 'success')"
+        >
+            <i class="icon ion-information-circled" />
+            SUCCESS
+        </button>-->
         <!-- Sticky Sidenav // Desktop -->
         <nav class="layout__desktopNav">
             <ul class="layout__desktopNav__ul">
@@ -26,6 +40,12 @@
                 <li class="layout__desktopNav__ul__li">
                     <Link href="/create" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
                         <i class="fa-solid fa-circle-plus"></i> Sell
+                    </Link>
+                </li>
+
+                <li class="layout__desktopNav__ul__li">
+                    <Link href="/library" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
+                        <i class="fa-solid fa-book-open"></i> Library
                     </Link>
                 </li>
 
@@ -87,11 +107,96 @@
     </div>
 </template>
 
+
+
+
+
+<!--<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    name: 'app',
+    data() {
+        return {
+            id: 0,
+            animation: {
+                enter: {
+                    opacity: [1, 0],
+                    translateX: [0, -300],
+                    scale: [1, 0.2],
+                },
+                leave: {
+                    opacity: 0,
+                    height: 0,
+                },
+            },
+        };
+    },
+    methods: {
+        show(group, type = '') {
+            const text = `
+              This is notification text!
+              <br>
+              Date: ${new Date()}
+            `;
+
+            this.$notify({
+                group,
+                title: `Test ${type} notification #${this.id++}`,
+                text,
+                type,
+                data: {
+                    randomNumber: Math.random(),
+                },
+            });
+        },
+
+        clean(group) {
+            this.$notify({ group, clean: true });
+        },
+    },
+});
+</script>-->
+
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 import CustomLink from "@/Shared/CustomLink";
 import Dropdown from "@/Shared/Dropdown";
 import DropdownLink from "@/Shared/DropdownLink";
+import {notify} from "@kyvg/vue3-notification";
+
+const id = 0;
+const animation =  {
+    enter: {
+        opacity: [1, 0],
+        translateX: [0, -300],
+        scale: [1, 0.2],
+    },
+    leave: {
+        opacity: 0,
+        height: 0,
+    },
+}
+
+function show(group, type = '') {
+    const text = `
+              This is notification text!
+              <br>
+              Date: ${new Date()}
+            `;
+
+    notify({
+        group,
+        title: `Test ${type} notification #${this.id++}`,
+        text,
+        type,
+        data: {
+            randomNumber: Math.random(),
+        },
+    });
+}
+
+
 </script>
 
 <style lang="scss" scoped>
