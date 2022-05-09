@@ -1,11 +1,7 @@
 <template>
     <div>
-        <div v-if="$page.props.flash.success" class="mb-5 pattern-2   text-black">
-            <Notification :message="$page.props.flash.success"></Notification>
-        </div>
-
-        <div v-if="$page.props.flash.warning" class="mb-5 bg-white   text-black">
-            <Notification :message="$page.props.flash.warning"></Notification>
+        <div v-if="$page.props.flash.success" class="mb-5 text-black">
+            <Notification>{{ $page.props.flash.success }}</Notification>
         </div>
 
 
@@ -26,25 +22,21 @@
                         </Link>
                     </li>
 
-                    <li class="layout__desktopNav__ul__li">
-                        <Link href="/login" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
-                            <i class="fa-solid fa-arrow-right-to-bracket w-6"></i> Login
-                        </Link>
-                    </li>
 
-                    <li class="layout__desktopNav__ul__li">
+
+                    <li v-if="$page.props.auth.user" class="layout__desktopNav__ul__li">
                         <Link href="/create" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
                             <i class="fa-solid fa-circle-plus"></i> Sell
                         </Link>
                     </li>
 
-                    <li class="layout__desktopNav__ul__li">
+                    <li v-if="$page.props.auth.user" class="layout__desktopNav__ul__li">
                         <Link href="/library" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
                             <i class="fa-solid fa-book-open"></i> Library
                         </Link>
                     </li>
 
-                    <Dropdown align="left" width="48">
+                    <Dropdown v-if="$page.props.auth.user" align="left" width="48">
                         <template #trigger>
                             <span class="inline-flex rounded-md">
                                 <button type="button" class="text-xl inline-flex items-center  text-sm leading-4  focus:outline-none transition ease-in-out duration-150 gap-x-3">
@@ -66,9 +58,13 @@
                         </template>
                     </Dropdown>
 
+                    <li v-if="!$page.props.auth.user" class="layout__desktopNav__ul__li">
+                        <Link href="/login" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
+                            <i class="fa-solid fa-arrow-right-to-bracket w-6"></i> Login
+                        </Link>
+                    </li>
 
-
-                    <li class="layout__desktopNav__ul__li">
+                    <li v-if="!$page.props.auth.user" class="layout__desktopNav__ul__li">
                         <CustomLink :href="route('register')" text="Register"/>
                     </li>
 
@@ -116,6 +112,7 @@ import CustomLink from "@/Shared/CustomLink";
 import Dropdown from "@/Shared/Dropdown";
 import DropdownLink from "@/Shared/DropdownLink";
 import Notification from "@/Shared/Notification";
+
 
 </script>
 

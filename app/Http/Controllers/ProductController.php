@@ -45,7 +45,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-
         return Inertia::render('Create', [
             'products' => Product::all(),
         ]);
@@ -76,8 +75,6 @@ class ProductController extends Controller
             'epub' => $request->file('epub')->store('epubs', 'public'),
             'user_id' => Auth::user()->id
         ]);
-
-
 
         return redirect('/');
     }

@@ -1,5 +1,5 @@
 <template>
-    <Guest>
+    <Guest :canLogin="canLogin" :canRegister="canRegister">
         <Head title="Home" />
 
 
@@ -39,6 +39,8 @@ const props = defineProps({
     featuredProducts: Object,
     latestProducts: Object,
     randomProduct: Object,
+    canLogin: Boolean,
+    canRegister: Boolean,
 });
 
 </script>
