@@ -3,6 +3,9 @@
 
         <p v-if="userHasPurchased == true">TRUE</p>
 
+        <Notification v-if="product.is_public === 0" class="bg-white border border-black text-black mb-1 text-xl" message="This product is currently under review. Please be patient." :wrench-icon=true></Notification>
+
+
         <div class="sm:grid sm:grid-cols-12 gap-x-5 md:gap-x-7 lg:gap-x-9 xl:gap-x-11 rounded-lg component--padding bg-beige-400">
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
 
@@ -127,6 +130,7 @@ import { useForm } from '@inertiajs/inertia-vue3';
 import Label from "@/Shared/Label";
 import Input from "@/Shared/Input";
 import Button from "@/Shared/Button";
+import Notification from "@/Shared/Notification";
 
 
 const props = defineProps({

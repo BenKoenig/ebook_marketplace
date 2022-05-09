@@ -5,7 +5,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import 'flowbite';
-import Notifications from '@kyvg/vue3-notification';
+
 
 
 
@@ -20,7 +20,6 @@ createInertiaApp({
     setup({ el, app, props, plugin }) {
         return createApp({ render: () => h(app, props) })
             .use(plugin)
-            .use(Notifications)
             .mixin({ methods: { route } })
             .mount(el);
 

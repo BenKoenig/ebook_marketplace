@@ -76,42 +76,11 @@ class ProductController extends Controller
             'epub' => $request->file('epub')->store('epubs', 'public'),
             'user_id' => Auth::user()->id
         ]);
-        $request->session()->put('store_token', 'value');
+
+
+
         return redirect('/');
     }
-
-
-    /**
-     * @param Request $request
-     * @return \Inertia\Response|void
-     */
-    public function createSuccess(Request $request)
-    {
-        /**
-         * Checks session token,
-         * so the user can only access this page if they have successfully created a product
-         */
-        $value = $request->session()->get('store_token');
-
-        /**
-         * Forgets session token,
-         * so the user can't access this page again, once they leave.
-         */
-        $forget = $request->session()->forget('store_token');
-
-
-        if($value) {
-            $forget;
-            return Inertia::render('Products/Create/Success', [
-                'products' => Product::all(),
-
-            ]);
-        } else {
-            abort('404');
-        }
-
-    }
-
 
     public function show($slug, Request $request)
     {
@@ -142,7 +111,7 @@ class ProductController extends Controller
 
 
 
-        $product = Product::with('user')->get()->where("slug", $slug)->where("is_public", true)->firstOrFail();
+        $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
 
 
 
@@ -157,6 +126,17 @@ class ProductController extends Controller
         if(!$product) {
             abort("404");
         }
+
+        /* checks if the product belongs to the author */
+        if(!(Auth::user()->id === $product->user_id)) {
+
+            /* checks if the product is public */
+            if($product->is_public === 0) {
+                abort(403, 'Unauthorized action.');
+            }
+        }
+
+
         return Inertia::render('Show', array(
             'reviews' => $reviews,
             'product' => $product,
