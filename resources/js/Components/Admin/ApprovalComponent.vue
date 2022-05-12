@@ -32,7 +32,8 @@
                 <tbody>
                 <tr v-for="product in products" class="border-b odd:bg-white even:bg-gray-50">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{product.name}}
+                        <Link :href="'/e/' + product.slug">{{product.name}}</Link>
+
                     </th>
                     <td class="px-6 py-4">
                         @{{ product.user.username}}
@@ -62,6 +63,7 @@
 import Headline from "@/Shared/Headline";
 import Button from "@/Shared/Button";
 import {useForm} from "@inertiajs/inertia-vue3";
+import { Link } from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
     products: Object,

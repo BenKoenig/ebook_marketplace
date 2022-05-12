@@ -46,7 +46,7 @@ const props = defineProps({
         @apply lg:grid-cols-2;
         /* Desktop Media Query */
         @apply xl:grid-cols-3;
-        @apply gap-2;
+        @apply gap-4;
     }
 }
 

@@ -29,6 +29,8 @@ Route::get('/', [HomeController::class, 'index', ])->name('home');
 /* Create a product*/
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
+
+
 /* Create a review*/
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
@@ -46,6 +48,9 @@ Route::get('/discover', [DiscoverController::class, 'index'])->name('discover');
 
 /* Create Product Page */
 Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
+
+/* Profile */
+Route::get('/u/{username}', [ProfileController::class, 'index'])->name('profile');
 
 /* Product create success page*/
 Route::get('/create/success', [ProductController::class, 'createSuccess'])->middleware(['auth', 'verified'])->name('products.createSuccess');

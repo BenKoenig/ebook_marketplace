@@ -78,10 +78,10 @@ const submit = () => {
                         <!-- forgot password link -->
                         <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                             Forgot your password?
-                        </Link>
+                        </Link>'
 
                         <!-- Form submit button -->
-                        <Button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <Button class="ml-4 bg-yellow-200" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Log in
                         </Button>
                     </div>

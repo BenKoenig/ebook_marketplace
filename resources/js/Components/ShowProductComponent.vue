@@ -1,27 +1,38 @@
 <template>
     <div>
 
-        <p v-if="userHasPurchased == true">TRUE</p>
 
-        <Notification v-if="product.is_public === 0" class="bg-white border border-black text-black mb-1 text-xl" message="This product is currently under review. Please be patient." :wrench-icon=true></Notification>
-
-
-        <div class="sm:grid sm:grid-cols-12 gap-x-5 md:gap-x-7 lg:gap-x-9 xl:gap-x-11 rounded-lg component--padding bg-beige-400">
+        <div class="sm:grid sm:grid-cols-12 gap-x-5 md:gap-x-7 lg:gap-x-9 xl:gap-x-11 rounded-2xl component--padding bg-beige-400">
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
 
                 <!-- Displays book cover -->
-                <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >
+                <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-2xl" v-bind:alt="product.name + ' cover'" >
 
                 <div class="flex gap-1">
                     <CustomLink
                         :href="'/e/' + product.slug + '/checkout'"
                         text="Buy"
-                        class="w-full"
+                        class="w-full bg-orange-400 hover:bg-orange-300 text-white"
+                        v-if="!userHasPurchased"
                     />
+                    <div class="w-full bg-gray-600 p-2 rounded-2xl" v-if="userHasPurchased">
+                        <p class="text-white text-center pb-1">Ebook is already in your library</p>
+                        <CustomLink
+                            :href="'/read/' + product.slug"
+                            text="Read"
+                            class="w-full bg-yellow-200 "
+                        />
+                    </div>
+
                 </div>
             </div>
 
             <div class="w-full sm:col-span-7 xl:col-span-9  sm:order-1">
+
+                <div v-if="product.is_public === 0" class="bg-white border border-black text-black mb-1 text-xl rounded-lg flex justify-center items-center py-3 px-2 mb-5">
+                    <p>Please be patient while we are reviewing your product. Product ID: <span class="font-bold">#{{ product.id }}</span></p>
+                </div>
+
 
                 <Headline
                     title="Product Overview"
@@ -67,19 +78,11 @@
                                 <i class="fa-solid fa-star"></i>
                             </div>
                         </div>
-
                     </div>
                     <div class="p-2">
-                        <div>
-
-
-                        </div>
-
                         <p class="text-xl font-bold mb-2">{{ review.title }}</p>
                         <p class="text-lg">{{ review.review }}</p>
-
                     </div>
-
                 </li>
             </ul>
 
@@ -87,7 +90,7 @@
 
         </div>
 
-        <div v-if="!userHasReviewed.length && userHasPurchased == true" class="component--padding">
+        <div v-if="!userHasReviewed && userHasPurchased" class="component--padding">
             <h3 class="font-bold text-3xl md:text-4xl  component--paddingB">You have purchased this ebook. Share your experience.</h3>
 
             <form @submit.prevent="submit"  novalidate>
@@ -99,7 +102,7 @@
 
                 <div class="mb-4">
                     <Label for="review" value="Review"></Label>
-                    <textarea id="review" v-model="form.review" rows="4" class="rounded-lg bg-white border border-slate-500 text-gray-900 text-sm  focus:ring-indigo-200 focus:ring-opacity-50 focus:ring block w-full p-2.5" placeholder="Review this ebook"></textarea>
+                    <textarea id="review" v-model="form.review" rows="4" class="rounded-lg bg-white border border-gray-300 text-gray-900 text-sm  focus:ring-indigo-200 focus:ring-opacity-50 focus:ring block w-full p-2.5" placeholder="Review this ebook"></textarea>
                     <p v-if="errors.review" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.review }}</p>
                 </div>
 
@@ -110,7 +113,7 @@
                     <p v-if="errors.rating" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.rating }}</p>
                 </div>
 
-                <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="bg-yellow-200 hover:bg-yellow-100">
                     Submit Review
                 </Button>
             </form>
@@ -136,8 +139,8 @@ import Notification from "@/Shared/Notification";
 const props = defineProps({
     product: Object,
     reviews: Object,
-    userHasPurchased: Array,
-    userHasReviewed: Array,
+    userHasPurchased: Boolean,
+    userHasReviewed: Boolean,
     errors: Object
 });
 

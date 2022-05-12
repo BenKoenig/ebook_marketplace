@@ -36,6 +36,12 @@
                         </Link>
                     </li>
 
+                    <li v-if="$page.props.auth.user && $page.props.auth.user.is_admin" class="layout__desktopNav__ul__li">
+                        <Link href="/admin" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
+                            <i class="fa-solid fa-screwdriver-wrench"></i> Admin
+                        </Link>
+                    </li>
+
                     <Dropdown v-if="$page.props.auth.user" align="left" width="48">
                         <template #trigger>
                             <span class="inline-flex rounded-md">
@@ -57,6 +63,8 @@
 
                         </template>
                     </Dropdown>
+
+
 
                     <li v-if="!$page.props.auth.user" class="layout__desktopNav__ul__li">
                         <Link href="/login" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">

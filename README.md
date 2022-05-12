@@ -13,13 +13,13 @@
 Clone this repository:
 
 ```
-git clone https://github.com/BenKoenig/sae-final-project-22.git
+git clone https://github.com/BenKoenig/ebook_marketplace.git
 ```
 
 Install Laravel and Node dependencies:
 
 ```
-cd sae-final-project-22
+cd ebook_marketplace
 composer install
 npm install
 ```
@@ -29,6 +29,7 @@ Generate Key and run migrations:
 ```
 php artisan key:generate
 php artisan migrate
+php artisan db:seed
 ```
 
 ## Run

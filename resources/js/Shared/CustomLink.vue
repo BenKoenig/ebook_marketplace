@@ -1,24 +1,16 @@
 <template>
-    <Link class="link" :class="bg">{{ text }}</Link>
+    <Link class="link">{{ text }}</Link>
 </template>
 
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
-    bg: {
-        default: 'link--yellow'
-    },
     text: {
         default: 'This is a link'
     }
 });
 
-/*const colorClasses = computed(() => {
-    if (props.bg === 1) {
-        return 'btn--yellow';
-    }
-});*/
 
 </script>
 
@@ -33,10 +25,5 @@ const props = defineProps({
     @apply rounded-xl;
     @apply gap-x-2;
 
-    &--yellow {
-        @apply bg-yellow-200;
-        @apply hover:bg-yellow-100;
-        @apply transition-colors;
-    }
 }
 </style>

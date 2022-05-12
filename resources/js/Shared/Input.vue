@@ -16,7 +16,7 @@ onMounted(() => {
 
 <style scoped>
 .input {
-    @apply border-slate-500;
+    @apply border-gray-300;
     @apply focus:border-indigo-300;
     @apply focus:ring;
     @apply focus:ring-indigo-200;

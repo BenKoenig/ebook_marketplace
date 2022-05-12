@@ -1,6 +1,6 @@
 <template>
     <Guest>
-        <ShowProductComponent :product="product" :reviews="reviews" :usereHasPurchased="userHasPurchased" :userHasReviewed="userHasReviewed" :errors="errors" />
+        <ShowProductComponent :product="product" :reviews="reviews" :userHasPurchased="userHasPurchased" :userHasReviewed="userHasReviewed" :errors="errors" />
     </Guest>
 </template>
 
@@ -13,8 +13,8 @@ import ShowProductComponent from "@/Components/ShowProductComponent";
 const props = defineProps({
     product: Object,
     reviews: Object,
-    userHasPurchased: Object,
-    userHasReviewed: Array,
+    userHasPurchased: Boolean,
+    userHasReviewed: Boolean,
     errors: Object,
 });
 

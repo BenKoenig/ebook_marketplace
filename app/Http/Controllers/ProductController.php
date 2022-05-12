@@ -76,23 +76,23 @@ class ProductController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        return redirect('/');
+        return redirect('/')->with('success', 'You have successfully submitted your ebook. Please be patient while we review it.');
     }
 
     public function show($slug, Request $request)
     {
-        /*Convert slug to id*/
-        $product_id = DB::select('SELECT id FROM products WHERE slug = ?', [$slug]);
-        /*Convert Object to array*/
-        $product_id = @json_decode(json_encode($product_id[0]), true);
-        /*Convert array to string*/
-        $product_id = implode(" ",$product_id);
+        $user = Auth::user();
+        $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
+        /* checks if user has purchased the product */
+        $userHasPurchased = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->first();
+        /* checks if user has reviewd the product */
+        $userHasReviewed = $user && (bool)Review::where('user_id', $user->id)->where('product_id', $product->id)->first();
 
-        $request->session()->put('store_product', $product_id);
+        $request->session()->put('store_product', $product->id);
 
         $reviews = Review::query()
             ->with('user')
-            ->where('product_id', '=', $product_id)
+            ->where('product_id', '=', $product->id)
             ->paginate(6)
             ->withQueryString()
             ->through(fn ($review) => [
@@ -105,34 +105,12 @@ class ProductController extends Controller
                 'user' => $review->user
             ]);
 
-
-
-
-        $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
-
-
-
-       /* $userHasPurchased = auth::user() ? Order::where('product_id', $product_id)->where('user_id', Auth::user()->id)->get() : true;*/
-/*        $userHasPurchased = auth::user() ? DB::select('SELECT * FROM orders WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]) : 0;*/
-
-        $userHasPurchased = true;
-
-
-        $userHasReviewed = auth::user() ? DB::select('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [auth::user()->id, $request->session()->get('store_product')]) : 0;
-
-        if(!$product) {
-            abort("404");
+        /* aborts if user doesn't have access to products, that are hidden to the public */
+        if(!$product->is_public && (!($user->is_admin) && !($user->id === $product->user_id)) ) {
+            abort(403, 'Unauthorized action.');
+        } else if (!$product) {
+            abort("404", "Product doesn't exist.");
         }
-
-        /* checks if the product belongs to the author */
-        if(!(Auth::user()->id === $product->user_id)) {
-
-            /* checks if the product is public */
-            if($product->is_public === 0) {
-                abort(403, 'Unauthorized action.');
-            }
-        }
-
 
         return Inertia::render('Show', array(
             'reviews' => $reviews,
@@ -143,7 +121,3 @@ class ProductController extends Controller
 
     }
 }
-
-
-
-
