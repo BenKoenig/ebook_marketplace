@@ -3,13 +3,18 @@
         <Head title="Library" />
 
         <!-- start of library -->
-        <div class="mx-auto component--padding">
-            <div class="grid grid-cols-2 xl:grid-cols-3  2xl:grid-cols-5 gap-1 xl:gap-3 px-1">
-                <div v-for="product in products" key="product.product_id" class="relative flex flex-col border-[1px] border-black rounded-lg ">
+        <div class="library component--padding">
+            <Headline title="All your ebooks at once place"
+                      h2="Library"
+                      description="View your purchased ebooks"
+                      class="component--paddingB"
+            />
+            <div class="library__grid">
+                <div v-for="product in products" key="product.product_id" class="library__grid__item">
                     <Link :href="'/read/' + product.slug"  class="absolute w-full h-full z-20"></Link>
                     <img :src="product.cover" :alt="product.name" class="mx-1 mt-1 rounded-lg">
                     <div class="mx-2 py-3">
-                        <h3 class="text-lg md:text-xl leading-5 font-bold">{{ product.name }}</h3>
+                        <h3 class="leading-5 tracking-wide">{{ product.name }}</h3>
                     </div>
                 </div>
 
@@ -24,6 +29,7 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 import Guest from "@/Layouts/Guest";
+import Headline from "@/Shared/Headline";
 
 const props = defineProps({
     user: Object,
@@ -31,3 +37,36 @@ const props = defineProps({
 });
 
 </script>
+
+<style lang="scss" scoped>
+.library {
+    @apply bg-beige-400;
+    @apply rounded-2xl;
+
+    &__grid {
+        @apply grid;
+        @apply grid-cols-2;
+        @apply xl:grid-cols-3;
+        @apply 2xl:grid-cols-5;
+        @apply gap-1;
+        @apply xl:gap-3;
+
+        &__item {
+            @apply relative;
+            @apply flex;
+            @apply flex-col;
+            @apply border;
+            @apply border-black;
+            @apply rounded-lg;
+            @apply bg-white;
+            @apply box-border;
+            transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+            box-shadow: 5px 5px 0px 0.01px #000000;
+            @apply hover:shadow-none;
+            @apply hover:border-4;
+        }
+    }
+
+}
+
+</style>

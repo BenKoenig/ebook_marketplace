@@ -18,7 +18,7 @@ class ReviewFactory extends Factory
         return [
             'title' => $this->faker->text,
             'review' => $this->faker->text,
-            'rating' => $this->faker->numberBetween($min = 0, $max = 5),
+            'rating' => $this->faker->numberBetween($min = 1, $max = 5),
             'user_id' => function() {
                 return User::all()->random();
             },

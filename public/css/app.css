@@ -1065,6 +1065,9 @@ input:checked + .toggle-bg{
 .max-w-lg{
   max-width: 32rem;
 }
+.max-w-3xl{
+  max-width: 48rem;
+}
 .flex-1{
   flex: 1 1 0%;
 }
@@ -1522,6 +1525,9 @@ input:checked + .toggle-bg{
 }
 .tracking-wide{
   letter-spacing: 0.025em;
+}
+.tracking-widest{
+  letter-spacing: 0.1em;
 }
 .text-gray-500{
   --tw-text-opacity: 1;

@@ -28,7 +28,7 @@ const props = defineProps({
     @apply border-black;
     @apply relative;
     box-shadow: 3px 3px 0px 0.1px #000000;
-    @apply transition-all;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     &:hover {
         box-shadow: none;
     }

@@ -30,7 +30,6 @@ const submit = () => {
     <Guest>
         <Head title="Sell your Ebook" />
 
-
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
@@ -38,7 +37,7 @@ const submit = () => {
         <div class="flex flex-col gap-y-3 mt-3">
 
             <!-- Start of headline -->
-            <div class="bg-beige-400 component--padding rounded-2xl">
+            <div class="bg-pattern bg-cover component--padding rounded-2xl">
                 <Headline
                     title="Educate other developers"
                     h1="Sell your Ebook."
@@ -53,7 +52,7 @@ const submit = () => {
                 <!-- Validation errors -->
                 <ValidationErrors class="mb-4" />
 
-                <form @submit.prevent="submit" class="max-w-lg mx-auto">
+                <form @submit.prevent="submit" class="max-w-3xl mx-auto">
 
                     <div class="mb-4">
                         <Label for="name" value="Book Title" />
@@ -116,7 +115,7 @@ const submit = () => {
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <Button  :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <Button  :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="bg-yellow-200 hover:bg-yellow-100">
                             Submit
                         </Button>
                     </div>
