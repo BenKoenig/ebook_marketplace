@@ -10,7 +10,7 @@
         <CustomLink
             text="View guidelines"
             href="/"
-            class="w-fit"
+            class="w-fit bg-yellow-200"
         />
         </div>
 </template>

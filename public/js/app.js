@@ -26810,15 +26810,15 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = ["src", "alt"];
 var _hoisted_4 = {
-  "class": "flex gap-1"
+  "class": "flex gap-1 mb-7 md:mb-0"
 };
 var _hoisted_5 = {
   key: 1,
-  "class": "w-full bg-gray-600 p-2 rounded-2xl"
+  "class": "w-full bg-white p-2 rounded-2xl"
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-white text-center pb-1"
+  "class": "text-black text-center pb-1"
 }, "Ebook is already in your library", -1
 /* HOISTED */
 );
@@ -28998,7 +28998,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CustomLink"], {
     text: "View guidelines",
     href: "/",
-    "class": "w-fit"
+    "class": "w-fit bg-yellow-200"
   })]);
 }
 
@@ -29245,23 +29245,32 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "card"
+  "class": "card border border-black"
 };
 var _hoisted_2 = {
   "class": "w-full rounded-2xl relative overflow-hidden scale-[1.03]"
 };
 var _hoisted_3 = ["src", "alt"];
 var _hoisted_4 = {
-  "class": "absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 rounded-tl-2xl rounded-tr-2xl whitespace-nowrap"
+  "class": "absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 rounded-tl-2xl rounded-tr-2xl whitespace-nowrap tracking-wide"
 };
-var _hoisted_5 = {
+
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fa-solid fa-dollar-sign"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_6 = {
   "class": "font-bold text-lg sm:text-2xl pb-3"
 };
-var _hoisted_6 = {
+var _hoisted_7 = {
   "class": "pb-2 hidden sm:block"
 };
 
-var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-md tracking-wider text-gray-500 leading-3"
   }, "Author", -1
@@ -29276,16 +29285,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "w-full rounded-2xl"
   }, null, 8
   /* PROPS */
-  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, "$ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedNumber($props.product.price)), 1
+  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedNumber($props.product.price)), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Book Title, Author, Link to product page "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Book Title, Author, Link to product page "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "@" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.user.username), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "@" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.user.username), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CustomLink"], {
     href: '/e/' + $props.product.slug,
     text: "Read about it",
-    "class": "w-full bg-yellow-200 hover:bg-yellow-100"
+    "class": "w-full bg-yellow-200"
   }, null, 8
   /* PROPS */
   , ["href"])])]);
@@ -31501,7 +31510,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".c[data-v-62afce1b] {\n  --tw-bg-opacity: 1;\n  background-color: rgb(236 235 226 / var(--tw-bg-opacity));\n  border-radius: 1rem\n}\n.c__grid[data-v-62afce1b] {\n  display: grid;\n  /* Mobile Media Query */\n  grid-template-columns: repeat(1, minmax(0, 1fr))\n  /* Tablet Media Query */\n}\n@media (min-width: 1024px) {\n.c__grid[data-v-62afce1b] {\n    grid-template-columns: repeat(2, minmax(0, 1fr))\n}\n}\n.c__grid[data-v-62afce1b] {\n  /* Desktop Media Query */\n}\n@media (min-width: 1280px) {\n.c__grid[data-v-62afce1b] {\n    grid-template-columns: repeat(3, minmax(0, 1fr))\n}\n}\n.c__grid[data-v-62afce1b] {\n  gap: 1rem\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".c[data-v-62afce1b] {\n  border-radius: 1rem\n}\n.c__grid[data-v-62afce1b] {\n  display: grid;\n  /* Mobile Media Query */\n  grid-template-columns: repeat(1, minmax(0, 1fr))\n  /* Tablet Media Query */\n}\n@media (min-width: 1024px) {\n.c__grid[data-v-62afce1b] {\n    grid-template-columns: repeat(2, minmax(0, 1fr))\n}\n}\n.c__grid[data-v-62afce1b] {\n  /* Desktop Media Query */\n}\n@media (min-width: 1280px) {\n.c__grid[data-v-62afce1b] {\n    grid-template-columns: repeat(3, minmax(0, 1fr))\n}\n}\n.c__grid[data-v-62afce1b] {\n  gap: 1rem\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31597,7 +31606,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".link[data-v-572539e7] {\n    display: flex;\n    padding-left: 1.25rem;\n    padding-right: 1.25rem;\n    height: 2.5rem;\n    justify-content: center;\n    align-items: center;\n    border-radius: 0.75rem;\n    -moz-column-gap: 0.5rem;\n         column-gap: 0.5rem\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".link[data-v-572539e7] {\n  display: flex;\n  padding-left: 1.25rem;\n  padding-right: 1.25rem;\n  height: 2.5rem;\n  justify-content: center;\n  align-items: center;\n  border-radius: 0.75rem;\n  -moz-column-gap: 0.5rem;\n       column-gap: 0.5rem;\n  border-width: 1px;\n  --tw-border-opacity: 1;\n  border-color: rgb(0 0 0 / var(--tw-border-opacity));\n  position: relative;\n  box-shadow: 3px 3px 0px 0.1px #000000;\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n}\n.link[data-v-572539e7]:hover {\n  box-shadow: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31645,7 +31654,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card[data-v-53c23a73] {--tw-bg-opacity: 1;background-color: rgb(255 255 255 / var(--tw-bg-opacity));border-radius: 1rem;display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));-moz-column-gap: 0.5rem;column-gap: 0.5rem\n}@media (min-width: 768px) {.card[data-v-53c23a73] {-moz-column-gap: 0.75rem;column-gap: 0.75rem\n}\n}.card[data-v-53c23a73] {align-items: center;padding-right: 0.5rem\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card[data-v-53c23a73] {border-radius: 1rem;position: relative;display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));-moz-column-gap: 0.5rem;column-gap: 0.5rem\n}@media (min-width: 768px) {.card[data-v-53c23a73] {-moz-column-gap: 0.75rem;column-gap: 0.75rem\n}\n}.card[data-v-53c23a73] {align-items: center;padding-right: 0.5rem\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

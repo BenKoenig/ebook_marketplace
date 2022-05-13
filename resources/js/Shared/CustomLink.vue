@@ -24,6 +24,13 @@ const props = defineProps({
     @apply items-center;
     @apply rounded-xl;
     @apply gap-x-2;
-
+    @apply border;
+    @apply border-black;
+    @apply relative;
+    box-shadow: 3px 3px 0px 0.1px #000000;
+    @apply transition-all;
+    &:hover {
+        box-shadow: none;
+    }
 }
 </style>

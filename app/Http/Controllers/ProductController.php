@@ -88,8 +88,6 @@ class ProductController extends Controller
         /* checks if user has reviewd the product */
         $userHasReviewed = $user && (bool)Review::where('user_id', $user->id)->where('product_id', $product->id)->first();
 
-        $request->session()->put('store_product', $product->id);
-
         $reviews = Review::query()
             ->with('user')
             ->where('product_id', '=', $product->id)

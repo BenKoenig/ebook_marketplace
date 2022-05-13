@@ -8,15 +8,15 @@
                 <!-- Displays book cover -->
                 <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-2xl" v-bind:alt="product.name + ' cover'" >
 
-                <div class="flex gap-1">
+                <div class="flex gap-1 mb-7 md:mb-0">
                     <CustomLink
                         :href="'/e/' + product.slug + '/checkout'"
                         text="Buy"
                         class="w-full bg-orange-400 hover:bg-orange-300 text-white"
                         v-if="!userHasPurchased"
                     />
-                    <div class="w-full bg-gray-600 p-2 rounded-2xl" v-if="userHasPurchased">
-                        <p class="text-white text-center pb-1">Ebook is already in your library</p>
+                    <div class="w-full bg-white p-2 rounded-2xl" v-if="userHasPurchased">
+                        <p class="text-black text-center pb-1">Ebook is already in your library</p>
                         <CustomLink
                             :href="'/read/' + product.slug"
                             text="Read"

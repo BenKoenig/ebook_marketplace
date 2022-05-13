@@ -35,7 +35,6 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .c {
-    @apply bg-beige-400;
     @apply rounded-2xl;
 
     &__grid {

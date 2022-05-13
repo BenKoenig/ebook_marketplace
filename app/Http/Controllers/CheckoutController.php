@@ -20,7 +20,6 @@ class CheckoutController extends Controller
         $product = Product::where('slug', $slug)->firstOrFail();
         session()->put('store_product', $product);
 
-
         return Inertia::render('Checkout', [
             'product' => $product,
         ]);
@@ -34,12 +33,13 @@ class CheckoutController extends Controller
     public function store() {
         /* Gets the product information */
         $product = session()->get('store_product');
+        $user = Auth::user();
 
         /* logged in user */
         $user = Auth::user();
 
         /* checks if user has purchased this product */
-        $hasPurchased = DB::select('SELECT * FROM orders WHERE user_id = ? AND product_id = ?', [$user->id, $product->id]);
+        $userHasPurchased = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->first();
 
         if(!empty($hasPurchased)) {
           abort(404);
@@ -50,7 +50,8 @@ class CheckoutController extends Controller
             'user_id' => $user->id,
             'product_id' => $product->id,
         ]);
-        return redirect('/');
+
+        return redirect('/library')->with('success', 'The product has been added to your library.');
 
         /* Forgets the product information */
         session()->forget('store_product');
