@@ -19,10 +19,6 @@ use Illuminate\Foundation\Application;
 
 // == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
 
-
-
-
-
 class ProductController extends Controller
 {
 
@@ -87,6 +83,8 @@ class ProductController extends Controller
         $userHasPurchased = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->first();
         /* checks if user has reviewd the product */
         $userHasReviewed = $user && (bool)Review::where('user_id', $user->id)->where('product_id', $product->id)->first();
+
+        $request->session()->put('store_product', $product->id);
 
         $reviews = Review::query()
             ->with('user')

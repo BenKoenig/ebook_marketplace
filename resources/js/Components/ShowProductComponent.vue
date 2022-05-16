@@ -1,7 +1,5 @@
 <template>
     <div>
-
-
         <div class="sm:grid sm:grid-cols-12 gap-x-5 md:gap-x-7 lg:gap-x-9 xl:gap-x-11 rounded-2xl component--padding bg-beige-400">
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
 
@@ -42,13 +40,12 @@
                 />
 
                 <div class="xl:flex grid   items-center   mb-7 flex-wrap">
-                    <p class="text-xl py-3 px-4 border-[1px] border-black h-full flex items-center bg-yellow-100 rounded-tl-lg rounded-tr-lg xl:rounded-tr-none xl:rounded-l-lg"><!--<i class="fa-solid fa-tag"></i>-->$ {{ product.price }}</p>
+                    <p class="text-xl py-3 px-4 border-[1px] border-black h-full flex items-center bg-yellow-100 rounded-tl-lg rounded-tr-lg xl:rounded-tr-none xl:rounded-l-lg"><i class="fa-solid fa-dollar-sign mr-1" ></i> {{ product.price }}</p>
                     <p class="text-xl py-3 px-4  border-[1px] border-black  h-full flex items-center ">@{{ product.user.username }}</p>
                     <div class="flex py-3 px-4 gap-x-1 items-center  text-xl   border-[1px] border-black h-full">
                         <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> {{ reviews.total }} Reviews </p>
                     </div>
                     <p class="text-xl py-3 px-4 border-[1px] h-full border-black flex items-center rounded-bl-lg rounded-br-lg xl:rounded-bl-none  xl:rounded-r-lg gap-x-2  "><i class="fa-solid fa-cart-shopping"></i> 53 Purchases</p>
-
                 </div>
                 <p class="pb-7">{{product.short_description}}</p>
                 <div class="pattern-2 border-[1px] border-black py-10 px-2 md:px-10  relative  rounded-lg">
@@ -64,7 +61,7 @@
             </div>
         </div>
 
-        <div class="component--padding ">
+        <div class="component--padding">
             <h3 class="font-bold text-3xl md:text-4xl ">Heres what buyers have to say.</h3>
             <ul id="reviews" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1  py-7">
                 <li v-for="review in reviews.data" :key="review.id"  class="bg-white  rounded-lg" >
@@ -93,7 +90,7 @@
         <div v-if="!userHasReviewed && userHasPurchased" class="component--padding">
             <h3 class="font-bold text-3xl md:text-4xl  component--paddingB">You have purchased this ebook. Share your experience.</h3>
 
-            <form @submit.prevent="submit"  novalidate>
+            <form @submit.prevent="submit" novalidate>
                 <div class="mb-4">
                     <Label for="title" value="Title"></Label>
                     <Input id="title" type="text" class="mt-1 block w-full  " v-model="form.title" required />
@@ -134,7 +131,6 @@ import Label from "@/Shared/Label";
 import Input from "@/Shared/Input";
 import Button from "@/Shared/Button";
 import Notification from "@/Shared/Notification";
-
 
 const props = defineProps({
     product: Object,

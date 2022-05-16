@@ -62,14 +62,18 @@
 <script setup>
 import Headline from "@/Shared/Headline";
 import Button from "@/Shared/Button";
-import {useForm} from "@inertiajs/inertia-vue3";
+import { useForm } from "@inertiajs/inertia-vue3";
 import { Link } from '@inertiajs/inertia-vue3'
+
+
 
 const props = defineProps({
     products: Object,
 });
 
+
 let productId = null;
+
 /* gets product id when user clicks on a btn */
 const getId = (id) => {
     return productId = id;

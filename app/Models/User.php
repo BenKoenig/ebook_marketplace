@@ -44,9 +44,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function where(string $string, string $string1, $username)
-    {
-    }
+
 
 
     public function products()

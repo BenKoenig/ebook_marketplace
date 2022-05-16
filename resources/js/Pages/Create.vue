@@ -93,8 +93,6 @@ const submit = () => {
                         <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required autofocus autocomplete="price" />
                     </div>
 
-
-
                     <div class="md:grid grid-cols-2 gap-x-3">
                         <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="cover">Upload Book Cover</label>
@@ -103,8 +101,6 @@ const submit = () => {
                             <p v-if="errors.cover" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.cover }}</p>
 
                         </div>
-
-
 
                         <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="epub">Upload EPUB file</label>

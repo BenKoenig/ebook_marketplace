@@ -27,15 +27,6 @@ class Review extends Model
         'product_id'
     ];
 
-
-
-    public function getRatingAverageAttribute()
-    {
-        return round((array_sum($this->rating) / count($this->rating))*2);
-    }
-
-
-
     public function user()
     {
         return $this->belongsTo(User::class);

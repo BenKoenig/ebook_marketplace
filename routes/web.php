@@ -5,6 +5,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DiscoverController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\EpubFileController;
@@ -32,7 +33,7 @@ Route::post('/products', [ProductController::class, 'store'])->name('products.st
 
 
 /* Create a review*/
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('/reviews/', [ReviewController::class, 'store'])->name('reviews.store');
 
 /* Accept a product */
 Route::post('/accept/{id}', [AdminController::class, 'accept'])->name('admin.accept');
