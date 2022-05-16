@@ -26389,6 +26389,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Shared_CustomLink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/CustomLink */ "./resources/js/Shared/CustomLink.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -26406,7 +26408,8 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       props: props,
       formattedNumber: formattedNumber,
-      CustomLink: _Shared_CustomLink__WEBPACK_IMPORTED_MODULE_0__["default"]
+      CustomLink: _Shared_CustomLink__WEBPACK_IMPORTED_MODULE_0__["default"],
+      Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -28701,6 +28704,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  key: 0,
+  "class": "component--padding w-full bg-orange-400 rounded-2xl text-2xl font-bold text-white"
+};
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa-solid fa-triangle-exclamation mr-1"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -28712,10 +28726,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         products: $props.products,
         title: "Profile Page",
         h1: '/u/' + $props.user.username,
-        description: 'Discover  ' + $props.user.username + 's products'
+        description: 'Discover  ' + $props.user.username + 's products',
+        hideAuthor: true
       }, null, 8
       /* PROPS */
-      , ["products", "h1", "description"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of user profile ")];
+      , ["products", "h1", "description"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of user profile "), $props.products.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.username) + " has not published any ebooks yet. ", 1
+      /* TEXT */
+      )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     _: 1
     /* STABLE */
@@ -29286,17 +29303,33 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "card border border-black"
+  "class": "card"
 };
 var _hoisted_2 = {
   "class": "w-full rounded-2xl relative overflow-hidden scale-[1.03]"
 };
 var _hoisted_3 = ["src", "alt"];
 var _hoisted_4 = {
-  "class": "absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 rounded-tl-2xl rounded-tr-2xl whitespace-nowrap tracking-wide"
+  key: 0,
+  "class": "text-sm absolute top-0 left-0 z-30 w-auto bg-white p-2 w-full text-center border border-black rounded-2xl"
 };
 
 var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fa-solid fa-circle-info mr-1"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ebook in review");
+
+var _hoisted_7 = [_hoisted_5, _hoisted_6];
+var _hoisted_8 = {
+  "class": "absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 rounded-tl-2xl rounded-tr-2xl whitespace-nowrap tracking-wide"
+};
+
+var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "fa-solid fa-dollar-sign"
   }, null, -1
@@ -29304,14 +29337,14 @@ var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_6 = {
+var _hoisted_10 = {
   "class": "font-bold text-lg sm:text-2xl pb-3"
 };
-var _hoisted_7 = {
+var _hoisted_11 = {
   "class": "pb-2 hidden sm:block"
 };
 
-var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-md tracking-wider text-gray-500 leading-3"
   }, "Author", -1
@@ -29326,16 +29359,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "w-full rounded-2xl"
   }, null, 8
   /* PROPS */
-  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedNumber($props.product.price)), 1
+  , _hoisted_3), $props.product.is_public === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_4, _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedNumber($props.product.price)), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Book Title, Author, Link to product page "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Book Title, Author, Link to product page "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "@" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.user.username), 1
-  /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CustomLink"], {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+    href: '/u/' + $props.product.user.username
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.user.username), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CustomLink"], {
     href: '/e/' + $props.product.slug,
     text: "Read about it",
-    "class": "w-full bg-yellow-200"
+    "class": "w-full bg-yellow-200 hover:bg-yellow-100"
   }, null, 8
   /* PROPS */
   , ["href"])])]);
@@ -31719,7 +31763,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card[data-v-53c23a73] {border-radius: 1rem;position: relative;display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));-moz-column-gap: 0.5rem;column-gap: 0.5rem\n}@media (min-width: 768px) {.card[data-v-53c23a73] {-moz-column-gap: 0.75rem;column-gap: 0.75rem\n}\n}.card[data-v-53c23a73] {align-items: center;padding-right: 0.5rem\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card[data-v-53c23a73] {border-radius: 1rem;position: relative;display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));-moz-column-gap: 0.5rem;column-gap: 0.5rem\n}@media (min-width: 768px) {.card[data-v-53c23a73] {-moz-column-gap: 0.75rem;column-gap: 0.75rem\n}\n}.card[data-v-53c23a73] {align-items: center;padding-right: 0.5rem;border-width: 1px;--tw-border-opacity: 1;border-color: rgb(0 0 0 / var(--tw-border-opacity));position: relative\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

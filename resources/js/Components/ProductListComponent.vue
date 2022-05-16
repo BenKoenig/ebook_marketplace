@@ -31,7 +31,7 @@ const props = defineProps({
     h2: String,
     h3: String,
     description: String,
-});
+    });
 
 </script>
 
