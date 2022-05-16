@@ -35,7 +35,6 @@ class ProductController extends Controller
 
     }
 
-
     /**
      * @return \Inertia\Response
      */
@@ -83,6 +82,8 @@ class ProductController extends Controller
         $userHasPurchased = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->first();
         /* checks if user has reviewd the product */
         $userHasReviewed = $user && (bool)Review::where('user_id', $user->id)->where('product_id', $product->id)->first();
+        /* checks if the produc has reviews */
+        $productHasReviews = (bool)Review::where('product_id', $product->id)->first();
 
         $request->session()->put('store_product', $product->id);
 
@@ -113,6 +114,7 @@ class ProductController extends Controller
             'product' => $product,
             'userHasReviewed' => $userHasReviewed,
             'userHasPurchased' => $userHasPurchased,
+            'productHasReviews' => $productHasReviews,
         ));
 
     }

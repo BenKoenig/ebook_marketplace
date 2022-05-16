@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <divx>
         <div v-if="$page.props.flash.success" class="mb-5 text-black">
             <Notification>{{ $page.props.flash.success }}</Notification>
         </div>
@@ -54,7 +54,7 @@
                         </template>
 
                         <template #content>
-                            <DropdownLink :href="route('logout')" method="post" as="button">
+                            <DropdownLink :href="'/u/' + $page.props.auth.user.username"  as="link">
                                 Profile
                             </DropdownLink>
                             <DropdownLink :href="route('logout')" method="post" as="button">
@@ -105,7 +105,7 @@
                 <div class="w-full h-14 md:hidden"></div>
             </div>
         </div>
-    </div>
+    </divx>
 
 </template>
 

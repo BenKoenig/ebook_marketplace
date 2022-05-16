@@ -2,17 +2,16 @@
     <Guest>
         <Head title="Profile" />
 
-        <!-- start of library -->
-
+        <!-- start of user profile -->
 
         <ProductListComponent
             :products="products"
             title="Profile Page"
-            :h1="user.username"
+            :h1="'/u/' + user.username"
             :description="'Discover  ' + user.username + 's products'"
         />
 
-        <!-- end of library -->
+        <!-- end of user profile -->
 
     </Guest>
 </template>

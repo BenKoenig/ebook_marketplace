@@ -3,7 +3,7 @@
 
         <!-- Book cover-->
         <div class="w-full rounded-2xl relative overflow-hidden scale-[1.03]">
-            <img :src="product.cover" :alt="product.name" class="w-full rounded-2xl">
+            <img :src="'../' + product.cover" :alt="product.name" class="w-full rounded-2xl">
             <p class="absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 rounded-tl-2xl rounded-tr-2xl whitespace-nowrap tracking-wide"><i class="fa-solid fa-dollar-sign"></i> {{ formattedNumber(product.price) }}</p>
         </div>
 

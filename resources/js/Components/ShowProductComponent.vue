@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="component--padding">
+        <div class="component--padding" v-if="productHasReviews">
             <h3 class="font-bold text-3xl md:text-4xl ">Heres what buyers have to say.</h3>
             <ul id="reviews" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1  py-7">
                 <li v-for="review in reviews.data" :key="review.id"  class="bg-white  rounded-lg" >
@@ -137,6 +137,7 @@ const props = defineProps({
     reviews: Object,
     userHasPurchased: Boolean,
     userHasReviewed: Boolean,
+    productHasReviews: Boolean,
     errors: Object
 });
 
