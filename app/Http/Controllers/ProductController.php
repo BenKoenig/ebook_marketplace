@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Review;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -40,18 +42,22 @@ class ProductController extends Controller
      */
     public function create()
     {
+
         return Inertia::render('Create', [
             'products' => Product::all(),
         ]);
+
+
     }
 
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|Redirector
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => ['required', 'max:100'],
             'description' => ['required', 'max:50000'],
@@ -61,7 +67,7 @@ class ProductController extends Controller
             'epub' => ['required', 'max:1000000', 'mimes:epub'],
 
         ]);
-        Product::create([
+        $product = Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'snippet' => $request->input('snippet'),
@@ -71,7 +77,34 @@ class ProductController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
+        /* logged in user */
+        $user = Auth::user();
+
+        /* Stores information to database */
+        $order = Order::create([
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+        ]);
+
+
         return redirect('/')->with('success', 'You have successfully submitted your ebook. Please be patient while we review it.');
+    }
+
+
+    /**
+     * @return \Inertia\Response
+     */
+    public function edit($slug)
+    {
+        $product = Product::with('user')->get()->where("slug", $slug)->firstOrFail();
+
+        if(Auth::user()->id !== $product->user_id) {
+            abort(403, 'You are not permitted to edit this product.');
+        }
+
+        return Inertia::render('Edit', [
+            'product' => $product
+        ]);
     }
 
     public function show($slug, Request $request)

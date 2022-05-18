@@ -49,6 +49,9 @@ Route::get('/discover', [DiscoverController::class, 'index'])->name('discover');
 /* Create Product Page */
 Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
 
+/* Edit Product Page */
+Route::get('/edit/{slug}', [ProductController::class, 'edit'])->name('products.create');
+
 /* Profile */
 Route::get('/u/{username}', [ProfileController::class, 'index'])->name('profile');
 

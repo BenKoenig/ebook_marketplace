@@ -14,16 +14,21 @@
         <div>
 
             <h3 class="font-bold text-lg sm:text-2xl pb-3">{{product.name}}</h3>
-            <div class="pb-2 hidden sm:block">
+            <div v-if="$page.props.auth.user.id !== product.user_id" class="pb-2 hidden sm:block">
                 <p class="text-md tracking-wider text-gray-500 leading-3">Author</p>
                 <Link :href="'/u/' + product.user.username">{{product.user.username}}</Link>
             </div>
-
 
             <CustomLink
                 :href="'/e/' + product.slug"
                 text="Read about it"
                 class="w-full bg-yellow-200 hover:bg-yellow-100"
+            />
+            <CustomLink
+                v-if="$page.props.auth.user.id === product.user_id"
+                :href="'/edit/' + product.slug"
+                text="Edit"
+                class="w-full mt-2"
             />
         </div>
     </div>
