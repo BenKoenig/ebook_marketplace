@@ -9,7 +9,7 @@
         />
         <CustomLink
             text="View guidelines"
-            href="/"
+            href="/guidelines"
             class="w-fit bg-yellow-200"
         />
         </div>

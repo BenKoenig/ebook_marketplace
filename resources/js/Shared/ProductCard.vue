@@ -56,5 +56,6 @@ const formattedNumber = (number) => {
     @apply border;
     @apply border-black;
     @apply relative;
+    @apply bg-white;
 }
 </style>

@@ -15,10 +15,7 @@ class ReaderController extends Controller
      */
     public function index($slug, Request $request)
     {
-
-
         $product = Product::where('slug', '=', $slug)->firstOrFail();
-
 
         return Inertia::render('Reader', [
             'product' => $product,

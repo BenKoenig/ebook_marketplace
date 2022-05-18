@@ -20,11 +20,11 @@ class HomeController extends Controller
     {
         return Inertia::render('Home', [
             'featuredProducts' => Product::with('user')->get()->where('is_featured', true),
-            'latestProducts' => Product::with('user')->limit(6)->latest()->get(),
+            'latestProducts' => Product::with('user')->where('is_public', true)->limit(6)->latest()->get(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'randomProduct' => Cache::remember('randProduct', 60*24, function () {
-                return Product::inRandomOrder()->with('user')->first();
+            'randomProduct' => Cache::remember('randomProduct', 60*24, function () {
+                return Product::inRandomOrder()->with('user')->get()->where('is_public', true)->first();
             })
         ]);
 

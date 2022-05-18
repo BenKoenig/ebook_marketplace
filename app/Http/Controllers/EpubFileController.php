@@ -13,15 +13,10 @@ class EpubFileController extends Controller
     {
         /* Get the logged-in user */
         $user = \auth()->user();
-
         $product = Product::where('id', '=', $id)->firstOrFail();
-
         $filename = $product->epub;
-
         return response()->download(Storage::path('public/' . $filename));
     }
-
-
 
 
 /*    public function d($id)

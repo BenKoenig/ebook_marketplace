@@ -31,7 +31,6 @@ Route::get('/', [HomeController::class, 'index', ])->name('home');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
 
-
 /* Create a review*/
 Route::post('/reviews/', [ReviewController::class, 'store'])->name('reviews.store');
 
@@ -70,6 +69,9 @@ Route::get('epubs/{id}', [EpubFileController::class,'index'])->name('image.displ
 
 /* Uses ePub file content to display eBook */
 Route::get('/read/{slug}', [ReaderController::class, 'index'])->name('reader');
+
+/* Guidelines page */
+Route::inertia('/guidelines', 'Guidelines')->name('guidelines');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
