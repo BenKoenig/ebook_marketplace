@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
@@ -38,8 +39,12 @@ class ReviewController extends Controller
         /* checks if user owns the product */
         $userOwnsProduct = DB::select('SELECT * FROM orders where user_id = ? AND product_id = ?', [$user_id, $product_id]);
 
+        /* checks user is the author of this product */
+        $userIsAuthor = (bool)Order::where('user_id', $user_id)->where('product_id', $product_id)->get();
+
+
         /* makes sure user hasn't already left a review and owns the product */
-        if(!$userHasReviewed && $userOwnsProduct){
+        if(!$userHasReviewed && $userOwnsProduct && !$userIsAuthor){
             $request->validate([
                 'title' => ['required', 'max:100'],
                 'review' => ['required', 'max:50000'],

@@ -15,11 +15,20 @@
                     />
                     <div class="w-full bg-white p-2 rounded-2xl" v-if="userHasPurchased">
                         <p class="text-black text-center pb-1">Ebook is already in your library</p>
-                        <CustomLink
-                            :href="'/read/' + product.slug"
-                            text="Read"
-                            class="w-full bg-yellow-200 "
-                        />
+                        <div class="flex gap-x-2">
+                            <CustomLink
+                                :href="'/read/' + product.slug"
+                                text="Read"
+                                class="w-full bg-yellow-200 "
+                            />
+                            <CustomLink
+                                v-if="$page.props.auth.user ? $page.props.auth.user.id === product.user_id : false"
+                                :href="'/edit/' + product.slug"
+                                text="Edit"
+                                class="w-full"
+                            />
+                        </div>
+
                     </div>
 
                 </div>
@@ -67,7 +76,7 @@
                 <li v-for="review in reviews.data" :key="review.id"  class="bg-white  rounded-lg" >
                     <div class="bg-yellow-100 border-b-[1px] border-black rounded-t-lg text-center flex items-center gap-x-2 px-2">
                         <svg class="w-10" viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="80" height="80"><title>Katharine Lee</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#ffad08"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(297 18 18) scale(1)" fill="#73b06f" rx="6"></rect><g transform="translate(3.5 3.5) rotate(7 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
-                        <p>@{{ review.user.username }}</p>
+                        <Link :href="'/u/' + review.user.username">@{{ review.user.username }}</Link>
                         <p> | </p>
 
                         <div class="flex">
@@ -87,7 +96,7 @@
 
         </div>
 
-        <div v-if="!userHasReviewed && userHasPurchased" class="component--padding">
+        <div v-if="!userHasReviewed && userHasPurchased && !userIsAuthor" class="component--padding">
             <h3 class="font-bold text-3xl md:text-4xl  component--paddingB">You have purchased this ebook. Share your experience.</h3>
 
             <form @submit.prevent="submit" novalidate>
@@ -114,11 +123,7 @@
                     Submit Review
                 </Button>
             </form>
-
-
-
         </div>
-
     </div>
 </template>
 
@@ -131,6 +136,7 @@ import Label from "@/Shared/Label";
 import Input from "@/Shared/Input";
 import Button from "@/Shared/Button";
 import Notification from "@/Shared/Notification";
+import { computed, ref } from 'vue';
 
 const props = defineProps({
     product: Object,
@@ -138,8 +144,15 @@ const props = defineProps({
     userHasPurchased: Boolean,
     userHasReviewed: Boolean,
     productHasReviews: Boolean,
+    userIsAuthor: Boolean,
     errors: Object
 });
+
+computed(() => {
+
+    const averageRating = props.reviews.total;
+    console.log(averageRating)
+})
 
 const form = useForm({
     title: '',

@@ -2,7 +2,8 @@
 
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import Guest from "@/Layouts/Guest";
+import Focused from "@/Layouts/Focused";
+import Button from "@/Shared/Button";
 
 defineProps({
     canLogin: Boolean,
@@ -14,21 +15,24 @@ defineProps({
 
 <template>
 
-    <Guest>
+    <Focused>
         <Head title="eReader" />
 
 
         <div class="">
-            <div id="epub-render" class="w-full"></div>
+            <div id="epub-render" ></div>
 
-            <div class="flex gap-x-2 justifx-center">
-                <button class="w-14" type="button" @click="previousPage()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20A10 10 0 1 0 0 10a10 10 0 0 0 10 10zM8.711 4.3l5.7 5.766L8.7 15.711l-1.4-1.422 4.289-4.242-4.3-4.347z"></path></svg></button>
+            <div class="flex gap-x-2 justify-center fixed w-full bottom-0 py-2 items-center">
+                <Link href="/" class=" ">
+                    <i class="fa-solid fa-house"></i> Home
+                </Link>
+                <Button :type="button" @click="previousPage()">Previus Page</Button>
+                <Button :type="button" @click="nextPage()">Next Page</Button>
 
-                <button class="w-14" type="button" @click="nextPage()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20A10 10 0 1 0 0 10a10 10 0 0 0 10 10zM8.711 4.3l5.7 5.766L8.7 15.711l-1.4-1.422 4.289-4.242-4.3-4.347z"></path></svg></button>
             </div>
         </div>
 
-    </Guest>
+    </Focused>
 
 
 

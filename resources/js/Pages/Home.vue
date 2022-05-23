@@ -26,14 +26,11 @@
     </Guest>
 </template>
 
-
 <script setup>
-
 import Guest from "@/Layouts/Guest";
 import RandomProductComponent from "@/Components/RandomProductComponent";
 import ProductListComponent from "@/Components/ProductListComponent";
 import GuidelinesCard from "@/Shared/GuidelinesCard";
-
 
 const props = defineProps({
     featuredProducts: Object,
@@ -42,6 +39,5 @@ const props = defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
 });
-
 </script>
 

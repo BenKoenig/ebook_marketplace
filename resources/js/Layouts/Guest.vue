@@ -1,5 +1,5 @@
 <template>
-    <divx>
+    <div>
         <div v-if="$page.props.flash.success" class="mb-5 text-black">
             <Notification>{{ $page.props.flash.success }}</Notification>
         </div>
@@ -21,8 +21,6 @@
                             <i class="fa-solid fa-house"></i> Home
                         </Link>
                     </li>
-
-
 
                     <li v-if="$page.props.auth.user" class="layout__desktopNav__ul__li">
                         <Link href="/create" class="layout__desktopNav__ul__li__a layout__desktopNav__ul__li__a--flex">
@@ -101,11 +99,29 @@
                     <slot />
                 </main>
 
+
+                <footer class="component--paddingY flex   flex-col component--paddingX">
+                    <div>
+                        <h2 class="font-bold text-4xl">readme ebook marketplace.</h2>
+                        <h3 class="font-thin text-2xl">Powered by Developers.</h3>
+                    </div>
+                    <ul>
+                        <li><a href=""><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                        <li><Link href="/guidelines">Guidelines</Link></li>
+
+                    </ul>
+
+                </footer>
+
                 <!-- this div is to make up for the space, which the mobile nav is covering -->
                 <div class="w-full h-14 md:hidden"></div>
+
             </div>
+
+
         </div>
-    </divx>
+
+    </div>
 
 </template>
 

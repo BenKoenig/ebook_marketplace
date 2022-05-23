@@ -35,10 +35,10 @@ Route::post('/products', [ProductController::class, 'store'])->name('products.st
 Route::post('/reviews/', [ReviewController::class, 'store'])->name('reviews.store');
 
 /* Accept a product */
-Route::post('/accept/{id}', [AdminController::class, 'accept'])->name('admin.accept');
+Route::post('/accept/{id}', [AdminController::class, 'accept'])->middleware(['auth', 'verified'])->name('admin.accept');
 
 /* Reject a product */
-Route::post('/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
+Route::post('/reject/{id}', [AdminController::class, 'reject'])->middleware(['auth', 'verified'])->name('admin.reject');
 
 /* Purchased eBooks from the user */
 Route::get('/library', [\App\Http\Controllers\LibraryController::class, 'index'])->middleware(['auth', 'verified'])->name('library');
@@ -55,8 +55,6 @@ Route::get('/edit/{slug}', [ProductController::class, 'edit'])->name('products.c
 /* Profile */
 Route::get('/u/{username}', [ProfileController::class, 'index'])->name('profile');
 
-/* Product create success page*/
-Route::get('/create/success', [ProductController::class, 'createSuccess'])->middleware(['auth', 'verified'])->name('products.createSuccess');
 
 /* Individual product page */
 Route::get('/e/{slug}', [ProductController::class, 'show'])->name('show');
@@ -81,6 +79,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 /* Admin Page */
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('admin');
 
 require __DIR__.'/auth.php';

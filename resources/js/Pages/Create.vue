@@ -61,7 +61,6 @@ const submit = () => {
 
                     <div class="mb-4">
                         <Label  value="Product Description" />
-
                         <editor
                             content_style="div { margin: 10px; border: 5px solid red; padding: 3px; }"
                             class="opacity-0"

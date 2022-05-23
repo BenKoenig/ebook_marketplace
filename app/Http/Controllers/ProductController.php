@@ -87,7 +87,7 @@ class ProductController extends Controller
         ]);
 
 
-        return redirect('/')->with('success', 'You have successfully submitted your ebook. Please be patient while we review it.');
+        return redirect('/e/' . $product->slug)->with('success', 'You have successfully submitted your ebook. Please be patient while we review it.');
     }
 
 
@@ -117,6 +117,8 @@ class ProductController extends Controller
         $userHasReviewed = $user && (bool)Review::where('user_id', $user->id)->where('product_id', $product->id)->first();
         /* checks if the produc has reviews */
         $productHasReviews = (bool)Review::where('product_id', $product->id)->first();
+        /* checks user is the author of this product */
+        $userIsAuthor = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->get();
 
         $request->session()->put('store_product', $product->id);
 
@@ -148,6 +150,7 @@ class ProductController extends Controller
             'userHasReviewed' => $userHasReviewed,
             'userHasPurchased' => $userHasPurchased,
             'productHasReviews' => $productHasReviews,
+            'userIsAuthor' => $userIsAuthor,
         ));
 
     }
