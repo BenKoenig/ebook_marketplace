@@ -59,6 +59,7 @@ const submit = () => {
                         <Input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                     </div>
 
+                    <!-- start of rich text editor -->
                     <div class="mb-4">
                         <Label  value="Product Description" />
                         <editor
@@ -81,17 +82,27 @@ const submit = () => {
                              }"
                         />
                     </div>
+                    <!-- end of rich text editor -->
 
+                    <!-- book snippet input/label -->
                     <div class="mb-4">
                         <Label for="snippet" value="Book Snippet" />
                         <Input id="snippet" type="text" class="mt-1 block w-full" v-model="form.snippet" required autofocus autocomplete="snippet" />
                     </div>
 
+                    <!-- price input/label -->
                     <div class="mb-4">
                         <Label for="price" value="Price" />
-                        <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required autofocus autocomplete="price" />
+                        <div class="relative w-36">
+                            <div class="absolute w-10 h-full bg-gray-700 text-white right-0 top-0 rounded-lg flex justify-center items-center text-bold text-xl">
+                                <p>$</p>
+                            </div>
+
+                            <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required autofocus autocomplete="price" />
+                        </div>
                     </div>
 
+                    <!-- book cover / epub file upload -->
                     <div class="md:grid grid-cols-2 gap-x-3">
                         <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="cover">Upload Book Cover</label>
@@ -109,6 +120,7 @@ const submit = () => {
                         </div>
                     </div>
 
+                    <!-- submit btn -->
                     <div class="flex items-center justify-end mt-4">
                         <Button  :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="bg-yellow-200 hover:bg-yellow-100">
                             Submit

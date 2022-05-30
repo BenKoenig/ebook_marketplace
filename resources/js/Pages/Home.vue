@@ -10,7 +10,7 @@
                 :products="featuredProducts"
                 title="See the light"
                 h2="Featured Ebooks"
-                description="Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis"
+                description="Explore our recommended eBooks"
             />
             <RandomProductComponent :product="randomProduct"></RandomProductComponent>
 
@@ -18,9 +18,8 @@
                 :products="latestProducts"
                 title="What's new?"
                 h2="Recently added Ebooks"
-                description="Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis"
+                description="All of our recently added and approved eBooks"
             />
-
             <GuidelinesCard />
         </div>
     </Guest>

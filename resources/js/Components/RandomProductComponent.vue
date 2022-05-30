@@ -1,12 +1,10 @@
 <template>
     <div class="rand component--padding">
-
-
         <!-- Start of headline - '/Shared/Headline.vue'-->
         <Headline
             title="The daily Feature"
             h2="Highlighted Ebook of the Day"
-            description="Lorem ipsum dolor sit amet, consectetuer magnis dis penatibus et magnis dis sociis"
+            description="Take a look at this highlighted ebook of the day."
             class="component--paddingB"
         />
         <!-- End of headline -->
@@ -33,13 +31,11 @@
             <div class="rand__grid__item">
                 <svg class="rand__grid__item__svg rand__grid__item__svg--bottom" viewBox="0 1 263.08 116"><text transform="translate(1 93)" fill="#fff" stroke="#000" font-size="92" font-family="Outfit" font-weight="700"><tspan x="0" y="0">About</tspan></text></svg>
 
-                <p class="rand__grid__item__p">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+                <p class="rand__grid__item__p">{{ product.short_description}}</p>
             </div>
             <!-- End of about card -->
-
         </div>
         <!-- End of daily feature -->
-
     </div>
 </template>
 

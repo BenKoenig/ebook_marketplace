@@ -1,3 +1,39 @@
+<script setup>
+import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ref } from 'vue'
+gsap.registerPlugin(ScrollTrigger);
+
+const show = ref(true)
+
+function beforeEnter(el) {
+    el.style.opacity = '0'
+    el.style.transform = 'translateY(-7px)'
+}
+
+
+function enter (el) {
+    gsap.to(el, {
+        scrollTrigger: el,
+        start: "top 100px",
+        duration: 0.2,
+        delay: 0.2,
+        top: 0,
+        opacity: 1,
+        y: 0,
+    })
+}
+
+const props = defineProps({
+    title: String,
+    h1: String,
+    h2: String,
+    h3: String,
+    description: String
+});
+
+</script>
+
 <template>
     <div>
         <!-- Title -->
@@ -20,48 +56,9 @@
         </Transition>
 
         <!-- Description -->
-        <p class="text-gray-5">{{ description }} </p>
+        <p v-if="description" class="text-gray-5">{{ description }} </p>
     </div>
 </template>
-
-<script setup>
-import gsap from 'gsap'
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ref } from 'vue'
-gsap.registerPlugin(ScrollTrigger);
-
-
-
-const show = ref(true)
-
-function beforeEnter(el) {
-    console.log("before transition")
-    el.style.opacity = '0'
-    el.style.transform = 'translateY(-7px)'
-}
-
-
-function enter (el) {
-    console.log("after transition")
-    gsap.to(el, {
-        scrollTrigger: el,
-        duration: 0.2,
-        delay: 0.2,
-        top: 0,
-        opacity: 1,
-        y: 0,
-    })
-}
-
-const props = defineProps({
-    title: String,
-    h1: String,
-    h2: String,
-    h3: String,
-    description: String
-});
-
-</script>
 
 <style lang="scss" scoped>
 .title {

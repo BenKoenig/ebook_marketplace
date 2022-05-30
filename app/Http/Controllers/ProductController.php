@@ -122,6 +122,8 @@ class ProductController extends Controller
 
         $request->session()->put('store_product', $product->id);
 
+        $all_reviews = Review::where('product_id', $product->id)->get();
+
         $reviews = Review::query()
             ->with('user')
             ->where('product_id', '=', $product->id)
@@ -145,6 +147,7 @@ class ProductController extends Controller
         }
 
         return Inertia::render('Show', array(
+            'all_reviews' => $all_reviews,
             'reviews' => $reviews,
             'product' => $product,
             'userHasReviewed' => $userHasReviewed,

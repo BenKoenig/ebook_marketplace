@@ -1,8 +1,5 @@
 <template>
     <div class="card">
-
-
-
         <!-- Book cover-->
         <div class="w-full rounded-2xl relative overflow-hidden scale-[1.03]">
             <img :src="'../' + product.cover" :alt="product.name" class="w-full rounded-2xl">
@@ -37,7 +34,6 @@
 <script setup>
 import CustomLink from "@/Shared/CustomLink";
 import { Link } from '@inertiajs/inertia-vue3'
-
 
 const props = defineProps({
     product: Object,

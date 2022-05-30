@@ -8,7 +8,7 @@
             :products="products"
             title="Profile Page"
             :h1="'/u/' + user.username"
-            :description="'Discover  ' + user.username + 's products'"
+            :description="'Discover  products by @' + user.username"
             :hideAuthor="true"
         />
 
