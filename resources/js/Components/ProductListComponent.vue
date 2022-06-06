@@ -44,7 +44,7 @@ const props = defineProps({
         /* Mobile Media Query */
         @apply grid-cols-1;
         /* Tablet Media Query */
-        @apply lg:grid-cols-2;
+        @apply sm:grid-cols-2;
         /* Desktop Media Query */
         @apply xl:grid-cols-3;
         @apply gap-4;

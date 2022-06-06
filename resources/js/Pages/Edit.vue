@@ -9,21 +9,20 @@ import Headline from "@/Shared/Headline";
 import Editor from '@tinymce/tinymce-vue'
 
 
-defineProps({
+const props = defineProps({
     status: String,
     errors: Object,
     product: Object,
 });
 const form = useForm({
-    name: '',
-    snippet: '',
-    cover: '',
-    price: '',
-    epub: '',
-    description: ''
+    id: props.product.id,
+    name: props.product.name,
+    snippet: props.product.snippet,
+    sale_price: props.product.sale_price,
+    description: props.product.description
 });
 const submit = () => {
-    form.post('/products');
+    form.put('/products/' + props.product.id);
 };
 </script>
 
@@ -86,30 +85,47 @@ const submit = () => {
 
                     <div class="mb-4">
                         <Label for="snippet" value="Book Snippet" />
-                        <Input id="snippet" type="text" class="mt-1 block w-full" v-model="form.snippet" required autofocus autocomplete="snippet" :value="product.snippet"/>
+
+                        <!-- start of snippet input -->
+                        <Input id="snippet" 
+                        type="text" 
+                        class="mt-1 block w-full" 
+                        v-model="form.snippet" 
+                        required autofocus 
+                        autocomplete="snippet" 
+                        :value="product.snippet"/>
+                        <!-- end of snippet input -->
                     </div>
 
-                    <div class="mb-4">
-                        <Label for="price" value="Price" />
-                        <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required autofocus autocomplete="price" :value="product.price" />
-                    </div>
 
-                    <div class="md:grid grid-cols-2 gap-x-3">
-                        <div class="mb-6">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="cover">Upload Book Cover</label>
-                            <input class="rounded-lg block w-full text-sm text-gray-900 bg-gray-50  border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="cover_help" id="cover" @input="form.cover = $event.target.files[0]" type="file">
-                            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="cover_help">The book cover will be seen in the product list</div>
-                            <p v-if="errors.cover" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.cover }}</p>
+                    <div class="flex gap-x-2">
+                        <!-- price input/label -->
+                        <div class="mb-4">
 
+
+                            <p class="text-sm text-bold mb-2">Original Price: ${{product.price}}</p>
+
+                            <Label for="sale_price" value="Sale Price" />
+
+                            <div class="relative w-36">
+                                <div class="absolute w-10 h-full bg-gray-700 text-white 
+                                right-0 top-0 rounded-lg flex justify-center items-center text-bold text-xl">
+                                    <p>$</p>
+                                </div>
+
+                                <Input 
+                                id="sale_price" 
+                                type="text" 
+                                class="mt-1 block w-full" 
+                                v-model="form.sale_price" required autofocus 
+                                autocomplete="price" 
+                                :value="product.sale_price" />
+                            </div>
                         </div>
-
-                        <div class="mb-6">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="epub">Upload EPUB file</label>
-                            <input class="rounded-lg block w-full text-sm text-gray-900 bg-gray-50  border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="epub_help"  id="epub" @input="form.epub = $event.target.files[0]" type="file">
-                            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="epub_help">An EPUB file (short for electronic publication) is in the Open eBook file format. You can download EPUB files and read them on your smartphone, tablet, e-reader, or computer. This freely available eBook standard supports more hardware eBook readers than any other file format. </div>
-                            <p v-if="errors.epub" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.epub }}</p>
-                        </div>
                     </div>
+
+                    
+
 
                     <div class="flex items-center justify-end mt-4">
                         <Button  :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="bg-yellow-200 hover:bg-yellow-100">
@@ -122,7 +138,5 @@ const submit = () => {
             <!-- End of form -->
 
         </div>
-
-
     </Guest>
 </template>

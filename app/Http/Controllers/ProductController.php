@@ -4,22 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Purchase;
 use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Response;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
-
-// == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
 
 class ProductController extends Controller
 {
@@ -32,7 +22,6 @@ class ProductController extends Controller
         return Inertia::render('Home', [
             'featuredProducts' => Product::with('user')->get()->where('is_featured', true),
             'products' => Product::with('user')->get(),
-
         ]);
 
     }
@@ -49,7 +38,6 @@ class ProductController extends Controller
 
 
     }
-
 
     /**
      * @param Request $request
@@ -73,7 +61,7 @@ class ProductController extends Controller
             'snippet' => $request->input('snippet'),
             'price' => $request->input('price'),
             'cover' => $request->file('cover')->store('covers', 'public'),
-            'epub' => $request->file('epub')->store('epubs', 'public'),
+            'epub' => $request->file('epub')->store('epubs'),
             'user_id' => Auth::user()->id
         ]);
 
@@ -89,7 +77,6 @@ class ProductController extends Controller
 
         return redirect('/e/' . $product->slug)->with('success', 'You have successfully submitted your ebook. Please be patient while we review it.');
     }
-
 
     /**
      * @return \Inertia\Response
@@ -107,6 +94,52 @@ class ProductController extends Controller
         ]);
     }
 
+/*     public function update($id, Request $request) {
+
+        $product = Product::where('id', $id)->first(); */
+/* 
+
+        $request->validate([
+            'name' => ['required', 'max:100'],
+            'description' => ['required', 'max:50000'],
+            'snippet' => ['required', 'max:1000'],
+            'sale_price' => ['required', 'numeric', 'between:0,150'],
+        ]);
+        $product = Product->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'snippet' => $request->input('snippet'),
+            'price' => $request->input('price'),
+            'cover' => $request->file('cover')->store('covers', 'public'),
+            'epub' => $request->file('epub')->store('epubs', 'public'),
+            'user_id' => Auth::user()->id
+        ]); */
+
+/*         $product->update(
+            Request::validate([
+                'name' => ['required', 'max:100'],
+                'description' => ['required', 'max:50000'],
+                'snippet' => ['required', 'max:1000'],
+                'sale_price' => ['numeric', 'max:150', 'between:0,150'],
+            ])
+        );
+        return Redirect::back()->with('success', 'Product has been updated.');
+    } */
+
+    public function update(Product $product)
+    {
+        $product->update(
+            Request::validate([
+                'name' => ['required', 'max:100'],
+                'description' => ['required', 'max:50000'],
+                'snippet' => ['required', 'max:1000'],
+                'sale_price' => ['required', 'numeric', 'between:0,150'],
+            ])
+        );
+
+        return Redirect::back()->with('success', 'Product updated.');
+    }
+
     public function show($slug, Request $request)
     {
         $user = Auth::user();
@@ -120,9 +153,14 @@ class ProductController extends Controller
         /* checks user is the author of this product */
         $userIsAuthor = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->get();
 
+        /* stores the product in a session */
         $request->session()->put('store_product', $product->id);
 
+        /* finds all reviews to this product */
         $all_reviews = Review::where('product_id', $product->id)->get();
+
+        /* counts the total amount of orders */
+        $order_count = count(Order::where('product_id', $product->id)->get());
 
         $reviews = Review::query()
             ->with('user')
@@ -148,6 +186,7 @@ class ProductController extends Controller
 
         return Inertia::render('Show', array(
             'all_reviews' => $all_reviews,
+            'order_count' => $order_count,
             'reviews' => $reviews,
             'product' => $product,
             'userHasReviewed' => $userHasReviewed,

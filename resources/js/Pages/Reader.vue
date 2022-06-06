@@ -1,24 +1,6 @@
-
-
-<script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
-import Focused from "@/Layouts/Focused";
-import Button from "@/Shared/Button";
-
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    product: Object,
-});
-</script>
-
-
 <template>
-
     <Focused>
         <Head title="eReader" />
-
-
         <div class="">
             <div id="epub-render" ></div>
 
@@ -28,42 +10,61 @@ defineProps({
                 </Link>
                 <Button :type="button" @click="previousPage()">Previus Page</Button>
                 <Button :type="button" @click="nextPage()">Next Page</Button>
+                <p>{{ product.id }}</p>
 
             </div>
         </div>
-
     </Focused>
-
-
-
-
 </template>
 
 <script>
 import ePub from "epubjs";
-const URL_EPUB = "http://lv.test";
-
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import Focused from "@/Layouts/Focused";
+import Button from "@/Shared/Button";
+import axios from "axios";
+const URL_EPUB = "http://lv.test/";
 
 export default {
+    props: ['product'],
+    components: {
+        Head,
+        Link,
+        Focused,
+        Button
+    },
+
     data() {
         return {
-            epub: `${URL_EPUB}/epubs/${this.product.epub}`,
+            /* epub: `http://lv.test/df/${this.product.id}`, */
+            epub: `http://lv.test/df/${this.product.id}`,
             newEpub: [],
             show: false,
             book: {},
             rendition: {},
             chapter: "",
             coverUrl: "",
-
         };
     },
 
-
-    mounted() {
-        this.loadEpub();
+    beforeMount() {
+        axios({
+            url: 'http://lv.test/serve/104',
+            method: 'GET',
+            responseType: 'blob',
+        }).then((response) => {
+            const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+            this.epub = fileURL;
+        });
     },
+    
+    mounted() {
+        
 
+        this.loadEpub();
 
+        console.log(this.epub)
+    },
 
     methods: {
         getCover() {
@@ -115,4 +116,3 @@ export default {
     },
 };
 </script>
-

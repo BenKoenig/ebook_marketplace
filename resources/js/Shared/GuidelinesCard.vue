@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-pattern bg-cover rounded-2xl w-full component--padding relative">
+    <div class="bg-pattern bg-cover w-full component--padding relative">
 
         <Headline
             title="Guidelines"

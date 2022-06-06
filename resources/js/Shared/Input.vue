@@ -21,7 +21,6 @@ onMounted(() => {
     @apply focus:ring;
     @apply focus:ring-indigo-200;
     @apply focus:ring-opacity-50;
-    @apply rounded-lg;
     @apply shadow-sm;
 }
 </style>

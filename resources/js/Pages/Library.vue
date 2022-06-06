@@ -41,7 +41,6 @@ const props = defineProps({
 <style lang="scss" scoped>
 .library {
     @apply bg-beige-400;
-    @apply rounded-2xl;
 
     &__grid {
         @apply grid;
@@ -57,13 +56,11 @@ const props = defineProps({
             @apply flex-col;
             @apply border;
             @apply border-black;
-            @apply rounded-lg;
             @apply bg-white;
             @apply box-border;
-            transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+            @apply transition-transform;
             box-shadow: 5px 5px 0px 0.01px #000000;
-            @apply hover:shadow-none;
-            @apply hover:border-4;
+            @apply hover:scale-[1.015];  
         }
     }
 

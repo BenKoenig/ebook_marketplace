@@ -8,9 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -40,7 +38,7 @@ class CheckoutController extends Controller
         $product = session()->get('store_product');
 
         /* logged in user */
-        $user = Auth::user();
+        $user = Auth::user(); 
 
         /* checks if user has purchased this product */
         $userHasPurchased = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->first();
@@ -50,10 +48,24 @@ class CheckoutController extends Controller
         }
 
         /* Stores information to database */
-        Order::create([
+/*         Order::create([
             'user_id' => $user->id,
             'product_id' => $product->id,
-        ]);
+        ]); */
+
+
+
+        $file_path = storage_path('app/orders'.DIRECTORY_SEPARATOR.("order_count_" . (string)$product->id . ".json"));
+
+        $order_json = json_decode(file_get_contents($file_path), true);
+
+        dd($order_json);
+        exit();
+
+
+        $order_json["total_orders"]++;
+
+
 
         return redirect('/library')->with('success', 'The product has been added to your library.');
 

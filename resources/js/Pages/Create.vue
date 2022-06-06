@@ -8,7 +8,6 @@ import Button from "@/Shared/Button";
 import Headline from "@/Shared/Headline";
 import Editor from '@tinymce/tinymce-vue'
 
-
 defineProps({
     status: String,
     errors: Object
@@ -37,7 +36,7 @@ const submit = () => {
         <div class="flex flex-col gap-y-3 mt-3">
 
             <!-- Start of headline -->
-            <div class="bg-pattern bg-cover component--padding rounded-2xl">
+            <div class="bg-pattern bg-cover component--padding">
                 <Headline
                     title="Educate other developers"
                     h1="Sell your Ebook."
@@ -47,7 +46,7 @@ const submit = () => {
             <!-- End of headline -->
 
             <!-- Start of Form -->
-            <div class="bg-beige-400 component--padding rounded-2xl">
+            <div class="bg-beige-400 component--padding">
 
                 <!-- Validation errors -->
                 <ValidationErrors class="mb-4" />
@@ -132,7 +131,5 @@ const submit = () => {
             <!-- End of form -->
 
         </div>
-
-
     </Guest>
 </template>

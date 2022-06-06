@@ -3,20 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-
-// == https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
-
 
 class ReviewController extends Controller
 {

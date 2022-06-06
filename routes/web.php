@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\EpubFileController;
+use App\Http\Controllers\FileAccessController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -30,6 +31,9 @@ Route::get('/', [HomeController::class, 'index', ])->name('home');
 /* Create a product*/
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
+Route::get('/df/{id}', [FileAccessController::class, 'index']);
+
+Route::get('/serve/{id}', [FileAccessController::class, 'serve']);
 
 /* Create a review*/
 Route::post('/reviews/', [ReviewController::class, 'store'])->name('reviews.store');
@@ -51,6 +55,11 @@ Route::get('/create', [ProductController::class, 'create'])->middleware(['auth',
 
 /* Edit Product Page */
 Route::get('/edit/{slug}', [ProductController::class, 'edit'])->name('products.create');
+
+
+Route::put('products/{product}', [ProductController::class, 'update'])
+->name('products.update');
+
 
 /* Profile */
 Route::get('/u/{username}', [ProfileController::class, 'index'])->name('profile');

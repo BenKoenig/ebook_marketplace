@@ -22,7 +22,6 @@ const props = defineProps({
     @apply h-10;
     @apply justify-center;
     @apply items-center;
-    @apply rounded-xl;
     @apply gap-x-2;
     @apply border;
     @apply border-black;

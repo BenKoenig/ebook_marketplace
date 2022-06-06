@@ -2,10 +2,9 @@
     <Guest :canLogin="canLogin" :canRegister="canRegister">
         <Head title="Home" />
 
-
-
         <div class="flex flex-col gap-y-3">
 
+            <!-- Headline and featured products -->
             <ProductListComponent
                 :products="featuredProducts"
                 title="See the light"
@@ -14,12 +13,14 @@
             />
             <RandomProductComponent :product="randomProduct"></RandomProductComponent>
 
+            <!-- Headline and recent products  -->
             <ProductListComponent
                 :products="latestProducts"
                 title="What's new?"
                 h2="Recently added Ebooks"
                 description="All of our recently added and approved eBooks"
             />
+            
             <GuidelinesCard />
         </div>
     </Guest>

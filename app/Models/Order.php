@@ -9,7 +9,7 @@ class Order extends Model
     use \Laravel\Sanctum\HasApiTokens, \Illuminate\Database\Eloquent\Factories\HasFactory;
 
     protected $fillable = [
-        'create_at',
+        'created_at',
         'updated_at',
         'user_id',
         'product_id'

@@ -52,7 +52,6 @@ const props = defineProps({
 <style lang="scss" scoped>
 .rand {
     @apply bg-beige-400;
-    @apply rounded-2xl;
 
     &__grid {
         @apply grid;
@@ -68,7 +67,6 @@ const props = defineProps({
             @apply border;
             @apply border-slate-500;
             @apply bg-white;
-            @apply rounded-2xl;
             @apply p-1;
             @apply lg:col-span-4;
 
