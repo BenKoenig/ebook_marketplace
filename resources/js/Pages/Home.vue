@@ -11,6 +11,15 @@
                 h2="Featured Ebooks"
                 description="Explore our recommended eBooks"
             />
+
+            <!-- Headline and featured products -->
+            <ProductListComponent
+                :products="topRankedProducts"
+                title="Lots of people are interested!"
+                h2="Most purchased Ebooks"
+                description="Explore our recommended eBooks"
+            />
+
             <RandomProductComponent :product="randomProduct"></RandomProductComponent>
 
             <!-- Headline and recent products  -->
@@ -35,6 +44,7 @@ import GuidelinesCard from "@/Shared/GuidelinesCard";
 const props = defineProps({
     featuredProducts: Object,
     latestProducts: Object,
+    topRankedProducts: Object,
     randomProduct: Object,
     canLogin: Boolean,
     canRegister: Boolean,

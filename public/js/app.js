@@ -25766,6 +25766,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     featuredProducts: Object,
     latestProducts: Object,
+    topRankedProducts: Object,
     randomProduct: Object,
     canLogin: Boolean,
     canRegister: Boolean
@@ -26949,7 +26950,7 @@ var _hoisted_8 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start of headline - '/Shared/Headline.vue'"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Headline"], {
     title: "The daily Feature",
-    h2: "Highlighted Ebook of the Day",
+    h2: "Todays Highlight",
     description: "Take a look at this highlighted ebook of the day.",
     "class": "component--paddingB"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of headline "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start of daily feature "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start of snippet card "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.snippet), 1
@@ -27232,7 +27233,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" total ratings "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.reviews.total > 0 ? $props.reviews.total + ' Reviews' : 'No Reviews'), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" total purchases "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.orderCount) + " Purchases ", 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" total purchases "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Displays total ratings and correct use of plural "), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.orderCount > 1 ? $props.orderCount + ' Purchases' : $props.orderCount === 0 ? 'No Purchases' : $props.orderCount + ' Purchase'), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" short description of the product "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.short_description), 1
   /* TEXT */
@@ -29030,6 +29031,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         products: $props.featuredProducts,
         title: "See the light",
         h2: "Featured Ebooks",
+        description: "Explore our recommended eBooks"
+      }, null, 8
+      /* PROPS */
+      , ["products"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Headline and featured products "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ProductListComponent"], {
+        products: $props.topRankedProducts,
+        title: "Lots of people are interested!",
+        h2: "Most purchased Ebooks",
         description: "Explore our recommended eBooks"
       }, null, 8
       /* PROPS */

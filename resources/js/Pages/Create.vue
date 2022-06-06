@@ -46,7 +46,7 @@ const submit = () => {
             <!-- End of headline -->
 
             <!-- Start of Form -->
-            <div class="bg-beige-400 component--padding">
+            <div class="bg-beige-400 component--padding ">
 
                 <!-- Validation errors -->
                 <ValidationErrors class="mb-4" />

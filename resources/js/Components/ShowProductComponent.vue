@@ -70,7 +70,8 @@
                     
                     <!-- total purchases -->
                     <p class="text-xl py-3 px-4 border-[1px] h-full border-black flex items-center  gap-x-2  ">
-                        <i class="fa-solid fa-cart-shopping"></i> {{orderCount}} Purchases
+                        <!-- Displays total ratings and correct use of plural -->
+                        <i class="fa-solid fa-cart-shopping"></i> {{orderCount > 1 ? orderCount + ' Purchases' : (orderCount === 0 ? 'No Purchases' : orderCount + ' Purchase')  }} 
                     </p>
 
                 </div>

@@ -48,25 +48,12 @@ class CheckoutController extends Controller
         }
 
         /* Stores information to database */
-/*         Order::create([
+        Order::create([
             'user_id' => $user->id,
             'product_id' => $product->id,
-        ]); */
+        ]);
 
-
-
-        $file_path = storage_path('app/orders'.DIRECTORY_SEPARATOR.("order_count_" . (string)$product->id . ".json"));
-
-        $order_json = json_decode(file_get_contents($file_path), true);
-
-        dd($order_json);
-        exit();
-
-
-        $order_json["total_orders"]++;
-
-
-
+        /* returns user back to library */
         return redirect('/library')->with('success', 'The product has been added to your library.');
 
         /* Forgets the product information */

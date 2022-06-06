@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('snippet');
             $table->string('cover');
             $table->string('epub');
-            $table->string('order_count');
             $table->float('price');
             $table->float('sale_price');
+            $table->integer('score');
             $table->boolean('is_featured');
             $table->boolean('is_public');
             $table->timestamps();

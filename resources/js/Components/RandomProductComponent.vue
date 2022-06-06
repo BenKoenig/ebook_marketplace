@@ -3,7 +3,7 @@
         <!-- Start of headline - '/Shared/Headline.vue'-->
         <Headline
             title="The daily Feature"
-            h2="Highlighted Ebook of the Day"
+            h2="Todays Highlight"
             description="Take a look at this highlighted ebook of the day."
             class="component--paddingB"
         />
