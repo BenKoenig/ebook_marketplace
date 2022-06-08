@@ -6,7 +6,7 @@
             :h2="h2"
             :h3="h3"
             :description="description"
-            class="component--paddingB"
+            class="within--paddingB"
         />
 
         <!-- start of product list -->

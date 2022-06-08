@@ -50,7 +50,7 @@
                 <Headline
                     title="Product Overview"
                     :h1="product.name"
-                    class="component--paddingB"
+                    class="within--paddingB"
                 />
                 <!-- end of headline -->
 
@@ -96,7 +96,7 @@
         </div>
 
         <!-- start review list -->
-        <div class="component--padding" v-if="productHasReviews">
+        <div class="component--paddingT component--paddingX within-paddingB" v-if="productHasReviews">
             <h3 class="font-bold text-3xl md:text-4xl ">Heres what buyers have to say.</h3>
             <ul id="reviews" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1  py-7">
 

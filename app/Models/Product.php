@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Cache;
+
 
 class Product extends Authenticatable
 {
@@ -84,9 +83,13 @@ class Product extends Authenticatable
         return self::find($id)->toArray();
     }
 
-
-
-
+/*     static function decayScore() {
+        foreach(Product::all()->score as $score) {
+            Cache::remember('', 60*24, function () {
+                $score--;
+            });
+        }
+    } */
 
 
 }

@@ -43,6 +43,7 @@ class CheckoutController extends Controller
         /* checks if user has purchased this product */
         $userHasPurchased = $user && (bool)Order::where('user_id', $user->id)->where('product_id', $product->id)->first();
 
+
         if(!empty($hasPurchased)) {
           abort(404);
         }
@@ -52,6 +53,9 @@ class CheckoutController extends Controller
             'user_id' => $user->id,
             'product_id' => $product->id,
         ]);
+
+        /* increases the product ranking by 1 */
+        $product->score++;
 
         /* returns user back to library */
         return redirect('/library')->with('success', 'The product has been added to your library.');

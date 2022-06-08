@@ -147,6 +147,7 @@ import Notification from "@/Shared/Notification";
     @apply relative;
     @apply flex;
     @apply gap-x-5;
+    @apply px-2;
 
     /* Start of desktop navigation*/
     &__desktopNav {

@@ -5,7 +5,7 @@
             title="The daily Feature"
             h2="Todays Highlight"
             description="Take a look at this highlighted ebook of the day."
-            class="component--paddingB"
+            class="within--paddingB"
         />
         <!-- End of headline -->
 

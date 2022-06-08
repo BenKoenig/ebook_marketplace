@@ -7,12 +7,12 @@
             <Headline title="All your ebooks at once place"
                       h2="Library"
                       description="View your purchased ebooks"
-                      class="component--paddingB"
+                      class="within--paddingB"
             />
             <div class="library__grid">
                 <div v-for="product in products" key="product.product_id" class="library__grid__item">
                     <Link :href="'/read/' + product.slug"  class="absolute w-full h-full z-20"></Link>
-                    <img :src="product.cover" :alt="product.name" class="mx-1 mt-1 rounded-lg">
+                    <img :src="product.cover" :alt="product.name" class="mx-1 mt-1 ">
                     <div class="mx-2 py-3">
                         <h3 class="leading-5 tracking-wide">{{ product.name }}</h3>
                     </div>
