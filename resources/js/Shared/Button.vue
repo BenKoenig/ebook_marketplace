@@ -17,6 +17,7 @@ defineProps({
 .btn {
     @apply flex;
     @apply px-5;
+    @apply rounded-lg;
     @apply h-10;
     @apply justify-center;
     @apply items-center;

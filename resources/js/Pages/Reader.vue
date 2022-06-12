@@ -5,12 +5,11 @@
             <div id="epub-render" ></div>
 
             <div class="flex gap-x-2 justify-center fixed w-full bottom-0 py-2 items-center">
-                <Link href="/" class=" ">
-                    <i class="fa-solid fa-house"></i> Home
+                <Link href="/library" class=" ">
+                    Library
                 </Link>
                 <Button :type="button" @click="previousPage()">Previus Page</Button>
                 <Button :type="button" @click="nextPage()">Next Page</Button>
-                <p>{{ product.id }}</p>
 
             </div>
         </div>
@@ -22,7 +21,6 @@ import ePub from "epubjs";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import Focused from "@/Layouts/Focused";
 import Button from "@/Shared/Button";
-import axios from "axios";
 const URL_EPUB = "http://lv.test/";
 
 export default {
@@ -37,7 +35,7 @@ export default {
     data() {
         return {
             /* epub: `http://lv.test/df/${this.product.id}`, */
-            epub: `http://lv.test/df/${this.product.id}`,
+            epub: `http://lv.test/d/${this.product.id}.epub`,
             newEpub: [],
             show: false,
             book: {},
@@ -47,17 +45,6 @@ export default {
         };
     },
 
-    beforeMount() {
-        axios({
-            url: 'http://lv.test/serve/104',
-            method: 'GET',
-            responseType: 'blob',
-        }).then((response) => {
-            const fileURL = window.URL.createObjectURL(new Blob([response.data]));
-            this.epub = fileURL;
-        });
-    },
-    
     mounted() {
         
 

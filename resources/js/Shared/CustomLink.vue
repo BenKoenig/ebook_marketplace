@@ -20,6 +20,7 @@ const props = defineProps({
     @apply flex;
     @apply px-5;
     @apply h-10;
+    @apply rounded-lg;
     @apply justify-center;
     @apply items-center;
     @apply gap-x-2;

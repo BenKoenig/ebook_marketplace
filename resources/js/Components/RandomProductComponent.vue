@@ -13,7 +13,7 @@
         <div class="rand__grid">
 
             <!-- Start of snippet card -->
-            <div class="rand__grid__item">
+            <div class="rand__grid__item ">
                 <svg class="rand__grid__item__svg rand__grid__item__svg--top" viewBox="0 1 324.42 115"><text transform="translate(1 92)" fill="#fff" stroke="#000" font-size="91" font-family="Outfit" font-weight="700"><tspan x="0" y="0">Snippet</tspan></text></svg>
 
                 <p class="rand__grid__item__p">{{ product.snippet }}</p>
@@ -69,6 +69,7 @@ const props = defineProps({
             @apply bg-white;
             @apply p-1;
             @apply lg:col-span-4;
+            @apply rounded-lg;
 
             &__p {
                 @apply text-lg;

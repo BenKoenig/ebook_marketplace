@@ -19,7 +19,7 @@ module.exports = {
                 '8xl': '85rem',
             },
             colors: {
-                'beige-400': '#ECEBE2',
+                'beige-400': '#f4f3ee',
                 'beige-600': '#e0dfd3',
             }
         },

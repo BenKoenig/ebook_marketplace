@@ -35,7 +35,7 @@ const submit = () => {
         <div class="flex flex-col gap-y-3">
 
             <!-- Start of headline -->
-            <div class="bg-beige-400 component--padding rounded-2xl">
+            <div class="bg-pattern bg-cover bg-fixed component--padding">
                 <Headline
                     title="Lorem ipsum dolar"
                     h1="Welcome back to readme"
@@ -45,12 +45,12 @@ const submit = () => {
             <!-- End of headline -->
 
             <!-- Start of Form -->
-            <div class="bg-beige-400 component--padding rounded-2xl">
+            <div class="component--padding">
 
                 <!-- Validation errors -->
                 <ValidationErrors class="mb-4" />
 
-                <form @submit.prevent="submit" class="max-w-lg mx-auto">
+                <form @submit.prevent="submit" class="max-w-lg ">
 
                     <!-- email field -->
                     <div>

@@ -8,7 +8,6 @@ use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\EpubFileController;
 use App\Http\Controllers\FileAccessController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,7 +30,7 @@ Route::get('/', [HomeController::class, 'index', ])->name('home');
 /* Create a product*/
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-Route::get('/df/{id}', [FileAccessController::class, 'index']);
+Route::get('/d/{id}.epub', [FileAccessController::class, 'index']);
 
 Route::get('/serve/{id}', [FileAccessController::class, 'serve']);
 
@@ -74,8 +73,7 @@ Route::get('/e/{slug}/checkout', [CheckoutController::class, 'index'])->name('ch
 /* Create a product*/
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
-/* ePub file direct links */
-Route::get('epubs/{id}', [EpubFileController::class,'index'])->name('image.displayImage');
+
 
 /* Uses ePub file content to display eBook */
 Route::get('/read/{slug}', [ReaderController::class, 'index'])->name('reader');

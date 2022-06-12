@@ -33,10 +33,10 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <div class="flex flex-col gap-y-3 mt-3">
+        <div class="flex flex-col gap-y-3">
 
             <!-- Start of headline -->
-            <div class="bg-pattern bg-cover component--padding">
+            <div class="bg-pattern bg-fixed bg-cover component--padding ">
                 <Headline
                     title="Educate other developers"
                     h1="Sell your Ebook."
@@ -46,12 +46,12 @@ const submit = () => {
             <!-- End of headline -->
 
             <!-- Start of Form -->
-            <div class="bg-beige-400 component--padding ">
+            <div class="component--paddingX component--paddingB pt-5">
 
                 <!-- Validation errors -->
                 <ValidationErrors class="mb-4" />
 
-                <form @submit.prevent="submit" class="max-w-3xl mx-auto">
+                <form @submit.prevent="submit" class="max-w-3xl">
 
                     <div class="mb-4">
                         <Label for="name" value="Book Title" />

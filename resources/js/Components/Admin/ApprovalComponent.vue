@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-beige-400 rounded-2xl component--padding">
+    <div class="rounded-2xl component--padding">
 
         <!-- start of headline -->
         <Headline
