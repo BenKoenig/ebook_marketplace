@@ -17,29 +17,26 @@ class ReaderController extends Controller
     public function index($slug, Request $request)
     {
         $product = Product::where('slug', '=', $slug)->firstOrFail();
-        $user = Auth::user();
+        $isPurchased = Auth::user() ? (bool)Order::where('product_id', $product->id)->where('user_id', Auth::user()->id)->first() : false;
 
-        if(!$user) {
-            return abort('403', "You must be logged in.");
+        /* Checks if user has purchased the product */
+        if(!$isPurchased) {
+            return abort('403', "You don't have access to this product.");
         } else {
 
             /* Checks if user is admin */
-            if(!$user->is_admin) {
+            if(!Auth::user()->is_admin) {
 
                 /* Checks if user has purchased the product */
-                if(!Order::where('user_id', $user->id )->where('product_id', $product->id)->first()){
+                if(!Order::where('user_id', Auth::user()->id )->where('product_id', $product->id)->first()){
                     return abort(403, "You didn't purchase this product.");
                 }
             }
 
         }
 
-
-
         return Inertia::render('Reader', [
-            'product' => $product,
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+            'product' => $product
         ]);
 
     }

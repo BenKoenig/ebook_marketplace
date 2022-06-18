@@ -40,7 +40,6 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .library {
-    @apply bg-beige-400;
 
     &__grid {
         @apply grid;
