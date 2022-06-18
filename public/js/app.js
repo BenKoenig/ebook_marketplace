@@ -27004,10 +27004,10 @@ var _hoisted_11 = {
   "class": "font-bold"
 };
 var _hoisted_12 = {
-  "class": "xl:flex grid items-center mb-7 flex-wrap"
+  "class": "xl:flex grid items-center mb-7 flex-wrap border-black border rounded-md overflow-hidden"
 };
 var _hoisted_13 = {
-  "class": "text-xl py-3 px-4 border-[1px] border-black h-full flex items-center bg-yellow-100"
+  "class": "text-xl py-3 px-4 h-full flex items-center bg-yellow-100 border-b xl:border-b-0 xl:border-r border-black"
 };
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -27017,17 +27017,17 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_15 = {
-  "class": "text-xl py-3 px-4 border-[1px] border-black h-full flex items-center"
+  "class": "text-xl py-3 px-4 h-full flex items-center border-b xl:border-b-0 xl:border-r border-black"
 };
 var _hoisted_16 = {
   key: 0,
-  "class": "flex py-3 px-4 gap-x-1 items-center text-xl border-[1px] border-black h-full"
+  "class": "flex py-3 px-4 gap-x-1 items-center text-xl h-full border-b xl:border-b-0 xl:border-r border-black"
 };
 var _hoisted_17 = {
-  "class": "flex py-3 px-4 gap-x-1 items-center text-xl border-[1px] border-black h-full"
+  "class": "flex py-3 px-4 gap-x-1 items-center text-xl h-full border-b xl:border-b-0 xl:border-r border-black"
 };
 var _hoisted_18 = {
-  "class": "text-xl py-3 px-4 border-[1px] h-full border-black flex items-center gap-x-2"
+  "class": "text-xl py-3 px-4 h-full flex items-center gap-x-2"
 };
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -27040,7 +27040,7 @@ var _hoisted_20 = {
   "class": "pb-7"
 };
 var _hoisted_21 = {
-  "class": "pattern-2 border-[1px] border-black py-10 px-2 md:px-10 relative"
+  "class": "pattern-2 border-[1px] border-black py-10 px-2 md:px-10 relative rounded-md"
 };
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
@@ -27083,7 +27083,7 @@ var _hoisted_28 = {
   "class": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 py-7"
 };
 var _hoisted_29 = {
-  "class": "bg-yellow-100 border-b-[1px] border-black text-center flex items-center gap-x-2 px-2"
+  "class": "bg-yellow-100 border-b-[1px] border-black text-center flex items-center gap-x-2 px-2 rounded-md"
 };
 var _hoisted_30 = {
   "class": "w-10",
@@ -27229,7 +27229,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     innerHTML: $props.product.description
   }, null, 8
   /* PROPS */
-  , _hoisted_25)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start review list "), $props.productHasReviews ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of review loop "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.reviews.data, function (review) {
+  , _hoisted_25)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start review list "), $props.productHasReviews ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Pagination"], {
+    "class": "mt-10",
+    links: $props.reviews.links
+  }, null, 8
+  /* PROPS */
+  , ["links"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of review loop "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.reviews.data, function (review) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: review.id,
       "class": "bg-white"
@@ -27259,12 +27264,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )])]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of review loop ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Pagination"], {
-    "class": "mt-3",
-    links: $props.reviews.links
-  }, null, 8
-  /* PROPS */
-  , ["links"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of review list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of review form "), !$props.userHasReviewed && $props.userHasPurchased && !$props.userIsAuthor ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of review loop ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of review list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of review form "), !$props.userHasReviewed && $props.userHasPurchased && !$props.userIsAuthor ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.submit, ["prevent"]),
     novalidate: ""
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {

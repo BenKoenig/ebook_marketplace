@@ -54,22 +54,22 @@
                 />
                 <!-- end of headline -->
 
-                <div class="xl:flex grid   items-center   mb-7 flex-wrap">
-                    <p class="text-xl py-3 px-4 border-[1px] border-black h-full flex items-center bg-yellow-100 "><i class="fa-solid fa-dollar-sign mr-1" ></i> {{ product.price }}</p>
-                    <p class="text-xl py-3 px-4  border-[1px] border-black  h-full flex items-center ">@{{ product.user.username }}</p>
+                <div class="xl:flex grid   items-center   mb-7 flex-wrap border-black border rounded-md overflow-hidden">
+                    <p class="text-xl py-3 px-4  h-full flex items-center bg-yellow-100 border-b xl:border-b-0 xl:border-r border-black "><i class="fa-solid fa-dollar-sign mr-1" ></i> {{ product.price }}</p>
+                    <p class="text-xl py-3 px-4 h-full flex items-center border-b xl:border-b-0 xl:border-r border-black">@{{ product.user.username }}</p>
                     
                     <!-- average rating -->
-                    <div v-if="averageRating" class="flex py-3 px-4 gap-x-1 items-center  text-xl   border-[1px] border-black h-full">
+                    <div v-if="averageRating" class="flex py-3 px-4 gap-x-1 items-center  text-xl h-full border-b xl:border-b-0 xl:border-r border-black">
                         <p>{{ averageRating + ' / 5 Stars'}}</p>
                     </div>
 
                     <!-- total ratings -->
-                    <div class="flex py-3 px-4 gap-x-1 items-center  text-xl   border-[1px] border-black h-full">
+                    <div class="flex py-3 px-4 gap-x-1 items-center  text-xl h-full border-b xl:border-b-0 xl:border-r border-black">
                         <p>{{ reviews.total > 0 ? reviews.total + ' Reviews' : 'No Reviews'}}</p>
                     </div>
                     
                     <!-- total purchases -->
-                    <p class="text-xl py-3 px-4 border-[1px] h-full border-black flex items-center  gap-x-2  ">
+                    <p class="text-xl py-3 px-4  h-full  flex items-center gap-x-2 ">
                         <!-- Displays total ratings and correct use of plural -->
                         <i class="fa-solid fa-cart-shopping"></i> {{orderCount > 1 ? orderCount + ' Purchases' : (orderCount === 0 ? 'No Purchases' : orderCount + ' Purchase')  }} 
                     </p>
@@ -80,7 +80,7 @@
                 <p class="pb-7">{{product.short_description}}</p>
 
                 <!-- short snippet of the product -->
-                <div class="pattern-2 border-[1px] border-black py-10 px-2 md:px-10  relative">
+                <div class="pattern-2 border-[1px] border-black py-10 px-2 md:px-10  relative rounded-md">
                     <svg class="absolute  -bottom-6 right-1 lg:right-4 h-[4.5rem]" viewBox="0.5 1 323.42 115"><text transform="translate(1 92)" fill="#fff" stroke="#000" font-size="91" font-family="Outfit" font-weight="700"><tspan x="0" y="0">Snippet</tspan></text></svg>
                     <p class="text-xl md:text-3xl ">“{{product.snippet}}“</p>
                 </div>
@@ -98,11 +98,14 @@
         <!-- start review list -->
         <div class="component--paddingT component--paddingX within-paddingB" v-if="productHasReviews">
             <h3 class="font-bold text-3xl md:text-4xl ">Heres what buyers have to say.</h3>
+
+            <Pagination class="mt-10 " :links="reviews.links" />
+
             <ul id="reviews" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1  py-7">
 
                 <!-- start of review loop -->
-                <li v-for="review in reviews.data" :key="review.id"  class="bg-white " >
-                    <div class="bg-yellow-100 border-b-[1px] border-black  text-center flex items-center gap-x-2 px-2">
+                <li v-for="review in reviews.data" :key="review.id"  class="bg-white" >
+                    <div class="bg-yellow-100 border-b-[1px] border-black  text-center flex items-center gap-x-2 px-2 rounded-md">
                         <svg class="w-10" viewBox="0 0 36 36" fill="none" role="img" width="80" height="80"><title>@{{ review.user.username }}</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#ffad08"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(297 18 18) scale(1)" fill="#73b06f" rx="6"></rect><g transform="translate(3.5 3.5) rotate(7 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
                         
                         <!-- reviewer and link to their profile -->
@@ -130,7 +133,6 @@
 
             </ul>
 
-            <Pagination class="mt-3" :links="reviews.links" />
         </div>
         <!-- end of review list -->
 
