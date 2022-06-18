@@ -25676,10 +25676,10 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       id: props.product.id,
-      name: props.product.name,
       snippet: props.product.snippet,
       sale_price: props.product.sale_price,
-      description: props.product.description
+      description: props.product.description,
+      short_description: props.product.short_description
     });
 
     var submit = function submit() {
@@ -28777,48 +28777,69 @@ var _hoisted_1 = {
   "class": "mb-4 font-medium text-sm text-green-600"
 };
 var _hoisted_2 = {
-  "class": "flex flex-col gap-y-3 mt-3"
+  "class": "flex flex-col gap-y-3"
 };
 var _hoisted_3 = {
-  "class": "bg-pattern bg-cover component--padding rounded-2xl"
+  "class": "bg-pattern bg-fixed bg-cover component--padding"
 };
 var _hoisted_4 = {
-  "class": "bg-beige-400 component--padding rounded-2xl"
+  "class": "component--padding"
 };
 var _hoisted_5 = ["onSubmit"];
-var _hoisted_6 = {
-  "class": "mb-4"
-};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-sm text-gray-600"
+}, "Title (can't be changed)", -1
+/* HOISTED */
+);
+
 var _hoisted_7 = {
-  "class": "mb-4"
+  "class": "text-2xl text-bold mb-4"
 };
 var _hoisted_8 = {
   "class": "mb-4"
 };
 var _hoisted_9 = {
-  "class": "flex gap-x-2"
+  "class": "mb-4"
 };
 var _hoisted_10 = {
   "class": "mb-4"
 };
 var _hoisted_11 = {
-  "class": "text-sm text-bold mb-2"
+  "class": "flex gap-x-2"
 };
 var _hoisted_12 = {
+  "class": "mb-4"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-sm text-gray-600"
+}, "Original Price (can't be changed)", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  "class": "text-2xl text-bold mb-4"
+};
+var _hoisted_15 = {
+  key: 0,
+  "class": "text-sm text-red-500 mb-2"
+};
+var _hoisted_16 = {
   "class": "relative w-36"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "absolute w-10 h-full bg-gray-700 text-white right-0 top-0 rounded-lg flex justify-center items-center text-bold text-xl"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "$")], -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_18 = {
   "class": "flex items-center justify-end mt-4"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Submit changes ");
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Submit changes ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Guest"], null, {
@@ -28829,31 +28850,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* TEXT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start of headline "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Headline"], {
         title: "Educate other developers",
-        h1: "Sell your Ebook.",
+        h1: "Update your Ebook.",
         description: "Enter everything there is to know about your ebook!"
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of headline "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start of Form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Validation errors "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ValidationErrors"], {
         "class": "mb-4"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.submit, ["prevent"]),
-        "class": "max-w-3xl mx-auto"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {
-        "for": "name",
-        value: "Book Title"
+        "class": "max-w-3xl"
+      }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {
+        "for": "short_description",
+        value: "Short description"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
-        id: "name",
+        id: "short_description",
         type: "text",
         "class": "mt-1 block w-full",
-        modelValue: $setup.form.name,
+        modelValue: $setup.form.short_description,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $setup.form.name = $event;
+          return $setup.form.short_description = $event;
         }),
         required: "",
-        autofocus: "",
-        autocomplete: "name",
-        value: $props.product.name
+        autofocus: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue", "value"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {
         value: "Product Description"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Editor"], {
         content_style: "div { margin: 10px; border: 5px solid red; padding: 3px; }",
@@ -28873,7 +28894,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {
         "for": "snippet",
         value: "Book Snippet"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of snippet input "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
@@ -28886,16 +28907,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         required: "",
         autofocus: "",
-        autocomplete: "snippet",
-        value: $props.product.snippet
+        autocomplete: "snippet"
       }, null, 8
       /* PROPS */
-      , ["modelValue", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of snippet input ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" price input/label "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, "Original Price: $" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.price), 1
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of snippet input ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" price input/label "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_14, "$" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.price), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Label"], {
         "for": "sale_price",
         value: "Sale Price"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
+      }), $props.product.sale_price === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_15, "Ebook is currently not on sale")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
         id: "sale_price",
         type: "text",
         "class": "mt-1 block w-full",
@@ -28905,18 +28925,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         required: "",
         autofocus: "",
-        autocomplete: "price",
-        value: $props.product.sale_price
+        autocomplete: "price"
       }, null, 8
       /* PROPS */
-      , ["modelValue", "value"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Button"], {
+      , ["modelValue"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Button"], {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
           'opacity-25': $setup.form.processing
         }, "bg-yellow-200 hover:bg-yellow-100"]),
         disabled: $setup.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_15];
+          return [_hoisted_19];
         }),
         _: 1
         /* STABLE */

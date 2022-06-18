@@ -95,50 +95,24 @@ class ProductController extends Controller
         ]);
     }
 
-/*     public function update($id, Request $request) {
 
-        $product = Product::where('id', $id)->first(); */
-/* 
-
+    public function update(Product $product, Request $request)
+    {
         $request->validate([
-            'name' => ['required', 'max:100'],
+            'short_description' => ['required', 'max:1000'],
             'description' => ['required', 'max:50000'],
             'snippet' => ['required', 'max:1000'],
             'sale_price' => ['required', 'numeric', 'between:0,150'],
         ]);
-        $product = Product->update([
-            'name' => $request->input('name'),
+
+        $product->update([
             'description' => $request->input('description'),
+            'short_description' => $request->input('short_description'),
             'snippet' => $request->input('snippet'),
-            'price' => $request->input('price'),
-            'cover' => $request->file('cover')->store('covers', 'public'),
-            'epub' => $request->file('epub')->store('epubs', 'public'),
-            'user_id' => Auth::user()->id
-        ]); */
+            'sale_price' => $request->input('sale_price'),
+        ]);
 
-/*         $product->update(
-            Request::validate([
-                'name' => ['required', 'max:100'],
-                'description' => ['required', 'max:50000'],
-                'snippet' => ['required', 'max:1000'],
-                'sale_price' => ['numeric', 'max:150', 'between:0,150'],
-            ])
-        );
-        return Redirect::back()->with('success', 'Product has been updated.');
-    } */
-
-    public function update(Product $product)
-    {
-        $product->update(
-            Request::validate([
-                'name' => ['required', 'max:100'],
-                'description' => ['required', 'max:50000'],
-                'snippet' => ['required', 'max:1000'],
-                'sale_price' => ['required', 'numeric', 'between:0,150'],
-            ])
-        );
-
-        return Redirect::back()->with('success', 'Product updated.');
+        return redirect('/e/' . $product->slug)->with('success', 'Product has been updated.');
     }
 
     public function show($slug, Request $request)

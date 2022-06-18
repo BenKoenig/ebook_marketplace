@@ -16,10 +16,10 @@ const props = defineProps({
 });
 const form = useForm({
     id: props.product.id,
-    name: props.product.name,
     snippet: props.product.snippet,
     sale_price: props.product.sale_price,
-    description: props.product.description
+    description: props.product.description,
+    short_description: props.product.short_description
 });
 const submit = () => {
     form.put('/products/' + props.product.id);
@@ -34,29 +34,33 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <div class="flex flex-col gap-y-3 mt-3">
+        <div class="flex flex-col gap-y-3">
 
             <!-- Start of headline -->
-            <div class="bg-pattern bg-cover component--padding rounded-2xl">
+            <div class="bg-pattern bg-fixed bg-cover component--padding">
                 <Headline
                     title="Educate other developers"
-                    h1="Sell your Ebook."
+                    h1="Update your Ebook."
                     description="Enter everything there is to know about your ebook!"
                 />
             </div>
             <!-- End of headline -->
 
             <!-- Start of Form -->
-            <div class="bg-beige-400 component--padding rounded-2xl">
+            <div class="component--padding ">
 
                 <!-- Validation errors -->
                 <ValidationErrors class="mb-4" />
 
-                <form @submit.prevent="submit" class="max-w-3xl mx-auto">
+                <form @submit.prevent="submit" class="max-w-3xl">
+
+                    <h3 class="text-sm text-gray-600">Title (can't be changed)</h3>
+                    <h2 class="text-2xl text-bold mb-4">{{product.name}}</h2>
+
 
                     <div class="mb-4">
-                        <Label for="name" value="Book Title" />
-                        <Input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" :value="product.name" />
+                        <Label for="short_description" value="Short description" />
+                        <Input id="short_description" type="text" class="mt-1 block w-full" v-model="form.short_description" required autofocus  />
                     </div>
 
                     <div class="mb-4">
@@ -93,7 +97,7 @@ const submit = () => {
                         v-model="form.snippet" 
                         required autofocus 
                         autocomplete="snippet" 
-                        :value="product.snippet"/>
+                        />
                         <!-- end of snippet input -->
                     </div>
 
@@ -103,9 +107,11 @@ const submit = () => {
                         <div class="mb-4">
 
 
-                            <p class="text-sm text-bold mb-2">Original Price: ${{product.price}}</p>
+                        <h3 class="text-sm text-gray-600">Original Price (can't be changed)</h3>
+                        <h2 class="text-2xl text-bold mb-4">${{product.price}}</h2>   
 
                             <Label for="sale_price" value="Sale Price" />
+                            <p v-if="product.sale_price === 0" class="text-sm text-red-500 mb-2">Ebook is currently not on sale</p>
 
                             <div class="relative w-36">
                                 <div class="absolute w-10 h-full bg-gray-700 text-white 
@@ -119,7 +125,7 @@ const submit = () => {
                                 class="mt-1 block w-full" 
                                 v-model="form.sale_price" required autofocus 
                                 autocomplete="price" 
-                                :value="product.sale_price" />
+                                />
                             </div>
                         </div>
                     </div>

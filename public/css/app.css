@@ -1590,6 +1590,10 @@ input:checked + .toggle-bg{
   --tw-text-opacity: 1;
   color: rgb(88 80 236 / var(--tw-text-opacity));
 }
+.text-red-500{
+  --tw-text-opacity: 1;
+  color: rgb(240 82 82 / var(--tw-text-opacity));
+}
 .underline{
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
