@@ -52,7 +52,7 @@ class ProductController extends Controller
             'description' => ['required', 'max:50000'],
             'snippet' => ['required', 'max:1000'],
             'price' => ['required', 'numeric', 'between:0,150'],
-            'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg'],
+            'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg', 'dimensions:width=265,height=445'],
             'epub' => ['required', 'max:1000000', 'mimes:epub'],
         ]);
         $product = Product::create([

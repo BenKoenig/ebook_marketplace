@@ -57,11 +57,15 @@ const submit = () => {
                     <div class="mb-4">
                         <Label for="name" value="Book Title" />
                         <Input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus  />
+                        <p v-if="errors.name" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.name }}</p>
+
                     </div>
 
                     <div class="mb-4">
                         <Label for="short_description" value="Short description" />
                         <Input id="short_description" type="text" class="mt-1 block w-full" v-model="form.short_description" required autofocus  />
+                        <p v-if="errors.short_description" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.short_description }}</p>
+
                     </div>
 
                     <!-- start of rich text editor -->
@@ -93,6 +97,8 @@ const submit = () => {
                     <div class="mb-4">
                         <Label for="snippet" value="Book Snippet" />
                         <Input id="snippet" type="text" class="mt-1 block w-full" v-model="form.snippet" required autofocus autocomplete="snippet" />
+                        <p v-if="errors.price" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.snippet }}</p>
+
                     </div>
 
                     <!-- price input/label -->
@@ -104,6 +110,8 @@ const submit = () => {
                             </div>
 
                             <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required autofocus autocomplete="price" />
+                            <p v-if="errors.price" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.price }}</p>
+
                         </div>
                     </div>
 
@@ -113,7 +121,7 @@ const submit = () => {
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="cover">Upload Book Cover</label>
                             <input class="rounded-lg block w-full text-sm text-gray-900 bg-gray-50  border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="cover_help" id="cover" @input="form.cover = $event.target.files[0]" type="file">
                             <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="cover_help">The book cover will be seen in the product list</div>
-                            <p v-if="errors.cover" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.cover }}</p>
+                            <p v-if="errors.cover" class="mt-2 text-sm text-red-600 dark:text-red-500">The cover image must be 265x455</p>
 
                         </div>
 
