@@ -61,6 +61,7 @@ const props = defineProps({
             @apply transition-transform;
             box-shadow: 5px 5px 0px 0.01px #000000;
             @apply hover:scale-[1.015];  
+            @apply rounded-md;
         }
     }
 

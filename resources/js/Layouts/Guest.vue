@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="$page.props.flash.success" class="mb-5 text-black">
+        <div v-if="$page.props.flash.success" class="text-black">
             <Notification>{{ $page.props.flash.success }}</Notification>
         </div>
 
