@@ -18,7 +18,8 @@ const form = useForm({
     cover: '',
     price: '',
     epub: '',
-    description: ''
+    description: '',
+    short_description: ''
 });
 const submit = () => {
     form.post('/products');
@@ -55,7 +56,12 @@ const submit = () => {
 
                     <div class="mb-4">
                         <Label for="name" value="Book Title" />
-                        <Input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+                        <Input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus  />
+                    </div>
+
+                    <div class="mb-4">
+                        <Label for="short_description" value="Short description" />
+                        <Input id="short_description" type="text" class="mt-1 block w-full" v-model="form.short_description" required autofocus  />
                     </div>
 
                     <!-- start of rich text editor -->
