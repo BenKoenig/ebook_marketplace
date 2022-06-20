@@ -16,12 +16,13 @@
             <div class="rand__grid__item ">
                 <svg class="rand__grid__item__svg rand__grid__item__svg--top" viewBox="0 1 324.42 115"><text transform="translate(1 92)" fill="#fff" stroke="#000" font-size="91" font-family="Outfit" font-weight="700"><tspan x="0" y="0">Snippet</tspan></text></svg>
 
-                <p class="rand__grid__item__p">{{ product.snippet }}</p>
+                <p v-if="product" class="rand__grid__item__p">{{ product.snippet }}</p>
             </div>
             <!-- End of snippet card -->
 
             <!-- Start of product card -->
             <ProductCard
+                v-if="product"
                 :product="product"
                 class="lg:col-span-4"
             />
@@ -31,7 +32,7 @@
             <div class="rand__grid__item">
                 <svg class="rand__grid__item__svg rand__grid__item__svg--bottom" viewBox="0 1 263.08 116"><text transform="translate(1 93)" fill="#fff" stroke="#000" font-size="92" font-family="Outfit" font-weight="700"><tspan x="0" y="0">About</tspan></text></svg>
 
-                <p class="rand__grid__item__p">{{ product.short_description}}</p>
+                <p v-if="product" class="rand__grid__item__p">{{ product.short_description}}</p>
             </div>
             <!-- End of about card -->
         </div>

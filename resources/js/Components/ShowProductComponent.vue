@@ -55,7 +55,7 @@
                 <!-- end of headline -->
 
                 <div class="xl:flex grid   items-center   mb-7 flex-wrap border-black border rounded-md overflow-hidden">
-                    <p class="text-xl py-3 px-4  h-full flex items-center bg-yellow-100 border-b xl:border-b-0 xl:border-r border-black "><i class="fa-solid fa-dollar-sign mr-1" ></i> {{ product.price }}</p>
+                    <p class="text-xl py-3 px-4  h-full flex items-center bg-yellow-100 border-b xl:border-b-0 xl:border-r border-black"><i class="fa-solid fa-dollar-sign mr-1" ></i> <span v-if="product.sale_price > 0" class="line-through">{{ product.price }}</span></p>
                     <p class="text-xl py-3 px-4 h-full flex items-center border-b xl:border-b-0 xl:border-r border-black">@{{ product.user.username }}</p>
                     
                     <!-- average rating -->
