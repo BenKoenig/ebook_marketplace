@@ -45,6 +45,7 @@
                 <div v-if="product.is_public === 0" class="bg-white border border-black text-black mb-1 text-xl  flex justify-center items-center py-3 px-2 mb-5">
                     <p>Please be patient while we are reviewing your product. Product ID: <span class="font-bold">#{{ product.id }}</span></p>
                 </div>
+                <p>{{ product.id }}</p>
 
                 <!-- start of headline -->
                 <Headline
