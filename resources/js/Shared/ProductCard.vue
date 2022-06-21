@@ -2,7 +2,7 @@
     <div class="relative grid grid-cols-2 sm:grid-cols-1 xl:grid-cols-2 gap-x-2 md:gap-x-3 items-center  border border-black  bg-white rounded-lg">
         <!-- Book cover-->
         <div class="w-full relative overflow-hidden bg-gray-100 rounded-lg">
-            <img :src="product.cover" :alt="product.name" class="w-full max-w-xs mx-auto">
+            <img :src="'../' + product.cover" :alt="product.name" class="w-full max-w-xs mx-auto">
             <p v-if="product.is_public === 0" class="text-sm absolute top-0 left-0 z-30bg-white p-2 w-full text-center border border-black"><i class="fa-solid fa-circle-info mr-1"></i>Ebook in review</p>
             
             <!-- Price -->
