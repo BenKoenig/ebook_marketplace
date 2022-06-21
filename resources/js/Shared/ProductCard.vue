@@ -3,10 +3,10 @@
         <!-- Book cover-->
         <div class="w-full relative overflow-hidden bg-gray-100 rounded-lg">
             <img v-bind:src="'../storage/' + product.cover" :alt="product.name" class="w-full max-w-xs mx-auto">
-            <p v-if="product.is_public === 0" class="text-sm absolute top-0 left-0 z-30bg-white p-2 w-full text-center border border-black"><i class="fa-solid fa-circle-info mr-1"></i>Ebook in review</p>
+            <p v-if="product.is_public === 0" class="text-sm absolute top-0 left-0 z-30 bg-white p-2 w-full text-center "><i class="fa-solid fa-circle-info mr-1"></i>Ebook in review</p>
             
             <!-- Price -->
-            <p class="absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 whitespace-nowrap tracking-wide rounded-tl-lg rounded-tr-lg"><i class="fa-solid fa-dollar-sign"></i> {{ formattedNumber(product.price) }}</p>
+            <p class="absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 whitespace-nowrap tracking-wide rounded-lg"><i class="fa-solid fa-dollar-sign"></i> {{ formattedNumber(product.price) }}</p>
         </div>
 
         <!-- Book Title, Author, Link to product page -->

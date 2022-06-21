@@ -29918,7 +29918,7 @@ var _hoisted_2 = {
 var _hoisted_3 = ["src", "alt"];
 var _hoisted_4 = {
   key: 0,
-  "class": "text-sm absolute top-0 left-0 z-30bg-white p-2 w-full text-center border border-black"
+  "class": "text-sm absolute top-0 left-0 z-30 bg-white p-2 w-full text-center"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -29931,7 +29931,7 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_7 = [_hoisted_5, _hoisted_6];
 var _hoisted_8 = {
-  "class": "absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 whitespace-nowrap tracking-wide rounded-tl-lg rounded-tr-lg"
+  "class": "absolute right-2/4 translate-x-2/4 bottom-0 bg-white px-6 pt-2 pb-1 whitespace-nowrap tracking-wide rounded-lg"
 };
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
