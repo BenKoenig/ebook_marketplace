@@ -25951,7 +25951,7 @@ var URL_EPUB = "http://lv.test/";
   data: function data() {
     return {
       /* epub: `http://lv.test/df/${this.product.id}`, */
-      epub: "http://lv.test/d/".concat(this.product.id, ".epub"),
+      epub: "".concat(window.location.origin, "/d/").concat(this.product.id, ".epub"),
       newEpub: [],
       show: false,
       book: {},
@@ -25962,7 +25962,6 @@ var URL_EPUB = "http://lv.test/";
   },
   mounted: function mounted() {
     this.loadEpub();
-    console.log(this.epub);
   },
   methods: {
     getCover: function getCover() {

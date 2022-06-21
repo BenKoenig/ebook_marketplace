@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             /* epub: `http://lv.test/df/${this.product.id}`, */
-            epub: `http://lv.test/d/${this.product.id}.epub`,
+            epub: `${window.location.origin}/d/${this.product.id}.epub`,
             newEpub: [],
             show: false,
             book: {},
@@ -46,11 +46,7 @@ export default {
     },
 
     mounted() {
-        
-
         this.loadEpub();
-
-        console.log(this.epub)
     },
 
     methods: {
