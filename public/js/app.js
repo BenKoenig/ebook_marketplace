@@ -29232,7 +29232,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8
         /* PROPS */
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          src: product.cover,
+          src: '../storage/' + product.cover,
           alt: product.name,
           "class": "mx-1 mt-1"
         }, null, 8
