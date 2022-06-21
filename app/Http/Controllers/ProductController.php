@@ -46,7 +46,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-/*         $request->validate([
+        $request->validate([
             'name' => ['required', 'max:100'],
             'short_description' => ['required', 'max:1000'],
             'description' => ['required', 'max:50000'],
@@ -54,7 +54,7 @@ class ProductController extends Controller
             'price' => ['required', 'numeric', 'between:0,150'],
             'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg', 'dimensions:width=265,height=445'],
             'epub' => ['required', 'max:1000000', 'mimes:epub'],
-        ]); */
+        ]);
         $product = Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),

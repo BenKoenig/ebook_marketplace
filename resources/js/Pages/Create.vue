@@ -46,7 +46,6 @@ const submit = () => {
             </div>
             <!-- End of headline -->
 
-            <p>no validate </p>
 
             <!-- Start of Form -->
             <div class="component--paddingX component--paddingB pt-5">
