@@ -24,7 +24,6 @@ class LibraryController extends Controller
             WHERE users.id = ?', [$user->id, $user->id]);
 
 
-
         return Inertia::render('Library', [
             'user' => \auth()->user(),
             'products' => $products,
