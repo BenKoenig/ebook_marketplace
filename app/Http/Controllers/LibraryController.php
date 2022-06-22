@@ -9,10 +9,8 @@ class LibraryController extends Controller
 {
     public function index(): \Inertia\Response
     {
-
         /* Get the logged-in user */
         $user = \auth()->user();
-
 
         /* Get the purchased products from the logged-in user */
         $products = DB::select('SELECT products.id, products.name, products.cover, products.epub, products.slug
@@ -23,15 +21,10 @@ class LibraryController extends Controller
             ON orders.user_id = ?
             WHERE users.id = ?', [$user->id, $user->id]);
 
-
+        /* render values */    
         return Inertia::render('Library', [
             'user' => \auth()->user(),
             'products' => $products,
         ]);
     }
 }
-
-
-
-
-

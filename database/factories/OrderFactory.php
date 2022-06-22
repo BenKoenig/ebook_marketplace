@@ -26,6 +26,7 @@ class OrderFactory extends Factory
             'product_id' => function() {
                 return User::all()->random();
             },
+            'purchased_price' => $this->faker->randomFloat(2, 0, 50),
             'created_at' => $this->faker->dateTimeBetween('-3 years', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('2020-04-03', '2022-02-07'),
         ];

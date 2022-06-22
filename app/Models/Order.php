@@ -10,6 +10,7 @@ class Order extends Model
 
     protected $fillable = [
         'created_at',
+        'purchased_price',
         'updated_at',
         'user_id',
         'product_id'

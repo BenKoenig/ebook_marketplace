@@ -18,7 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('product_id')->nullable();
-            $table->foreign('product_id')->references('id')->on('products');+
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->float('purchased_price');
             $table->timestamps();
         });
     }

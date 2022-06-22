@@ -8,6 +8,7 @@ use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\FileAccessController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,6 +37,9 @@ Route::get('/serve/{id}', [FileAccessController::class, 'serve']);
 
 /* Create a review*/
 Route::post('/reviews/', [ReviewController::class, 'store'])->name('reviews.store');
+
+/* Order History */
+Route::get('/order-history/', [OrderHistoryController::class, 'index'])->name('orders.history');
 
 /* Accept a product */
 Route::post('/accept/{id}', [AdminController::class, 'accept'])->middleware(['auth', 'verified'])->name('admin.accept');
