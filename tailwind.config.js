@@ -14,6 +14,7 @@ module.exports = {
         extend: {
             backgroundImage: {
                 'pattern': "url('../assets/bg/pattern.svg')",
+                'blur': "url('../assets/bg/blur.png')",
             },
             maxWidth: {
                 '8xl': '85rem',

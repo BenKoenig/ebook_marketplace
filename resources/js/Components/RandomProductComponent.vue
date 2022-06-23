@@ -64,9 +64,7 @@ const props = defineProps({
         &__item {
             @apply relative;
             @apply flex;
-            @apply items-center;
-            @apply border;
-            @apply border-slate-500;
+            @apply items-center;        
             @apply bg-white;
             @apply p-1;
             @apply lg:col-span-4;

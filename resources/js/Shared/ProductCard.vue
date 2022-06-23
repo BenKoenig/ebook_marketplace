@@ -1,5 +1,5 @@
 <template>
-    <div class="relative grid grid-cols-2 sm:grid-cols-1 xl:grid-cols-2 gap-x-2 md:gap-x-3 items-center  border border-black  bg-white rounded-lg">
+    <div class="relative grid grid-cols-2 sm:grid-cols-1 xl:grid-cols-2 gap-x-2 md:gap-x-3 items-center   bg-blur rounded-lg">
         <!-- Book cover-->
         <div class="w-full relative overflow-hidden bg-gray-100 rounded-lg">
             <img v-bind:src="'../storage/' + product.cover" :alt="product.name" class="w-full max-w-xs mx-auto">
@@ -24,7 +24,7 @@
             <CustomLink
                 :href="'/e/' + product.slug"
                 text="Read about it"
-                class="w-full bg-yellow-200 hover:bg-yellow-100"
+                class="w-full bg-white hover:bg-gray-100"
             />
 
             <!-- Link to the edit page -->
@@ -32,7 +32,7 @@
                 v-if="$page.props.auth.user ? $page.props.auth.user.id === product.user_id : false"
                 :href="'/edit/' + product.slug"
                 text="Edit"
-                class="w-full mt-2"
+                class="w-full mt-2 bg-yellow-100 hover:bg-yellow-200"
             />
         </div>
     </div>

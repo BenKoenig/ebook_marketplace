@@ -27,6 +27,8 @@ const props = defineProps({
     @apply border;
     @apply border-black;
     @apply relative;
+    @apply text-xl;
+    @apply font-bold; 
     box-shadow: 3px 3px 0px 0.1px #000000;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     &:hover {
