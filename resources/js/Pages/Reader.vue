@@ -34,7 +34,6 @@ export default {
 
     data() {
         return {
-            /* epub: `http://lv.test/df/${this.product.id}`, */
             epub: `${window.location.origin}/d/${this.product.id}.epub`,
             newEpub: [],
             show: false,

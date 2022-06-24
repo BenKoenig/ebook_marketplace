@@ -1,42 +1,42 @@
 /* Default Padding */
 .component--padding {
-    @apply p-[1rem];
+    @apply p-[3rem];
     @apply md:p-[5rem];
 }
 
 /* Default Padding Y */
 .component--paddingY {
-    @apply py-[1rem];
+    @apply py-[3rem];
     @apply md:py-[5rem];
 }
 
 /* Default Padding X */
 .component--paddingX {
-    @apply px-[1rem];
+    @apply px-[3rem];
     @apply md:px-[5rem];
 }
 
 /* Default Padding Right */
 .component--paddingR {
-    @apply pr-[1rem];
+    @apply pr-[3rem];
     @apply md:pr-[5rem];
 }
 
 /* Default Padding Left */
 .component--paddingL {
-    @apply pl-[1rem];
+    @apply pl-[3rem];
     @apply md:pl-[5rem];
 }
 
 /* Default Padding Top */
 .component--paddingT {
-    @apply pt-[1rem];
+    @apply pt-[3rem];
     @apply md:pt-[5rem];
 }
 
 /* Default Padding Bottom*/
 .component--paddingB {
-    @apply pb-[1rem];
+    @apply pb-[3rem];
     @apply md:pb-[5rem];
 }
 

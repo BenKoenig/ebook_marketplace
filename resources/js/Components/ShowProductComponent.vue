@@ -42,10 +42,9 @@
 
             <div class="w-full sm:col-span-7 xl:col-span-9  sm:order-1">
 
-                <div v-if="product.is_public === 0" class="bg-white border border-black text-black mb-1 text-xl  flex justify-center items-center py-3 px-2 mb-5">
+                <div v-if="product.is_public === 0" class="bg-white border border-black text-black text-xl  flex justify-center items-center py-3 px-2 mb-5 rounded-lg">
                     <p>Please be patient while we are reviewing your product. Product ID: <span class="font-bold">#{{ product.id }}</span></p>
                 </div>
-                <p>{{ product.id }}</p>
 
                 <!-- start of headline -->
                 <Headline
@@ -56,7 +55,7 @@
                 <!-- end of headline -->
 
                 <div class="xl:flex grid   items-center   mb-7 flex-wrap border-black border rounded-md overflow-hidden">
-                    <p class="text-xl py-3 px-4  h-full flex items-center bg-yellow-100 border-b xl:border-b-0 xl:border-r border-black"><i class="fa-solid fa-dollar-sign mr-1" ></i> <span v-if="product.sale_price > 0" class="line-through">{{ product.price }}</span></p>
+                    <p class="text-xl py-3 px-4  h-full flex items-center bg-yellow-100 border-b xl:border-b-0 xl:border-r border-black"><i class="fa-solid fa-dollar-sign mr-1" ></i> {{ product.price }}</p>
                     <p class="text-xl py-3 px-4 h-full flex items-center border-b xl:border-b-0 xl:border-r border-black">@{{ product.user.username }}</p>
                     
                     <!-- average rating -->
@@ -105,8 +104,8 @@
             <ul id="reviews" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1  py-7">
 
                 <!-- start of review loop -->
-                <li v-for="review in reviews.data" :key="review.id"  class="bg-white" >
-                    <div class="bg-yellow-100 border-b-[1px] border-black  text-center flex items-center gap-x-2 px-2 rounded-md">
+                <li v-for="review in reviews.data" :key="review.id"  class="bg-white rounded-lg overflow-hidden" >
+                    <div class="bg-yellow-100 border-b-[1px] border-black  text-center flex items-center gap-x-2 px-2">
                         <svg class="w-10" viewBox="0 0 36 36" fill="none" role="img" width="80" height="80"><title>@{{ review.user.username }}</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#ffad08"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(297 18 18) scale(1)" fill="#73b06f" rx="6"></rect><g transform="translate(3.5 3.5) rotate(7 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
                         
                         <!-- reviewer and link to their profile -->

@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Product;
 use Illuminate\Console\Command;
 
-class DemoCron extends Command
+class DecayScores extends Command
 {
     /**
      * The name and signature of the console command.

@@ -1,16 +1,16 @@
 <template>
-    <div class="c component--padding">
+    <div class="c ">
         <Headline
             :title="title"
             :h1="h1"
             :h2="h2"
             :h3="h3"
             :description="description"
-            class="within--paddingB"
+            class="within--paddingB component--padding"
         />
 
         <!-- start of product list -->
-        <div class="c__grid">
+        <div class="c__grid component--paddingB component--paddingL">
             <div v-for="product in products" :key="product.key" >
                 <ProductCard :product="product" />
             </div>
@@ -47,7 +47,7 @@ const props = defineProps({
         @apply sm:grid-cols-2;
         /* Desktop Media Query */
         @apply xl:grid-cols-3;
-        @apply gap-4;
+        @apply gap-2;
     }
 }
 
