@@ -21,7 +21,6 @@
                         Pay
                     </Button>
                 </div>
-
             </form>
         </div>
 

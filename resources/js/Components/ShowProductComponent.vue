@@ -4,7 +4,7 @@
             <div class="sm:sticky sm:top-1 h-fit  w-full sm:col-span-5 xl:col-span-3 sm:order-2  mx-auto relative">
 
                 <!-- Displays book cover -->
-                <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1" v-bind:alt="product.name + ' cover'" >
+                <img v-bind:src="'../storage/' + product.cover" class="w-full mb-1 rounded-lg" v-bind:alt="product.name + ' cover'" >
 
                 <div class="flex gap-1 mb-7 md:mb-0">
 
@@ -19,7 +19,7 @@
                     <!-- when user has purchased the ebook
                     it gives them the option to read it
                     or if they are the author to edit it  -->
-                    <div class="w-full bg-white p-2 mt-1" v-if="userHasPurchased">
+                    <div class="w-full  p-2 mt-1" v-if="userHasPurchased">
                         <p class="text-black text-center pb-1">Ebook is already in your library</p>
                         <div class="flex gap-x-2">
                             <CustomLink

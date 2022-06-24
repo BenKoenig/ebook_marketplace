@@ -1,7 +1,12 @@
 /* Default Padding */
 .component--padding {
-    @apply p-[3rem];
-    @apply md:p-[5rem];
+    @apply py-[3rem];
+    @apply md:py-[5rem];
+    @apply px-3;
+    @apply sm:px-4;
+    @apply md:px-6;
+    @apply lg:px-8;
+    @apply xl:px-16;
 }
 
 /* Default Padding Y */
@@ -12,20 +17,32 @@
 
 /* Default Padding X */
 .component--paddingX {
-    @apply px-[3rem];
-    @apply md:px-[5rem];
+    @apply px-3;
+    @apply sm:px-4;
+    @apply md:px-6;
+    @apply lg:px-8;
+    @apply xl:px-16;
 }
 
 /* Default Padding Right */
 .component--paddingR {
-    @apply pr-[3rem];
-    @apply md:pr-[5rem];
+    @apply pr-3;
+    @apply sm:pr-4;
+    @apply md:pr-6;
+    @apply lg:pr-8;
+    @apply xl:pr-16;
+
 }
 
 /* Default Padding Left */
 .component--paddingL {
-    @apply pl-[3rem];
-    @apply md:pl-[5rem];
+    @apply pl-3;
+    @apply sm:pl-4;
+    @apply md:pl-6;
+    @apply lg:pl-8;
+    @apply xl:pl-16;
+
+
 }
 
 /* Default Padding Top */

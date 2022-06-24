@@ -17,11 +17,12 @@ class ProductController extends Controller
     /**
      * @return \Inertia\Response
      */
-    public function index()
+    public function all()
     {
-        return Inertia::render('Home', [
-            'featuredProducts' => Product::with('user')->get()->where('is_featured', true),
-            'products' => Product::with('user')->get(),
+        $products = Product::query()->with('user')->paginate(24);
+
+        return Inertia::render('AllProducts', [
+            'products' => $products,
         ]);
 
     }
@@ -150,7 +151,7 @@ class ProductController extends Controller
                 'product_id' => $review->product_id,
                 'user_id' => $review->user_id,
                 'user' => $review->user
-            ]);
+        ]);
 
         /* aborts if user doesn't have access to products, that are hidden to the public */
         if(!$product->is_public && (!($user->is_admin) && !($user->id === $product->user_id)) ) {

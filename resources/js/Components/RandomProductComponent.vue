@@ -71,13 +71,14 @@ const props = defineProps({
             @apply p-1;
             @apply lg:col-span-4;
             @apply rounded-lg;
+            @apply border;
+            @apply border-black;
 
             &__p {
                 @apply text-lg;
                 @apply px-2;
                 @apply py-10;
                 @apply md:px-3;
-      
                 @apply lg:px-5;
             }
 

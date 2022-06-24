@@ -1,5 +1,5 @@
 <template>
-    <div class="relative grid grid-cols-2 sm:grid-cols-1 xl:grid-cols-2 gap-x-2 md:gap-x-3 items-center bg-white rounded-lg">
+    <div class="relative grid grid-cols-2 sm:grid-cols-1 xl:grid-cols-2 gap-x-2 md:gap-x-3 items-center bg-white rounded-lg border border-black max-w-[45rem]">
         <!-- Book cover-->
         <div class="w-full relative overflow-hidden bg-gray-100 rounded-lg">
             <img v-bind:src="'../storage/' + product.cover" :alt="product.name" class="w-full max-w-xs mx-auto">

@@ -67,6 +67,8 @@ Route::put('products/{product}', [ProductController::class, 'update'])
 /* Profile */
 Route::get('/u/{username}', [ProfileController::class, 'index'])->name('profile');
 
+/* All Products */
+Route::get('/all-products', [ProductController::class, 'all'])->name('products.all');
 
 /* Individual product page */
 Route::get('/e/{slug}', [ProductController::class, 'show'])->name('show');

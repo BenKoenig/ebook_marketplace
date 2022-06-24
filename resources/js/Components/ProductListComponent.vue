@@ -10,8 +10,8 @@
         />
 
         <!-- start of product list -->
-        <div class="c__grid component--paddingB component--paddingL">
-            <div v-for="product in products" :key="product.key" >
+        <div class="c__grid component--paddingB component--paddingX">
+            <div v-for="product in products" :key="product.id" >
                 <ProductCard :product="product" />
             </div>
         </div>
@@ -46,8 +46,10 @@ const props = defineProps({
         /* Tablet Media Query */
         @apply sm:grid-cols-2;
         /* Desktop Media Query */
-        @apply xl:grid-cols-3;
-        @apply gap-2;
+        @apply lg:grid-cols-3;
+        /* Desktop Media Query */
+        @apply 2xl:grid-cols-4;
+        @apply gap-4;
     }
 }
 
