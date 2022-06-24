@@ -95,7 +95,7 @@
 
             <nav 
             class="fixed bottom-0 left-0 w-full bg-white flex overflow-auto 
-            items-center md:hidden gap-x-2 z-50 touch-auto no-scrollbar  px-3">
+            items-center md:hidden gap-x-2 z-50 touch-auto no-scrollbar py-2 px-3">
 
                 <Link href="/" 
                 class="flex bg-gray-50 rounded-lg p-2 gap-x-3 items-center">                             
