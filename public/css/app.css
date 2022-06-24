@@ -1044,6 +1044,9 @@ input:checked + .toggle-bg{
 .h-4{
   height: 1rem;
 }
+.h-7{
+  height: 1.75rem;
+}
 .min-h-screen{
   min-height: 100vh;
 }
