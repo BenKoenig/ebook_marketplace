@@ -894,6 +894,10 @@ input:checked + .toggle-bg{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .ml-3{
   margin-left: 0.75rem;
 }
@@ -1171,6 +1175,9 @@ input:checked + .toggle-bg{
 .cursor-not-allowed{
   cursor: not-allowed;
 }
+.touch-auto{
+  touch-action: auto;
+}
 .resize{
   resize: both;
 }
@@ -1252,6 +1259,9 @@ input:checked + .toggle-bg{
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.overflow-auto{
+  overflow: auto;
 }
 .overflow-hidden{
   overflow: hidden;
@@ -1429,6 +1439,9 @@ input:checked + .toggle-bg{
 }
 .p-1{
   padding: 0.25rem;
+}
+.p-3{
+  padding: 0.75rem;
 }
 .px-4{
   padding-left: 1rem;
