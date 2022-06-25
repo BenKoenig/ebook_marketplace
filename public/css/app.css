@@ -988,6 +988,18 @@ input:checked + .toggle-bg{
 .-mt-11{
   margin-top: -2.75rem;
 }
+.-ml-1{
+  margin-left: -0.25rem;
+}
+.-ml-\[0\.5px\]{
+  margin-left: -0.5px;
+}
+.-ml-\[0\.8px\]{
+  margin-left: -0.8px;
+}
+.-ml-\[1px\]{
+  margin-left: -1px;
+}
 .block{
   display: block;
 }
@@ -1100,6 +1112,9 @@ input:checked + .toggle-bg{
 .w-44{
   width: 11rem;
 }
+.w-32{
+  width: 8rem;
+}
 .max-w-xl{
   max-width: 36rem;
 }
@@ -1127,11 +1142,29 @@ input:checked + .toggle-bg{
 .max-w-\[45rem\]{
   max-width: 45rem;
 }
+.max-w-5xl{
+  max-width: 64rem;
+}
+.max-w-2xl{
+  max-width: 42rem;
+}
+.max-w-sm{
+  max-width: 24rem;
+}
+.max-w-md{
+  max-width: 28rem;
+}
 .flex-1{
   flex: 1 1 0%;
 }
 .flex-shrink{
   flex-shrink: 1;
+}
+.shrink{
+  flex-shrink: 1;
+}
+.grow{
+  flex-grow: 1;
 }
 .origin-top-left{
   transform-origin: top left;
@@ -1224,6 +1257,9 @@ input:checked + .toggle-bg{
 .flex-wrap{
   flex-wrap: wrap;
 }
+.items-start{
+  align-items: flex-start;
+}
 .items-center{
   align-items: center;
 }
@@ -1279,6 +1315,10 @@ input:checked + .toggle-bg{
 .gap-x-32{
   -moz-column-gap: 8rem;
        column-gap: 8rem;
+}
+.gap-x-4{
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
@@ -1437,6 +1477,22 @@ input:checked + .toggle-bg{
 .bg-gray-900{
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+.bg-red-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 128 128 / var(--tw-bg-opacity));
+}
+.bg-black{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-yellow-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(227 160 8 / var(--tw-bg-opacity));
+}
+.bg-yellow-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 202 21 / var(--tw-bg-opacity));
 }
 .bg-opacity-50{
   --tw-bg-opacity: 0.5;
@@ -1608,6 +1664,14 @@ input:checked + .toggle-bg{
   font-size: 1.5rem;
   line-height: 2rem;
 }
+.text-7xl{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
+}
 .font-medium{
   font-weight: 500;
 }
@@ -1619,6 +1683,9 @@ input:checked + .toggle-bg{
 }
 .font-thin{
   font-weight: 100;
+}
+.font-normal{
+  font-weight: 400;
 }
 .uppercase{
   text-transform: uppercase;
@@ -1705,6 +1772,10 @@ input:checked + .toggle-bg{
 .text-red-400{
   --tw-text-opacity: 1;
   color: rgb(249 128 128 / var(--tw-text-opacity));
+}
+.text-orange-400{
+  --tw-text-opacity: 1;
+  color: rgb(255 138 76 / var(--tw-text-opacity));
 }
 .underline{
   -webkit-text-decoration-line: underline;
@@ -12477,6 +12548,11 @@ in order to display the code of the rich text editor.
   background-color: rgb(30 66 159 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-red-300:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 180 180 / var(--tw-bg-opacity));
+}
+
 .hover\:text-gray-500:hover{
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -12807,6 +12883,10 @@ in order to display the code of the rich text editor.
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
+  .md\:text-2xl{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 
 @media (min-width: 1024px){
@@ -12821,6 +12901,9 @@ in order to display the code of the rich text editor.
   }
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .lg\:flex-row{
+    flex-direction: row;
   }
   .lg\:gap-x-9{
     -moz-column-gap: 2.25rem;
@@ -12838,6 +12921,18 @@ in order to display the code of the rich text editor.
     font-size: 1.5rem;
     line-height: 2rem;
   }
+  .lg\:text-7xl{
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+  .lg\:text-4xl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .lg\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
 }
 
 @media (min-width: 1280px){
@@ -12852,6 +12947,9 @@ in order to display the code of the rich text editor.
   }
   .xl\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .xl\:flex-row{
+    flex-direction: row;
   }
   .xl\:gap-x-11{
     -moz-column-gap: 2.75rem;

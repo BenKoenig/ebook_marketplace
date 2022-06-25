@@ -16,7 +16,6 @@ class Order extends Model
         'product_id'
     ];
 
-
     public function user()
     {
         return $this->hasMany(User::class);
@@ -26,7 +25,4 @@ class Order extends Model
     {
         return $this->hasMany(Product::class);
     }
-
-
-
 }

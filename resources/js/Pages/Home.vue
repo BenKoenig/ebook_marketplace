@@ -4,6 +4,8 @@
 
         <div class="flex flex-col gap-y-3">
 
+            <HeroComponent />
+
             <!-- Headline and featured products -->
             <ProductListComponent
                 :products="featuredProducts"
@@ -40,6 +42,7 @@ import Guest from "@/Layouts/Guest";
 import RandomProductComponent from "@/Components/RandomProductComponent";
 import ProductListComponent from "@/Components/ProductListComponent";
 import GuidelinesCard from "@/Shared/GuidelinesCard";
+import HeroComponent from "@/Components/HeroComponent";
 
 const props = defineProps({
     featuredProducts: Object,

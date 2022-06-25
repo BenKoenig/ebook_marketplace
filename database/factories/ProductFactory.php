@@ -28,8 +28,8 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomFloat(2, 0, 50),
             'score' => $this->faker->randomDigit(),
             'cover' => $this->faker->randomElement($array = array ('covers/cover-1.jpg', 'covers/cover-2.jpg', 'covers/cover-3.jpg', 'covers/cover-4.jpg','covers/cover-5.jpg','covers/cover-6.jpg','covers/cover-7.jpg','covers/cover-8.jpg')),
-            'epub' => 'showcase.epub',
-            'is_featured' => false,
+            'epub' => 'epubs/showcase.epub',
+            'is_featured' => $this->faker->boolean($chanceOfGettingTrue = 6),
             'is_public' => true,
             'user_id' => function() {
                 return User::all()->random();

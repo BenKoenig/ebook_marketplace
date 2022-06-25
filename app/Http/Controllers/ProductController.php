@@ -24,7 +24,6 @@ class ProductController extends Controller
         return Inertia::render('AllProducts', [
             'products' => $products,
         ]);
-
     }
 
     /**
@@ -36,8 +35,6 @@ class ProductController extends Controller
         return Inertia::render('Create', [
             'products' => Product::all(),
         ]);
-
-
     }
 
     /**
@@ -75,8 +72,6 @@ class ProductController extends Controller
             'user_id' => $user->id,
             'product_id' => $product->id,
         ]);
-
-
         return redirect('/e/' . $product->slug)->with('success', 'You have successfully submitted your ebook. Please be patient while we review it.');
     }
 
@@ -90,7 +85,6 @@ class ProductController extends Controller
         if(Auth::user()->id !== $product->user_id) {
             abort(403, 'You are not permitted to edit this product.');
         }
-
         return Inertia::render('Edit', [
             'product' => $product
         ]);
@@ -112,7 +106,6 @@ class ProductController extends Controller
             'snippet' => $request->input('snippet'),
             'price' => $request->input('price'),
         ]);
-
         return redirect('/e/' . $product->slug)->with('success', 'Product has been updated.');
     }
 

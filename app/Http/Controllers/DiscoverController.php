@@ -14,12 +14,9 @@ class DiscoverController extends Controller
         return Inertia::render('Discover', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-
             'product' => Cache::remember('randProduct', 60*24, function () {
                 return Product::inRandomOrder()->with('user')->first();
             })
-
         ]);
     }
-
 }

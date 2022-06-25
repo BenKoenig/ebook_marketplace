@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-
 class Product extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable;
@@ -33,17 +32,6 @@ class Product extends Authenticatable
         'updated_at',
         'user_id'
     ];
-
-/*    public function getNameAttribute($value) {
-        return ucfirst($value);
-    }*/
-
-
-
-    public static function find($slug, string $string)
-    {
-    }
-
 
     public function sluggable(): array
     {
@@ -70,7 +58,6 @@ class Product extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-
     public function orders()
     {
         return $this->hasMany(Order::class);
@@ -80,14 +67,4 @@ class Product extends Authenticatable
     {
         return self::find($id)->toArray();
     }
-
-/*     static function decayScore() {
-        foreach(Product::all()->score as $score) {
-            Cache::remember('', 60*24, function () {
-                $score--;
-            });
-        }
-    } */
-
-
 }

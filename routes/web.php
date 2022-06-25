@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
@@ -27,6 +28,11 @@ use Inertia\Inertia;
 /* Home page*/
 Route::get('/', [HomeController::class, 'index', ])->name('home');
 
+/* Account Settings Conroller */
+Route::get('/account-settings', [AccountSettingsController::class, 'index', ])->name('account.settings');
+
+/* delete account */
+Route::post('/delete-profile/', [AccountSettingsController::class, 'delete'])->name('account.settings.delete');
 
 /* Create a product*/
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
