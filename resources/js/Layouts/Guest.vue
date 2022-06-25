@@ -183,7 +183,7 @@
                         <span class="sr-only">go to home</span>
                     </Link>
 
-                    <h2 class="text-2xl -mt-14">Powered by Developers.</h2>
+                    <h2 class="text-xl lg:text-2xl -mt-14 whitespace-nowrap">Powered by Developers.</h2>
                 </div>
                 <ul class="flex flex-wrap gap-x-5 py-7 md:flex-col md:py-0">
                     <li><a href="" class="whitespace-nowrap"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
