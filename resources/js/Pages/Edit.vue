@@ -17,7 +17,7 @@ const props = defineProps({
 const form = useForm({
     id: props.product.id,
     snippet: props.product.snippet,
-    sale_price: props.product.sale_price,
+    price: props.product.price,
     description: props.product.description,
     short_description: props.product.short_description
 });
@@ -60,7 +60,7 @@ const submit = () => {
 
                     <div class="mb-4">
                         <Label for="short_description" value="Short description" />
-                        <Input id="short_description" type="text" class="mt-1 block w-full" v-model="form.short_description" required autofocus  />
+                        <Input id="short_description" type="text" class="mt-1 block w-full" v-model="form.short_description" required  />
                     </div>
 
                     <div class="mb-4">
@@ -95,43 +95,24 @@ const submit = () => {
                         type="text" 
                         class="mt-1 block w-full" 
                         v-model="form.snippet" 
-                        required autofocus 
+                        required  
                         autocomplete="snippet" 
                         />
                         <!-- end of snippet input -->
                     </div>
 
-
-                    <div class="flex gap-x-2">
-                        <!-- price input/label -->
-                        <div class="mb-4">
-
-
-                        <h3 class="text-sm text-gray-600">Original Price (can't be changed)</h3>
-                        <h2 class="text-2xl text-bold mb-4">${{product.price}}</h2>   
-
-                            <Label for="sale_price" value="Sale Price" />
-                            <p v-if="product.sale_price === 0" class="text-sm text-red-500 mb-2">Ebook is currently not on sale</p>
-
-                            <div class="relative w-36">
-                                <div class="absolute w-10 h-full bg-gray-700 text-white 
-                                right-0 top-0 rounded-lg flex justify-center items-center text-bold text-xl">
-                                    <p>$</p>
-                                </div>
-
-                                <Input 
-                                id="sale_price" 
-                                type="text" 
-                                class="mt-1 block w-full" 
-                                v-model="form.sale_price" required autofocus 
-                                autocomplete="price" 
-                                />
+                    <!-- price input/label -->
+                    <div class="mb-4">
+                        <Label for="price" value="Price" />
+                        <div class="relative w-36">
+                            <div class="absolute w-10 h-full bg-gray-700 text-white right-0 top-0 rounded-lg flex justify-center items-center text-bold text-xl">
+                                <p>$</p>
                             </div>
+
+                            <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required  />
+
                         </div>
                     </div>
-
-                    
-
 
                     <div class="flex items-center justify-end mt-4">
                         <Button  :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="bg-yellow-200 hover:bg-yellow-100">

@@ -26,10 +26,9 @@ class ProductFactory extends Factory
             'snippet' => $this->faker->text,
             'short_description' => $this->faker->text,
             'price' => $this->faker->randomFloat(2, 0, 50),
-            'sale_price' => '',
             'score' => $this->faker->randomDigit(),
             'cover' => $this->faker->randomElement($array = array ('covers/cover-1.jpg', 'covers/cover-2.jpg', 'covers/cover-3.jpg', 'covers/cover-4.jpg','covers/cover-5.jpg','covers/cover-6.jpg','covers/cover-7.jpg','covers/cover-8.jpg')),
-            'epub' => '9781538745830.epub',
+            'epub' => 'showcase.epub',
             'is_featured' => false,
             'is_public' => true,
             'user_id' => function() {

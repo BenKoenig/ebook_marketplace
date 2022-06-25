@@ -53,7 +53,7 @@ class ProductController extends Controller
             'description' => ['required', 'max:50000'],
             'snippet' => ['required', 'max:1000'],
             'price' => ['required', 'numeric', 'between:0,150'],
-            'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg', 'dimensions:width=265,height=445'],
+            'cover' => ['required', 'max:10000', 'mimes:png,jpg,jpeg', 'dimensions:width=265,height=455'],
             'epub' => ['required', 'max:1000000', 'mimes:epub'],
         ]);
         $product = Product::create([
@@ -103,14 +103,14 @@ class ProductController extends Controller
             'short_description' => ['required', 'max:1000'],
             'description' => ['required', 'max:50000'],
             'snippet' => ['required', 'max:1000'],
-            'sale_price' => ['required', 'numeric', 'between:0,150'],
+            'price' => ['required', 'numeric', 'between:0,150'],
         ]);
 
         $product->update([
             'description' => $request->input('description'),
             'short_description' => $request->input('short_description'),
             'snippet' => $request->input('snippet'),
-            'sale_price' => $request->input('sale_price'),
+            'price' => $request->input('price'),
         ]);
 
         return redirect('/e/' . $product->slug)->with('success', 'Product has been updated.');

@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('cover');
             $table->string('epub');
             $table->float('price');
-            $table->float('sale_price');
             $table->integer('score');
             $table->boolean('is_featured');
             $table->boolean('is_public');

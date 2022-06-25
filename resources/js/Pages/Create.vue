@@ -53,20 +53,16 @@ const submit = () => {
                 <!-- Validation errors -->
                 <ValidationErrors class="mb-4" />
 
-                <form @submit.prevent="submit" class="max-w-3xl">
+                <form @submit.prevent="submit" class="max-w-3xl" novalidate>
 
                     <div class="mb-4">
                         <Label for="name" value="Book Title" />
-                        <Input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus  />
-                        <p v-if="errors.name" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.name }}</p>
-
+                        <Input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required />
                     </div>
 
                     <div class="mb-4">
                         <Label for="short_description" value="Short description" />
-                        <Input id="short_description" type="text" class="mt-1 block w-full" v-model="form.short_description" required autofocus  />
-                        <p v-if="errors.short_description" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.short_description }}</p>
-
+                        <Input id="short_description" type="text" class="mt-1 block w-full" v-model="form.short_description" required   />
                     </div>
 
                     <!-- start of rich text editor -->
@@ -97,9 +93,7 @@ const submit = () => {
                     <!-- book snippet input/label -->
                     <div class="mb-4">
                         <Label for="snippet" value="Book Snippet" />
-                        <Input id="snippet" type="text" class="mt-1 block w-full" v-model="form.snippet" required autofocus autocomplete="snippet" />
-                        <p v-if="errors.price" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.snippet }}</p>
-
+                        <Input id="snippet" type="text" class="mt-1 block w-full" v-model="form.snippet" required  autocomplete="snippet" />
                     </div>
 
                     <!-- price input/label -->
@@ -110,9 +104,7 @@ const submit = () => {
                                 <p>$</p>
                             </div>
 
-                            <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required autofocus autocomplete="price" />
-                            <p v-if="errors.price" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.price }}</p>
-
+                            <Input id="price" type="text" class="mt-1 block w-full" v-model="form.price" required  autocomplete="price" />
                         </div>
                     </div>
 
@@ -121,16 +113,20 @@ const submit = () => {
                         <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="cover">Upload Book Cover</label>
                             <input class="rounded-lg block w-full text-sm text-gray-900 bg-gray-50  border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="cover_help" id="cover" @input="form.cover = $event.target.files[0]" type="file">
-                            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="cover_help">The book cover will be seen in the product list</div>
-                            <p v-if="errors.cover" class="mt-2 text-sm text-red-600 dark:text-red-500">The cover image must be 265x455</p>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="cover_help">
+                            The book cover will be seen in the featured page and product page. The image must be <span class="text-red-400">265</span> x <span class="text-red-400">455</span>. We accept the file formats: png and jpg
+                            </p>
 
                         </div>
 
                         <div class="mb-6">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="epub">Upload EPUB file</label>
                             <input class="rounded-lg block w-full text-sm text-gray-900 bg-gray-50  border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="epub_help"  id="epub" @input="form.epub = $event.target.files[0]" type="file">
-                            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="epub_help">An EPUB file (short for electronic publication) is in the Open eBook file format. You can download EPUB files and read them on your smartphone, tablet, e-reader, or computer. This freely available eBook standard supports more hardware eBook readers than any other file format. </div>
-                            <p v-if="errors.epub" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ errors.epub }}</p>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="epub_help">
+                            An EPUB file (short for electronic publication) is in the Open eBook file format. 
+                            You can download EPUB files and read them on your smartphone, tablet, e-reader, or computer. 
+                            This freely available eBook standard supports more hardware eBook readers than any other file format. 
+                            </p>
                         </div>
                     </div>
 

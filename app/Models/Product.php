@@ -25,7 +25,6 @@ class Product extends Authenticatable
         'description',
         'snippet',
         'price',
-        'sale_price',
         'is_featured',
         'is_public',
         'cover',
