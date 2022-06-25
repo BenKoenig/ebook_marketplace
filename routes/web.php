@@ -87,6 +87,12 @@ Route::get('/read/{slug}', [ReaderController::class, 'index'])->name('reader');
 /* Guidelines page */
 Route::inertia('/guidelines', 'Guidelines')->name('guidelines');
 
+/* ToS */
+Route::inertia('/terms-of-service', 'TOS')->name('termsofservice');
+
+/* PrivacyPolicy */
+Route::inertia('/privacy-policy', 'PrivacyPolicy')->name('privacypolicy');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

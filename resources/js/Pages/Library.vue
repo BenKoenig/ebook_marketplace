@@ -13,8 +13,9 @@
                 <div v-for="product in products" key="product.product_id" class="library__grid__item">
                     <Link :href="'/read/' + product.slug"  class="absolute w-full h-full z-20"></Link>
                     <img v-bind:src="'../storage/' + product.cover" :alt="product.name" class="mx-1 mt-1 ">
-                    <div class="mx-2 py-3">
+                    <div class="mx-2 py-3 flex gap-x-2 justify-between">
                         <h3 class="leading-5 tracking-wide">{{ product.name }}</h3>
+                        <Link :href="'/d/' +  product.id" class="relative z-30"><i class="fa-solid fa-download"></i> <span class="sr-only">Download ebook</span></Link>
                     </div>
                 </div>
 

@@ -53,8 +53,6 @@ const props = defineProps({
 <style lang="scss" scoped>
 .rand {
     @apply bg-beige-400;
-    @apply md:rounded-tr-lg;
-    @apply md:rounded-br-lg;
 
     &__grid {
         @apply grid;
