@@ -138,7 +138,7 @@
                     Admin
                 </Link>
 
-                <Link href="/profile" v-if="$page.props.auth.user"
+                <Link :href="'/u/' + $page.props.auth.user.username" v-if="$page.props.auth.user"
                 class="flex bg-gray-50 rounded-lg p-2 gap-x-3 items-center">  
                     Profile
                 </Link>
@@ -175,21 +175,30 @@
             </div>
         </div>
 
-        <footer class="component--paddingY  flex flex-col md:border-t md:border-black">
-            <div class="component--paddingX ">
-                <div>
+        <footer class="py-16 flex flex-col md:border-t md:border-black overflow-hidden">
+            <div class="component--paddingX flex flex-col md:flex-row md:gap-x-28 xl:gap-x-32">
+                <div class="-mt-11">
                     <Link href="/" >
                         <img  src="../../assets/logo.jpg" class="w-44" alt="readme logo">
                         <span class="sr-only">go to home</span>
                     </Link>
 
-                    <h2 class="font-thin text-2xl -mt-12">Powered by Developers.</h2>
+                    <h2 class="text-2xl -mt-14">Powered by Developers.</h2>
                 </div>
-                <ul>
-                    <li><a href=""><i class="fa-brands fa-twitter"></i> Twitter</a></li>
-                    <li><Link href="/guidelines">Guidelines</Link></li>
-
+                <ul class="flex flex-wrap gap-x-5 py-7 md:flex-col md:py-0">
+                    <li><a href="" class="whitespace-nowrap"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                    <li><Link href="/guidelines" class="whitespace-nowrap"><i class="fa-solid fa-file mr-1"></i> Guidelines</Link></li>
+                    <li><Link href="/guidelines" class="whitespace-nowrap"><i class="fa-solid fa-bell-concierge"></i> Terms of Service</Link></li>
+                    <li><Link href="/guidelines" class="whitespace-nowrap"><i class="fa-solid fa-user mr-1"></i> Privacy Policy</Link></li>
                 </ul>
+
+                <div>
+                    <p><i class="fa-solid fa-circle-exclamation"></i> This is just a demo site, <span class="text-red-400">none</span> of the items are for sale.</p>
+                    <p><i class="fa-solid fa-circle-exclamation"></i>
+                    readme is open source and can be viewed 
+                    <a href="https://github.com/BenKoenig/ebook_marketplace" class="underline">here</a>.
+                    </p>
+                </div>
             </div>
                 
 

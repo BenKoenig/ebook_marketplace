@@ -982,6 +982,12 @@ input:checked + .toggle-bg{
 .-mt-12{
   margin-top: -3rem;
 }
+.-mt-9{
+  margin-top: -2.25rem;
+}
+.-mt-11{
+  margin-top: -2.75rem;
+}
 .block{
   display: block;
 }
@@ -1258,6 +1264,22 @@ input:checked + .toggle-bg{
   -moz-column-gap: 0.75rem;
        column-gap: 0.75rem;
 }
+.gap-x-10{
+  -moz-column-gap: 2.5rem;
+       column-gap: 2.5rem;
+}
+.gap-x-20{
+  -moz-column-gap: 5rem;
+       column-gap: 5rem;
+}
+.gap-x-36{
+  -moz-column-gap: 9rem;
+       column-gap: 9rem;
+}
+.gap-x-32{
+  -moz-column-gap: 8rem;
+       column-gap: 8rem;
+}
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -1502,6 +1524,14 @@ input:checked + .toggle-bg{
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
+.py-5{
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+.py-16{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
 .pt-8{
   padding-top: 2rem;
 }
@@ -1525,6 +1555,18 @@ input:checked + .toggle-bg{
 }
 .pb-2{
   padding-bottom: 0.5rem;
+}
+.pb-9{
+  padding-bottom: 2.25rem;
+}
+.pb-10{
+  padding-bottom: 2.5rem;
+}
+.pb-5{
+  padding-bottom: 1.25rem;
+}
+.pb-12{
+  padding-bottom: 3rem;
 }
 .text-left{
   text-align: left;
@@ -12713,6 +12755,12 @@ in order to display the code of the rich text editor.
   .md\:hidden{
     display: none;
   }
+  .md\:flex-row{
+    flex-direction: row;
+  }
+  .md\:flex-col{
+    flex-direction: column;
+  }
   .md\:gap-x-7{
     -moz-column-gap: 1.75rem;
          column-gap: 1.75rem;
@@ -12720,6 +12768,10 @@ in order to display the code of the rich text editor.
   .md\:gap-x-3{
     -moz-column-gap: 0.75rem;
          column-gap: 0.75rem;
+  }
+  .md\:gap-x-28{
+    -moz-column-gap: 7rem;
+         column-gap: 7rem;
   }
   .md\:rounded-tr-lg{
     border-top-right-radius: 0.5rem;
@@ -12742,6 +12794,10 @@ in order to display the code of the rich text editor.
   .md\:px-6{
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+  .md\:py-0{
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   .md\:text-3xl{
     font-size: 1.875rem;
@@ -12796,6 +12852,10 @@ in order to display the code of the rich text editor.
   .xl\:gap-x-11{
     -moz-column-gap: 2.75rem;
          column-gap: 2.75rem;
+  }
+  .xl\:gap-x-32{
+    -moz-column-gap: 8rem;
+         column-gap: 8rem;
   }
   .xl\:border-b-0{
     border-bottom-width: 0px;
