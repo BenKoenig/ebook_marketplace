@@ -1,6 +1,6 @@
 <template>
     <Guest>
-        <Head title="Profile" />
+        <Head :title="user.username" />
 
         <!-- start of user profile -->
 
@@ -22,7 +22,7 @@
 
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link, Head } from '@inertiajs/inertia-vue3'
 import Guest from "@/Layouts/Guest";
 import Headline from "@/Shared/Headline";
 import ProductListComponent from "@/Components/ProductListComponent";

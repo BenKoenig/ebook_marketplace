@@ -40,9 +40,9 @@ const submit = () => {
             <!-- Start of headline -->
             <div class="bg-pattern bg-cover bg-fixed component--padding">
                 <Headline
-                    title="Lorem ipsum dolar"
-                    h1="Welcome back to readme"
-                    description="Lorem ipsum dolar set et it so"
+                    title="Happy to have you on board!"
+                    h1="Welcome to readme"
+                    description="Enter in your personal information."
                 />
             </div>
             <!-- End of headline -->

@@ -51,4 +51,5 @@
 <script setup>
 import Guest from "@/Layouts/Guest";
 import Headline from "@/Shared/Headline";
+import { Head } from '@inertiajs/inertia-vue3';
 </script>

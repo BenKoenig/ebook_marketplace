@@ -3,6 +3,7 @@ import Guest from "@/Layouts/Guest";
 import ProductCard from "@/Shared/ProductCard";
 import Headline from "@/Shared/Headline";
 import Pagination from "@/Shared/Pagination";
+import { Head } from '@inertiajs/inertia-vue3';
 
 
 const props = defineProps({
@@ -19,6 +20,8 @@ function filteredList() {
 
 <template>
     <Guest>
+        <Head title="All Products" />
+
         <div class="component--padding">
 
             <Headline

@@ -10,10 +10,7 @@ const props = defineProps({
         default: 'This is a link'
     }
 });
-
-
 </script>
-
 
 <style lang="scss" scoped>
 .link {

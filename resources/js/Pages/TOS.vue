@@ -1,6 +1,6 @@
 <template>
     <Guest>
-        <Head title="Guidelines" />
+        <Head title="Terms of Service" />
 
         <div class="component--padding">
             <Headline
@@ -11,7 +11,6 @@
             />
 
             <p class="text-red-600">(This is just a demo site)</p>
-
             <h1>Website Terms and Conditions of Use</h1>
 
 
@@ -68,6 +67,7 @@
 </template>
 
 <script setup>
+import { Head } from "@inertiajs/inertia-vue3";
 import Guest from "@/Layouts/Guest";
 import Headline from "@/Shared/Headline";
 </script>

@@ -28,7 +28,7 @@
 
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link, Head } from '@inertiajs/inertia-vue3'
 import Guest from "@/Layouts/Guest";
 import Headline from "@/Shared/Headline";
 

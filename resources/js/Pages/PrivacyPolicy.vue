@@ -1,6 +1,6 @@
 <template>
     <Guest>
-        <Head title="Guidelines" />
+        <Head title="Privacy Policy" />
 
         <div class="component--padding">
             <Headline
@@ -102,6 +102,7 @@
 <script setup>
 import Guest from "@/Layouts/Guest";
 import Headline from "@/Shared/Headline";
+import { Head } from '@inertiajs/inertia-vue3'
 </script>
 
 <style scoped>

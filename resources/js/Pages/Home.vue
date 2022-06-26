@@ -39,6 +39,7 @@
 
 <script setup>
 import Guest from "@/Layouts/Guest";
+import { Head } from '@inertiajs/inertia-vue3';
 import RandomProductComponent from "@/Components/RandomProductComponent";
 import ProductListComponent from "@/Components/ProductListComponent";
 import GuidelinesCard from "@/Shared/GuidelinesCard";

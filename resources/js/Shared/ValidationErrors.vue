@@ -5,6 +5,8 @@ const errors = computed(() => usePage().props.value.errors);
 const hasErrors = computed(() => Object.keys(errors.value).length > 0);
 </script>
 
+
+<!-- Validation errors show up if there is an error in a form -->
 <template>
     <div v-if="hasErrors">
         <div class="font-medium text-red-600">Whoops! Something went wrong.</div>

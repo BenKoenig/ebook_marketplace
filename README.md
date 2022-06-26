@@ -48,13 +48,10 @@ php artisan serve
 
 ## About
 
-readme is a marketplace powered by developers.
-eBooks by developers for developers.
-A place for developers to to buy or sell educational eBooks.
-A platform dedicated to making it easier for
-developers to discover eBooks via the featured
-page and increase sales.
-With a beautiful interface, many eReader tools and an outet for developers
-to educate each other, this web app will provide a great user experience.        
+readme is a place for developers and designers to buy and sell ebooks that help them learn new technologies. It is a platform to make it easier for them to discover ebooks through the featured site and improve the experience by providing an interface, and an outlet for people to educate each other.     
+
+## Login
+- Email: me@m.com
+- Password: letmein
 
                 
