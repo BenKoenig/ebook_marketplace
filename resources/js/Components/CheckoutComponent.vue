@@ -3,7 +3,7 @@
         <Headline
             title="Checkout"
             :h1="product.name"
-            description="Lorem ipsum dolar set et do it dorum"
+            description="Purchase this ebook"
             class="component--paddingB"
         />
 

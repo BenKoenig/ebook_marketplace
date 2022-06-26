@@ -10,7 +10,7 @@
             class="component--paddingB"
             />
 
-            
+            <p class="text-red-600">(This is just a demo site)</p>
             <h1>Privacy Policy for readme</h1>
 
             <p>At readme, accessible from readme.de, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by readme and how we use it.</p>

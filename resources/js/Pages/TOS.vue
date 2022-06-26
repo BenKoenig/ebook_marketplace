@@ -10,7 +10,10 @@
             class="component--paddingB"
             />
 
+            <p class="text-red-600">(This is just a demo site)</p>
+
             <h1>Website Terms and Conditions of Use</h1>
+
 
             <h2>1. Terms</h2>
 
