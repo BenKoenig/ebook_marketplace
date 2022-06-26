@@ -1,8 +1,3 @@
-<script setup>
-import CustomLink from "@/Shared/CustomLink";
-</script>
-
-
 <template>
     <div class="component--paddingT component--paddingX flex items-center flex-col xl:flex-row">
         <div>
@@ -14,20 +9,13 @@ import CustomLink from "@/Shared/CustomLink";
             </div>
 
 
-            <p class="max-w-3xl mb-4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-            Aenean commodo ligula eget dolor. Aenean massa. Cum sociis 
-            natoque penatibus et magnis dis parturient montes, nascetur 
-            ridiculus mus. Donec quam felis, ultricies nec, pellentesque 
-            eu, pretium quis, sem. Nulla consequat massa quis enim. Donec 
-            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, </p>
+            <p class="max-w-3xl mb-4">readme is a place for developers and designers to buy and sell ebooks that help them learn new technologies. 
+            It is a platform to make it easier for them to discover ebooks through the featured site and improve the experience by providing an 
+            interface, and an outlet for people to educate each other.</p>
         </div>
 
         <div class="max-w-3xl">
             <img src="../../assets/hero-img.png" alt="programming and designing" class="w-full">
-
         </div>
-
-        
-
     </div>
 </template>

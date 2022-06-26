@@ -12,27 +12,20 @@
 
             <div class="mb-3">
                 <h2 class="text-2xl font-bold">
-                    Lorem ipsum
+                    Product must feature technologies which are up-to-date
                 </h2>
                 <ol class="list-decimal list-inside">
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
+                    <li>The technologies must be up-to-date</li>
                 </ol>
             </div>
 
             <div class="mb-3">
                 <h2 class="text-2xl font-bold">
-                    Lorem ipsum
+                    The ebook must have at least 20,000 words
                 </h2>
                 <ol class="list-decimal list-inside">
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa</li>
+                    <li>Your ebook can't be shorter in length than 20,000 words.</li>
+
                 </ol>
             </div>
 

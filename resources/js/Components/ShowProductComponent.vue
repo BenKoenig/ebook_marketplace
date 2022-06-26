@@ -56,7 +56,7 @@
 
                 <div class="xl:flex grid   items-center   mb-7 flex-wrap border-black border rounded-md overflow-hidden">
                     <p class="text-xl py-3 px-4  h-full flex items-center bg-yellow-100 border-b xl:border-b-0 xl:border-r border-black"><i class="fa-solid fa-dollar-sign mr-1" ></i> {{ product.price }}</p>
-                    <p class="text-xl py-3 px-4 h-full flex items-center border-b xl:border-b-0 xl:border-r border-black">@{{ product.user.username }}</p>
+                    <Link class="text-xl py-3 px-4 h-full flex items-center border-b xl:border-b-0 xl:border-r border-black"  :href="'/u/' + product.user.username">@{{product.user.username}}</Link>
                     
                     <!-- average rating -->
                     <div v-if="averageRating" class="flex py-3 px-4 gap-x-1 items-center  text-xl h-full border-b xl:border-b-0 xl:border-r border-black">

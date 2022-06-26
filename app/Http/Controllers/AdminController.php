@@ -23,6 +23,7 @@ class AdminController extends Controller
         ]);
     }
 
+    /* accepts product */
     public function accept($id)
     {
         if(!Auth::user() || Auth::user()->is_admin === 0) {
@@ -35,6 +36,7 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
+    /* rejects product */
     public function reject($id)
     {
         if(!Auth::user() || Auth::user()->is_admin === 0) {

@@ -1,18 +1,15 @@
 <?php
 
-use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\FileAccessController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +24,6 @@ use Inertia\Inertia;
 
 /* Home page*/
 Route::get('/', [HomeController::class, 'index', ])->name('home');
-
-/* Account Settings Conroller */
-Route::get('/account-settings', [AccountSettingsController::class, 'index', ])->name('account.settings');
-
-/* delete account */
-Route::post('/delete-profile/', [AccountSettingsController::class, 'delete'])->name('account.settings.delete');
 
 /* Create a product*/
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -56,19 +47,14 @@ Route::post('/reject/{id}', [AdminController::class, 'reject'])->middleware(['au
 /* Purchased eBooks from the user */
 Route::get('/library', [\App\Http\Controllers\LibraryController::class, 'index'])->middleware(['auth', 'verified'])->name('library');
 
-/* Product Pages*/
-Route::get('/discover', [DiscoverController::class, 'index'])->name('discover');
-
 /* Create Product Page */
 Route::get('/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
 
 /* Edit Product Page */
 Route::get('/edit/{slug}', [ProductController::class, 'edit'])->name('products.create');
 
-
-Route::put('products/{product}', [ProductController::class, 'update'])
-->name('products.update');
-
+/* update product */
+Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
 
 /* Profile */
 Route::get('/u/{username}', [ProfileController::class, 'index'])->name('profile');
@@ -85,8 +71,6 @@ Route::get('/e/{slug}/checkout', [CheckoutController::class, 'index'])->name('ch
 /* Create a product*/
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
-
-
 /* Uses ePub file content to display eBook */
 Route::get('/read/{slug}', [ReaderController::class, 'index'])->name('reader');
 
@@ -98,10 +82,6 @@ Route::inertia('/terms-of-service', 'TOS')->name('termsofservice');
 
 /* PrivacyPolicy */
 Route::inertia('/privacy-policy', 'PrivacyPolicy')->name('privacypolicy');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 /* Admin Page */
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('admin');
