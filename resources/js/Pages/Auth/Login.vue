@@ -55,7 +55,7 @@ const submit = () => {
                     <!-- email field -->
                     <div>
                         <Label for="email" value="Email" />
-                        <Input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+                        <Input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
                     </div>
 
                     <!-- password field -->

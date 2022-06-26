@@ -57,17 +57,17 @@ const submit = () => {
 
                     <div class="mb-4">
                         <Label for="firstname" value="First Name" />
-                        <Input id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" required autofocus autocomplete="firstname" />
+                        <Input id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" required autocomplete="firstname" />
                     </div>
 
                     <div class="mb-4">
                         <Label for="lastname" value="Last Name" />
-                        <Input id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" required autofocus autocomplete="lastname" />
+                        <Input id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" required autocomplete="lastname" />
                     </div>
 
                     <div class="mb-4">
                         <Label for="username" value="Username" />
-                        <Input id="username" type="text" class="mt-1 block w-full" v-model="form.username" required autofocus autocomplete="username" />
+                        <Input id="username" type="text" class="mt-1 block w-full" v-model="form.username" required autocomplete="username" />
                     </div>
 
                     <div class="mb-4">
