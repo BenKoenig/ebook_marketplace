@@ -48,11 +48,9 @@ class CheckoutController extends Controller
           abort(404);
         }
 
-        $price = $product->sale_price === 0.0 ? $product->price : $product->sale_price;
-
         /* Stores information to database */
         Order::create([
-            'purchased_price' => $price,
+            'purchased_price' => $product->price,
             'user_id' => $user->id,
             'product_id' => $product->id,
         ]);
